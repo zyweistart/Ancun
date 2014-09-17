@@ -1,0 +1,104 @@
+//
+// Prefix header for all source files of the 'ACyulu' target in the 'ACyulu' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#pragma mark 测试环境宏定义
+//#define TEST
+#pragma mark 越狱版宏定义
+//#define JAILBREAK
+
+#ifdef TEST
+#warning 当前版本为测试版本上线需要注释该宏定义
+#endif
+#ifdef JAILBREAK
+#warning 当前版本为越狱版本如提交App Store审核需注释该JAILBREAK宏定义
+#endif
+
+#ifdef __OBJC__
+//System
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+//CustomClass
+#import "Config.h"
+#import "NSString+Utils.h"
+#import "Common.h"
+#import "Response.h"
+#import "XML.h"
+#import "HttpRequest.h"
+#import "BaseViewController.h"
+#endif
+//iPhone检测是否当前环境为iPhone5
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+//缓存常量唯一方法
+#define CACHE_CONSTANT(STRING) [NSString stringWithFormat:@"%@-%@-%@",STRING,[NSString stringWithUTF8String:object_getClassName(self)],ACCESSID]
+#define CACHE_DATA [NSString stringWithFormat:@"%@-%@",[NSString stringWithUTF8String:object_getClassName(self)],ACCESSID]
+//导航背景
+#define NAVCOLOR [UIColor colorWithRed:(68/255.0) green:(141/255.0) blue:(208/255.0) alpha:1]
+//常量
+#define APPNAME @"安存语录"
+#define Notification_TabClick_ACRecordingManagerViewController @"Notification_TabClick_ACRecordingManagerViewController"
+//配置常量
+#define DEFAULTDATA_PHONE @"DEFAULTDATA_PHONE"
+#define DEFAULTDATA_PASSWORD @"DEFAULTDATA_PASSWORD"
+#define DEFAULTDATA_AUTOLOGIN @"DEFAULTDATA_AUTOLOGIN"
+#define DEFAULTDATA_FIRSTLOGIN @"DEFAULTDATA_FIRSTLOGIN"
+#define DEFAULTDATA_LASTVERSIONNO @"DEFAULTDATA_LASTVERSIONNO"
+//请求码常量
+#define REQUESTCODE_ACExtractionDetailViewController_apply 1
+#define REQUESTCODE_ACExtractionDetailViewController_view 2
+#define REQUESTCODE_ACExtractionDetailViewController_cancel 3
+#define REQUESTCODE_GETINFO 103
+#define REQUESTCODE_SUBMITREMARK 104
+#define REQUESTCODE_APPLYNOTARY 1002
+#define REQUESTCODE_CANCELNOTARY 105
+#define REQUESTCODE_GETVERIFICATIONCODE 107
+#define REQUESTCODE_SUBMITVERIFICATIONCODE 108
+#define REQUESTCODE_SIGNUP 109
+#define REQUESTCODE_REMOVE 110
+#define REQUESTCODE_FILE_DOWNLOAD 111
+#define REQUESTCODE_BUY_LOADPRODUCT 112
+#define REQUESTCODE_BUY_BUILD 113
+#define REQUESTCODE_BUY_VERIFYING 114
+//ResultDelegate代理返回的ResultCode常量
+#define RESULTCODE_ACLoginViewController_1 1
+#define RESULTCODE_ACLoginViewController_2 2
+#define RESULTCODE_ACLoginViewController_3 3
+#define RESULTCODE_ACRecordingDetailViewController_back 222
+#define RESULTCODE_ACExtractionDetailViewController_back 2
+#define RESULTCODE_ACRechargeConfirmViewController_back 21111
+
+//录音查询
+#define auth_4recqry1 @"v4recqry1"
+//录音详情查看
+#define auth_v4recget1 @"v4recget1"
+//录音备注修改
+#define auth_v4recremark @"v4recremark"
+//录音收听下载
+#define auth_v4recdown1 @"v4recdown1"
+//录音删除
+#define auth_v4recalter1 @"v4recalter1"
+//录音撤销提取
+#define auth_v4recalter8 @"v4recalter8"
+
+#ifdef TEST
+//测试环境定义的常量
+#define PHONENUMBER @"057156559570"
+//    #define ANCUN_HTTP_URL @"http://192.168.0.254:8080/rest/RestService"
+#define ANCUN_HTTP_URL @"http://115.236.89.210:8888/accore/http/HttpService"
+//    #define ANCUN_HTTP_URL @"http://192.168.0.221:8080/accore/rest/RestService"
+#define ACCESSID @"b99810e661d546f14763f15a9270c28d"
+#define ACCESSKEY @"aRxzVdMiopnzpJco3fPJOmXSDZL7rGiL3UgbqQA9YeJ="
+#else
+//正式环境定义的常量
+#define PHONENUMBER @"95105856"
+#define ANCUN_HTTP_URL @"http://server.ancun.com:3391/rest/RestService"
+#define ACCESSID @"e4e60d050f5513e086b47c4fdca35646"
+#define ACCESSKEY @"fUETGmOIiMujnipQnFm6rJIyO2wJDZSftsK4dwmmoSZ="
+#endif
+

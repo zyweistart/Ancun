@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">1.产品介绍</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">安存语录（</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">95105856</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">）由杭州安存网络科技有限公司联合电信运营商（中国移动，中国电信，中国联通等）、阿里云计算、公证机构共同推出，为用户提供一站式通话语音数据保全公证服务，同时还是</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">淘宝网官方唯一认可的第三方通话录音取证服务和维权证据。</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">无论是手机用户还是固话用户，注册并开通相关服务后，只需</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">通过手机客户端直接拨打对方号码或本地通讯录联系人，或</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">在对方号码前加拨平台服务接入号</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">95105856</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">，就可对相应通话内容进行实时录音保全。</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">安存语录运用全球首创的"电信运营商局端保全通话信息"、"阿里云云服务器智能同步存储"，"与国家公证机构无缝对接"等模式，严格保障了通话录音的真实性和完整性，所保全的录音严格满足证据的真实性、合法性要求，以公证的法定证明力为依托，是真正可成为被司法机关认可呈堂证供的通话录音，适用于需要保存双方通话沟通完整过程及详细内容，且对所保存的通话录音证据法律效力有极高要求的用户。</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p style="margin-left:0pt;text-indent:18pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">安存语录（个人版）</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">iOS</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">客户端是全球首个录音公证电话</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">95105856</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">（安存语录）面向其使用</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">iPhone</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">手机的个人用户提供快速注册，便捷呼叫，查询账户信息及录音详情，申办公证等便捷功能的移动客户端，仅限</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">开通安存语录个人版服务的用户使</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">用</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p style="margin-left:0pt;text-indent:18pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">（企业及机构用户使用</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">请详询全国统一热线95105856</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">）</span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">2.应用范围</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">2</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">.1</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">企业及机构行为场景应用：</span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">1、可用于口头订立、变更、终止合同的电话录音；</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">2、合同争议的过错责任甄别，违约责任判断的电话录音；</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">3、用于会议录音留档，销售、投诉、客服、咨询热线的电话录音；</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">4、企业销售部门，售后服务部门等，商业活动频繁，客服电话众多，重要电话通话录音， 句句话都关乎到商业利益和企业权益；</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">5、新闻媒体电话采访、取证等电话录音、现场录音，铁证不容否认（即使通话工具被抢夺破坏，已经发生的录音数据永存）；</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">6、金融、证券、贸易交易电话通话录音，每一个指令都会产生巨额的资金流动，每一个口头指令都有可靠的记录，事实不失真。</span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">2</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">.</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">2</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">单体及个人行为场景应用：</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;font-size:14px;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;"><span style="color:#000000;">1、个人借贷、投资；财产和劳动争议；房屋租赁等经济和生活服务采购......纠纷问题过程真相保全；</span><br />
+<span style="color:#000000;">2、网购发生售后纠纷或卖家遭遇恶意差评，可通过安存语录录制通话交涉过程，并申请提取码提交给维权客服以还原事实真相，有效地双向保障买卖双方的合作权益不受侵害。</span><br />
+<span style="color:#000000;">3、法律、财务、设计等专业服务个人从业者可通过安存语录实时记录提供服务期间的沟通过程，便于雇佣双方清晰中间过程，避免纠纷和在必要时维护各自的合法利益。</span></span><span style="font-size:9pt;font-family:微软雅黑;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">3.资费说明</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;"></span></p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>个人用户版</strong></p>
+<p style="margin:0;font-family:微软雅黑;font-size:9pt;"> <strong>资费说明：</strong><br> 
+            通话费用：录音通话的通话费用按用户实际通话时长，由您所选择的运营商收取（按照本地通话费收取）。</p>
+<p style="font-family:微软雅黑;font-size:9pt;"><strong>一、产品套餐 </strong><br>          
+      </p><table border="0" cellspacing="0" cellpadding="0" style="font-family:微软雅黑;font-size:9pt; line-height:25px;border-left:1px solid #ccc;border-top:1px solid #ccc;">
+        <tbody><tr>
+              <td width="80" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p><strong>套餐类型</strong></p></td>
+              <td width="133" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p><strong>价格 </strong></p></td>
+              <td width="101" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p><strong>享受时长 </strong></p></td>
+              <td width="85" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p><strong>出证权限 </strong></p></td>
+              <td width="87" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p><strong>提取码次数 </strong></p></td>
+              <td width="112" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p><strong>存储有效期</strong></p></td>
+            </tr>
+            <tr>
+              <td width="80" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>免费套餐 <br>
+                X1</p></td>
+              <td width="133" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>0</p></td>
+              <td width="101" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>60分钟/月（30天） </p></td>
+              <td width="85" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="77" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>5次/月 </p></td>
+              <td width="112" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>1个月（30天） </p></td>
+            </tr>
+            <tr>
+              <td width="80" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>包月套餐 <br>
+                X2</p></td>
+              <td width="133" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>50元/月（30天） </p></td>
+              <td width="101" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="85" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="77" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="112" rowspan="3" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>套餐到期后延长2年（730天） </p></td>
+            </tr>
+            <tr>
+              <td width="80" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>半年套餐 <br>
+                X3</p></td>
+              <td width="133" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>240元/半年（180天） </p></td>
+              <td width="101" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="85" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="77" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+            </tr>
+            <tr>
+              <td width="80" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>全年套餐 <br>
+                X4</p></td>
+              <td width="133" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>360元/全年（365天） </p></td>
+              <td width="101" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="85" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+              <td width="77" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
+            </tr>
+            <tr>
+              <td width="80" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p><strong>套餐备注 </strong></p></td>
+              <td width="508" colspan="5" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><ol>
+                <li><strong><em>用户如需包月付费，请通过官网后台自动充值或者联系客服。 </em></strong></li>
+                <li><strong><em>优惠套餐，限时促销。 </em></strong></li>
+              </ol></td>
+            </tr>
+        </tbody></table>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>二、套餐使用有效期</strong></p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;">包月套餐：包月形式，生效开始30天为期限。
+</p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;">（例：2014年7月31号开通包月套餐，到2014年8月30号24点包月套餐截止，如您还要使用，请继续购买包月套餐服务）</p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><span style="color:#F00;font-family:微软雅黑;font-size:9pt;">半年套餐：</span>半年形式，生效开始180天为期限。
+</p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;">（例：2014年6月1号开通半年套餐，到2014年12月30号24点半年套餐截止，如您还要使用，请继续购买半年套餐服务或者升级全年套餐） </p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><span style="color:#F00;font-family:微软雅黑;font-size:9pt;">全年套餐:全年形式，</span>生效开始365天为期限.</p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;">（例：2014年6月1号开通全年套餐，到2015年5月30号24点全年套餐截止，如您还要使用，请继续购买全年套餐）
+&nbsp;</p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>三、语录保存时间</strong></p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>1、停止使用包月套餐后，对录音保存时间的说明 
+  <br>
+  例：包月套餐到期时间为：2014.09.30 23:59:59。
+  </strong><br>
+  相应的时间内操作权限如下： 
+  <br>
+  2014.10.1—2016.9.30 2年（730天）内用户可以对录音进行试听、下载、编辑、申请/取消公证、申请/取消提取码等在内的所有操作功能。 </p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>2、半年套餐
+  </strong><br>
+  <strong>例：半年套餐到期时间为：2014.06.30 23:59:59。 </strong><br>
+  相应的时间内操作权限如下： 
+  <br>
+  2014.7.1—2016.6.30 2年（730天）内用户可以对录音进行试听、下载、编辑、申请/取消公证、申请/取消提取码等在内的所有操作功能。
+&nbsp;</p>
+<p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>3、全年套餐</strong><br>
+  <strong>例：全年套餐到期时间为：2014.12.30 23:59:59。 </strong><br>
+    相
+  应的时间内操作权限如下：<br>
+2015.1.1—2017.12.30 2年（730天）内用户可以对录音进行试听、下载、编辑、申请/取消公证、申请/取消提取码等在内的所有操作功能。
+  &nbsp;</p>
+<strong><br>
+      <p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>企业及机构用户版</strong><br>
+      </p>
+      <p style="margin:10px 0;font-family:微软雅黑;font-size:9pt;"><strong>资费说明： </strong><br>
+        为提供给企业及机构用户更为完善的服务和解决方案，相关服务内容及收费方式详情请拨打安存语录全国统一热线95105856,或联系客服进行咨询和购买。</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">4．使用流程</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【下载并注册】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;"> 用户通过安存语录官网（</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">www.95105856.com</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">）或</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">App Store</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">下载安存语录</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">APP</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">，注册并登录账号。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【账户充值】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;text-indent:18pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">进入安存语录</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">APP</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">，进入"我的账户""充值"，选择套餐进行充值购买。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;text-indent:18pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【通话录音】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;text-indent:18pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">使用安存语录</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">APP</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">拨号盘，直接拨打对方电话即可录音；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">使用手机系统拨号盘拨打电话进行通话录音。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;"> 号码输入规则：</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#666666;"> </span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">呼叫手机：输入</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">"</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">手机号</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">"</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#666666;"> </span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">呼叫固定电话：输入</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">"</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">区号</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">+</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">固话号码</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">"</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【录音收听】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;"> 进入安存语录</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">APP</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">或官网，查看、收听、下载已保全的通话录音。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【申请提取码】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;"> 用户对需要作为依据的录音在安存语录</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">APP</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">或官网中申请提取码，并将提取码提交给第三方，由第三方核实您举证的电话录音信息。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【申办公证】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;text-indent:18pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">用户对需要办理公证的录音在安存语录</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">APP</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">或官网中提交申请后，凭本人身份证、机主证明及相关资料到合作公证处咨询办理。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;color:#000000;">5. 功能操作</span><span style="font-size:9pt;font-family:微软雅黑;font-weight:bold;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【拨号界面】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">录音通话：输入对方号码点击通话按钮，即可使用安存语录进行通话并录音；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">添加联系人：输入联系人号码，点击右下角</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">"+"</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">可添加号码为新联系人。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【通讯录】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">同步通讯录：安装安存语录</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">APP</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;">后，可同步手机系统通讯录；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">查找：可通过联系人姓名或拼音首字母查找联系人；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">呼叫：长按联系人可直接进行呼叫；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【我的录音】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">按联系人显示已保全的通话录音记录。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">收听：点击单条通话录音，可下载，试听录音；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">查看：点击右侧图标查看录音详情，可填写录音备注信息，还可申请提取码、申办公证。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【我的账户】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">我的帐户：可以查看基础服务套餐使用情况。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">记录查看：详细记录充值与消费记录。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">账户充值：选择您需要的套餐进行充值购买。</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">【更多】</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;font-weight:bold;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">小贴士：查看相关产品介绍、应用范围、资费说明、使用流程、功能操作等内容</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">意见反馈：欢迎您提出宝贵的意见和建议，我们将不断改进；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">关于我们；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">缓存大小：删除本地录音缓存文件；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">修改密码；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p class="MsoNormal" style="margin-left:0pt;text-indent:18pt;font-size:14px;text-align:justify;font-family:Calibri;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;">重新登录；</span><span style="font-size:9pt;font-family:微软雅黑;color:#666666;"></span>
+</p>
+<p style="margin-left:0pt;font-size:12pt;font-family:verdana;background-color:#FFFFFF;">
+	<span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">全国统一热线：</span><span style="font-size:9pt;font-family:微软雅黑;color:#000000;font-weight:bold;">95105856</span>
+</p>
+</body>
+</html>

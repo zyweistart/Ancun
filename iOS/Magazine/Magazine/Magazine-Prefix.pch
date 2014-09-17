@@ -1,0 +1,62 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_6_0
+#warning "This project uses features only available in iOS SDK 6.0 and later."
+#endif
+
+#pragma mark 测试环境宏定义
+#define TEST
+#pragma mark 越狱版宏定义
+//#define JAILBREAK
+
+#ifdef TEST
+#warning 当前版本为测试版本上线需要注释该宏定义
+#endif
+#ifdef JAILBREAK
+#warning 当前版本为越狱版本如提交App Store审核需注释该JAILBREAK宏定义
+#endif
+
+//IOS6
+#define iOS6 [[[UIDevice currentDevice] systemVersion]floatValue]>=6
+//IOS7
+#define iOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
+//4寸手机
+#define inch4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define CONTENTSIZEWIDTH 320
+//状态栏高度
+#define STATUSHEIGHT 20
+//顶部导航条高度
+#define TOPNAVIGATIONHEIGHT 44
+//底部标签高度
+#define BOTTOMTABBARHEIGHT 49
+//分页大小
+#define PAGESIZE 9
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
+
+//缓存常量唯一方法
+#define CACHE_DATA [NSString stringWithFormat:@"%@-%@",[NSString stringWithUTF8String:object_getClassName(self)],ACCESSID]
+#define CACHE_CONSTANT(STRING) [NSString stringWithFormat:@"%@-%@-%@",STRING,CACHE_DATA]
+
+#ifdef TEST
+    //测试环境定义的常量
+    #define ANCUN_HTTP_URL @"http://192.168.0.252:5111/api/api.php?"
+    #define ACCESSID @"b99810e661d546f14763f15a9270c28d"
+    #define ACCESSKEY @"aRxzVdMiopnzpJco3fPJOmXSDZL7rGiL3UgbqQA9YeJ="
+#else
+    //正式环境定义的常量
+    #define ANCUN_HTTP_URL @"http://notary.onlinenotary.cn:5111/api/api.php?"
+    #define ACCESSID @"e4e60d050f5513e086b47c4fdca35646"
+    #define ACCESSKEY @"fUETGmOIiMujnipQnFm6rJIyO2wJDZSftsK4dwmmoSZ="
+#endif

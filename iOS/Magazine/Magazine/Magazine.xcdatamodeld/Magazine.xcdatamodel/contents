@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Book" representedClassName="Book" syncable="YES">
+        <attribute name="bookAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bookId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bookType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="collect" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endPageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frontPageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="introduction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periods" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readpotin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readtime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="recommmend" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalPage" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Periodical" representedClassName="Periodical" syncable="YES">
+        <attribute name="bigTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bookId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contenturl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloadUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periods" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="smallTitle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Book" positionX="-38" positionY="74" width="128" height="270"/>
+        <element name="Periodical" positionX="-306" positionY="45" width="128" height="135"/>
+    </elements>
+</model>
