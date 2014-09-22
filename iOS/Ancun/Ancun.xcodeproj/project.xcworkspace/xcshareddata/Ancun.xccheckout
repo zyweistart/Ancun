@@ -12,22 +12,34 @@
 	<dict>
 		<key>78E70342-ADA8-47C7-B9E8-693AA1F0E7FE</key>
 		<string>https://github.com/zyweistart/company.git</string>
+		<key>C1C059A698D7E3570C4FBB21ECFC710D84627A33</key>
+		<string>https://github.com/zyweistart/Ancun.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Ancun/Ancun.xcodeproj/project.xcworkspace</string>
+	<string>iOS/Ancun/Ancun.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>78E70342-ADA8-47C7-B9E8-693AA1F0E7FE</key>
-		<string>../../..</string>
+		<string>../../../../../company</string>
+		<key>C1C059A698D7E3570C4FBB21ECFC710D84627A33</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/zyweistart/company.git</string>
+	<string>https://github.com/zyweistart/Ancun.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>78E70342-ADA8-47C7-B9E8-693AA1F0E7FE</string>
+	<string>C1C059A698D7E3570C4FBB21ECFC710D84627A33</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C1C059A698D7E3570C4FBB21ECFC710D84627A33</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Ancun</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

@@ -9,6 +9,10 @@
       "idiom" : "iphone",
       "scale" : "2x",
       "filename" : "nav_icon_contact@2x.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x"
     }
   ],
   "info" : {
