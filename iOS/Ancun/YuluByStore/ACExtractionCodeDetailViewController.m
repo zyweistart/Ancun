@@ -35,7 +35,7 @@
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
-                                               initWithTitle:@"返回"
+                                               initWithTitle:@"<返回"
                                                style:UIBarButtonItemStyleBordered
                                                target:self
                                                action:@selector(back:)];

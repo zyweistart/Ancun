@@ -271,7 +271,7 @@
                                              recordingManagerViewControllerNav,
                                              moreViewControllerNav,
                                              nil];
-        
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         [self presentViewController:_tabBarController animated:YES completion:^{
             if(self.gotoAgainGesurePassword){
                 UINavigationController *againSetGesturePasswordViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAgainSetGesturePasswordViewController alloc]init]];
