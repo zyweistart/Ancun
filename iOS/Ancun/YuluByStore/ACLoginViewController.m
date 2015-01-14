@@ -154,7 +154,11 @@
         //拔号盘
         ACDialsViewController *dialViewController = [[ACDialsViewController alloc]init];
         dialViewController.tabBarItem.title = @"拨号盘";
-        [[dialViewController tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_dial_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_dial"]];
+        //IOS7
+//        [[dialViewController tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_dial_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_dial"]];
+        //IOS8
+        [[dialViewController tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_dial"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [[dialViewController tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_dial_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [[dialViewController tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                        dictionaryWithObjectsAndKeys: [UIColor whiteColor],
                                                                        UITextAttributeTextColor, nil] forState:UIControlStateNormal];
@@ -164,7 +168,12 @@
         //联系人
         UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACContactsViewController alloc]init]];
         contactViewControllerNav.tabBarItem.title = @"通讯录";
-        [[contactViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_contact_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_contact"]];
+        //IOS7
+//        [[contactViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_contact_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_contact"]];
+        //IOS8
+        [[contactViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_contact"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [[contactViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_contact_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        
         [[contactViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                        dictionaryWithObjectsAndKeys: [UIColor whiteColor],
                                                                        UITextAttributeTextColor, nil] forState:UIControlStateNormal];
@@ -181,7 +190,14 @@
         //我的账户
         UINavigationController *accountViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAccountViewController alloc]init]];
         accountViewControllerNav.tabBarItem.title = @"我的账户";
-        [[accountViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_account_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_account"]];
+        
+        //IOS7
+//        [[accountViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_account_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_account"]];
+        //IOS8
+        [[accountViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_account"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [[accountViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_account_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        
+        
         [[accountViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                  dictionaryWithObjectsAndKeys: [UIColor whiteColor],
                                                                  UITextAttributeTextColor, nil] forState:UIControlStateNormal];
@@ -198,7 +214,14 @@
         //录音管理
         UINavigationController *recordingManagerViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACRecordingManagerViewController alloc]init]];
         recordingManagerViewControllerNav.tabBarItem.title = @"我的录音";
-        [[recordingManagerViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_recording_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_recording"]];
+        //IOS7
+//        [[recordingManagerViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_recording_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_recording"]];
+        //IOS8
+        [[recordingManagerViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_recording"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [[recordingManagerViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_recording_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        
+        
+        
         [[recordingManagerViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                        dictionaryWithObjectsAndKeys: [UIColor whiteColor],
                                                                        UITextAttributeTextColor, nil] forState:UIControlStateNormal];
@@ -216,7 +239,11 @@
         [moreViewController checkVersion:NO];
         UINavigationController *moreViewControllerNav = [[UINavigationController alloc] initWithRootViewController:moreViewController];
         moreViewControllerNav.tabBarItem.title = @"更多";
-        [[moreViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_more_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_more"]];
+        //IOS7
+//        [[moreViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_more_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_more"]];
+        //IOS8
+        [[moreViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_more"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [[moreViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_more_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [[moreViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                                 dictionaryWithObjectsAndKeys: [UIColor whiteColor],
                                                                                 UITextAttributeTextColor, nil] forState:UIControlStateNormal];

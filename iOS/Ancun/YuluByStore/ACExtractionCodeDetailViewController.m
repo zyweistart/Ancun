@@ -111,7 +111,7 @@
         [container addSubview:btn1];
         
         UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(14.5, inch4?400:315, 291, 40)];
-        [btn2 setTitle:@"以短信形式改善到手机" forState:UIControlStateNormal];
+        [btn2 setTitle:@"以短信形式发送到手机" forState:UIControlStateNormal];
         btn2.titleLabel.font=[UIFont systemFontOfSize:22];
         btn2.layer.cornerRadius=5;
         btn2.layer.masksToBounds=YES;

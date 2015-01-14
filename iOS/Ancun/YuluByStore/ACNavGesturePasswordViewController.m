@@ -85,6 +85,8 @@
         [Common setCache:DEFAULTDATA_GESTUREPWD data:@""];
         cellCount=1;
     }else{
+        ACSetGesturePasswordViewController *setGesturePasswordViewController=[[ACSetGesturePasswordViewController alloc]init];
+        [self.navigationController pushViewController:setGesturePasswordViewController animated:YES];
         cellCount=2;
     }
     [self.tableView reloadData];
