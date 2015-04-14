@@ -18,6 +18,8 @@
 		C91D0BDC18EE9A4D006B10A3 /* ACRechargeByAlipayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D0BDB18EE9A4D006B10A3 /* ACRechargeByAlipayViewController.m */; };
 		C91D0BE418EE9F35006B10A3 /* ACAccountPay1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D0BE318EE9F35006B10A3 /* ACAccountPay1Cell.m */; };
 		C91D0BE718EE9F4A006B10A3 /* ACAccountPay2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D0BE618EE9F4A006B10A3 /* ACAccountPay2Cell.m */; };
+		C9430B851ADCB32D001BED0A /* microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C9430B811ADCB32D001BED0A /* microphone.png */; };
+		C9430B861ADCB32D001BED0A /* POVoiceHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C9430B831ADCB32D001BED0A /* POVoiceHUD.m */; };
 		C96FB4AB18ED45D70004958C /* ACRecordingCallDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96FB4AA18ED45D70004958C /* ACRecordingCallDetailViewController.m */; };
 		C978899718E16AC300157577 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C978899618E16AC300157577 /* Images.xcassets */; };
 		C97889AA18E16B4400157577 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C978899818E16B4400157577 /* AddressBook.framework */; };
@@ -154,6 +156,10 @@
 		C91D0BE518EE9F4A006B10A3 /* ACAccountPay2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAccountPay2Cell.h; sourceTree = "<group>"; };
 		C91D0BE618EE9F4A006B10A3 /* ACAccountPay2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAccountPay2Cell.m; sourceTree = "<group>"; };
 		C92809FF1AD7674F00ECC070 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		C9430B811ADCB32D001BED0A /* microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = microphone.png; sourceTree = "<group>"; };
+		C9430B821ADCB32D001BED0A /* POVoiceHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POVoiceHUD.h; sourceTree = "<group>"; };
+		C9430B831ADCB32D001BED0A /* POVoiceHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POVoiceHUD.m; sourceTree = "<group>"; };
+		C9430B841ADCB32D001BED0A /* POVoiceHUDDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POVoiceHUDDelegate.h; sourceTree = "<group>"; };
 		C96FB4A918ED45D70004958C /* ACRecordingCallDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRecordingCallDetailViewController.h; sourceTree = "<group>"; };
 		C96FB4AA18ED45D70004958C /* ACRecordingCallDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRecordingCallDetailViewController.m; sourceTree = "<group>"; };
 		C978899618E16AC300157577 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -561,6 +567,17 @@
 			name = Contacts;
 			sourceTree = "<group>";
 		};
+		C9430B801ADCB32D001BED0A /* POVoiceHUD */ = {
+			isa = PBXGroup;
+			children = (
+				C9430B811ADCB32D001BED0A /* microphone.png */,
+				C9430B821ADCB32D001BED0A /* POVoiceHUD.h */,
+				C9430B831ADCB32D001BED0A /* POVoiceHUD.m */,
+				C9430B841ADCB32D001BED0A /* POVoiceHUDDelegate.h */,
+			);
+			path = POVoiceHUD;
+			sourceTree = "<group>";
+		};
 		C98C6A5818FBC51700D3EF37 /* WeixinActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,6 +799,7 @@
 		C9D97AC9179FA6640076ACF3 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9430B801ADCB32D001BED0A /* POVoiceHUD */,
 				C9AEECB018FC15F4006D81A6 /* baidumtj */,
 				C9D97ACA179FA6640076ACF3 /* alipay */,
 				C9D97B1E179FA6640076ACF3 /* ASIHTTP */,
@@ -1113,6 +1131,7 @@
 				C9D97CC3179FA6650076ACF3 /* blackArrow@2x.png in Resources */,
 				C98C6A6918FBC51700D3EF37 /* icon_timeline.png in Resources */,
 				C9D97CC4179FA6650076ACF3 /* blueArrow.png in Resources */,
+				C9430B851ADCB32D001BED0A /* microphone.png in Resources */,
 				C9D97CC5179FA6650076ACF3 /* blueArrow@2x.png in Resources */,
 				C9D97CC7179FA6650076ACF3 /* grayArrow.png in Resources */,
 				C9D97CC8179FA6650076ACF3 /* grayArrow@2x.png in Resources */,
@@ -1198,6 +1217,7 @@
 				C90A351D17BA054F00BECE31 /* BaseViewController.m in Sources */,
 				C9985E1A17C35C240048C2FD /* ACRechargeByAppStoreViewController.m in Sources */,
 				C9A67EAA17CD882900E9A81E /* ACContactsViewController.m in Sources */,
+				C9430B861ADCB32D001BED0A /* POVoiceHUD.m in Sources */,
 				C90BCF7A17D037B700813641 /* ACNavigationWebPageViewController.m in Sources */,
 				C9D4D18917E2B8EE0013D03E /* CDataScanner.m in Sources */,
 				C997105A18F62EF100E56D22 /* KKGestureLockPreviewView.m in Sources */,

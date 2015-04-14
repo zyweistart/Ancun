@@ -2,6 +2,8 @@
 #import "LongPressButton.h"
 #import "ChineseToPinyin.h"
 #import "ACContactCell.h"
+#define DIALBGINBG [UIColor colorWithRed:(101/255.0) green:(175/255.0) blue:(236/255.0) alpha:1]
+#define DIALVIEWBG [UIColor colorWithRed:(26/255.0) green:(124/255.0) blue:(205/255.0) alpha:1]
 
 @interface ACDialsViewController ()
 
@@ -70,7 +72,15 @@
 //        [headDisplay addSubview:rightBtn];
         [headDisplay setHidden:YES];
         self.message=[[UIView alloc]init];
-        [self.message setBackgroundColor:[UIColor redColor]];
+        [self.message setBackgroundColor:[UIColor whiteColor]];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(20, 10, 280, 300)];
+        [lbl setText:@"系统因权限限制\n需要进入系统设置->隐私->通讯录,开启通讯录权限许可后才能使用"];
+        [lbl setTextColor:[UIColor grayColor]];
+        [lbl setNumberOfLines:0];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [self.message addSubview:lbl];
+        [self.message setHidden:YES];
+        [container addSubview:self.message];
         //表视图
         self.tableView=[[UITableView alloc]init];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -93,15 +103,24 @@
         //拨号盘
         mDialWidth=107;
         mDialHeight=55;
-        dialView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-4*mDialHeight-49, 320, 4*mDialHeight)];
+        dialView=[[UIView alloc]initWithFrame:CGRectMake1(0, self.view.bounds.size.height-4*mDialHeight-49, 320, 4*mDialHeight)];
+        [dialView setBackgroundColor:DIALVIEWBG];
         [container addSubview:dialView];
         for(int i=0;i<4;i++){
             for(int j=0;j<3;j++){
                 int value=(i*3)+(j+1);
-                UIButton *dial=[[UIButton alloc]initWithFrame:CGRectMake(mDialWidth*j, mDialHeight*i, mDialWidth, mDialHeight)];
+                CGFloat height=mDialHeight-0.5;
+                if(i==3){
+                    height=mDialHeight;
+                }
+                CGFloat width=mDialWidth-0.5;
+                if(j==2){
+                    width=mDialWidth;
+                }
+//                NSLog(@"%lf,,,,%lf------%lf,,,,%lf",mDialWidth*j, mDialHeight*i,width,height);
+                UIButton *dial=[[UIButton alloc]initWithFrame:CGRectMake1(mDialWidth*j, mDialHeight*i, width, height)];
                 [dial setImage:[UIImage imageNamed:[NSString stringWithFormat:@"dial%d",value]] forState:UIControlStateNormal];
-                [dial setBackgroundColor:MAINBG];
-//                [dial setBackgroundImage:[UIImage imageNamed:@"dialbg"] forState:UIControlStateNormal];
+                [dial setBackgroundColor:DIALBGINBG];
                 [dial setTag:value];
                 [dial addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
                 [dialView addSubview:dial];
@@ -118,19 +137,19 @@
     [super viewDidAppear:animated];
     if(!isAddTabBar){
         isAddTabBar=YES;
-        [self.message setFrame:CGRectMake(0, 80, 320, self.view.bounds.size.height-80)];
-        [self.tableView setFrame:CGRectMake(0, 80, 320, self.view.bounds.size.height-80)];
-        [self.tableViewData setFrame:CGRectMake(0, 80, 320, self.view.bounds.size.height-80)];
+        [self.message setFrame:CGRectMake1(0, 80, 320, self.view.bounds.size.height-80)];
+        [self.tableView setFrame:CGRectMake1(0, 80, 320, self.view.bounds.size.height-80)];
+        [self.tableViewData setFrame:CGRectMake1(0, 80, 320, self.view.bounds.size.height-80)];
         CGFloat tabHeight=[self.tabBarController tabBar].bounds.size.height;
-        tabBGView=[[UIView alloc]initWithFrame:CGRectMake(0, self.tabBarController.view.bounds.size.height-tabHeight, 320, tabHeight)];
+        tabBGView=[[UIView alloc]initWithFrame:CGRectMake1(0, self.tabBarController.view.bounds.size.height-tabHeight, 320, tabHeight)];
         [tabBGView setBackgroundColor:MAINBG];
-        showHidden=[[UIButton alloc]initWithFrame:CGRectMake(5, 0, 50, tabHeight)];
+        showHidden=[[UIButton alloc]initWithFrame:CGRectMake1(5, 0, 50, tabHeight)];
         [showHidden addTarget:self action:@selector(hidden:) forControlEvents:UIControlEventTouchUpInside];
         [tabBGView addSubview:showHidden];
-        UIButton *dial1=[[UIButton alloc]initWithFrame:CGRectMake(60, 2, 200, tabHeight-4)];
+        UIButton *dial1=[[UIButton alloc]initWithFrame:CGRectMake1(60, 2, 200, tabHeight-4)];
         [dial1 setBackgroundImage:[UIImage imageNamed:@"call4"] forState:UIControlStateNormal];
         [tabBGView addSubview:dial1];
-        LongPressButton *btnDel=[[LongPressButton alloc]initWithFrame:CGRectMake(265,0,50,tabHeight)];
+        LongPressButton *btnDel=[[LongPressButton alloc]initWithFrame:CGRectMake1(265,0,50,tabHeight)];
         [btnDel setImage:[UIImage imageNamed:@"dialdel"] forState:UIControlStateNormal];
         [btnDel setTag:15];
         [btnDel addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
@@ -635,10 +654,18 @@
 
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //滚动就隐藏
+    if(![dialView isHidden]){
+        [self dialViewHidden];
+    }
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGFloat y=scrollView.contentOffset.y;
-    if(y>20){
+    if(y>40){
         if(![dialView isHidden]){
             [self dialViewHidden];
         }
