@@ -25,7 +25,18 @@
 
 @implementation ACAppDelegate
 
+#define ScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    ACAppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    if(ScreenHeight > 480){
+        myDelegate.autoSizeScaleX = ScreenWidth/320;
+        myDelegate.autoSizeScaleY = ScreenHeight/568;
+    }else{
+        myDelegate.autoSizeScaleX = 1.0;
+        myDelegate.autoSizeScaleY = 1.0;
+    }
     //显示系统托盘
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     

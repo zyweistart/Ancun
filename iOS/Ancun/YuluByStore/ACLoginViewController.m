@@ -1,6 +1,7 @@
 #import "ACLoginViewController.h"
 #import "ACDialsViewController.h"
-#import "ACContactsViewController.h"
+//#import "ACContactsViewController.h"
+#import "LocalRecordsViewController.h"
 #import "ACAccountViewController.h"
 #import "ACRecordingManagerViewController.h"
 #import "ACMoreViewController.h"
@@ -166,8 +167,10 @@
                                                                        dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
                                                                        UITextAttributeTextColor, nil] forState:UIControlStateSelected];
         //联系人
-        UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACContactsViewController alloc]init]];
-        contactViewControllerNav.tabBarItem.title = @"通讯录";
+//        UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACContactsViewController alloc]init]];
+//        contactViewControllerNav.tabBarItem.title = @"通讯录";
+        UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[LocalRecordsViewController alloc]init]];
+        contactViewControllerNav.tabBarItem.title = @"现场录音";
         //IOS7
 //        [[contactViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_contact_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_contact"]];
         //IOS8

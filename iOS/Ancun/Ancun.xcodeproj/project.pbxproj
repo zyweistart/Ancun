@@ -126,6 +126,7 @@
 		C9D97D77179FA6650076ACF3 /* TermsOfService.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9D97C79179FA6640076ACF3 /* TermsOfService.txt */; };
 		C9D97D78179FA6650076ACF3 /* TipContent.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9D97C7A179FA6640076ACF3 /* TipContent.txt */; };
 		C9D97D81179FB3740076ACF3 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97D80179FB3730076ACF3 /* NSString+Utils.m */; };
+		C9E4CA681ADCAA8600875ED5 /* LocalRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E4CA671ADCAA8600875ED5 /* LocalRecordsViewController.m */; };
 		C9E8EE78179FD5E600E47BD9 /* ACRecordingManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97A5D179FA6520076ACF3 /* ACRecordingManagerViewController.m */; };
 		C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */; };
 /* End PBXBuildFile section */
@@ -152,6 +153,7 @@
 		C91D0BE318EE9F35006B10A3 /* ACAccountPay1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAccountPay1Cell.m; sourceTree = "<group>"; };
 		C91D0BE518EE9F4A006B10A3 /* ACAccountPay2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAccountPay2Cell.h; sourceTree = "<group>"; };
 		C91D0BE618EE9F4A006B10A3 /* ACAccountPay2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAccountPay2Cell.m; sourceTree = "<group>"; };
+		C92809FF1AD7674F00ECC070 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		C96FB4A918ED45D70004958C /* ACRecordingCallDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRecordingCallDetailViewController.h; sourceTree = "<group>"; };
 		C96FB4AA18ED45D70004958C /* ACRecordingCallDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRecordingCallDetailViewController.m; sourceTree = "<group>"; };
 		C978899618E16AC300157577 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -420,6 +422,8 @@
 		C9D97C7A179FA6640076ACF3 /* TipContent.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TipContent.txt; sourceTree = "<group>"; };
 		C9D97D7F179FB3730076ACF3 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		C9D97D80179FB3730076ACF3 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		C9E4CA661ADCAA8600875ED5 /* LocalRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalRecordsViewController.h; sourceTree = "<group>"; };
+		C9E4CA671ADCAA8600875ED5 /* LocalRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalRecordsViewController.m; sourceTree = "<group>"; };
 		C9ED952918FD042500934D96 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
 		C9ED952B18FD078C00934D96 /* UIWindow+PazLabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PazLabs.h"; sourceTree = "<group>"; };
 		C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+PazLabs.m"; sourceTree = "<group>"; };
@@ -551,6 +555,8 @@
 			children = (
 				C9A67EA717CD882900E9A81E /* ACContactsViewController.h */,
 				C9A67EA817CD882900E9A81E /* ACContactsViewController.m */,
+				C9E4CA661ADCAA8600875ED5 /* LocalRecordsViewController.h */,
+				C9E4CA671ADCAA8600875ED5 /* LocalRecordsViewController.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -686,6 +692,7 @@
 		C9D97989179FA3500076ACF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C92809FF1AD7674F00ECC070 /* CoreGraphics.framework */,
 				C9ED952918FD042500934D96 /* Social.framework */,
 				C97889BE18E16B9900157577 /* StoreKit.framework */,
 				C97889BC18E16B4F00157577 /* Security.framework */,
@@ -1203,6 +1210,7 @@
 				C91D0BE418EE9F35006B10A3 /* ACAccountPay1Cell.m in Sources */,
 				C9D4D18F17E2B8EE0013D03E /* NSDictionary_JSONExtensions.m in Sources */,
 				C98C6A6C18FBC51800D3EF37 /* WeixinActivity.m in Sources */,
+				C9E4CA681ADCAA8600875ED5 /* LocalRecordsViewController.m in Sources */,
 				C9D4D19017E2B8EE0013D03E /* CJSONDeserializer.m in Sources */,
 				C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */,
 				C9D4D19117E2B8EE0013D03E /* CJSONScanner.m in Sources */,
@@ -1276,7 +1284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "YuluByStore/YuluByStore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					YuluByStore/Librarys/alipay,
@@ -1320,7 +1328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "YuluByStore/YuluByStore-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					YuluByStore/Librarys/alipay,

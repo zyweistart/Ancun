@@ -173,7 +173,7 @@
 
 + (ABAddressBookRef)getAbAddressBook{
     ABAddressBookRef addressBook = nil;
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0) {
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0) {
         addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
         //等待同意后向下执行
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
@@ -182,10 +182,10 @@
                                                      dispatch_semaphore_signal(sema);
                                                  });
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        dispatch_release(sema);
-    } else {
-        addressBook = ABAddressBookCreate();
-    }
+//        dispatch_release(sema);
+//    } else {
+//        addressBook = ABAddressBookCreate();
+//    }
     return addressBook;
 }
 
