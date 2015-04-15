@@ -10,15 +10,10 @@
 #import "POVoiceHUD.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface LocalRecordsViewController : BaseViewController<AVAudioPlayerDelegate,POVoiceHUDDelegate>{
-    NSURL *recordedFile;
-    AVAudioPlayer *player;
-    AVAudioRecorder *recorder;
-}
+@interface LocalRecordsViewController : BaseViewController<POVoiceHUDDelegate>
 
-@property (nonatomic, retain) POVoiceHUD *voiceHud;
 @property (nonatomic) BOOL isRecording;
-@property (strong, nonatomic) UIButton *playButton;
+@property (nonatomic, retain) POVoiceHUD *voiceHud;
 @property (strong, nonatomic) UIButton *recordButton;
 
 @end
