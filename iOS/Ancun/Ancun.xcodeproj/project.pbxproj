@@ -133,6 +133,7 @@
 		C9E9A93A1AE0996E00F87EF2 /* RecordsSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */; };
 		C9E9A93D1AE09BFA00F87EF2 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9A93B1AE09BFA00F87EF2 /* libsqlite3.0.dylib */; };
 		C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */; };
+		C9E9A9471AE0E1A700F87EF2 /* SceneRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E9A9461AE0E1A700F87EF2 /* SceneRecordViewController.m */; };
 		C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */; };
 /* End PBXBuildFile section */
 
@@ -437,6 +438,8 @@
 		C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsSQL.m; sourceTree = "<group>"; };
 		C9E9A93B1AE09BFA00F87EF2 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
 		C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
+		C9E9A9451AE0E1A700F87EF2 /* SceneRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneRecordViewController.h; sourceTree = "<group>"; };
+		C9E9A9461AE0E1A700F87EF2 /* SceneRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneRecordViewController.m; sourceTree = "<group>"; };
 		C9ED952918FD042500934D96 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
 		C9ED952B18FD078C00934D96 /* UIWindow+PazLabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PazLabs.h"; sourceTree = "<group>"; };
 		C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+PazLabs.m"; sourceTree = "<group>"; };
@@ -537,6 +540,8 @@
 				C9D97A5B179FA6520076ACF3 /* ACRecordingManagerDetailListViewController.m */,
 				C9D97A5C179FA6520076ACF3 /* ACRecordingManagerViewController.h */,
 				C9D97A5D179FA6520076ACF3 /* ACRecordingManagerViewController.m */,
+				C9E9A9451AE0E1A700F87EF2 /* SceneRecordViewController.h */,
+				C9E9A9461AE0E1A700F87EF2 /* SceneRecordViewController.m */,
 			);
 			name = Recording;
 			sourceTree = "<group>";
@@ -1228,6 +1233,7 @@
 				C99FCA5417B086440003B2FF /* ACAccountUseRecordCell.m in Sources */,
 				C9A560D218FB7F2E006A5049 /* ACGestureStatusCell.m in Sources */,
 				C90A351A17B9D81C00BECE31 /* ACRechargeNav.m in Sources */,
+				C9E9A9471AE0E1A700F87EF2 /* SceneRecordViewController.m in Sources */,
 				C90A351D17BA054F00BECE31 /* BaseViewController.m in Sources */,
 				C9985E1A17C35C240048C2FD /* ACRechargeByAppStoreViewController.m in Sources */,
 				C9A67EAA17CD882900E9A81E /* ACContactsViewController.m in Sources */,

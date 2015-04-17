@@ -3,18 +3,39 @@
 #import "ACRecordingCell.h"
 #import "ACRecording2Cell.h"
 #import "DataSingleton.h"
+#import "SceneRecordViewController.h"
 
 @interface ACRecordingManagerViewController ()
 
 @end
 
-@implementation ACRecordingManagerViewController
+@implementation ACRecordingManagerViewController{
+    UIButton *_leftTopTab,*_rightTopTab;
+}
 
 - (id)init {
     self = [super init];
     if (self) {
         
         self.title=@"我的录音";
+        
+        UIView *topFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 45)];
+        [self.tableView setTableHeaderView:topFrame];
+        
+        _leftTopTab=[[UIButton alloc]initWithFrame:CGRectMake1(4, 5, 156, 35)];
+        [_leftTopTab setTitle:@"通话录音" forState:UIControlStateNormal];
+        [_leftTopTab setBackgroundImage:[UIImage imageNamed:@"myaccountleftact"] forState:UIControlStateNormal];
+        _leftTopTab.showsTouchWhenHighlighted = YES;//指定按钮被按下时发光
+        [_leftTopTab setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [topFrame addSubview:_leftTopTab];
+        
+        _rightTopTab=[[UIButton alloc]initWithFrame:CGRectMake1(160, 5, 156, 35)];
+        [_rightTopTab setTitle:@"现场录音" forState:UIControlStateNormal];
+        [_rightTopTab setBackgroundImage:[UIImage imageNamed:@"myaccountright"] forState:UIControlStateNormal];
+        _rightTopTab.showsTouchWhenHighlighted = YES;//指定按钮被按下时发光
+        [_rightTopTab setTitleColor:FONTCOLOR2 forState:UIControlStateNormal];
+        [_rightTopTab addTarget:self action:@selector(rightTopButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [topFrame addSubview:_rightTopTab];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_TabClick_ACRecordingManagerViewController object:nil];
         
@@ -168,6 +189,13 @@ static NSString *cell2ReuseIdentifier=@"ACRecording2CellIdentifier";
         [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0];
         [Common noLoginAlert:self];
     }
+}
+
+- (void)rightTopButtonAction
+{
+    SceneRecordViewController* sceneRecordViewController=[[SceneRecordViewController alloc] init];
+    sceneRecordViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:sceneRecordViewController animated:YES];
 }
 
 @end

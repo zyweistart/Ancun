@@ -1,0 +1,131 @@
+//
+//  SceneRecordViewController.m
+//  Ancun
+//
+//  Created by Start on 4/17/15.
+//
+//
+
+#import "SceneRecordViewController.h"
+#import "RecordsSQL.h"
+
+@interface SceneRecordViewController ()
+
+@end
+
+@implementation SceneRecordViewController{
+    RecordsSQL *mRecordsSQL;
+    BOOL isAddTabBar;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.title=@"现场录音";
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+        
+        _playerView=[[ACPlayerView alloc]initWithController:self];
+        //self.view.frame.size.height:主视图高度
+        //[playerView frame].size.height:播放视图的高度
+        
+        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds];
+        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.tableView setDelegate:self];
+        [self.tableView setDataSource:self];
+        [self.view addSubview:self.tableView];
+        
+        mRecordsSQL=[[RecordsSQL alloc]init];
+        [mRecordsSQL openDB];
+        NSString *account=[[[Config Instance]userInfo]objectForKey:@"phone"];
+        self.dataItemArray=[[NSMutableArray alloc]init];
+        [self.dataItemArray addObjectsFromArray:[mRecordsSQL getAllRecordWithAccount:account]];
+        [mRecordsSQL closeDB];
+        [self.tableView reloadData];
+    }
+    return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if(!isAddTabBar){
+        isAddTabBar=YES;
+        CGFloat height=[_playerView frame].size.height;
+        CGFloat topHeight=self.view.bounds.size.height-height;
+        [_playerView setFrame:CGRectMake1(0,topHeight,320,height)];
+        [self.view addSubview:_playerView];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return CGHeight(45);
+}
+
+static NSString *cell2ReuseIdentifier=@"cell2ReuseIdentifier";
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell2 = [self.tableView dequeueReusableCellWithIdentifier:cell2ReuseIdentifier];
+    if(!cell2) {
+        cell2 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cell2ReuseIdentifier];
+    }
+    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+    NSString *remark=[data objectForKey:@"REMARK"];
+    if(![@"" isEqualToString:remark]){
+        [cell2.textLabel setText:remark];
+    }else{
+        [cell2.textLabel setText:@"现场录音"];
+    }
+    NSString *ltStr=[data objectForKey:@"LONGTIME"];
+    int recordLongTime=[ltStr intValue];
+    int hour=recordLongTime/(60*60);
+    int min=recordLongTime/60%60;
+    int second=recordLongTime%60;
+    NSMutableString *lblTimeStr=[[NSMutableString alloc]init];
+    if(hour>0){
+        if(hour<10){
+            [lblTimeStr appendFormat:@"0%d时",hour];
+        }else{
+            [lblTimeStr appendFormat:@"%d时",hour];
+        }
+    }
+    if(min>0){
+        if(min<10){
+            [lblTimeStr appendFormat:@"0%d分",min];
+        }else{
+            [lblTimeStr appendFormat:@"%d分",min];
+        }
+    }
+    if(second<10){
+        [lblTimeStr appendFormat:@"0%d秒",second];
+    }else{
+        [lblTimeStr appendFormat:@"%d秒",second];
+    }
+    [cell2.detailTextLabel setText:lblTimeStr];
+    return cell2;
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath{
+    //选择录音前先暂停
+    [_playerView stop];
+    if([self.dataItemArray count]>[indexPath row]){
+        NSMutableDictionary *dictionary=[NSMutableDictionary dictionaryWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        [dictionary setObject:[dictionary objectForKey:LONGTIME] forKey:@"duration"];
+        NSString *fileno=[dictionary objectForKey:FILENAME];
+        
+        //创建文件管理器
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        //获取路径
+        //1、参数NSDocumentDirectory要获取的那种路径
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        //2、得到相应的Documents的路径
+        NSString* documentDirectory = [paths objectAtIndex:0];
+        //3、更改到待操作的目录下
+        [fileManager changeCurrentDirectoryPath:[documentDirectory stringByExpandingTildeInPath]];
+        NSString *path = [documentDirectory stringByAppendingPathComponent:fileno];
+        
+        //如果录音文件存在都直接播放
+        if([fileManager fileExistsAtPath:path]){
+            [_playerView player:path dictionary:dictionary];
+        }
+    }
+}
+
+@end

@@ -157,7 +157,10 @@
         [btnDel addTarget:self action:@selector(cancelLongPress) forControlEvents:ControlEventTouchCancel];
         [tabBGView addSubview:btnDel];
         [tabBGView setHidden:YES];
-        [self.tabBarController.view addSubview:tabBGView];
+//        [self.tabBarController.view addSubview:tabBGView];
+        NSArray* windows = [UIApplication sharedApplication].windows;
+        [[windows objectAtIndex:0] addSubview:tabBGView];
+        
         [self dialViewShow];
         currentType=1;
         [self showHiddenTableView];

@@ -153,7 +153,7 @@
         //文件路径
         recordedFilePath=[NSTemporaryDirectory() stringByAppendingString:recordedFileName];
         timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-        [self.voiceHud startForFilePath:recordedFilePath];
+//        [self.voiceHud startForFilePath:recordedFilePath];
         self.isRecording = YES;
         [self.recordButton setSelected:YES];
         recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:recordedFilePath] settings:nil error:nil];
