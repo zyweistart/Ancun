@@ -38,9 +38,9 @@
 
 @implementation LongPressButton
 
-- (void) dealloc {
-    NSLog(@"LongButton dealloc");
-}
+//- (void) dealloc {
+//    NSLog(@"LongButton dealloc");
+//}
 
 @synthesize button=__button;
 @synthesize targetDictonary=__targetDictonary;
