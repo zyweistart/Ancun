@@ -7,6 +7,8 @@
 //
 
 #import "LocalRecordsViewController.h"
+#import "NSString+Utils.h"
+#import "RecordsSQL.h"
 
 #define BLACKCOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 #define TIMECOLOR [UIColor colorWithRed:(40/255.0) green:(145/255.0) blue:(228/255.0) alpha:1]
@@ -16,7 +18,14 @@
 @end
 
 @implementation LocalRecordsViewController{
+    NSString *currentRecordTime;
+    NSString *recordedFileName;
     NSString *recordedFilePath;
+    long currentRecordLongTime;
+    RecordsSQL *mRecordsSQL;
+    NSDateFormatter* formatter;
+    
+    NSTimer *timer;
     AVAudioRecorder *recorder;
     UILabel *lblHour,*lblSeconds,*lblMinute;
 }
@@ -93,6 +102,13 @@
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [bottomView addSubview:lbl];
         [scrollFrame addSubview:bottomView];
+        
+        formatter=[[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"YYYYMMddHHmmss"];
+        mRecordsSQL=[[RecordsSQL alloc]init];
+        [mRecordsSQL openDB];
+        [mRecordsSQL createTableSQL];
+        [mRecordsSQL closeDB];
     }
     return self;
 }
@@ -122,31 +138,29 @@
     [self.view addSubview:self.voiceHud];
 }
 
-//- (void)viewDidUnload
-//{
-//    [self setRecordButton:nil];
-//    recorder = nil;
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    // [fileManager removeItemAtPath:recordedFile.path error:nil];
-//    [fileManager removeItemAtURL:recordedFile error:nil];
-//    recordedFile = nil;
-//    [super viewDidUnload];
-//}
-
 - (void)startStopRecording:(id)sender
 {
     if(!self.isRecording){
+        [lblHour setText:@"00"];
+        [lblMinute setText:@"00"];
+        [lblSeconds setText:@"00"];
+        //当前录音开始时间
+        currentRecordTime = [formatter stringFromDate:[NSDate date]];
+        //当前录音总时长
+        currentRecordLongTime=0;
+        //生成录音文件名
+        recordedFileName=[[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] md5];
+        //文件路径
+        recordedFilePath=[NSTemporaryDirectory() stringByAppendingString:recordedFileName];
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
         [self.voiceHud startForFilePath:recordedFilePath];
         self.isRecording = YES;
         [self.recordButton setSelected:YES];
-        recorder = [[AVAudioRecorder alloc] initWithURL:[self getRecordFileUrl] settings:nil error:nil];
+        recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:recordedFilePath] settings:nil error:nil];
         [recorder prepareToRecord];
         [recorder record];
     }else{
-        self.isRecording = NO;
-        [self.recordButton setSelected:NO];
-        [recorder stop];
-        recorder = nil;
+        [self stopRecorder];
     }
 }
 
@@ -157,17 +171,75 @@
 }
 
 - (void)voiceRecordCancelledByUser:(POVoiceHUD *)voiceHUD {
-    self.isRecording = NO;
-    [self.recordButton setSelected:NO];
-    [recorder stop];
-    recorder = nil;
-    NSLog(@"Voice recording cancelled for HUD: %@", voiceHUD);
+    [self stopRecorder];
 }
 
-- (NSURL*)getRecordFileUrl
+- (void)stopRecorder
 {
-    recordedFilePath=[NSTemporaryDirectory() stringByAppendingString:@"RecordedFile"];
-    return [NSURL fileURLWithPath:recordedFilePath];
+    [lblHour setText:@"00"];
+    [lblMinute setText:@"00"];
+    [lblSeconds setText:@"00"];
+    self.isRecording = NO;
+    [self.recordButton setSelected:NO];
+    [timer invalidate];
+    [recorder stop];
+    recorder = nil;
+    [self showAlert];
+}
+
+- (void)timerFired:(id)sender
+{
+    currentRecordLongTime++;
+    int hour=currentRecordLongTime/(60*60);
+    int min=currentRecordLongTime/60%60;
+    int second=currentRecordLongTime%60;
+    if(hour<10){
+        [lblHour setText:[NSString stringWithFormat:@"0%d",hour]];
+    }else{
+        [lblHour setText:[NSString stringWithFormat:@"%d",hour]];
+    }
+    if(min<10){
+        [lblMinute setText:[NSString stringWithFormat:@"0%d",min]];
+    }else{
+        [lblMinute setText:[NSString stringWithFormat:@"%d",min]];
+    }
+    if(second<10){
+        [lblSeconds setText:[NSString stringWithFormat:@"0%d",second]];
+    }else{
+        [lblSeconds setText:[NSString stringWithFormat:@"%d",second]];
+    }
+}
+
+- (void)showAlert
+{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"存储现场录音" message:@"" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"存储", nil];
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if(buttonIndex==0){
+        //删除
+        if([fileManager removeItemAtPath:recordedFilePath error:NULL]){
+            //删除成功
+        }
+    }else if(buttonIndex==1){
+        //存储
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documents = [paths objectAtIndex:0];
+        NSString *toMoveFilePath = [documents stringByAppendingPathComponent:recordedFileName];
+        if([fileManager moveItemAtPath:recordedFilePath toPath:toMoveFilePath error:nil]){
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            NSString *remark=[tf text];
+            NSString *account=[[[Config Instance]userInfo]objectForKey:@"phone"];
+            NSString *sql1 = [NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@','%@','%@') VALUES ('%@', '%@', '%@','%ld','%@')",TABLENAME, ACCOUNT, FILENAME, RECORDTIME,LONGTIME,REMARK, account, recordedFileName, currentRecordTime, currentRecordLongTime, remark];
+            [mRecordsSQL openDB];
+            [mRecordsSQL execSql:sql1];
+            [mRecordsSQL closeDB];
+        }
+    }
 }
 
 @end

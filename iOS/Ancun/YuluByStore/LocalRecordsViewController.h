@@ -10,7 +10,7 @@
 #import "POVoiceHUD.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface LocalRecordsViewController : BaseViewController<POVoiceHUDDelegate>
+@interface LocalRecordsViewController : BaseViewController<POVoiceHUDDelegate,UIAlertViewDelegate>
 
 @property (nonatomic) BOOL isRecording;
 @property (nonatomic, retain) POVoiceHUD *voiceHud;

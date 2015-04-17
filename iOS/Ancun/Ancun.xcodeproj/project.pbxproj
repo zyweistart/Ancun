@@ -130,6 +130,9 @@
 		C9D97D81179FB3740076ACF3 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97D80179FB3730076ACF3 /* NSString+Utils.m */; };
 		C9E4CA681ADCAA8600875ED5 /* LocalRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E4CA671ADCAA8600875ED5 /* LocalRecordsViewController.m */; };
 		C9E8EE78179FD5E600E47BD9 /* ACRecordingManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97A5D179FA6520076ACF3 /* ACRecordingManagerViewController.m */; };
+		C9E9A93A1AE0996E00F87EF2 /* RecordsSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */; };
+		C9E9A93D1AE09BFA00F87EF2 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9A93B1AE09BFA00F87EF2 /* libsqlite3.0.dylib */; };
+		C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */; };
 		C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */; };
 /* End PBXBuildFile section */
 
@@ -430,6 +433,10 @@
 		C9D97D80179FB3730076ACF3 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		C9E4CA661ADCAA8600875ED5 /* LocalRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalRecordsViewController.h; sourceTree = "<group>"; };
 		C9E4CA671ADCAA8600875ED5 /* LocalRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalRecordsViewController.m; sourceTree = "<group>"; };
+		C9E9A9381AE0996E00F87EF2 /* RecordsSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsSQL.h; sourceTree = "<group>"; };
+		C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsSQL.m; sourceTree = "<group>"; };
+		C9E9A93B1AE09BFA00F87EF2 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
 		C9ED952918FD042500934D96 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
 		C9ED952B18FD078C00934D96 /* UIWindow+PazLabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PazLabs.h"; sourceTree = "<group>"; };
 		C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+PazLabs.m"; sourceTree = "<group>"; };
@@ -440,6 +447,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E9A93D1AE09BFA00F87EF2 /* libsqlite3.0.dylib in Frameworks */,
+				C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */,
 				C97889BF18E16B9900157577 /* StoreKit.framework in Frameworks */,
 				C97889BD18E16B4F00157577 /* Security.framework in Frameworks */,
 				C98C6A6B18FBC51700D3EF37 /* libWeChatSDK.a in Frameworks */,
@@ -709,6 +718,8 @@
 		C9D97989179FA3500076ACF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9E9A93B1AE09BFA00F87EF2 /* libsqlite3.0.dylib */,
+				C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */,
 				C92809FF1AD7674F00ECC070 /* CoreGraphics.framework */,
 				C9ED952918FD042500934D96 /* Social.framework */,
 				C97889BE18E16B9900157577 /* StoreKit.framework */,
@@ -792,6 +803,8 @@
 				C9D97AC6179FA6640076ACF3 /* ResultDelegate.h */,
 				C9ED952B18FD078C00934D96 /* UIWindow+PazLabs.h */,
 				C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */,
+				C9E9A9381AE0996E00F87EF2 /* RecordsSQL.h */,
+				C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1201,6 +1214,7 @@
 				C914503C18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m in Sources */,
 				C9D97C99179FA6650076ACF3 /* ATMSoundFX.m in Sources */,
 				C9D97C9A179FA6650076ACF3 /* ATMTextLayer.m in Sources */,
+				C9E9A93A1AE0996E00F87EF2 /* RecordsSQL.m in Sources */,
 				C9D97C9C179FA6650076ACF3 /* ChineseToPinyin.m in Sources */,
 				C9D97CA1179FA6650076ACF3 /* GHNSData+Base64.m in Sources */,
 				C9D97CB0179FA6650076ACF3 /* GHNSString+HMAC.m in Sources */,
