@@ -16,21 +16,21 @@
 
 - (id)initWithController:(UIViewController*)controller
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 320, 67)];
+    self = [super initWithFrame:CGRectMake1(0, 0, 320, 67)];
     if(self){
         [self setController:controller];
         [self setBackgroundColor:MAINBG];
         
-        _btn_player=[[UIButton alloc]initWithFrame:CGRectMake(9, 10, 54, 47)];
+        _btn_player=[[UIButton alloc]initWithFrame:CGRectMake1(9, 10, 54, 47)];
         [_btn_player addTarget:self action:@selector(btnPlayer:) forControlEvents:UIControlEventTouchUpInside];
         [_btn_player setImage:[UIImage imageNamed:@"player_normal"] forState:UIControlStateNormal];
         [self addSubview:_btn_player];
         
-        _sider_player=[[UISlider alloc]initWithFrame:CGRectMake(69, 10, 233, 29)];
+        _sider_player=[[UISlider alloc]initWithFrame:CGRectMake1(69, 10, 233, 29)];
         [_sider_player addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:_sider_player];
         
-        _lbl_playertimerlong=[[UILabel alloc]initWithFrame:CGRectMake(71, 36, 70, 21)];
+        _lbl_playertimerlong=[[UILabel alloc]initWithFrame:CGRectMake1(71, 36, 70, 21)];
         [_lbl_playertimerlong setText:@"00:00"];
         [_lbl_playertimerlong setFont:[UIFont systemFontOfSize:12]];
         [_lbl_playertimerlong setTextColor:[UIColor whiteColor]];
@@ -38,7 +38,7 @@
         [_lbl_playertimerlong setBackgroundColor:[UIColor clearColor]];
         [self addSubview:_lbl_playertimerlong];
         
-        _lbl_playertimertotallong=[[UILabel alloc]initWithFrame:CGRectMake(233, 36, 67, 21)];
+        _lbl_playertimertotallong=[[UILabel alloc]initWithFrame:CGRectMake1(233, 36, 67, 21)];
         [_lbl_playertimertotallong setText:@"00:00"];
         [_lbl_playertimertotallong setFont:[UIFont systemFontOfSize:12]];
         [_lbl_playertimertotallong setTextColor:[UIColor whiteColor]];
@@ -77,6 +77,11 @@
     if(_player){
         [self stop];
     }
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [audioSession setActive:YES error:nil];
+    
     _player=[[AVAudioPlayer alloc] initWithContentsOfURL:[[NSURL alloc] initFileURLWithPath:_path] error:nil];
     _player.delegate=self;
     [_player setVolume:1.0];

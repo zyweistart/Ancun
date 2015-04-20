@@ -49,21 +49,21 @@
         UIView *container=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.view addSubview:container];
         //头部
-        headDisplay=[[UIView alloc]initWithFrame:CGRectMake(0, 20, width, 60)];
+        headDisplay=[[UIView alloc]initWithFrame:CGRectMake1(0, 20, width, 60)];
         [container addSubview:headDisplay];
         //添加到通讯录
-        UIButton *leftBtn=[[UIButton alloc]initWithFrame:CGRectMake(0,10,40,40)];
+        UIButton *leftBtn=[[UIButton alloc]initWithFrame:CGRectMake1(0,10,40,40)];
         [leftBtn setImage:[UIImage imageNamed:@"dialadd"] forState:UIControlStateNormal];
         [leftBtn setTag:14];
         [leftBtn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         [headDisplay addSubview:leftBtn];
         //号码显示区域
-        lblDisplayPhone=[[UILabel alloc]initWithFrame:CGRectMake(40, 0, headDisplay.frame.size.width-80, headDisplay.frame.size.height)];
+        lblDisplayPhone=[[UILabel alloc]initWithFrame:CGRectMake1(40, 0, headDisplay.frame.size.width-80, headDisplay.frame.size.height)];
         [lblDisplayPhone setTextColor:[UIColor whiteColor]];
         [lblDisplayPhone setBackgroundColor:[UIColor clearColor]];
         [headDisplay addSubview:lblDisplayPhone];
         //清除号码
-        LongPressButton *rightBtn=[[LongPressButton alloc]initWithFrame:CGRectMake(280,10,40,40)];
+        LongPressButton *rightBtn=[[LongPressButton alloc]initWithFrame:CGRectMake1(280,10,40,40)];
         [rightBtn setImage:[UIImage imageNamed:@"dialdel"] forState:UIControlStateNormal];
         [rightBtn setTag:15];
         [rightBtn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];

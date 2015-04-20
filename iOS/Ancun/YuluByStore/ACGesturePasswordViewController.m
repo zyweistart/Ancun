@@ -47,7 +47,7 @@
         }
         errorCount=0;
         
-        self.lblInfo=[[UILabel alloc]initWithFrame:CGRectMake(0, inch4?50:30, self.view.frame.size.width, 30)];
+        self.lblInfo=[[UILabel alloc]initWithFrame:CGRectMake1(0, inch4?50:30, self.view.frame.size.width, 30)];
         [self.lblInfo setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
         [self.lblInfo setTextColor:[UIColor whiteColor]];
         [self.lblInfo setBackgroundColor:[UIColor clearColor]];
@@ -70,14 +70,14 @@
         [self.lblInfo setFont:[UIFont systemFontOfSize:25]];
         [self.lblInfo setText:[Common getCache:DEFAULTDATA_PHONE]];
         
-        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake(20, self.lockView.frame.size.height-60, 120, 40)];
+        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake1(20, self.lockView.frame.size.height-60, 120, 40)];
         btn.titleLabel.font=[UIFont systemFontOfSize: 15];
         [btn setTitle:@"忘记手势密码" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(onClickForgetPwd:) forControlEvents:UIControlEventTouchUpInside];
         [self.lockView addSubview:btn];
         
-        btn=[[UIButton alloc]initWithFrame:CGRectMake(180, self.lockView.frame.size.height-60, 120, 40)];
+        btn=[[UIButton alloc]initWithFrame:CGRectMake1(180, self.lockView.frame.size.height-60, 120, 40)];
         btn.titleLabel.font=[UIFont systemFontOfSize: 15];
         [btn setTitle:@"切换登录账户" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

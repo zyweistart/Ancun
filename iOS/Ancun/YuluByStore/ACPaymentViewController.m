@@ -65,66 +65,66 @@
     
     UIView *container=nil;
     if(IOS7){
-        container=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+        container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
     }else{
-        container=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+        container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
     }
     [self.view addSubview:container];
     
-    _rechargeNav=[[ACRechargeNav alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+    _rechargeNav=[[ACRechargeNav alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
     [container addSubview:_rechargeNav];
     
-    paymentMainView=[[UIView alloc]initWithFrame:CGRectMake(10, 60, 300, 285)];
+    paymentMainView=[[UIView alloc]initWithFrame:CGRectMake1(10, 60, 300, 285)];
     paymentMainView.layer.cornerRadius=10;
     paymentMainView.layer.masksToBounds=YES;
     [paymentMainView setBackgroundColor:[UIColor whiteColor]];
     
-    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(40, 40, 70, 30)];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(40, 40, 70, 30)];
     [lbl setFont:[UIFont systemFontOfSize:15]];
     [lbl setTextAlignment:NSTextAlignmentRight];
     [lbl setTextColor:LBLTEXTCOLOR];
     [lbl setText:@"套餐名称:"];
     [paymentMainView addSubview:lbl];
     
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake(115, 40, 150, 30)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(115, 40, 150, 30)];
     [lbl setFont:[UIFont systemFontOfSize:15]];
     [lbl setTextColor:LBLVALUETEXTCOLOR];
     [lbl setText:[_data objectForKey:@"name"]];
     [paymentMainView addSubview:lbl];
     
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake(40, 70, 70, 30)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(40, 70, 70, 30)];
     [lbl setFont:[UIFont systemFontOfSize:15]];
     [lbl setTextAlignment:NSTextAlignmentRight];
     [lbl setTextColor:LBLTEXTCOLOR];
     [lbl setText:@"支付金额:"];
     [paymentMainView addSubview:lbl];
     //支付金额
-    UILabel *lblMoney=[[UILabel alloc]initWithFrame:CGRectMake(115, 70, 70, 30)];
+    UILabel *lblMoney=[[UILabel alloc]initWithFrame:CGRectMake1(115, 70, 70, 30)];
     [lblMoney setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
     [lblMoney setTextColor:LBLVALUETEXTCOLOR];
     [lblMoney setText:[NSString stringWithFormat:@"%@元",[_data objectForKey:@"newprice"]]];
     [paymentMainView addSubview:lblMoney];
     
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake(40, 100, 70, 30)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(40, 100, 70, 30)];
     [lbl setFont:[UIFont systemFontOfSize:15]];
     [lbl setTextAlignment:NSTextAlignmentRight];
     [lbl setTextColor:LBLTEXTCOLOR];
     [lbl setText:@"生效日期:"];
     [paymentMainView addSubview:lbl];
     
-    UILabel *lblStartDay=[[UILabel alloc]initWithFrame:CGRectMake(115, 100, 150, 30)];
+    UILabel *lblStartDay=[[UILabel alloc]initWithFrame:CGRectMake1(115, 100, 150, 30)];
     [lblStartDay setFont:[UIFont systemFontOfSize:15]];
     [lblStartDay setTextColor:LBLVALUETEXTCOLOR];
     [paymentMainView addSubview:lblStartDay];
     
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake(40, 130, 70, 30)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(40, 130, 70, 30)];
     [lbl setFont:[UIFont systemFontOfSize:15]];
     [lbl setTextAlignment:NSTextAlignmentRight];
     [lbl setTextColor:LBLTEXTCOLOR];
     [lbl setText:@"到期日期:"];
     [paymentMainView addSubview:lbl];
     
-    UILabel *lblEndDay=[[UILabel alloc]initWithFrame:CGRectMake(115, 130, 150, 30)];
+    UILabel *lblEndDay=[[UILabel alloc]initWithFrame:CGRectMake1(115, 130, 150, 30)];
     [lblEndDay setFont:[UIFont systemFontOfSize:15]];
     [lblEndDay setTextColor:LBLVALUETEXTCOLOR];
     [paymentMainView addSubview:lblEndDay];
@@ -139,21 +139,21 @@
     [lblStartDay setText:[formatter stringFromDate:date]];
     [lblEndDay setText:[formatter stringFromDate:tomorrow]];
     
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake(40, 160, 70, 30)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(40, 160, 70, 30)];
     [lbl setFont:[UIFont systemFontOfSize:15]];
     [lbl setTextAlignment:NSTextAlignmentRight];
     [lbl setTextColor:LBLTEXTCOLOR];
     [lbl setText:@"充值账户:"];
     [paymentMainView addSubview:lbl];
     
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake(115, 160, 150, 30)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(115, 160, 150, 30)];
     [lbl setFont:[UIFont systemFontOfSize:15]];
     [lbl setTextColor:LBLVALUETEXTCOLOR];
     [lbl setText:[[[Config Instance]userInfo]objectForKey:@"phone"]];
     [paymentMainView addSubview:lbl];
     
     UIButton *btnConfirm=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnConfirm setFrame:CGRectMake(25, 210, 250, 35)];
+    [btnConfirm setFrame:CGRectMake1(25, 210, 250, 35)];
     [btnConfirm setTitle:@"确认充值" forState:UIControlStateNormal];
     btnConfirm.layer.cornerRadius=5;
     btnConfirm.layer.masksToBounds=YES;
@@ -162,22 +162,22 @@
     [paymentMainView addSubview:btnConfirm];
     [container addSubview:paymentMainView];
     
-    paymentSuccessView=[[UIView alloc]initWithFrame:CGRectMake(10, 50, 300, 195)];
+    paymentSuccessView=[[UIView alloc]initWithFrame:CGRectMake1(10, 50, 300, 195)];
     paymentSuccessView.layer.cornerRadius=10;
     paymentSuccessView.layer.masksToBounds=YES;
     [paymentSuccessView setBackgroundColor:[UIColor whiteColor]];
     
     UIImageView *image=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"reg_for_done"]];
-    [image setFrame:CGRectMake(30, 30, 30, 30)];
+    [image setFrame:CGRectMake1(30, 30, 30, 30)];
     [paymentSuccessView addSubview:image];
     
-    UILabel *lbl1=[[UILabel alloc]initWithFrame:CGRectMake(65, 35, 80, 20)];
+    UILabel *lbl1=[[UILabel alloc]initWithFrame:CGRectMake1(65, 35, 80, 20)];
     [lbl1 setFont:[UIFont systemFontOfSize:18]];
     [lbl1 setTextAlignment:NSTextAlignmentLeft];
     [lbl1 setText:@"充值成功"];
     [paymentSuccessView addSubview:lbl1];
     
-    lbl1=[[UILabel alloc]initWithFrame:CGRectMake(30, 70, 240, 40)];
+    lbl1=[[UILabel alloc]initWithFrame:CGRectMake1(30, 70, 240, 40)];
     [lbl1 setFont:[UIFont systemFontOfSize:16]];
     [lbl1 setTextAlignment:NSTextAlignmentLeft];
     [lbl1 setLineBreakMode:NSLineBreakByCharWrapping];
@@ -186,7 +186,7 @@
     [paymentSuccessView addSubview:lbl1];
     
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setFrame:CGRectMake(25, 130, 250, 35)];
+    [btn setFrame:CGRectMake1(25, 130, 250, 35)];
     [btn setTitle:@"返回我的账户" forState:UIControlStateNormal];
     btn.layer.cornerRadius=5;
     btn.layer.masksToBounds=YES;

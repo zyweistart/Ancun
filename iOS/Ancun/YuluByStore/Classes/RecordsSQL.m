@@ -21,6 +21,7 @@
         sqlite3_close(db);
         NSLog(@"数据库打开失败");
     }
+    [self createTableSQL];
 }
 
 - (void)createTableSQL
@@ -46,7 +47,7 @@
 - (NSMutableArray*)getAllRecordWithAccount:(NSString*)account
 {
     NSMutableArray *dataItems=[[NSMutableArray alloc]init];
-    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT FILENAME,RECORDTIME,LONGTIME,REMARK FROM %@ WHERE ACCOUNT='%@'",TABLENAME,account];
+    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT FILENAME,RECORDTIME,LONGTIME,REMARK FROM %@ WHERE ACCOUNT='%@' ORDER BY RECORDTIME DESC",TABLENAME,account];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {

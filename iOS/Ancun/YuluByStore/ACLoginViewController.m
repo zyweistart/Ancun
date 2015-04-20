@@ -40,20 +40,20 @@
         
         float width=self.view.frame.size.width;
         float height=self.view.frame.size.height;
-        UIControl *control=[[UIControl alloc]initWithFrame:CGRectMake(0, h, width, height-h)];
+        UIControl *control=[[UIControl alloc]initWithFrame:CGRectMake1(0, h, width, height-h)];
         //触摸屏幕事件
         [control addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:control];
         //LOGO
-        UIView *logonv=[[UIView alloc]initWithFrame:CGRectMake(width/2-130/2, inch4?54:30, 130, 130)];
+        UIView *logonv=[[UIView alloc]initWithFrame:CGRectMake1(width/2-130/2, inch4?54:30, 130, 130)];
         [logonv setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_logo2"]]];
         [control addSubview:logonv];
         //登录输入框
-        UIView *userNameInputView=[[UIView alloc]initWithFrame:CGRectMake(width/2-271/2, inch4?225:170, 271, 51)];
+        UIView *userNameInputView=[[UIView alloc]initWithFrame:CGRectMake1(width/2-271/2, inch4?225:170, 271, 51)];
         [userNameInputView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
         [control addSubview:userNameInputView];
         //账户输入框
-        _txtUserName=[[UITextField alloc] initWithFrame:CGRectMake(20, 5, 231, 41)];
+        _txtUserName=[[UITextField alloc] initWithFrame:CGRectMake1(20, 5, 231, 41)];
         [_txtUserName setPlaceholder:@"账号"];
         [_txtUserName setFont:[UIFont systemFontOfSize: 22]];
         [_txtUserName setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -62,11 +62,11 @@
         [_txtUserName setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
         [_txtUserName setKeyboardType:UIKeyboardTypePhonePad];
         [userNameInputView addSubview:_txtUserName];
-        UIView *passwordInputView=[[UIView alloc]initWithFrame:CGRectMake(width/2-271/2, inch4?293:233, 271, 51)];
+        UIView *passwordInputView=[[UIView alloc]initWithFrame:CGRectMake1(width/2-271/2, inch4?293:233, 271, 51)];
         [passwordInputView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
         [control addSubview:passwordInputView];
         //密码输入框
-        _txtPassword=[[UITextField alloc] initWithFrame:CGRectMake(20, 5, 231, 41)];
+        _txtPassword=[[UITextField alloc] initWithFrame:CGRectMake1(20, 5, 231, 41)];
         [_txtPassword setPlaceholder:@"密码"];
         [_txtPassword setFont:[UIFont systemFontOfSize: 22]];
         [_txtPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -78,7 +78,7 @@
         [_txtPassword setReturnKeyType:UIReturnKeyDone];
         [passwordInputView addSubview:_txtPassword];
         //记住密码复选框
-        btnRememberPwdImg=[[UIButton alloc]initWithFrame:CGRectMake(35, inch4?356:296, 15, 15)];
+        btnRememberPwdImg=[[UIButton alloc]initWithFrame:CGRectMake1(35, inch4?356:296, 15, 15)];
         [btnRememberPwdImg addTarget:self action:@selector(rememberPassword:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnRememberPwdImg];
         rememberPassword=[Common getCacheByBool:DEFAULTDATA_AUTOLOGIN];
@@ -88,32 +88,32 @@
             [btnRememberPwdImg setImage:[UIImage imageNamed:@"login_g_hover"] forState:UIControlStateNormal];
         }
         //记住密码文字
-        UIButton *btnRemberPwdLbl=[[UIButton alloc]initWithFrame:CGRectMake(55, inch4?354:294, 60, 18)];
+        UIButton *btnRemberPwdLbl=[[UIButton alloc]initWithFrame:CGRectMake1(55, inch4?354:294, 60, 18)];
         btnRemberPwdLbl.titleLabel.font=[UIFont systemFontOfSize: 15];
         [btnRemberPwdLbl setTitle:@"记住密码" forState:UIControlStateNormal];
         [btnRemberPwdLbl addTarget:self action:@selector(rememberPassword:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnRemberPwdLbl];
         //找回密码
-        UIButton *btnForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake(width/2+60, inch4?354:294, 68, 18)];
+        UIButton *btnForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(width/2+60, inch4?354:294, 68, 18)];
         btnForgetPwd.titleLabel.font=[UIFont systemFontOfSize: 15];
         [btnForgetPwd setTitle:@"找回密码" forState:UIControlStateNormal];
         [btnForgetPwd addTarget:self action:@selector(onClickForgetPwd:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnForgetPwd];
         //登录按钮
-        UIButton *btnLogin=[[UIButton alloc]initWithFrame:CGRectMake(width/2-271/2, inch4?387:327, 271, 51)];
+        UIButton *btnLogin=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-271/2, inch4?387:327, 271, 51)];
         [btnLogin setTitle:@"登录" forState:UIControlStateNormal];
         btnLogin.titleLabel.font=[UIFont systemFontOfSize:30];
         [btnLogin setBackgroundImage:[UIImage imageNamed:@"login_button"] forState:UIControlStateNormal];
         [btnLogin addTarget:self action:@selector(onClickLogin:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnLogin];
         //注册按钮
-        UIButton *btnRegister=[[UIButton alloc]initWithFrame:CGRectMake(width/2-147.5, inch4?455:385, 295, 32)];
+        UIButton *btnRegister=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-147.5, inch4?455:385, 295, 32)];
         btnRegister.titleLabel.font=[UIFont systemFontOfSize: 17.0];
         [btnRegister setTitle:@"还没有账户，马上去注册>>" forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(onClickRegister:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnRegister];
         
-        UILabel *lblTipTxt=[[UILabel alloc]initWithFrame:CGRectMake(width/2-147.5, inch4?492:402, 295, 64)];
+        UILabel *lblTipTxt=[[UILabel alloc]initWithFrame:CGRectMake1(width/2-147.5, inch4?492:402, 295, 64)];
         lblTipTxt.font=[UIFont systemFontOfSize:14];
         [lblTipTxt setNumberOfLines:0];
         [lblTipTxt setText:@"请使用本机号码注册或登录，非本机号码登录时通话录音将无法被正确保全."];

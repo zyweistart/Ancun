@@ -29,31 +29,31 @@
         
         UIControl *container=nil;
         if(IOS7){
-            container=[[UIControl alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+            container=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
         }else{
-            container=[[UIControl alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+            container=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
         }
         [container addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:container];
         
-        UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake(14.5, 10, 291, 194)];
+        UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake1(14.5, 10, 291, 194)];
         [view addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]]];
         [container addSubview:view];
         
-        tvContent=[[UITextView alloc] initWithFrame:CGRectMake(17, 21.25, 257, 87)];
+        tvContent=[[UITextView alloc] initWithFrame:CGRectMake1(17, 21.25, 257, 87)];
         [tvContent setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bigtxtbg"]]];
         [tvContent setDelegate:self];
         [view addSubview:tvContent];
         
-        lblContentPlaceholder=[[UILabel alloc]initWithFrame:CGRectMake(5, IOS7?5:0, 247, 20)];
+        lblContentPlaceholder=[[UILabel alloc]initWithFrame:CGRectMake1(5, IOS7?5:0, 247, 20)];
         [lblContentPlaceholder setText:@"请输入反馈信息，我们将为您不断改进"];
         [lblContentPlaceholder setFont:[UIFont systemFontOfSize:13]];
         [lblContentPlaceholder setTextColor:[UIColor grayColor]];
         [lblContentPlaceholder setBackgroundColor:[UIColor clearColor]];
         [tvContent addSubview:lblContentPlaceholder];
         
-        txtEmail=[[UITextField alloc] initWithFrame:CGRectMake(17, 128, 257, 45)];
+        txtEmail=[[UITextField alloc] initWithFrame:CGRectMake1(17, 128, 257, 45)];
         [txtEmail setPlaceholder:@"电子邮箱(可选)"];
         [txtEmail setFont:[UIFont systemFontOfSize: 15]];
         [txtEmail setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -65,7 +65,7 @@
         [txtEmail setText:@""];
         [view addSubview:txtEmail];
         
-        UIButton *btnSubmit=[[UIButton alloc]initWithFrame:CGRectMake(14.5, 224, 291, 40)];
+        UIButton *btnSubmit=[[UIButton alloc]initWithFrame:CGRectMake1(14.5, 224, 291, 40)];
         [btnSubmit setTitle:@"提交" forState:UIControlStateNormal];
         btnSubmit.titleLabel.font=[UIFont systemFontOfSize:22];
         btnSubmit.layer.cornerRadius=5;

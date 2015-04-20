@@ -31,9 +31,9 @@
     
     UIView *container=nil;
     if(IOS7){
-        container=[[UIView alloc]initWithFrame:CGRectMake(0, STATUSHEIGHT+TOPNAVIGATIONHEIGHT, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+        container=[[UIView alloc]initWithFrame:CGRectMake1(0, STATUSHEIGHT+TOPNAVIGATIONHEIGHT, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
     }else{
-        container=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+        container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
     }
     [container setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:container];
@@ -41,7 +41,7 @@
     int topHeight=91;
     
     self.tableView=[[UITableView alloc]initWithFrame:
-                    CGRectMake(0, topHeight,
+                    CGRectMake1(0, topHeight,
                                container.frame.size.width,
                                container.frame.size.height-topHeight)];
     [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -50,7 +50,7 @@
     [container addSubview:self.tableView];
     if (_refreshHeaderView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:
-                                           CGRectMake(0.0f,
+                                           CGRectMake1(0.0f,
                                                       0.0f - self.tableView.bounds.size.height,
                                                       self.view.bounds.size.width,
                                                       self.tableView.bounds.size.height)];
@@ -66,7 +66,7 @@
         
         self.title=@"我的账户";
         
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 15, 300, 21)];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 15, 300, 21)];
         [lbl setFont:[UIFont systemFontOfSize:15]];
         [lbl setTextColor:FONTCOLOR2];
         [lbl setBackgroundColor:[UIColor whiteColor]];
@@ -74,7 +74,7 @@
         [lbl setText:[NSString stringWithFormat:@"当前账户：%@",[[[Config Instance]userInfo]objectForKey:@"phone"]]];
         [container addSubview:lbl];
         
-        _leftTopTab=[[UIButton alloc]initWithFrame:CGRectMake(4, 51, 156, 35)];
+        _leftTopTab=[[UIButton alloc]initWithFrame:CGRectMake1(4, 51, 156, 35)];
         [_leftTopTab setTitle:@"充值套餐" forState:UIControlStateNormal];
         [_leftTopTab setBackgroundImage:[UIImage imageNamed:@"myaccountleftact"] forState:UIControlStateNormal];
         _leftTopTab.showsTouchWhenHighlighted = YES;//指定按钮被按下时发光
@@ -82,7 +82,7 @@
         [_leftTopTab addTarget:self action:@selector(leftTopButtonAction) forControlEvents:UIControlEventTouchUpInside];
         [container addSubview:_leftTopTab];
         
-        _rightTopTab=[[UIButton alloc]initWithFrame:CGRectMake(160, 51, 156, 35)];
+        _rightTopTab=[[UIButton alloc]initWithFrame:CGRectMake1(160, 51, 156, 35)];
         [_rightTopTab setTitle:@"使用记录" forState:UIControlStateNormal];
         [_rightTopTab setBackgroundImage:[UIImage imageNamed:@"myaccountright"] forState:UIControlStateNormal];
         _rightTopTab.showsTouchWhenHighlighted = YES;//指定按钮被按下时发光
@@ -91,7 +91,7 @@
         [container addSubview:_rightTopTab];
         
         //增加充值按钮
-        UIButton* goRecharge= [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+        UIButton* goRecharge= [[UIButton alloc] initWithFrame:CGRectMake1(0, 0, 70, 30)];
         [goRecharge setTitle:@"充值" forState:UIControlStateNormal];
         [goRecharge setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [[goRecharge titleLabel]setFont:[UIFont systemFontOfSize:16]];
@@ -303,12 +303,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(currentTab==1) {
-        return 75;
+        return CGHeight(75);
     } else {
         if([self.dataItemArray count]>[indexPath row]){
-            return 75;
+            return CGHeight(75);
         }else{
-            return 50;
+            return CGHeight(50);
         }
     }
 }

@@ -18,34 +18,34 @@
         
         [self setBackgroundColor:[UIColor colorWithRed:147 green:222 blue:250 alpha:1]];
         
-        _lblName=[[UILabel alloc]initWithFrame:CGRectMake(8, 5, 150, 25)];
+        _lblName=[[UILabel alloc]initWithFrame:CGRectMake1(8, 5, 150, 25)];
         [_lblName setFont:[UIFont systemFontOfSize:15]];
         [_lblName setTextAlignment:NSTextAlignmentLeft];
         [_lblName setTextColor:[UIColor colorWithRed:(76/255.0) green:(86/255.0) blue:(108/255.0) alpha:1]];
         [self addSubview:_lblName];
         
-        _lblTimeLong=[[UILabel alloc]initWithFrame:CGRectMake(8, 30, 150, 25)];
+        _lblTimeLong=[[UILabel alloc]initWithFrame:CGRectMake1(8, 30, 150, 25)];
         [_lblTimeLong setFont:[UIFont systemFontOfSize:13]];
         [_lblTimeLong setTextAlignment:NSTextAlignmentLeft];
         [_lblTimeLong setTextColor:[UIColor colorWithRed:(163/255.0) green:(163/255.0) blue:(163/255.0) alpha:1]];
         [self addSubview:_lblTimeLong];
         
         if([@"ACAccountRechargeCell1" isEqualToString:reuseIdentifier]) {
-            _lblTime=[[UILabel alloc]initWithFrame:CGRectMake(170, 8, 60, 22)];
+            _lblTime=[[UILabel alloc]initWithFrame:CGRectMake1(170, 8, 60, 22)];
             [_lblTime setFont:[UIFont systemFontOfSize:15]];
             [_lblTime setTextAlignment:NSTextAlignmentRight];
             [_lblTime setTextColor:[UIColor colorWithRed:(43/255.0) green:(144/255.0) blue:(209/255.0) alpha:1]];
             //            [_lblTime setText:@"209分钟"];
             [self addSubview:_lblTime];
             
-            _lblStorage=[[UILabel alloc]initWithFrame:CGRectMake(170, 30, 60, 22)];
+            _lblStorage=[[UILabel alloc]initWithFrame:CGRectMake1(170, 30, 60, 22)];
             [_lblStorage setFont:[UIFont systemFontOfSize:15]];
             [_lblStorage setTextAlignment:NSTextAlignmentRight];
             [_lblStorage setTextColor:[UIColor colorWithRed:(43/255.0) green:(144/255.0) blue:(209/255.0) alpha:1]];
             //            [_lblStorage setText:@"309MB"];
             [self addSubview:_lblStorage];
         } else {
-            _lblTimeAndStorage=[[UILabel alloc]initWithFrame:CGRectMake(170, 15, 60, 30)];
+            _lblTimeAndStorage=[[UILabel alloc]initWithFrame:CGRectMake1(170, 15, 60, 30)];
             [_lblTimeAndStorage setFont:[UIFont systemFontOfSize:15]];
             [_lblTimeAndStorage setTextAlignment:NSTextAlignmentRight];
             [_lblTimeAndStorage setTextColor:[UIColor colorWithRed:(43/255.0) green:(144/255.0) blue:(209/255.0) alpha:1]];
@@ -54,7 +54,7 @@
         }
         
         _btnGoPay=[UIButton buttonWithType:UIButtonTypeCustom];
-        [_btnGoPay setFrame:CGRectMake(250, 10, 60, 40)];
+        [_btnGoPay setFrame:CGRectMake1(250, 10, 60, 40)];
         [_btnGoPay setTitle:@"购买" forState:UIControlStateNormal];
         _btnGoPay.layer.cornerRadius=5;
         _btnGoPay.layer.masksToBounds=YES;

@@ -25,8 +25,6 @@
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
         _playerView=[[ACPlayerView alloc]initWithController:self];
-        //self.view.frame.size.height:主视图高度
-        //[playerView frame].size.height:播放视图的高度
         
         self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -35,12 +33,7 @@
         [self.view addSubview:self.tableView];
         
         mRecordsSQL=[[RecordsSQL alloc]init];
-        [mRecordsSQL openDB];
-        NSString *account=[[[Config Instance]userInfo]objectForKey:@"phone"];
-        self.dataItemArray=[[NSMutableArray alloc]init];
-        [self.dataItemArray addObjectsFromArray:[mRecordsSQL getAllRecordWithAccount:account]];
-        [mRecordsSQL closeDB];
-        [self.tableView reloadData];
+        [self reloadData];
     }
     return self;
 }
@@ -124,8 +117,58 @@ static NSString *cell2ReuseIdentifier=@"cell2ReuseIdentifier";
         //如果录音文件存在都直接播放
         if([fileManager fileExistsAtPath:path]){
             [_playerView player:path dictionary:dictionary];
+        }else{
+            [Common alert:@"录音文件已丢失"];
         }
     }
+}
+
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath{
+    return YES;
+}
+
+- (NSString*)tableView:(UITableView*) tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([self.dataItemArray count]>[indexPath row]){
+        if(editingStyle==UITableViewCellEditingStyleDelete){
+            NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+            NSString *fileName=[data objectForKey:FILENAME];
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documents = [paths objectAtIndex:0];
+            NSString *removeFilePath = [documents stringByAppendingPathComponent:fileName];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            //删除
+            if([fileManager removeItemAtPath:removeFilePath error:NULL]){
+                NSString *sql1 = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = '%@' ",TABLENAME, FILENAME, fileName];
+                [mRecordsSQL openDB];
+                [mRecordsSQL execSql:sql1];
+                [mRecordsSQL closeDB];
+            }
+            //删除
+            [self reloadData];
+        }
+    }
+}
+
+- (void)reloadData{
+    [mRecordsSQL openDB];
+    NSString *account=[[[Config Instance]userInfo]objectForKey:@"phone"];
+    self.dataItemArray=[[NSMutableArray alloc]init];
+    [self.dataItemArray addObjectsFromArray:[mRecordsSQL getAllRecordWithAccount:account]];
+    [mRecordsSQL closeDB];
+    [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if(_playerView){
+        [_playerView stop];
+    }
+    [super viewWillDisappear:animated];
 }
 
 @end

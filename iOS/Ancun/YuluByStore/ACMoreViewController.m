@@ -27,9 +27,9 @@
         self.title=@"更多";
         UIScrollView *container=nil;
         if(IOS7){
-            container=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+            container=[[UIScrollView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
         }else{
-            container=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+            container=[[UIScrollView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
         }
         int length=9;
         [container setContentSize:CGSizeMake(self.view.frame.size.width, 10+length*69.5+1*(length-1)+10)];
@@ -37,20 +37,20 @@
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"morebg"]]];
         [self.view addSubview:container];
         
-        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"检测新版本",@"正在计算缓存大小",@"应用分享",@"重新登录", nil];
+        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"检测新版本",@"正在计算数据大小",@"应用分享",@"重新登录", nil];
         NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"4",@"9",@"6", nil];
         
         for(int i=0;i<length;i++){
-            UIButton *btnBg=[[UIButton alloc]initWithFrame:CGRectMake(15.75, 10+i*70+1*i,289,70)];
+            UIButton *btnBg=[[UIButton alloc]initWithFrame:CGRectMake1(15.75, 10+i*70+1*i,289,70)];
             if(i==6){
-                lblCachName=[[UILabel alloc]initWithFrame:CGRectMake(40, 21, 200, 28)];
+                lblCachName=[[UILabel alloc]initWithFrame:CGRectMake1(40, 21, 200, 28)];
                 [lblCachName setText:[names objectAtIndex:i]];
                 [lblCachName setFont:[UIFont systemFontOfSize:22]];
                 [lblCachName setTextColor:[UIColor whiteColor]];
                 [lblCachName setBackgroundColor:[UIColor clearColor]];
                 [btnBg addSubview:lblCachName];
             }else{
-                UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(40, 21, 200, 28)];
+                UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(40, 21, 200, 28)];
                 [lbl setText:[names objectAtIndex:i]];
                 [lbl setFont:[UIFont systemFontOfSize:22]];
                 [lbl setTextColor:[UIColor whiteColor]];
@@ -129,12 +129,12 @@
     }else if(sender.tag==6){
         //清理缓存
         if([[Config Instance]isCalculateTotal]){
-            [Common alert:@"正在计算缓存大小"];
+            [Common alert:@"正在计算数据大小"];
         }else{
             if(cachesize>0){
-                [Common actionSheet:self message:@"确定要清除所有缓存文件吗？" tag:2];
+                [Common actionSheet:self message:@"确定要清除所有应用内的数据文件吗？" tag:2];
             }else{
-                [Common alert:@"当前的缓存文件为0KB，无须清除"];
+                [Common alert:@"当前的数据文件为0KB，无须清除"];
             }
         }
     }else if(sender.tag==7){
@@ -203,7 +203,7 @@
     }else{//KB
         cacheName=[NSString stringWithFormat:@"%lldKB",cachesize/1024];
     }
-    [lblCachName setText:[NSString stringWithFormat:@"缓存大小:%@",cacheName]];
+    [lblCachName setText:[NSString stringWithFormat:@"数据大小:%@",cacheName]];
     [[Config Instance]setIsCalculateTotal:NO];
 }
 

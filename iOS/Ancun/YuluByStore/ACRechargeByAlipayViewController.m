@@ -39,18 +39,18 @@
         
         UIView *container=nil;
         if(IOS7){
-            container=[[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+            container=[[UIView alloc]initWithFrame:CGRectMake1(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
         }else{
-            container=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
+            container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
         }
         [self.view addSubview:container];
         
-        _rechargeNav=[[ACRechargeNav alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+        _rechargeNav=[[ACRechargeNav alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [_rechargeNav firstStep];
         [container addSubview:_rechargeNav];
         
         self.tableView=[[UITableView alloc]initWithFrame:
-                        CGRectMake(0, 40,
+                        CGRectMake1(0, 40,
                                    self.view.frame.size.width,
                                    self.view.frame.size.height-40)];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -58,7 +58,7 @@
         [self.tableView setDataSource:self];
         [container addSubview:self.tableView];
         if(_refreshHeaderView==nil){
-            EGORefreshTableHeaderView *view=[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.frame.size.width, self.tableView.bounds.size.height)];
+            EGORefreshTableHeaderView *view=[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake1(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.frame.size.width, self.tableView.bounds.size.height)];
             view.delegate = self;
             [self.tableView addSubview:view];
             _refreshHeaderView = view;

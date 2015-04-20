@@ -19,14 +19,14 @@
         
         [self setBackgroundColor:[UIColor colorWithRed:147 green:222 blue:250 alpha:1]];
         
-        _lblName=[[UILabel alloc]initWithFrame:CGRectMake(8, 5, 200, 25)];
+        _lblName=[[UILabel alloc]initWithFrame:CGRectMake1(8, 5, 200, 25)];
         [_lblName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
         [_lblName setTextAlignment:NSTextAlignmentLeft];
         [_lblName setTextColor:[UIColor colorWithRed:(76/255.0) green:(86/255.0) blue:(108/255.0) alpha:1]];
         [_lblName setText:@"基础套餐"];
         [self addSubview:_lblName];
         
-        _lblDescription=[[UILabel alloc]initWithFrame:CGRectMake(8, 30, 220, 60)];
+        _lblDescription=[[UILabel alloc]initWithFrame:CGRectMake1(8, 30, 220, 60)];
         [_lblDescription setFont:[UIFont systemFontOfSize:12]];
         [_lblDescription setTextAlignment:NSTextAlignmentLeft];
         [_lblDescription setNumberOfLines:0];
@@ -36,7 +36,7 @@
         [self addSubview:_lblDescription];
         
         UIButton *_btnGoPay=[UIButton buttonWithType:UIButtonTypeCustom];
-        [_btnGoPay setFrame:CGRectMake(250, 25, 60, 40)];
+        [_btnGoPay setFrame:CGRectMake1(250, 25, 60, 40)];
         [_btnGoPay setTitle:@"购买" forState:UIControlStateNormal];
         _btnGoPay.layer.cornerRadius=5;
         _btnGoPay.layer.masksToBounds=YES;

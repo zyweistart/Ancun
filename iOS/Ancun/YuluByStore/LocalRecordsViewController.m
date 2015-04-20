@@ -7,6 +7,7 @@
 //
 
 #import "LocalRecordsViewController.h"
+#import "SceneRecordViewController.h"
 #import "NSString+Utils.h"
 #import "RecordsSQL.h"
 
@@ -106,9 +107,9 @@
         formatter=[[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"YYYYMMddHHmmss"];
         mRecordsSQL=[[RecordsSQL alloc]init];
-        [mRecordsSQL openDB];
-        [mRecordsSQL createTableSQL];
-        [mRecordsSQL closeDB];
+//        [mRecordsSQL openDB];
+//        [mRecordsSQL createTableSQL];
+//        [mRecordsSQL closeDB];
     }
     return self;
 }
@@ -119,14 +120,6 @@
 {
     [super viewDidLoad];
     self.isRecording = NO;
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    NSError *sessionError;
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
-    if(session == nil){
-        NSLog(@"Error creating session: %@", [sessionError description]);
-    } else {
-        [session setActive:YES error:nil];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -155,6 +148,14 @@
         timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
 //        [self.voiceHud startForFilePath:recordedFilePath];
         self.isRecording = YES;
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        NSError *sessionError;
+        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+        if(session == nil){
+            NSLog(@"Error creating session: %@", [sessionError description]);
+        } else {
+            [session setActive:YES error:nil];
+        }
         [self.recordButton setSelected:YES];
         recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:recordedFilePath] settings:nil error:nil];
         [recorder prepareToRecord];
@@ -232,6 +233,7 @@
         NSString *toMoveFilePath = [documents stringByAppendingPathComponent:recordedFileName];
         if([fileManager moveItemAtPath:recordedFilePath toPath:toMoveFilePath error:nil]){
             UITextField *tf=[alertView textFieldAtIndex:0];
+            [tf resignFirstResponder];
             NSString *remark=[tf text];
             NSString *account=[[[Config Instance]userInfo]objectForKey:@"phone"];
             NSString *sql1 = [NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@','%@','%@') VALUES ('%@', '%@', '%@','%ld','%@')",TABLENAME, ACCOUNT, FILENAME, RECORDTIME,LONGTIME,REMARK, account, recordedFileName, currentRecordTime, currentRecordLongTime, remark];
@@ -239,6 +241,9 @@
             [mRecordsSQL execSql:sql1];
             [mRecordsSQL closeDB];
         }
+        SceneRecordViewController* sceneRecordViewController=[[SceneRecordViewController alloc] init];
+        sceneRecordViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:sceneRecordViewController animated:YES];
     }
 }
 

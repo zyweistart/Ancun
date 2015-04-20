@@ -14,7 +14,7 @@
         _currentPage=1;
         [super buildTableView];
         if(_refreshHeaderView==nil){
-            EGORefreshTableHeaderView *view=[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+            EGORefreshTableHeaderView *view=[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake1(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
             view.delegate = self;
             [self.tableView addSubview:view];
             _refreshHeaderView = view;

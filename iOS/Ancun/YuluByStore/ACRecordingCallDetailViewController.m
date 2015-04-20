@@ -8,6 +8,7 @@
 
 #import "ACRecordingCallDetailViewController.h"
 #import "ACExtractionCodeDetailViewController.h"
+#define NOUSECOLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
 
 @interface ACRecordingCallDetailViewController () <ResultDelegate,HttpViewDelegate,UITextViewDelegate,UIActionSheetDelegate>
 
@@ -57,22 +58,22 @@
                         [_data objectForKey:@"recendtime"], nil];
         int vFrameWidth=291;
         int height=35;
-        UIControl *vFrame=[[UIControl alloc]initWithFrame:CGRectMake(14.5, 10, vFrameWidth, 345)];
+        UIControl *vFrame=[[UIControl alloc]initWithFrame:CGRectMake1(14.5, 10, vFrameWidth, 345)];
         [vFrame setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"xqbg"]]];
         [vFrame addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [container addSubview:vFrame];
         for(int i=0;i<[names count];i++){
-            UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake(0, i*height, vFrameWidth, height)];
+            UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake1(0, i*height, vFrameWidth, height)];
             [view addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
             [vFrame addSubview:view];
-            UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 75, height)];
+            UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(20, 0, 75, height)];
             [lbl setFont:[UIFont systemFontOfSize:17]];
             [lbl setTextAlignment:NSTextAlignmentRight];
             [lbl setTextColor:[UIColor whiteColor]];
             [lbl setBackgroundColor:[UIColor clearColor]];
             [lbl setText:[names objectAtIndex:i]];
             [view addSubview:lbl];
-            lbl=[[UILabel alloc]initWithFrame:CGRectMake(105, 0, 195, height)];
+            lbl=[[UILabel alloc]initWithFrame:CGRectMake1(105, 0, 195, height)];
             [lbl setFont:[UIFont systemFontOfSize:17]];
             [lbl setTextAlignment:NSTextAlignmentLeft];
             if(i==[names count]-1){
@@ -84,30 +85,30 @@
             [lbl setText:[value objectAtIndex:i]];
             [view addSubview:lbl];
         }
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(20, 210, 75, height)];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(20, 210, 75, height)];
         [lbl setFont:[UIFont systemFontOfSize:17]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [lbl setTextColor:[UIColor whiteColor]];
         [lbl setBackgroundColor:[UIColor clearColor]];
         [lbl setText:@"备注"];
         [vFrame addSubview:lbl];
-        UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake(0, 240, vFrameWidth, 110)];
+        UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake1(0, 240, vFrameWidth, 110)];
         [view addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [view setBackgroundColor:[UIColor clearColor]];
         [vFrame addSubview:view];
         
-        _tv_remark=[[UITextView alloc]initWithFrame:CGRectMake(25, 10, 245,75)];
+        _tv_remark=[[UITextView alloc]initWithFrame:CGRectMake1(25, 10, 245,75)];
         [_tv_remark setDelegate:self];
         [view addSubview:_tv_remark];
         
-        _lblRemarkTip=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 240, 20)];
+        _lblRemarkTip=[[UILabel alloc]initWithFrame:CGRectMake1(5, 5, 240, 20)];
         [_lblRemarkTip setText:@"备注内容长度请在100字以内"];
         [_lblRemarkTip setFont:[UIFont systemFontOfSize:13]];
         [_lblRemarkTip setTextColor:[UIColor grayColor]];
         [_lblRemarkTip setBackgroundColor:[UIColor clearColor]];
         [_tv_remark addSubview:_lblRemarkTip];
         
-        _btn_notary=[[UIButton alloc]initWithFrame:CGRectMake(20, inch4?410:370, 127, 35)];
+        _btn_notary=[[UIButton alloc]initWithFrame:CGRectMake1(20, inch4?410:370, 127, 35)];
         _btn_notary.titleLabel.font=[UIFont systemFontOfSize:22];
         _btn_notary.layer.cornerRadius=5;
         _btn_notary.layer.masksToBounds=YES;
@@ -115,7 +116,7 @@
         [_btn_notary addTarget:self action:@selector(notary:) forControlEvents:UIControlEventTouchUpInside];
         [container addSubview:_btn_notary];
         
-        _btn_extraction=[[UIButton alloc]initWithFrame:CGRectMake(173, inch4?410:370, 127, 35)];
+        _btn_extraction=[[UIButton alloc]initWithFrame:CGRectMake1(173, inch4?410:370, 127, 35)];
         _btn_extraction.titleLabel.font=[UIFont systemFontOfSize:22];
         _btn_extraction.layer.cornerRadius=5;
         _btn_extraction.layer.masksToBounds=YES;
@@ -142,7 +143,14 @@
         }else if([@"2" isEqualToString:[_data objectForKey:@"accstatus"]]){
             [_btn_extraction setTitle:@"申请提取码" forState:UIControlStateNormal];
         }
-        
+        NSString *payuserflag=[[[Config Instance]userInfo] objectForKey:@"payuserflag"];
+        if(![@"1" isEqualToString:payuserflag]){
+            //免费套餐用户
+            [_btn_notary setEnabled:NO];
+            [_btn_notary setBackgroundColor:NOUSECOLOR];
+            [_btn_extraction setEnabled:NO];
+            [_btn_extraction setBackgroundColor:NOUSECOLOR];
+        }
     }
     return self;
 }

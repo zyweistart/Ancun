@@ -29,19 +29,19 @@
         
         UIControl *container=nil;
         if(IOS7){
-            container=[[UIControl alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+            container=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
         }else{
-            container=[[UIControl alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
+            container=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
         }
         [container addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:container];
         
-        UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake(14.5, 10, 291, 194)];
+        UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake1(14.5, 10, 291, 194)];
         [view addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]]];
         [container addSubview:view];
         
-        txtOldPassword=[[UITextField alloc] initWithFrame:CGRectMake(17, 20.25, 257, 44.5)];
+        txtOldPassword=[[UITextField alloc] initWithFrame:CGRectMake1(17, 20.25, 257, 44.5)];
         [txtOldPassword setPlaceholder:@"输入旧密码"];
         [txtOldPassword setFont:[UIFont systemFontOfSize: 18]];
         [txtOldPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -52,7 +52,7 @@
         [txtOldPassword setBackground:[UIImage imageNamed:@"txtbg"]];
         [view addSubview:txtOldPassword];
         
-        txtNewPassword=[[UITextField alloc] initWithFrame:CGRectMake(17, 74.75, 257, 44.5)];
+        txtNewPassword=[[UITextField alloc] initWithFrame:CGRectMake1(17, 74.75, 257, 44.5)];
         [txtNewPassword setPlaceholder:@"输入新密码"];
         [txtNewPassword setFont:[UIFont systemFontOfSize: 18]];
         [txtNewPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -63,7 +63,7 @@
         [txtNewPassword setBackground:[UIImage imageNamed:@"txtbg"]];
         [view addSubview:txtNewPassword];
         
-        txtReNewPassword=[[UITextField alloc] initWithFrame:CGRectMake(17, 129.25, 257, 44.5)];
+        txtReNewPassword=[[UITextField alloc] initWithFrame:CGRectMake1(17, 129.25, 257, 44.5)];
         [txtReNewPassword setPlaceholder:@"确认新密码"];
         [txtReNewPassword setFont:[UIFont systemFontOfSize: 18]];
         [txtReNewPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -74,7 +74,7 @@
         [txtReNewPassword setBackground:[UIImage imageNamed:@"txtbg"]];
         [view addSubview:txtReNewPassword];
         
-        UIButton *btnSubmit=[[UIButton alloc]initWithFrame:CGRectMake(14.5, 224, 291, 40)];
+        UIButton *btnSubmit=[[UIButton alloc]initWithFrame:CGRectMake1(14.5, 224, 291, 40)];
         [btnSubmit setTitle:@"提交" forState:UIControlStateNormal];
         btnSubmit.titleLabel.font=[UIFont systemFontOfSize:22];
         btnSubmit.layer.cornerRadius=5;

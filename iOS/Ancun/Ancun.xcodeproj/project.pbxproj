@@ -14,6 +14,7 @@
 		C914503C18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C914503B18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m */; };
 		C914504018FBBAC200B00B89 /* ACGestureStatus2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C914503F18FBBAC200B00B89 /* ACGestureStatus2Cell.m */; };
 		C9155D7A18E90BC70075A693 /* ACContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9155D7918E90BC70075A693 /* ACContactsViewController.xib */; };
+		C915F3881AE4A09200FC8B4A /* AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F3871AE4A09200FC8B4A /* AttributedLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C91D0BD918EE83BA006B10A3 /* ACPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D0BD818EE83BA006B10A3 /* ACPaymentViewController.m */; };
 		C91D0BDC18EE9A4D006B10A3 /* ACRechargeByAlipayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D0BDB18EE9A4D006B10A3 /* ACRechargeByAlipayViewController.m */; };
 		C91D0BE418EE9F35006B10A3 /* ACAccountPay1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D0BE318EE9F35006B10A3 /* ACAccountPay1Cell.m */; };
@@ -151,6 +152,8 @@
 		C914503E18FBBAC200B00B89 /* ACGestureStatus2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACGestureStatus2Cell.h; sourceTree = "<group>"; };
 		C914503F18FBBAC200B00B89 /* ACGestureStatus2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACGestureStatus2Cell.m; sourceTree = "<group>"; };
 		C9155D7918E90BC70075A693 /* ACContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACContactsViewController.xib; sourceTree = "<group>"; };
+		C915F3861AE4A09200FC8B4A /* AttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedLabel.h; sourceTree = "<group>"; };
+		C915F3871AE4A09200FC8B4A /* AttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedLabel.m; sourceTree = "<group>"; };
 		C91D0BD718EE83BA006B10A3 /* ACPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPaymentViewController.h; sourceTree = "<group>"; };
 		C91D0BD818EE83BA006B10A3 /* ACPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPaymentViewController.m; sourceTree = "<group>"; };
 		C91D0BDA18EE9A4D006B10A3 /* ACRechargeByAlipayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRechargeByAlipayViewController.h; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 		C9D97AC9179FA6640076ACF3 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C915F3861AE4A09200FC8B4A /* AttributedLabel.h */,
+				C915F3871AE4A09200FC8B4A /* AttributedLabel.m */,
 				C9430B801ADCB32D001BED0A /* POVoiceHUD */,
 				C9AEECB018FC15F4006D81A6 /* baidumtj */,
 				C9D97ACA179FA6640076ACF3 /* alipay */,
@@ -1216,6 +1221,7 @@
 				C9A560CC18FB7CA4006A5049 /* ACGesturePasswordViewController.m in Sources */,
 				C99F0C6A18EBDC9F00C27BFC /* ACRegistrationViewController.m in Sources */,
 				C9D97C98179FA6650076ACF3 /* ATMProgressLayer.m in Sources */,
+				C915F3881AE4A09200FC8B4A /* AttributedLabel.m in Sources */,
 				C914503C18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m in Sources */,
 				C9D97C99179FA6650076ACF3 /* ATMSoundFX.m in Sources */,
 				C9D97C9A179FA6650076ACF3 /* ATMTextLayer.m in Sources */,

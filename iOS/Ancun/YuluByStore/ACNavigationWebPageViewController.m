@@ -11,7 +11,7 @@
     if (self) {
         self.navigationItem.title=navigationTitle;
         UIWebView *webView=[[UIWebView alloc]initWithFrame:
-                            CGRectMake(0, 0,
+                            CGRectMake1(0, 0,
                                        self.view.frame.size.width,
                                        self.view.frame.size.height)];
         [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];

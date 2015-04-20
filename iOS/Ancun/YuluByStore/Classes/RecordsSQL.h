@@ -23,7 +23,7 @@
 
 -(void)execSql:(NSString *)sql;
 
-- (void)createTableSQL;
+//- (void)createTableSQL;
 
 - (void)closeDB;
 
