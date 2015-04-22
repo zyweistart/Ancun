@@ -448,6 +448,9 @@
                     }
                     flag=NO;
                 }
+                if([@"" isEqualToString:name]){
+                    name=personPhone;
+                }
                 NSArray *nameDic=[[NSArray alloc]initWithObjects:name,personPhone,nameFlag,nil];
                 
                 NSString *personName=nil;
@@ -495,6 +498,7 @@
                 [[Config Instance]setContact:contact];
                 
                 [mutable addObject:nameDic];
+                name=@"";
             }
             if(!flag) {
                 if([mutable count]>0) {
