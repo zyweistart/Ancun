@@ -15,7 +15,9 @@
 @property (nonatomic,retain)NSMutableAttributedString          *attString;
 @end
 
-@implementation AttributedLabel
+@implementation AttributedLabel{
+    CATextLayer *textLayer;
+}
 @synthesize attString = _attString;
 
 - (void)dealloc{
@@ -27,18 +29,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        textLayer = [CATextLayer layer];
+        textLayer.transform = CATransform3DMakeScale(0.5,0.5,1);
+        [self.layer addSublayer:textLayer];
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect{
     
-    CATextLayer *textLayer = [CATextLayer layer];
     textLayer.string = _attString;
-    textLayer.transform = CATransform3DMakeScale(0.5,0.5,1);
-    textLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    [self.layer addSublayer:textLayer];
+    textLayer.frame = rect;
 }
 
 - (void)setText:(NSString *)text{

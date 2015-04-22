@@ -2,6 +2,7 @@
 #import "LongPressButton.h"
 #import "ChineseToPinyin.h"
 #import "ACContactCell.h"
+#import "ACContactSingleCell.h"
 #define DIALBGINBG [UIColor colorWithRed:(101/255.0) green:(175/255.0) blue:(236/255.0) alpha:1]
 #define DIALVIEWBG [UIColor colorWithRed:(26/255.0) green:(124/255.0) blue:(205/255.0) alpha:1]
 
@@ -56,11 +57,13 @@
         [leftBtn setImage:[UIImage imageNamed:@"dialadd"] forState:UIControlStateNormal];
         [leftBtn setTag:14];
         [leftBtn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
-        [headDisplay addSubview:leftBtn];
+//        [headDisplay addSubview:leftBtn];
         //号码显示区域
         lblDisplayPhone=[[UILabel alloc]initWithFrame:CGRectMake1(40, 0, headDisplay.frame.size.width-80, headDisplay.frame.size.height)];
+        [lblDisplayPhone setFont:[UIFont systemFontOfSize:37]];
         [lblDisplayPhone setTextColor:[UIColor whiteColor]];
         [lblDisplayPhone setBackgroundColor:[UIColor clearColor]];
+        [lblDisplayPhone setTextAlignment:NSTextAlignmentCenter];
         [headDisplay addSubview:lblDisplayPhone];
         //清除号码
         LongPressButton *rightBtn=[[LongPressButton alloc]initWithFrame:CGRectMake1(280,10,40,40)];
@@ -70,7 +73,6 @@
         [rightBtn addTarget:self action:@selector(longPressed) forControlEvents:ControlEventTouchLongPress];
         [rightBtn addTarget:self action:@selector(cancelLongPress) forControlEvents:ControlEventTouchCancel];
 //        [headDisplay addSubview:rightBtn];
-        [headDisplay setHidden:YES];
         self.message=[[UIView alloc]init];
         [self.message setBackgroundColor:[UIColor whiteColor]];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(20, 10, 280, 300)];
@@ -129,6 +131,7 @@
         isAddTabBar=NO;
         //初始化加载通讯录
         [self loadContact];
+        [self showDialText];
     }
     return self;
 }
@@ -147,6 +150,8 @@
         [showHidden addTarget:self action:@selector(hidden:) forControlEvents:UIControlEventTouchUpInside];
         [tabBGView addSubview:showHidden];
         UIButton *dial1=[[UIButton alloc]initWithFrame:CGRectMake1(60, 2, 200, tabHeight-4)];
+        [dial1 setTag:13];
+        [dial1 addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         [dial1 setBackgroundImage:[UIImage imageNamed:@"call4"] forState:UIControlStateNormal];
         [tabBGView addSubview:dial1];
         LongPressButton *btnDel=[[LongPressButton alloc]initWithFrame:CGRectMake1(265,0,50,tabHeight)];
@@ -299,10 +304,11 @@
         }
         //搜索联系人
     }else{
+        [lblDisplayPhone setText:@"拨号"];
         currentType=1;
 //        [self.tableView setHidden:NO];
 //        [self.tableViewData setHidden:YES];
-        [headDisplay setHidden:YES];
+//        [headDisplay setHidden:YES];
         [tabBGView setHidden:YES];
         if([dialView isHidden]){
             [self dialViewShow];
@@ -582,23 +588,67 @@
     NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
     if([[namePhones objectAtIndex:2] isEqualToString:@"1"]){
         //单无姓名
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
+        ACContactSingleCell *cell = [tableView dequeueReusableCellWithIdentifier:
                                  SectionsTableIdentifier1];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc]
+            cell = [[ACContactSingleCell alloc]
                     initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:SectionsTableIdentifier1];
         }
-        cell.textLabel.text=[Common formatPhone:[namePhones objectAtIndex:1]];
+        NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
+        int nLength=[phone length];
+        [cell.lblPhone setText:phone];
+        [cell.lblPhone setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
+        [cell.lblPhone setColor:[UIColor blackColor] fromIndex:0 length:nLength];
+        
+        NSString *content=_dialString;
+        if([@""isEqualToString:content]){
+            content=[self.searchBar text];
+        }
+        if(![@""isEqualToString:content]){
+
+            if([phone containsString:content]){
+                NSRange range=[phone rangeOfString:content];
+                [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+            }
+        }
+        [cell.lblPhone setNeedsDisplay];
         return cell;
     }else{
         //双
         ACContactCell *cell = [tableView dequeueReusableCellWithIdentifier:SectionsTableIdentifier2];
-        if(!cell){
+        if(cell==nil){
             cell = [[ACContactCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SectionsTableIdentifier2];
         }
-        cell.lblName.text=[namePhones objectAtIndex:0];
-        cell.lblPhone.text=[Common formatPhone:[namePhones objectAtIndex:1]];
+        //姓名
+        NSString *name=[namePhones objectAtIndex:0];
+        cell.lblName.text=name;
+        int nLength=[name length];
+        [cell.lblName setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
+        [cell.lblName setColor:[UIColor blackColor] fromIndex:0 length:nLength];
+        //电话
+        NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
+        int pLength=[phone length];
+        cell.lblPhone.text=phone;
+        [cell.lblPhone setFont:[UIFont systemFontOfSize:15] fromIndex:0 length:pLength];
+        [cell.lblPhone setColor:FONTCOLOR2 fromIndex:0 length:pLength];
+        
+        NSString *content=_dialString;
+        if([@""isEqualToString:content]){
+            content=[self.searchBar text];
+        }
+        if(![@""isEqualToString:content]){
+            if([name containsString:content]){
+                NSRange range=[name rangeOfString:content];
+                [cell.lblName setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+            }
+            if([phone containsString:content]){
+                NSRange range=[phone rangeOfString:content];
+                [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+            }
+        }
+        [cell.lblName setNeedsDisplay];
+        [cell.lblPhone setNeedsDisplay];
         return cell;
     }
 }

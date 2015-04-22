@@ -11,6 +11,7 @@
 		C90A351D17BA054F00BECE31 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A351C17BA054F00BECE31 /* BaseViewController.m */; };
 		C90BCF7A17D037B700813641 /* ACNavigationWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BCF7917D037B300813641 /* ACNavigationWebPageViewController.m */; };
 		C90DC02C18E950CB00FF25C9 /* ACDialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90DC02B18E950CB00FF25C9 /* ACDialsViewController.m */; };
+		C90EC3AD1AE77ADB000F7700 /* ACContactSingleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C90EC3AC1AE77ADB000F7700 /* ACContactSingleCell.m */; };
 		C914503C18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C914503B18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m */; };
 		C914504018FBBAC200B00B89 /* ACGestureStatus2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C914503F18FBBAC200B00B89 /* ACGestureStatus2Cell.m */; };
 		C9155D7A18E90BC70075A693 /* ACContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9155D7918E90BC70075A693 /* ACContactsViewController.xib */; };
@@ -147,6 +148,8 @@
 		C90BCF7917D037B300813641 /* ACNavigationWebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNavigationWebPageViewController.m; sourceTree = "<group>"; };
 		C90DC02A18E950CB00FF25C9 /* ACDialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDialsViewController.h; sourceTree = "<group>"; };
 		C90DC02B18E950CB00FF25C9 /* ACDialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDialsViewController.m; sourceTree = "<group>"; };
+		C90EC3AB1AE77ADB000F7700 /* ACContactSingleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACContactSingleCell.h; sourceTree = "<group>"; };
+		C90EC3AC1AE77ADB000F7700 /* ACContactSingleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACContactSingleCell.m; sourceTree = "<group>"; };
 		C914503A18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAgainSetGesturePasswordViewController.h; sourceTree = "<group>"; };
 		C914503B18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAgainSetGesturePasswordViewController.m; sourceTree = "<group>"; };
 		C914503E18FBBAC200B00B89 /* ACGestureStatus2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACGestureStatus2Cell.h; sourceTree = "<group>"; };
@@ -1078,6 +1081,8 @@
 				C9D97A51179FA6520076ACF3 /* ACRecordingDetailCell.m */,
 				C9D97ABF179FA6640076ACF3 /* LoadingCell.h */,
 				C9D97AC0179FA6640076ACF3 /* LoadingCell.m */,
+				C90EC3AB1AE77ADB000F7700 /* ACContactSingleCell.h */,
+				C90EC3AC1AE77ADB000F7700 /* ACContactSingleCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1193,6 +1198,7 @@
 				C9D97A9C179FA6520076ACF3 /* ACRecordingDetailCell.m in Sources */,
 				C9D97AA3179FA6520076ACF3 /* ACRecordingManagerDetailListViewController.m in Sources */,
 				C98C6A6E18FBC51800D3EF37 /* WeixinTimelineActivity.m in Sources */,
+				C90EC3AD1AE77ADB000F7700 /* ACContactSingleCell.m in Sources */,
 				C9D47CFD18F387F300472625 /* ACModifyPasswordViewController.m in Sources */,
 				C9D97AAA179FA6520076ACF3 /* NSDictionary+MutableDeepCopy.m in Sources */,
 				C9D97C7B179FA6640076ACF3 /* BaseRefreshTableViewController.m in Sources */,

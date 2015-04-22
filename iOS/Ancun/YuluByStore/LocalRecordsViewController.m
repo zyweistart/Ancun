@@ -14,6 +14,16 @@
 #define BLACKCOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 #define TIMECOLOR [UIColor colorWithRed:(40/255.0) green:(145/255.0) blue:(228/255.0) alpha:1]
 
+enum
+{
+    ENC_AAC = 1,
+    ENC_ALAC = 2,
+    ENC_IMA4 = 3,
+    ENC_ILBC = 4,
+    ENC_ULAW = 5,
+    ENC_PCM = 6,
+} encodingTypes;
+
 @interface LocalRecordsViewController ()
 
 @end
@@ -120,6 +130,14 @@
 {
     [super viewDidLoad];
     self.isRecording = NO;
+//    AVAudioSession *session = [AVAudioSession sharedInstance];
+//    NSError *sessionError;
+//    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+//    if(session == nil){
+//        NSLog(@"Error creating session: %@", [sessionError description]);
+//    } else {
+//        [session setActive:YES error:nil];
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -134,32 +152,31 @@
 - (void)startStopRecording:(id)sender
 {
     if(!self.isRecording){
-        [lblHour setText:@"00"];
-        [lblMinute setText:@"00"];
-        [lblSeconds setText:@"00"];
-        //当前录音开始时间
-        currentRecordTime = [formatter stringFromDate:[NSDate date]];
-        //当前录音总时长
-        currentRecordLongTime=0;
+//        [self.voiceHud startForFilePath:recordedFilePath];
+        if(recorder){
+            [self stopRecorder];
+        }
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
+        
         //生成录音文件名
         recordedFileName=[[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] md5];
         //文件路径
         recordedFilePath=[NSTemporaryDirectory() stringByAppendingString:recordedFileName];
-        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-//        [self.voiceHud startForFilePath:recordedFilePath];
-        self.isRecording = YES;
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        NSError *sessionError;
-        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
-        if(session == nil){
-            NSLog(@"Error creating session: %@", [sessionError description]);
-        } else {
-            [session setActive:YES error:nil];
-        }
-        [self.recordButton setSelected:YES];
         recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:recordedFilePath] settings:nil error:nil];
-        [recorder prepareToRecord];
-        [recorder record];
+        if([recorder prepareToRecord]){
+            [recorder record];
+            self.isRecording = YES;
+            [self.recordButton setSelected:YES];
+            [lblHour setText:@"00"];
+            [lblMinute setText:@"00"];
+            [lblSeconds setText:@"00"];
+            //当前录音总时长
+            currentRecordLongTime=0;
+            //当前录音开始时间
+            currentRecordTime = [formatter stringFromDate:[NSDate date]];
+            timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        }
     }else{
         [self stopRecorder];
     }

@@ -10,8 +10,6 @@
 	<string>Ancun</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>78E70342-ADA8-47C7-B9E8-693AA1F0E7FE</key>
-		<string>https://github.com/zyweistart/company.git</string>
 		<key>C1C059A698D7E3570C4FBB21ECFC710D84627A33</key>
 		<string>https://github.com/zyweistart/Ancun.git</string>
 	</dict>
@@ -19,8 +17,6 @@
 	<string>iOS/Ancun/Ancun.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>78E70342-ADA8-47C7-B9E8-693AA1F0E7FE</key>
-		<string>../../../../../company</string>
 		<key>C1C059A698D7E3570C4FBB21ECFC710D84627A33</key>
 		<string>../../../..</string>
 	</dict>
@@ -39,14 +35,6 @@
 			<string>C1C059A698D7E3570C4FBB21ECFC710D84627A33</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Ancun</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>78E70342-ADA8-47C7-B9E8-693AA1F0E7FE</string>
-			<key>IDESourceControlWCCName</key>
-			<string>company</string>
 		</dict>
 	</array>
 </dict>
