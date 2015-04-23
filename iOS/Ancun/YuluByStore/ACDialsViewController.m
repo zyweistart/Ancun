@@ -362,7 +362,7 @@
     animation.duration = 0.6;
     [dialView.layer addAnimation:animation forKey:nil];
     dialView.hidden = YES;
-    [showHidden setTitle:@"显示" forState:UIControlStateNormal];
+    [showHidden setImage:[UIImage imageNamed:@"nav_icon_dial"] forState:UIControlStateNormal];
 }
 //拨号盘显示
 - (void)dialViewShow
@@ -372,7 +372,7 @@
     animation.duration = 0.6;
     [dialView.layer addAnimation:animation forKey:nil];
     dialView.hidden = NO;
-    [showHidden setTitle:@"隐藏" forState:UIControlStateNormal];
+    [showHidden setImage:[UIImage imageNamed:@"nav_icon_dial_hover"] forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
@@ -419,6 +419,12 @@
             }
             
             NSString *name=[[NSString alloc]initWithFormat:@"%@%@",lastname,firstName];
+            if([@""isEqualToString:name]){
+                NSString *organizationName = (__bridge NSString*)ABRecordCopyValue(person, kABPersonOrganizationProperty);
+                if(![@""isEqualToString:organizationName]){
+                    name=organizationName;
+                }
+            }
             
             NSString *hName=nil;
             NSMutableArray *mutable=nil;
@@ -451,7 +457,7 @@
                     }
                     flag=NO;
                 }
-                if([@"" isEqualToString:name]){
+                if([@"1" isEqualToString:nameFlag]){
                     name=personPhone;
                 }
                 NSArray *nameDic=[[NSArray alloc]initWithObjects:name,personPhone,nameFlag,nil];
@@ -501,7 +507,7 @@
                 [[Config Instance]setContact:contact];
                 
                 [mutable addObject:nameDic];
-                name=@"";
+//                name=@"";
             }
             if(!flag) {
                 if([mutable count]>0) {
@@ -601,7 +607,7 @@
                     initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:SectionsTableIdentifier3];
         }
-        [cell.imageView setImage:[UIImage imageNamed:@"dialadd"]];
+//        [cell.imageView setImage:[UIImage imageNamed:@"dialadd"]];
         [cell.textLabel setText:@"添加联系人"];
         return cell;
     }else{
