@@ -331,7 +331,11 @@
 - (void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController {
     unsigned long newTabIndex = tabBarController.selectedIndex;
     if (newTabIndex == m_lastTabIndex) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TabClick_ACRecordingManagerViewController object:@"load"];
+        if(newTabIndex==0){
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TabClick_ACDialsViewController object:@"load"];
+        }else if(newTabIndex==3){
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TabClick_ACRecordingManagerViewController object:@"load"];
+        }
     } else {
         m_lastTabIndex = newTabIndex;
     }

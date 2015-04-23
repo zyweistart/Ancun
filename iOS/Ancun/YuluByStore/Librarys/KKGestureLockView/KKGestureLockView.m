@@ -41,7 +41,7 @@ const static CGFloat kTrackedLocationInvalidInContentView = -1.0;
 #pragma mark Private Methods
 
 - (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size{
-    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    CGRect rect = CGRectMake1(0.0f, 0.0f, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -118,7 +118,7 @@ const static CGFloat kTrackedLocationInvalidInContentView = -1.0;
         int row = i / self.gestureNodesPerRow;
         int column = i % self.gestureNodesPerRow;
         UIButton *button = [self.buttons objectAtIndex:i];
-        button.frame = CGRectMake(floorf((self.buttonSize.width + horizontalNodeMargin) * column), floorf((self.buttonSize.height + verticalNodeMargin) * row), self.buttonSize.width, self.buttonSize.height);
+        button.frame = CGRectMake1(floorf((self.buttonSize.width + horizontalNodeMargin) * column), floorf((self.buttonSize.height + verticalNodeMargin) * row), self.buttonSize.width, self.buttonSize.height);
     }
 }
 
@@ -297,7 +297,7 @@ const static CGFloat kTrackedLocationInvalidInContentView = -1.0;
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.tag = i;
             button.userInteractionEnabled = NO;
-            button.frame = CGRectMake(0, 0, self.buttonSize.width, self.buttonSize.height);
+            button.frame = CGRectMake1(0, 0, self.buttonSize.width, self.buttonSize.height);
             button.backgroundColor = [UIColor clearColor];
             if (self.normalGestureNodeImage != nil) {
                 [button setImage:self.normalGestureNodeImage forState:UIControlStateNormal];

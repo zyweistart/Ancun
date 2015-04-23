@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define Notification_TabClick_ACDialsViewController @"Notification_TabClick_ACDialsViewController"
+
 @interface ACDialsViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,UISearchDisplayDelegate, UISearchBarDelegate,ABNewPersonViewControllerDelegate,UIActionSheetDelegate,HttpViewDelegate>
 
 @property (strong,nonatomic)HttpRequest *hRequest;

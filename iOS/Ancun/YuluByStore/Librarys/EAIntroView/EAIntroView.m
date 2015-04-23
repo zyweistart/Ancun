@@ -138,7 +138,7 @@
 
 - (UIView *)viewForPage:(EAIntroPage *)page atXIndex:(CGFloat *)xIndex {
     
-    UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(*xIndex, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
+    UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake1(*xIndex, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
     
     *xIndex += self.scrollView.frame.size.width;
     
@@ -170,7 +170,7 @@
 #pragma clang diagnostic pop
         }
         
-        CGRect titleLabelFrame = CGRectMake(10, self.frame.size.height - page.titlePositionY, self.scrollView.frame.size.width - 20, titleHeight);
+        CGRect titleLabelFrame = CGRectMake1(10, self.frame.size.height - page.titlePositionY, self.scrollView.frame.size.width - 20, titleHeight);
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleLabelFrame];
         titleLabel.text = page.title;
@@ -183,7 +183,7 @@
     }
     
     if([page.desc length]) {
-        CGRect descLabelFrame = CGRectMake(0, self.frame.size.height - page.descPositionY, self.scrollView.frame.size.width, 500);
+        CGRect descLabelFrame = CGRectMake1(0, self.frame.size.height - page.descPositionY, self.scrollView.frame.size.width, 500);
         
         UITextView *descLabel = [[UITextView alloc] initWithFrame:descLabelFrame];
         descLabel.text = page.desc;
@@ -201,7 +201,7 @@
 }
 
 - (void)appendCloseViewAtXIndex:(CGFloat*)xIndex {
-    UIView *closeView = [[UIView alloc] initWithFrame:CGRectMake(*xIndex, 0, self.frame.size.width, self.frame.size.height)];
+    UIView *closeView = [[UIView alloc] initWithFrame:CGRectMake1(*xIndex, 0, self.frame.size.width, self.frame.size.height)];
     closeView.tag = 124;
     [self.scrollView addSubview:closeView];
     
@@ -218,13 +218,13 @@
 }
 
 - (void)buildFooterView {
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height - self.pageControlY, self.frame.size.width, 20)];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake1(0, self.frame.size.height - self.pageControlY, self.frame.size.width, 20)];
     [self.pageControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.pageControl addTarget:self action:@selector(showPanelAtPageControl) forControlEvents:UIControlEventValueChanged];
     self.pageControl.numberOfPages = _pages.count;
     [self addSubview:self.pageControl];
     
-    self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake(self.scrollView.frame.size.width - 80, self.pageControl.frame.origin.y, 80, self.pageControl.frame.size.height)];
+    self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake1(self.scrollView.frame.size.width - 80, self.pageControl.frame.origin.y, 80, self.pageControl.frame.size.height)];
     
     [self.skipButton setAutoresizingMask: UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
     [self.skipButton setTitle:NSLocalizedString(@"Skip", nil) forState:UIControlStateNormal];
@@ -320,18 +320,18 @@
 - (void)setTitleView:(UIView *)titleView {
     [_titleView removeFromSuperview];
     _titleView = titleView;
-    [_titleView setFrame:CGRectMake((self.frame.size.width-_titleView.frame.size.width)/2, self.titleViewY, _titleView.frame.size.width, _titleView.frame.size.height)];
+    [_titleView setFrame:CGRectMake1((self.frame.size.width-_titleView.frame.size.width)/2, self.titleViewY, _titleView.frame.size.width, _titleView.frame.size.height)];
     [self addSubview:_titleView];
 }
 
 - (void)setTitleViewY:(CGFloat)titleViewY {
     _titleViewY = titleViewY;
-    [_titleView setFrame:CGRectMake((self.frame.size.width-_titleView.frame.size.width)/2, self.titleViewY, _titleView.frame.size.width, _titleView.frame.size.height)];
+    [_titleView setFrame:CGRectMake1((self.frame.size.width-_titleView.frame.size.width)/2, self.titleViewY, _titleView.frame.size.width, _titleView.frame.size.height)];
 }
 
 - (void)setPageControlY:(CGFloat)pageControlY {
     _pageControlY = pageControlY;
-    [self.pageControl setFrame:CGRectMake(0, self.frame.size.height - pageControlY, self.frame.size.width, 20)];
+    [self.pageControl setFrame:CGRectMake1(0, self.frame.size.height - pageControlY, self.frame.size.width, 20)];
 }
 
 - (void)setSkipButton:(UIButton *)skipButton {

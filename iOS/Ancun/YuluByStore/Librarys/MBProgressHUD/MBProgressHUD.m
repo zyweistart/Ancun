@@ -384,7 +384,7 @@
         indicator.frame = indFrame;
 		
         // Set the label position and dimensions
-        CGRect lFrame = CGRectMake(floorf((frame.size.width - lWidth) / 2) + xOffset,
+        CGRect lFrame = CGRectMake1(floorf((frame.size.width - lWidth) / 2) + xOffset,
                                    floorf(indFrame.origin.y + indFrame.size.height + PADDING),
                                    lWidth, lHeight);
         label.frame = lFrame;
@@ -424,7 +424,7 @@
             label.frame = lFrame;
 			
             // Set label position and dimensions
-            CGRect lFrameD = CGRectMake(floorf((frame.size.width - lWidth) / 2) + xOffset,
+            CGRect lFrameD = CGRectMake1(floorf((frame.size.width - lWidth) / 2) + xOffset,
                                         lFrame.origin.y + lFrame.size.height + PADDING, lWidth, lHeight);
             detailsLabel.frame = lFrameD;
 			
@@ -660,7 +660,7 @@
     // Center HUD
     CGRect allRect = self.bounds;
     // Draw rounded HUD bacgroud rect
-    CGRect boxRect = CGRectMake(roundf((allRect.size.width - self.width) / 2) + self.xOffset,
+    CGRect boxRect = CGRectMake1(roundf((allRect.size.width - self.width) / 2) + self.xOffset,
                                 roundf((allRect.size.height - self.height) / 2) + self.yOffset, self.width, self.height);
 	// Corner radius
 	float radius = 10.0f;
@@ -708,7 +708,7 @@
 		if (orientation == UIInterfaceOrientationLandscapeLeft) { degrees = -90; } 
 		else { degrees = 90; }
 		// Window coordinates differ!
-		self.bounds = CGRectMake(0, 0, self.bounds.size.height, self.bounds.size.width);
+		self.bounds = CGRectMake1(0, 0, self.bounds.size.height, self.bounds.size.width);
 	} else {
 		if (orientation == UIInterfaceOrientationPortraitUpsideDown) { degrees = 180; } 
 		else { degrees = 0; }
@@ -747,7 +747,7 @@
 #pragma mark Lifecycle
 
 - (id)init {
-    return [self initWithFrame:CGRectMake(0.0f, 0.0f, 37.0f, 37.0f)];
+    return [self initWithFrame:CGRectMake1(0.0f, 0.0f, 37.0f, 37.0f)];
 }
 
 - (id)initWithFrame:(CGRect)frame {

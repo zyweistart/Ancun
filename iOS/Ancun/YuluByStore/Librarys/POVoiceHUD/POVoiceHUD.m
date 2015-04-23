@@ -45,9 +45,9 @@
 
 		self.alpha = 0.0f;
         
-        hudRect = CGRectMake(self.center.x - (HUD_SIZE / 2), self.center.y - (HUD_SIZE / 2), HUD_SIZE, HUD_SIZE);
+        hudRect = CGRectMake1(self.center.x - (HUD_SIZE / 2), self.center.y - (HUD_SIZE / 2), HUD_SIZE, HUD_SIZE);
         int x = (frame.size.width - HUD_SIZE) / 2;
-        btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(x, hudRect.origin.y + HUD_SIZE - CANCEL_BUTTON_HEIGHT, HUD_SIZE, CANCEL_BUTTON_HEIGHT)];
+        btnCancel = [[UIButton alloc] initWithFrame:CGRectMake1(x, hudRect.origin.y + HUD_SIZE - CANCEL_BUTTON_HEIGHT, HUD_SIZE, CANCEL_BUTTON_HEIGHT)];
         [btnCancel setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
         [btnCancel addTarget:self action:@selector(cancelled:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnCancel];

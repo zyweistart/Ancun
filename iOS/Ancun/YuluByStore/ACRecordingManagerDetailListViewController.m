@@ -198,9 +198,9 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     if([self.dataItemArray count]>[indexPath row]){
-        return 60;
+        return CGHeight(60);
     }else{
-        return 50;
+        return CGHeight(50);
     }
 }
 

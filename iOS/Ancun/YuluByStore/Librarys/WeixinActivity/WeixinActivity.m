@@ -54,7 +54,7 @@
         CGFloat width = 100.0f;
         CGFloat height = image.size.height * 100.0f / image.size.width;
         UIGraphicsBeginImageContext(CGSizeMake(width, height));
-        [image drawInRect:CGRectMake(0, 0, width, height)];
+        [image drawInRect:CGRectMake1(0, 0, width, height)];
         UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         [req.message setThumbImage:scaledImage];

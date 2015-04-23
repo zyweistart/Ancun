@@ -31,6 +31,9 @@
 {
     self=[super init];
     if(self){
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_TabClick_ACDialsViewController object:nil];
+        
         _dialString=[[NSMutableString alloc]init];
         //按钮映射
         mapping=[[NSMutableDictionary alloc]init];
@@ -60,7 +63,6 @@
 //        [headDisplay addSubview:leftBtn];
         //号码显示区域
         lblDisplayPhone=[[UILabel alloc]initWithFrame:CGRectMake1(40, 0, headDisplay.frame.size.width-80, headDisplay.frame.size.height)];
-        [lblDisplayPhone setFont:[UIFont systemFontOfSize:37]];
         [lblDisplayPhone setTextColor:[UIColor whiteColor]];
         [lblDisplayPhone setBackgroundColor:[UIColor clearColor]];
         [lblDisplayPhone setTextAlignment:NSTextAlignmentCenter];
@@ -304,6 +306,7 @@
         }
         //搜索联系人
     }else{
+        [lblDisplayPhone setFont:[UIFont systemFontOfSize:20]];
         [lblDisplayPhone setText:@"拨号"];
         currentType=1;
 //        [self.tableView setHidden:NO];
@@ -557,7 +560,7 @@
 //指定每个分区中有多少行，默认为1
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section{
     if ([_searchKeys count] == 0) {
-        return 0;
+        return 1;
     } else {
         NSString *key = [_searchKeys objectAtIndex:section];
         NSArray *nameSection = [_searchResults objectForKey:key];
@@ -567,17 +570,20 @@
 
 //设置cell每行间隔的高度
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath{
-    
-    NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
-    NSArray *nameSection = [_searchResults objectForKey:key];
-    
-    NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
-    if([[namePhones objectAtIndex:2] isEqualToString:@"1"]){
-        //单无姓名
-        return 40;
+    if ([_searchKeys count] == 0) {
+        return CGHeight(45);
     }else{
-        //有姓名的号码
-        return 60;
+        NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
+        NSArray *nameSection = [_searchResults objectForKey:key];
+        
+        NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
+        if([[namePhones objectAtIndex:2] isEqualToString:@"1"]){
+            //单无姓名
+            return CGHeight(40);
+        }else{
+            //有姓名的号码
+            return CGHeight(60);
+        }
     }
 }
 
@@ -585,84 +591,106 @@
     
     static NSString *SectionsTableIdentifier1 = @"SectionsTableIdentifier1";
     static NSString *SectionsTableIdentifier2 = @"ACContactCell";
+    static NSString *SectionsTableIdentifier3 = @"SectionsTableIdentifier3";
     
-    NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
-    NSArray *nameSection = [_searchResults objectForKey:key];
-    
-    NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
-    if([[namePhones objectAtIndex:2] isEqualToString:@"1"]){
-        //单无姓名
-        ACContactSingleCell *cell = [tableView dequeueReusableCellWithIdentifier:
-                                 SectionsTableIdentifier1];
+    if ([_searchKeys count] == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
+                                     SectionsTableIdentifier3];
         if (cell == nil) {
-            cell = [[ACContactSingleCell alloc]
+            cell = [[UITableViewCell alloc]
                     initWithStyle:UITableViewCellStyleDefault
-                    reuseIdentifier:SectionsTableIdentifier1];
+                    reuseIdentifier:SectionsTableIdentifier3];
         }
-        NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
-        int nLength=[phone length];
-        [cell.lblPhone setText:phone];
-        [cell.lblPhone setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
-        [cell.lblPhone setColor:[UIColor blackColor] fromIndex:0 length:nLength];
-        
-        NSString *content=_dialString;
-        if([@""isEqualToString:content]){
-            content=[self.searchBar text];
-        }
-        if(![@""isEqualToString:content]){
-
-            if([phone containsString:content]){
-                NSRange range=[phone rangeOfString:content];
-                [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
-            }
-        }
-        [cell.lblPhone setNeedsDisplay];
+        [cell.imageView setImage:[UIImage imageNamed:@"dialadd"]];
+        [cell.textLabel setText:@"添加联系人"];
         return cell;
     }else{
-        //双
-        ACContactCell *cell = [tableView dequeueReusableCellWithIdentifier:SectionsTableIdentifier2];
-        if(cell==nil){
-            cell = [[ACContactCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SectionsTableIdentifier2];
-        }
-        //姓名
-        NSString *name=[namePhones objectAtIndex:0];
-        cell.lblName.text=name;
-        int nLength=[name length];
-        [cell.lblName setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
-        [cell.lblName setColor:[UIColor blackColor] fromIndex:0 length:nLength];
-        //电话
-        NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
-        int pLength=[phone length];
-        cell.lblPhone.text=phone;
-        [cell.lblPhone setFont:[UIFont systemFontOfSize:15] fromIndex:0 length:pLength];
-        [cell.lblPhone setColor:FONTCOLOR2 fromIndex:0 length:pLength];
+        NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
+        NSArray *nameSection = [_searchResults objectForKey:key];
         
-        NSString *content=_dialString;
-        if([@""isEqualToString:content]){
-            content=[self.searchBar text];
-        }
-        if(![@""isEqualToString:content]){
-            if([name containsString:content]){
-                NSRange range=[name rangeOfString:content];
-                [cell.lblName setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+        NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
+        if([[namePhones objectAtIndex:2] isEqualToString:@"1"]){
+            //单无姓名
+            ACContactSingleCell *cell = [tableView dequeueReusableCellWithIdentifier:
+                                         SectionsTableIdentifier1];
+            if (cell == nil) {
+                cell = [[ACContactSingleCell alloc]
+                        initWithStyle:UITableViewCellStyleDefault
+                        reuseIdentifier:SectionsTableIdentifier1];
             }
-            if([phone containsString:content]){
-                NSRange range=[phone rangeOfString:content];
-                [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+            NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
+            int nLength=[phone length];
+            [cell.lblPhone setText:phone];
+            [cell.lblPhone setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
+            [cell.lblPhone setColor:[UIColor blackColor] fromIndex:0 length:nLength];
+            
+            NSString *content=_dialString;
+            if([@""isEqualToString:content]){
+                content=[self.searchBar text];
             }
+            if(![@""isEqualToString:content]){
+                
+                if([phone containsString:content]){
+                    NSRange range=[phone rangeOfString:content];
+                    [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+                }
+            }
+            [cell.lblPhone setNeedsDisplay];
+            return cell;
+        }else{
+            //双
+            ACContactCell *cell = [tableView dequeueReusableCellWithIdentifier:SectionsTableIdentifier2];
+            if(cell==nil){
+                cell = [[ACContactCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SectionsTableIdentifier2];
+            }
+            //姓名
+            NSString *name=[namePhones objectAtIndex:0];
+            cell.lblName.text=name;
+            int nLength=[name length];
+            [cell.lblName setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
+            [cell.lblName setColor:[UIColor blackColor] fromIndex:0 length:nLength];
+            //电话
+            NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
+            int pLength=[phone length];
+            cell.lblPhone.text=phone;
+            [cell.lblPhone setFont:[UIFont systemFontOfSize:15] fromIndex:0 length:pLength];
+            [cell.lblPhone setColor:FONTCOLOR2 fromIndex:0 length:pLength];
+            
+            NSString *content=_dialString;
+            if([@""isEqualToString:content]){
+                content=[self.searchBar text];
+            }
+            if(![@""isEqualToString:content]){
+                if([name containsString:content]){
+                    NSRange range=[name rangeOfString:content];
+                    [cell.lblName setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+                }
+                if([phone containsString:content]){
+                    NSRange range=[phone rangeOfString:content];
+                    [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
+                }
+            }
+            [cell.lblName setNeedsDisplay];
+            [cell.lblPhone setNeedsDisplay];
+            return cell;
         }
-        [cell.lblName setNeedsDisplay];
-        [cell.lblPhone setNeedsDisplay];
-        return cell;
+
     }
 }
 
 //设置选中的行所执行的动作
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath{
-    NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
-    NSArray *nameSection = [_searchResults objectForKey:key];
-    NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
-    [self dial:[namePhones objectAtIndex:1]];
+    if ([_searchKeys count] == 0) {
+        //添加到联系人
+        if([_dialString length]>0){
+            [Common actionSheet:self message:nil ok:@"添加联系人" tag:1];
+        }
+    }else{
+        NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
+        NSArray *nameSection = [_searchResults objectForKey:key];
+        NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
+        [self dial:[namePhones objectAtIndex:1]];
+    }
 }
 
 - (void)search:(NSString*)searchString
@@ -721,16 +749,16 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    CGFloat y=scrollView.contentOffset.y;
-    if(y>40){
-        if(![dialView isHidden]){
-            [self dialViewHidden];
-        }
-    }else{
-        if([dialView isHidden]){
-            [self dialViewShow];
-        }
-    }
+//    CGFloat y=scrollView.contentOffset.y;
+//    if(y>40){
+//        if(![dialView isHidden]){
+//            [self dialViewHidden];
+//        }
+//    }else{
+//        if([dialView isHidden]){
+//            [self dialViewShow];
+//        }
+//    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -785,6 +813,18 @@
             [self.tableView setHidden:YES];
             [self search:_dialString];
             [self.tableViewData reloadData];
+        }
+    }
+}
+
+- (void)refreshed:(NSNotification *)notification {
+    if (notification.object){
+        if ([(NSString *)notification.object isEqualToString:@"load"]) {
+            if([dialView isHidden]){
+                [self dialViewShow];
+            }else{
+                [self dialViewHidden];
+            }
         }
     }
 }

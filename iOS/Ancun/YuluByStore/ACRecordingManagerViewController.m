@@ -69,12 +69,12 @@
         NSString *oppno=[dictionary objectForKey:@"oppno"];
         NSString* name=[[[Config Instance]contact] objectForKey:oppno];
         if(name==nil||[name isEqualToString:oppno]) {
-            return 60;
+            return CGHeight(60);
         } else {
-            return 75;
+            return CGHeight(75);
         }
     } else {
-        return 50;
+        return CGHeight(50);
     }
 }
 

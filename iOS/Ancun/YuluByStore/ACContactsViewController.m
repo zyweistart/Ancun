@@ -271,10 +271,10 @@
     NSArray *namePhones=[nameSection objectAtIndex:[indexPath row]];
     if([[namePhones objectAtIndex:2] isEqualToString:@"1"]){
         //单无姓名
-        return 40;
+        return CGHeight(40);
     }else{
         //有姓名的号码
-        return 60;
+        return CGHeight(60);
     }
 }
 
