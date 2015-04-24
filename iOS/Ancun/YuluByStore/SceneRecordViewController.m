@@ -25,8 +25,8 @@
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
         _playerView=[[ACPlayerView alloc]initWithController:self];
-        
-        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds];
+        CGFloat height=[_playerView frame].size.height;
+        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 0, 320, self.view.bounds.size.height-height)];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];

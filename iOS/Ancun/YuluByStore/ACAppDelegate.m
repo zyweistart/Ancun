@@ -99,13 +99,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    if(!application.enabledRemoteNotificationTypes){
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
+//    if(!application.enabledRemoteNotificationTypes){
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+//    }
     
     //应用关闭的情况下接收到消息推送
-    NSDictionary *aps = [[launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"] objectForKey:@"aps"];
-    [self notication:aps];
+//    NSDictionary *aps = [[launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"] objectForKey:@"aps"];
+//    [self notication:aps];
     return YES;
 }
 
@@ -202,40 +202,40 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    //应用在后台或前台开启的状态下接收到消息推送
-    [self notication:[userInfo objectForKey:@"aps"]];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
-    //如果注册的时候失败，ios会调用这个方法
-    NSLog(@"Error:%@", error);
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    //获取deviceToken需上传至服务端
-    NSString *dt=[[deviceToken description] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if([dt length]>2){
-        NSString *token=[dt substringWithRange:NSMakeRange(1,[dt length]-2)];
-        [Common setCache:DEFAULTDATA_DEVICETOKEN data:token];
-    }
-}
-
-- (void)notication:(NSDictionary*)aps
-{
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    if(aps!=nil){
-//        NSString *type=[aps objectForKey:@"type"];
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"消息"
-                              message:[aps objectForKey:@"alert"]
-                              delegate:nil
-                              cancelButtonTitle:@"确定"
-                              otherButtonTitles:nil, nil];
-        [alert show];
-    }
-}
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    //应用在后台或前台开启的状态下接收到消息推送
+//    [self notication:[userInfo objectForKey:@"aps"]];
+//}
+//
+//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+//{
+//    //如果注册的时候失败，ios会调用这个方法
+//    NSLog(@"Error:%@", error);
+//}
+//
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//    //获取deviceToken需上传至服务端
+//    NSString *dt=[[deviceToken description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    if([dt length]>2){
+//        NSString *token=[dt substringWithRange:NSMakeRange(1,[dt length]-2)];
+//        [Common setCache:DEFAULTDATA_DEVICETOKEN data:token];
+//    }
+//}
+//
+//- (void)notication:(NSDictionary*)aps
+//{
+//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+//    if(aps!=nil){
+////        NSString *type=[aps objectForKey:@"type"];
+//        UIAlertView *alert = [[UIAlertView alloc]
+//                              initWithTitle:@"消息"
+//                              message:[aps objectForKey:@"alert"]
+//                              delegate:nil
+//                              cancelButtonTitle:@"确定"
+//                              otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
+//}
 
 @end
