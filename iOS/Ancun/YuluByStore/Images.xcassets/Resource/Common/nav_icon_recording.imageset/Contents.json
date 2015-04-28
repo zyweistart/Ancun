@@ -12,7 +12,8 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "nav_icon_recording@3x.png"
     }
   ],
   "info" : {

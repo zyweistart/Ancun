@@ -12,7 +12,8 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "login_g_hover@3x.png"
     }
   ],
   "info" : {

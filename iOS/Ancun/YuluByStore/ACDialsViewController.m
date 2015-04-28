@@ -501,6 +501,9 @@
                     if([nameFlag isEqualToString:@"1"]) {
                         [contact setObject:phoneNumber forKey:phoneNumber];
                     } else {
+                        if(name==nil){
+                            name=phoneNumber;
+                        }
                         [contact setObject:name forKey:phoneNumber];
                     }
                 }
@@ -566,7 +569,7 @@
 //指定每个分区中有多少行，默认为1
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section{
     if ([_searchKeys count] == 0) {
-        return 1;
+        return 2;
     } else {
         NSString *key = [_searchKeys objectAtIndex:section];
         NSArray *nameSection = [_searchResults objectForKey:key];
@@ -600,15 +603,19 @@
     static NSString *SectionsTableIdentifier3 = @"SectionsTableIdentifier3";
     
     if ([_searchKeys count] == 0) {
+        int row=[indexPath row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
-                                     SectionsTableIdentifier3];
+                                 SectionsTableIdentifier3];
         if (cell == nil) {
             cell = [[UITableViewCell alloc]
                     initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:SectionsTableIdentifier3];
         }
-//        [cell.imageView setImage:[UIImage imageNamed:@"dialadd"]];
-        [cell.textLabel setText:@"添加联系人"];
+        if(row==0){
+            [cell.textLabel setText:@"添加联系人"];
+        }else{
+            [cell.textLabel setText:@"发送短信息"];
+        }
         return cell;
     }else{
         NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
@@ -689,7 +696,12 @@
     if ([_searchKeys count] == 0) {
         //添加到联系人
         if([_dialString length]>0){
-            [Common actionSheet:self message:nil ok:@"添加联系人" tag:1];
+            int row=[indexPath row];
+            if(row==0){
+                [Common actionSheet:self message:nil ok:@"添加联系人" tag:1];
+            }else if(row==1){
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",_dialString]]];
+            }
         }
     }else{
         NSString *key = [_searchKeys objectAtIndex:[indexPath section]];
