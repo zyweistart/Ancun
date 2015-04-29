@@ -249,9 +249,7 @@
                     int basesum=0,baseuse=0,timecan=0,storsum=0;
                     for (NSMutableDictionary *data in _leftDataItemArray) {
                         int ctype=[[data objectForKey:@"ctype"]intValue];
-                        if(ctype==9){
-                            [[Config Instance]setIsPayUser:NO];
-                        }else{
+                        if(ctype!=9){
                             [[Config Instance]setIsPayUser:YES];
                         }
                         //ctype(1:存储2：时长3：个人基础套餐0：试用套餐)

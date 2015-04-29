@@ -187,11 +187,11 @@
                     NSArray *array=[content objectForKey:@"combolist"];
                     if(array){
                         for (NSMutableDictionary *data in array) {
-                            int ctype=[[data objectForKey:@"ctype"]intValue];
-                            if(ctype==9){
-                                [[Config Instance]setIsPayUser:NO];
-                            }else{
+                            NSDictionary *d=[data objectForKey:@"comboinfo"];
+                            int ctype=[[d objectForKey:@"ctype"]intValue];
+                            if(ctype!=9){
                                 [[Config Instance]setIsPayUser:YES];
+                                break;
                             }
                         }
                     }
