@@ -12,6 +12,8 @@
 @property Boolean isRefreshAccountPayList;
 //是否刷新账户套餐列表页面
 @property Boolean isRefreshAccountUseRecordList;
+//是否为付费用户
+@property Boolean isPayUser;
 //是否需要刷新录音详细页面
 @property Boolean isRefreshRecordingList;
 //是否需要计算缓存空间大小

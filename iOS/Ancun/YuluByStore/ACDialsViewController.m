@@ -179,17 +179,37 @@
 
 - (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode{
     if([response successFlag]){
+        if(reqCode==5001){
+            NSDictionary *res=[[response resultJSON]objectForKey:@"response"];
+            if(res){
+                NSDictionary *content=[res objectForKey:@"content"];
+                if(content){
+                    NSArray *array=[content objectForKey:@"combolist"];
+                    if(array){
+                        for (NSMutableDictionary *data in array) {
+                            int ctype=[[data objectForKey:@"ctype"]intValue];
+                            if(ctype==9){
+                                [[Config Instance]setIsPayUser:NO];
+                            }else{
+                                [[Config Instance]setIsPayUser:YES];
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
 #ifdef TEST
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",PHONENUMBER]]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",PHONENUMBER]]];
 #else
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",[[[response mainData] objectForKey:@"serverinfo"] objectForKey:@"serverno"]]]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",[[[response mainData] objectForKey:@"serverinfo"] objectForKey:@"serverno"]]]];
 #endif
-        [_dialString deleteCharactersInRange:NSMakeRange(0, [_dialString length])];
-        [self showDialText];
-        [[Config Instance]setIsRefreshUserInfo:YES];
-        [[Config Instance]setIsRefreshRecordingList:YES];
-        //拨打完电话刷新使用记录
-        [[Config Instance]setIsRefreshUseRecordList:YES];
+            [_dialString deleteCharactersInRange:NSMakeRange(0, [_dialString length])];
+            [self showDialText];
+            [[Config Instance]setIsRefreshUserInfo:YES];
+            [[Config Instance]setIsRefreshRecordingList:YES];
+            //拨打完电话刷新使用记录
+            [[Config Instance]setIsRefreshUseRecordList:YES];
+        }
     }
 }
 
@@ -389,6 +409,7 @@
         self.message.hidden=NO;
         self.tableView.hidden=YES;
     }
+    [self loadUserPay];
 }
 
 - (void)loadContact
@@ -765,20 +786,6 @@
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-//    CGFloat y=scrollView.contentOffset.y;
-//    if(y>40){
-//        if(![dialView isHidden]){
-//            [self dialViewHidden];
-//        }
-//    }else{
-//        if([dialView isHidden]){
-//            [self dialViewShow];
-//        }
-//    }
-}
-
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
@@ -845,6 +852,18 @@
             }
         }
     }
+}
+
+//加载用户套餐信息
+- (void)loadUserPay
+{
+    NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest setRequestCode:5001];
+    [self.hRequest loginhandle:@"v4combinfoGet" requestParams:requestParams];
 }
 
 @end

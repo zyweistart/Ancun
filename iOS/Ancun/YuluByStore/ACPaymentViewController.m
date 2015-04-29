@@ -216,6 +216,7 @@
 
 - (void)successStep
 {
+    [[Config Instance]setIsPayUser:YES];
     [[Config Instance]setIsRefreshUserInfo:YES];
     [[Config Instance]setIsRefreshAccountPayList:YES];
     [_rechargeNav fourthStep];

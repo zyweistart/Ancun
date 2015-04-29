@@ -8,6 +8,8 @@
 
 #import "ACRecordingCallDetailViewController.h"
 #import "ACExtractionCodeDetailViewController.h"
+#import "ACRechargeByAppStoreViewController.h"
+
 #define NOUSECOLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
 
 @interface ACRecordingCallDetailViewController () <ResultDelegate,HttpViewDelegate,UITextViewDelegate,UIActionSheetDelegate>
@@ -143,14 +145,6 @@
         }else if([@"2" isEqualToString:[_data objectForKey:@"accstatus"]]){
             [_btn_extraction setTitle:@"申请提取码" forState:UIControlStateNormal];
         }
-        NSString *payuserflag=[[[Config Instance]userInfo] objectForKey:@"payuserflag"];
-        if(![@"1" isEqualToString:payuserflag]){
-            //免费套餐用户
-            [_btn_notary setEnabled:NO];
-            [_btn_notary setBackgroundColor:NOUSECOLOR];
-            [_btn_extraction setEnabled:NO];
-            [_btn_extraction setBackgroundColor:NOUSECOLOR];
-        }
     }
     return self;
 }
@@ -275,11 +269,22 @@
             [self.hRequest setRequestCode:REQUESTCODE_ACExtractionDetailViewController_apply];
             [self.hRequest loginhandle:@"v4recAcccode" requestParams:requestParams];
         }
+    }else if(actionSheet.tag==4){
+        if(buttonIndex==0){
+            ACRechargeByAppStoreViewController *rechargeByAppStoreViewController=[[ACRechargeByAppStoreViewController alloc] init];
+            rechargeByAppStoreViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:rechargeByAppStoreViewController animated:YES];
+        }
     }
 }
 
 - (void)notary:(id)sender {
     [self backgroundDoneEditing:nil];
+    if(![[Config Instance]isPayUser]){
+        //免费套餐用户
+        [Common actionSheet:self message:@"您当前是免费套餐用户，不能申办公证，只有付费套餐用户才可以申办公证，是否升级为付费套餐用户？" tag:4];
+        return;
+    }
     if([@"1" isEqualToString:[_data objectForKey:@"cerflag"]]){
         [Common actionSheet:self message:@"您确定将该录音提交至公证机构申办公证吗？" tag:1];
     }else if([@"2" isEqualToString:[_data objectForKey:@"cerflag"]]){
@@ -289,6 +294,11 @@
 
 - (void)extraction:(id)sender {
     [self backgroundDoneEditing:nil];
+    if(![[Config Instance]isPayUser]){
+        //免费套餐用户
+        [Common actionSheet:self message:@"您当前是免费套餐用户，暂不能申请提取码，只有付费套餐用户才可以申请提取码，是否升级为付费套餐用户？" tag:4];
+        return;
+    }
     if([@"1" isEqualToString:[_data objectForKey:@"accstatus"]]){
         NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
         [requestParams setObject:_fileno forKey:@"fileno"];

@@ -249,6 +249,11 @@
                     int basesum=0,baseuse=0,timecan=0,storsum=0;
                     for (NSMutableDictionary *data in _leftDataItemArray) {
                         int ctype=[[data objectForKey:@"ctype"]intValue];
+                        if(ctype==9){
+                            [[Config Instance]setIsPayUser:NO];
+                        }else{
+                            [[Config Instance]setIsPayUser:YES];
+                        }
                         //ctype(1:存储2：时长3：个人基础套餐0：试用套餐)
                         if (ctype==0||ctype==1||ctype==3) {
                             //只计算当前生效的套餐
@@ -329,7 +334,7 @@
         if(ctype==3){
             [cell.lblInfo setText:@"录音时长不限,提取码申请次数不限,存储有效期2年(730天)"];
         }else{
-            [cell.lblInfo setText:@"60分钟/月(30天),提取码申请次数:5次/月(30天),存储有效期30天"];
+            [cell.lblInfo setText:@"5分钟/月(30天),存储有效期30天"];
         }
         [cell.lblStartTime setText:[[dictionary objectForKey:@"starttime"] substringWithRange:NSMakeRange(0, 10)]];
         [cell.lblEndTime setText:[[dictionary objectForKey:@"endtime"] substringWithRange:NSMakeRange(0, 10)]];
