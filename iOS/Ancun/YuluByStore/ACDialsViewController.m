@@ -24,6 +24,7 @@
     UIButton *showHidden;
     CGFloat mDialWidth,mDialHeight;
     int currentType;
+    BOOL isFirstAddView;
 }
 
 - (id)init
@@ -147,8 +148,6 @@
         [btnDel addTarget:self action:@selector(cancelLongPress) forControlEvents:ControlEventTouchCancel];
         [tabBGView addSubview:btnDel];
         [tabBGView setHidden:YES];
-        NSArray* windows = [UIApplication sharedApplication].windows;
-        [[windows objectAtIndex:0] addSubview:tabBGView];
         
         [self dialViewShow];
         currentType=1;
@@ -159,6 +158,16 @@
         [self showDialText];
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(!isFirstAddView){
+        NSArray* windows = [UIApplication sharedApplication].windows;
+        [[windows objectAtIndex:0] addSubview:tabBGView];
+        isFirstAddView=YES;
+    }
 }
 
 #pragma mark -

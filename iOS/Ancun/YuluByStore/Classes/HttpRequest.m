@@ -145,14 +145,18 @@
         [[Config Instance]setIsCalculateTotal:YES];
     } else {
         if(self.controller&&(self.message!=nil||self.isShowMessage)) {
-            _mbpHud = [[MBProgressHUD alloc] initWithView:self.controller.view];
-            [self.controller.view addSubview:_mbpHud];
-            if(self.message) {
-                _mbpHud.labelText = _message;
+            if(self.controller.view){
+                _mbpHud = [[MBProgressHUD alloc] initWithView:self.controller.view];
+                [self.controller.view addSubview:_mbpHud];
+                if(self.message) {
+                    _mbpHud.labelText = _message;
+                }
+                _mbpHud.dimBackground = NO;
+                _mbpHud.square = YES;
+                [_mbpHud show:YES];
+            }else{
+                NSLog(@"%@",self.controller);
             }
-            _mbpHud.dimBackground = NO;
-            _mbpHud.square = YES;
-            [_mbpHud show:YES];
         }
     }
 }
@@ -228,7 +232,11 @@
                     //录音时长不足
                     [Common alert:@"录音时长不足，充值相关套餐后才能通话录音"];
                 } else {
-                    [Common alert:[response msg]];
+                    if([response msg]){
+                        [Common alert:[response msg]];
+                    }else{
+                        [Common alert:@"未知异常"];
+                    }
                 }
             }
         } else {
