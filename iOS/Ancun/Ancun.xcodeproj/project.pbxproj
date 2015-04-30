@@ -49,14 +49,6 @@
 		C98519031AF20EFE003E0126 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518FB1AF20EFE003E0126 /* ATMProgressLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C98519041AF20EFE003E0126 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518FD1AF20EFE003E0126 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C98519051AF20EFE003E0126 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518FF1AF20EFE003E0126 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C98C6A6718FBC51700D3EF37 /* icon_session.png in Resources */ = {isa = PBXBuildFile; fileRef = C98C6A5A18FBC51700D3EF37 /* icon_session.png */; };
-		C98C6A6818FBC51700D3EF37 /* icon_session@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C98C6A5B18FBC51700D3EF37 /* icon_session@2x.png */; };
-		C98C6A6918FBC51700D3EF37 /* icon_timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = C98C6A5C18FBC51700D3EF37 /* icon_timeline.png */; };
-		C98C6A6A18FBC51700D3EF37 /* icon_timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C98C6A5D18FBC51700D3EF37 /* icon_timeline@2x.png */; };
-		C98C6A6B18FBC51700D3EF37 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C98C6A5E18FBC51700D3EF37 /* libWeChatSDK.a */; };
-		C98C6A6C18FBC51800D3EF37 /* WeixinActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C98C6A6218FBC51700D3EF37 /* WeixinActivity.m */; };
-		C98C6A6D18FBC51800D3EF37 /* WeixinSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C98C6A6418FBC51700D3EF37 /* WeixinSessionActivity.m */; };
-		C98C6A6E18FBC51800D3EF37 /* WeixinTimelineActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C98C6A6618FBC51700D3EF37 /* WeixinTimelineActivity.m */; };
 		C990FA9C18F39CF500C85ED9 /* ACExtractionCodeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FA9B18F39CF500C85ED9 /* ACExtractionCodeDetailViewController.m */; };
 		C997105A18F62EF100E56D22 /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = C997105718F62EF100E56D22 /* KKGestureLockPreviewView.m */; };
 		C997105B18F62EF100E56D22 /* KKGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = C997105918F62EF100E56D22 /* KKGestureLockView.m */; };
@@ -209,19 +201,6 @@
 		C98518FD1AF20EFE003E0126 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
 		C98518FE1AF20EFE003E0126 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
 		C98518FF1AF20EFE003E0126 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
-		C98C6A5A18FBC51700D3EF37 /* icon_session.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_session.png; sourceTree = "<group>"; };
-		C98C6A5B18FBC51700D3EF37 /* icon_session@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_session@2x.png"; sourceTree = "<group>"; };
-		C98C6A5C18FBC51700D3EF37 /* icon_timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_timeline.png; sourceTree = "<group>"; };
-		C98C6A5D18FBC51700D3EF37 /* icon_timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_timeline@2x.png"; sourceTree = "<group>"; };
-		C98C6A5E18FBC51700D3EF37 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		C98C6A5F18FBC51700D3EF37 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		C98C6A6018FBC51700D3EF37 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		C98C6A6118FBC51700D3EF37 /* WeixinActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeixinActivity.h; sourceTree = "<group>"; };
-		C98C6A6218FBC51700D3EF37 /* WeixinActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeixinActivity.m; sourceTree = "<group>"; };
-		C98C6A6318FBC51700D3EF37 /* WeixinSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeixinSessionActivity.h; sourceTree = "<group>"; };
-		C98C6A6418FBC51700D3EF37 /* WeixinSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeixinSessionActivity.m; sourceTree = "<group>"; };
-		C98C6A6518FBC51700D3EF37 /* WeixinTimelineActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeixinTimelineActivity.h; sourceTree = "<group>"; };
-		C98C6A6618FBC51700D3EF37 /* WeixinTimelineActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeixinTimelineActivity.m; sourceTree = "<group>"; };
 		C990FA9A18F39CF500C85ED9 /* ACExtractionCodeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACExtractionCodeDetailViewController.h; sourceTree = "<group>"; };
 		C990FA9B18F39CF500C85ED9 /* ACExtractionCodeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACExtractionCodeDetailViewController.m; sourceTree = "<group>"; };
 		C997105618F62EF100E56D22 /* KKGestureLockPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockPreviewView.h; sourceTree = "<group>"; };
@@ -468,7 +447,6 @@
 				C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */,
 				C97889BF18E16B9900157577 /* StoreKit.framework in Frameworks */,
 				C97889BD18E16B4F00157577 /* Security.framework in Frameworks */,
-				C98C6A6B18FBC51700D3EF37 /* libWeChatSDK.a in Frameworks */,
 				C97889AA18E16B4400157577 /* AddressBook.framework in Frameworks */,
 				C97889AB18E16B4400157577 /* AddressBookUI.framework in Frameworks */,
 				C97889AC18E16B4400157577 /* AudioToolbox.framework in Frameworks */,
@@ -624,34 +602,6 @@
 				C98518FF1AF20EFE003E0126 /* ATMTextLayer.m */,
 			);
 			path = ATMHud;
-			sourceTree = "<group>";
-		};
-		C98C6A5818FBC51700D3EF37 /* WeixinActivity */ = {
-			isa = PBXGroup;
-			children = (
-				C98C6A5918FBC51700D3EF37 /* Resources */,
-				C98C6A6118FBC51700D3EF37 /* WeixinActivity.h */,
-				C98C6A6218FBC51700D3EF37 /* WeixinActivity.m */,
-				C98C6A6318FBC51700D3EF37 /* WeixinSessionActivity.h */,
-				C98C6A6418FBC51700D3EF37 /* WeixinSessionActivity.m */,
-				C98C6A6518FBC51700D3EF37 /* WeixinTimelineActivity.h */,
-				C98C6A6618FBC51700D3EF37 /* WeixinTimelineActivity.m */,
-			);
-			path = WeixinActivity;
-			sourceTree = "<group>";
-		};
-		C98C6A5918FBC51700D3EF37 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				C98C6A5A18FBC51700D3EF37 /* icon_session.png */,
-				C98C6A5B18FBC51700D3EF37 /* icon_session@2x.png */,
-				C98C6A5C18FBC51700D3EF37 /* icon_timeline.png */,
-				C98C6A5D18FBC51700D3EF37 /* icon_timeline@2x.png */,
-				C98C6A5E18FBC51700D3EF37 /* libWeChatSDK.a */,
-				C98C6A5F18FBC51700D3EF37 /* WXApi.h */,
-				C98C6A6018FBC51700D3EF37 /* WXApiObject.h */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		C997105518F62EF100E56D22 /* KKGestureLockView */ = {
@@ -865,7 +815,6 @@
 				C9430B801ADCB32D001BED0A /* POVoiceHUD */,
 				C9D97BA0179FA6640076ACF3 /* RefreshTableHeaderView */,
 				C9D4D17017E2B8EE0013D03E /* TouchJSON */,
-				C98C6A5818FBC51700D3EF37 /* WeixinActivity */,
 			);
 			path = Librarys;
 			sourceTree = "<group>";
@@ -1170,7 +1119,6 @@
 				C9D97995179FA3500076ACF3 /* InfoPlist.strings in Resources */,
 				C9D97CC2179FA6650076ACF3 /* blackArrow.png in Resources */,
 				C9D97CC3179FA6650076ACF3 /* blackArrow@2x.png in Resources */,
-				C98C6A6918FBC51700D3EF37 /* icon_timeline.png in Resources */,
 				C9D97CC4179FA6650076ACF3 /* blueArrow.png in Resources */,
 				C9430B851ADCB32D001BED0A /* microphone.png in Resources */,
 				C9D97CC5179FA6650076ACF3 /* blueArrow@2x.png in Resources */,
@@ -1179,11 +1127,8 @@
 				C9E42CE61AF0CBA600E3398C /* Launch Screen.xib in Resources */,
 				C978899718E16AC300157577 /* Images.xcassets in Resources */,
 				C9155D7A18E90BC70075A693 /* ACContactsViewController.xib in Resources */,
-				C98C6A6818FBC51700D3EF37 /* icon_session@2x.png in Resources */,
 				C9D97D77179FA6650076ACF3 /* TermsOfService.txt in Resources */,
 				C9D97D78179FA6650076ACF3 /* TipContent.txt in Resources */,
-				C98C6A6718FBC51700D3EF37 /* icon_session.png in Resources */,
-				C98C6A6A18FBC51700D3EF37 /* icon_timeline@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,7 +1156,6 @@
 				C9D97A9A179FA6520076ACF3 /* ACRecordingCell.m in Sources */,
 				C9D97A9C179FA6520076ACF3 /* ACRecordingDetailCell.m in Sources */,
 				C9D97AA3179FA6520076ACF3 /* ACRecordingManagerDetailListViewController.m in Sources */,
-				C98C6A6E18FBC51800D3EF37 /* WeixinTimelineActivity.m in Sources */,
 				C90EC3AD1AE77ADB000F7700 /* ACContactSingleCell.m in Sources */,
 				C98519021AF20EFE003E0126 /* ATMHudView.m in Sources */,
 				C9D47CFD18F387F300472625 /* ACModifyPasswordViewController.m in Sources */,
@@ -1220,7 +1164,6 @@
 				C9D97C7C179FA6640076ACF3 /* BaseTableViewController.m in Sources */,
 				C9D97C83179FA6640076ACF3 /* IAPHelper.m in Sources */,
 				C9D97C7D179FA6640076ACF3 /* Common.m in Sources */,
-				C98C6A6D18FBC51800D3EF37 /* WeixinSessionActivity.m in Sources */,
 				C9A560CF18FB7CFD006A5049 /* ACNavGesturePasswordViewController.m in Sources */,
 				C9D97C7E179FA6640076ACF3 /* Config.m in Sources */,
 				C91D0BDC18EE9A4D006B10A3 /* ACRechargeByAlipayViewController.m in Sources */,
@@ -1276,7 +1219,6 @@
 				C90DC02C18E950CB00FF25C9 /* ACDialsViewController.m in Sources */,
 				C91D0BE418EE9F35006B10A3 /* ACAccountPay1Cell.m in Sources */,
 				C9D4D18F17E2B8EE0013D03E /* NSDictionary_JSONExtensions.m in Sources */,
-				C98C6A6C18FBC51800D3EF37 /* WeixinActivity.m in Sources */,
 				C9E4CA681ADCAA8600875ED5 /* LocalRecordsViewController.m in Sources */,
 				C9D4D19017E2B8EE0013D03E /* CJSONDeserializer.m in Sources */,
 				C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */,

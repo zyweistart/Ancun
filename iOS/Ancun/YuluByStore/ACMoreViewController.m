@@ -6,9 +6,6 @@
 #import "ACNavGesturePasswordViewController.h"
 #import "FileUtils.h"
 #import "NSString+Utils.h"
-#import "WXApi.h"
-#import "WeixinSessionActivity.h"
-#import "WeixinTimelineActivity.h"
 
 @interface ACMoreViewController () <UIActionSheetDelegate>
 

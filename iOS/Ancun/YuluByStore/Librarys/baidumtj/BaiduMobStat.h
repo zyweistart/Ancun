@@ -29,47 +29,55 @@ typedef enum _BaiduMobStatLogStrategy {
 /**
  *  获取统计对象的实例
  */
-+ (BaiduMobStat*) defaultStat;
++ (BaiduMobStat *)defaultStat;
 
 /**
  *  设置应用的appkey (在[百度移动统计](http://mtj.baidu.com)获取)，在其他api调用以前必须先调用该api.
+ *  此处AppId即为应用的appKey
  */
--(void) startWithAppId:(NSString*) appId;
+- (void)startWithAppId:(NSString *)appId;
 
 /**
- *  记录一次事件的点击，eventId请在网站上创建。未创建的evenId记录将无效。 [百度移动统计](http://mtj.baidu.com)
+ *  记录一次事件的点击，eventId请在网站上创建。未创建的evenId记录将无效。eventId与eventLabel必须是有内容的字符串，不可为nil或者空字符串。 [百度移动统计](http://mtj.baidu.com)
  */
--(void) logEvent:(NSString*) eventId eventLabel:(NSString*)eventLabel;
+- (void)logEvent:(NSString *)eventId eventLabel:(NSString *)eventLabel;
 /**
  *  v3.0 新增
- *  记录一次事件的时长，eventId请在网站上创建。未创建的evenId记录将无效。
+ *  记录一次事件的时长，eventId请在网站上创建。未创建的evenId记录将无效。eventId与eventLabel必须是有内容的字符串，不可为nil或者空字符串。
  */
--(void) logEventWithDurationTime:(NSString*) eventId eventLabel:(NSString*)eventLabel durationTime: (unsigned long)duration;
+- (void)logEventWithDurationTime:(NSString *)eventId eventLabel:(NSString *)eventLabel durationTime:(unsigned long)duration;
 /**
  *  v3.0 新增 
- *  记录一次事件的开始，eventId请在网站上创建。未创建的evenId记录将无效。
+ *  记录一次事件的开始，eventId请在网站上创建。未创建的evenId记录将无效。eventId与eventLabel必须是有内容的字符串，不可为nil或者空字符串。
  */
--(void) eventStart:(NSString*) eventId eventLabel:(NSString*)eventLabel;
+- (void)eventStart:(NSString *)eventId eventLabel:(NSString *)eventLabel;
 /**
  *  v3.0 新增 
- *  记录一次事件的结束，eventId请在网站上创建。未创建的evenId记录将无效。
+ *  记录一次事件的结束，eventId请在网站上创建。未创建的evenId记录将无效。eventId与eventLabel必须是有内容的字符串，不可为nil或者空字符串。
  */
--(void) eventEnd:(NSString*) eventId eventLabel:(NSString*)eventLabel;
+- (void)eventEnd:(NSString *)eventId eventLabel:(NSString *)eventLabel;
 /**
  *  标识某个页面访问的开始，请参见Example程序，在合适的位置调用。
  */
--(void) pageviewStartWithName:(NSString*) name;
+- (void)pageviewStartWithName:(NSString *)name;
 /**
  *  标识某个页面访问的结束，与pageviewStartWithName配对使用，请参见Example程序，在合适的位置调用。
  */
--(void) pageviewEndWithName:(NSString*) name;
+- (void)pageviewEndWithName:(NSString *)name;
+/**
+ * V3.4 新增
+ * 在UIWebView的代理方法：
+ * - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+ * 中，调用此接口，传入request参数，开始统计JS中的操作
+ */
+- (void)webviewStartLoadWithRequest:(NSURLRequest *)request;
 
 /**
  *  v1.1 新增
  *  设置或者获取渠道Id。
  *  可以不设置, 此时系统会处理为AppStore渠道
  */
-@property (nonatomic,retain) NSString* channelId;
+@property (nonatomic, retain) NSString *channelId;
 
 /**
  *  是否启用异常日志收集
@@ -114,7 +122,7 @@ typedef enum _BaiduMobStatLogStrategy {
  *   NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
  *   statTracker.shortAppVersion  = version;
  */
-@property (nonatomic,retain) NSString* shortAppVersion;
+@property (nonatomic, retain) NSString *shortAppVersion;
 
 /**
  *  v3.2  新增
@@ -122,12 +130,11 @@ typedef enum _BaiduMobStatLogStrategy {
  */
 @property (nonatomic) BOOL enableDebugOn;
 
-
 /**
  *  v3.22  新增
  *  让开发者来填写adid，让统计更加精确
  */
-@property (nonatomic, retain) NSString* adid; //added by 2014-01-12
+@property (nonatomic, retain) NSString *adid; //added by 2014-01-12
 
 
 @end

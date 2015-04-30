@@ -97,8 +97,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define BGCOLOR [UIColor colorWithRed:(34/255.0) green:(132/255.0) blue:(214/255.0) alpha:1]
 //常量
 #define APPNAME @"安存语录"
-//微信注册APP
-#define WEIXINREGISTERAPP @"wx18b0114ee26e8936"
 //配置常量
 #define DEFAULTDATA_PHONE @"DEFAULTDATA_PHONE"
 #define DEFAULTDATA_PASSWORD @"DEFAULTDATA_PASSWORD"

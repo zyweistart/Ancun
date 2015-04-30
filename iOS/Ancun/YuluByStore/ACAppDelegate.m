@@ -40,8 +40,6 @@
     //显示系统托盘
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
-    [WXApi registerApp:WEIXINREGISTERAPP];
-    
 #ifndef TEST
     NSBundle *bundle=[NSBundle mainBundle];
     //测试环境下不进行百度统计
@@ -140,14 +138,8 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [WXApi handleOpenURL:url delegate:self];
-}
-
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    [WXApi handleOpenURL:url delegate:self];
 #ifdef JAILBREAK
     AlixPay *alixpay = [AlixPay shared];
 	AlixPayResult *result = [alixpay handleOpenURL:url];
