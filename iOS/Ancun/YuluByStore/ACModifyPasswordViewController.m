@@ -52,7 +52,7 @@
         [txtNewPassword setSecureTextEntry:YES];
         [view addSubview:txtNewPassword];
         
-        txtReNewPassword=[[LoginTextField alloc] initWithFrame:CGRectMake1(17, 129.25, 257, 44.5)Placeholder:@"认新密码"];
+        txtReNewPassword=[[LoginTextField alloc] initWithFrame:CGRectMake1(17, 129.25, 257, 44.5)Placeholder:@"确认新密码"];
         txtReNewPassword.layer.cornerRadius = 5;
         [txtReNewPassword setFont:[UIFont systemFontOfSize: 18]];
         [txtReNewPassword setSecureTextEntry:YES];

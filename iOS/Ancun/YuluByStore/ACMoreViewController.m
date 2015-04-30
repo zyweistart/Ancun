@@ -199,8 +199,13 @@
     }else{//KB
         cacheName=[NSString stringWithFormat:@"%lldKB",cachesize/1024];
     }
-    [lblCachName setText:[NSString stringWithFormat:@"数据大小:%@",cacheName]];
+    [self performSelectorOnMainThread:@selector(updateUI:) withObject:cacheName waitUntilDone:YES];
     [[Config Instance]setIsCalculateTotal:NO];
+}
+
+- (void)updateUI:(NSString*)value
+{
+    [lblCachName setText:[NSString stringWithFormat:@"数据大小:%@",value]];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode{

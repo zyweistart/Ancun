@@ -63,15 +63,15 @@
         [self.tableView setTableHeaderView:topView];
         
         //增加充值按钮
-        UIButton* goRecharge= [[UIButton alloc] initWithFrame:CGRectMake1(0, 0, 70, 30)];
-        [goRecharge setTitle:@"充值" forState:UIControlStateNormal];
-        [goRecharge setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [[goRecharge titleLabel]setFont:[UIFont systemFontOfSize:16]];
-        goRecharge.layer.cornerRadius=10;
-        goRecharge.layer.masksToBounds=YES;
-        [goRecharge setBackgroundColor:[UIColor colorWithRed:(65/255.0) green:(194/255.0) blue:(252/255.0) alpha:1]];
-        [goRecharge addTarget:self action:@selector(accountPay:) forControlEvents:UIControlEventTouchUpInside];
-        [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:goRecharge]];
+//        UIButton* goRecharge= [[UIButton alloc] initWithFrame:CGRectMake1(0, 0, 70, 30)];
+//        [goRecharge setTitle:@"充值" forState:UIControlStateNormal];
+//        [goRecharge setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [[goRecharge titleLabel]setFont:[UIFont systemFontOfSize:16]];
+//        goRecharge.layer.cornerRadius=10;
+//        goRecharge.layer.masksToBounds=YES;
+//        [goRecharge setBackgroundColor:[UIColor colorWithRed:(65/255.0) green:(194/255.0) blue:(252/255.0) alpha:1]];
+//        [goRecharge addTarget:self action:@selector(accountPay:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:goRecharge]];
     }
     return self;
 }

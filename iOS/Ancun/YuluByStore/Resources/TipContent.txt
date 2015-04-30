@@ -68,7 +68,7 @@
               <td width="80" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>免费套餐 <br>
                 X1</p></td>
               <td width="133" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>0</p></td>
-              <td width="101" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>60分钟/月（30天） </p></td>
+              <td width="101" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>5分钟/月（30天） </p></td>
               <td width="85" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>无限制 </p></td>
               <td width="77" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>5次/月 </p></td>
               <td width="112" valign="top" style="border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding-left:10px;"><p>1个月（30天） </p></td>
