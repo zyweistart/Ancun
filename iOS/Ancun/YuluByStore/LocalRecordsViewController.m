@@ -39,6 +39,7 @@ enum
     NSTimer *timer;
     AVAudioRecorder *recorder;
     UILabel *lblHour,*lblSeconds,*lblMinute;
+    UIImageView *sonic;
 }
 
 - (id)init
@@ -51,8 +52,18 @@ enum
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [scrollFrame setContentSize:CGSizeMake1(320, 370)];
         [self.view addSubview:scrollFrame];
-        UIImageView *sonic=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 25, 300, 50)];
+        sonic=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 25, 300, 50)];
         [sonic setImage:[UIImage imageNamed:@"sonic"]];
+        sonic.animationImages = [NSArray arrayWithObjects:
+                                 [UIImage imageNamed:@"sonic"],
+                                 [UIImage imageNamed:@"sonic2"],
+                                 [UIImage imageNamed:@"sonic3"],
+                                 [UIImage imageNamed:@"sonic4"], nil];
+        
+        // all frames will execute in 1.75 seconds
+        sonic.animationDuration = 1.0;
+        // repeat the annimation forever
+        sonic.animationRepeatCount = 0;
         [scrollFrame addSubview:sonic];
         UIImageView *mainFrame=[[UIImageView alloc]initWithFrame:CGRectMake1(55, 100, 210, 210)];
         [mainFrame setImage:[UIImage imageNamed:@"playerbg"]];
@@ -156,6 +167,7 @@ enum
         if(recorder){
             [self stopRecorder];
         }
+        [sonic startAnimating];
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
         
@@ -194,6 +206,7 @@ enum
 
 - (void)stopRecorder
 {
+    [sonic stopAnimating];
     [lblHour setText:@"00"];
     [lblMinute setText:@"00"];
     [lblSeconds setText:@"00"];
