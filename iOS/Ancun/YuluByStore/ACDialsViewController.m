@@ -651,7 +651,7 @@
             }
             if(![@""isEqualToString:content]){
                 
-                if([phone containsString:content]){
+                if([phone rangeOfString:content].location != NSNotFound){
                     NSRange range=[phone rangeOfString:content];
                     [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
                 }
@@ -682,11 +682,11 @@
                 content=[self.searchBar text];
             }
             if(![@""isEqualToString:content]){
-                if([name containsString:content]){
+                if([name rangeOfString:content].location != NSNotFound){
                     NSRange range=[name rangeOfString:content];
                     [cell.lblName setColor:[UIColor redColor] fromIndex:range.location length:range.length];
                 }
-                if([phone containsString:content]){
+                if([phone rangeOfString:content].location != NSNotFound){
                     NSRange range=[phone rangeOfString:content];
                     [cell.lblPhone setColor:[UIColor redColor] fromIndex:range.location length:range.length];
                 }

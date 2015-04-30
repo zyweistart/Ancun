@@ -65,24 +65,25 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 }
 
 #endif
-#define IOS6 [[[UIDevice currentDevice] systemVersion]floatValue]>=6
+//#define IOS6 [[[UIDevice currentDevice] systemVersion]floatValue]>=6
 #define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
 #define inch35 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define inch4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
-
-#define WIDTH 320
-#define HEIGHT inch35?480:568
-#define TABHEIGHT 49
+#define inch47 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define inch55 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
 
 //缓存常量唯一方法
 #define CACHE_DATA [NSString stringWithFormat:@"%@-%@",[NSString stringWithUTF8String:object_getClassName(self)],ACCESSID]
 #define CACHE_CONSTANT(STRING) [NSString stringWithFormat:@"%@-%@-%@",STRING,CACHE_DATA]
 //状态栏高度
-#define STATUSHEIGHT 10
+#define STATUSHEIGHT (inch55?10:inch47?10:20.0)
 //顶部导航条高度
-#define TOPNAVIGATIONHEIGHT 44
+#define TOPNAVIGATIONHEIGHT (inch55?34.0:44.0)
 //底部标签高度
-#define BOTTOMTABBARHEIGHT 49
+#define BOTTOMTABBARHEIGHT 49.0
+#define WIDTH 320.0
+#define HEIGHT (inch35?480.0:568.0)
+#define TABHEIGHT 49.0
 //导航背景
 #define NAVCOLOR [UIColor colorWithRed:(68/255.0) green:(141/255.0) blue:(208/255.0) alpha:1]
 #define MAINBG [UIColor colorWithRed:(41/255.0) green:(144/255.0) blue:(229/255.0) alpha:1]

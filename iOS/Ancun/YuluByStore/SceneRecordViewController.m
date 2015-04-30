@@ -26,13 +26,13 @@
         CGFloat playerHeight=67;
         CGFloat sNavHeihgt=STATUSHEIGHT+TOPNAVIGATIONHEIGHT;
         
-        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 0, WIDTH, HEIGHT-playerHeight)];
+        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 0, WIDTH, HEIGHT-playerHeight-sNavHeihgt)];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
         [self.view addSubview:self.tableView];
         
-        _playerView=[[ACPlayerView alloc]initWithFrame:CGRectMake1(0, HEIGHT-playerHeight-sNavHeihgt,WIDTH,playerHeight)];
+        _playerView=[[ACPlayerView alloc]initWithFrame:CGRectMake1(0, HEIGHT-sNavHeihgt-playerHeight,WIDTH,playerHeight)];
         [_playerView setController:self];
         [self.view addSubview:_playerView];
         

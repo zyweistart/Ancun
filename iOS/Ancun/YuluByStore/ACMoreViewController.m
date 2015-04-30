@@ -134,39 +134,39 @@
             }
         }
     }else if(sender.tag==7){
-        if(IOS6){
-            //应用分享
-            NSArray *activity=nil;
-            //判断微信是否已经安装
-            if([WXApi isWXAppInstalled]){
-                activity = @[[[WeixinSessionActivity alloc] init],[[WeixinTimelineActivity alloc] init]];
-            }
-            UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:@[@"安存语录,促使通话录音,严格满足证据的真实性、合法性要求,以公证的法定证明力为依托,是真正可成为被司法机关认可的呈堂证供的通话录音",[NSURL URLWithString:@"https://itunes.apple.com/cn/app/an-cun-yu-lu-ge-ren-ban/id638597148?mt=8"]] applicationActivities:activity];
-            
-            if(IOS7){
-                activityView.excludedActivityTypes = @[UIActivityTypePostToFacebook,
-                                                       UIActivityTypePostToTwitter,
-                                                       UIActivityTypePrint,
-                                                       UIActivityTypeCopyToPasteboard,
-                                                       UIActivityTypeAssignToContact,
-                                                       UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList,
-                                                       UIActivityTypePostToFlickr,
-                                                       UIActivityTypePostToVimeo,
-                                                       UIActivityTypeAirDrop];
-            }else if(IOS6){
-                activityView.excludedActivityTypes = @[UIActivityTypePostToFacebook,
-                                                       UIActivityTypePostToTwitter,
-                                                       UIActivityTypePrint,
-                                                       UIActivityTypeCopyToPasteboard,
-                                                       UIActivityTypeAssignToContact,
-                                                       UIActivityTypeSaveToCameraRoll];
-            }
-            [self presentViewController:activityView animated:YES completion:nil];
-        }else{
-            [Common alert:@"当前系统不支持应用分享，请升级系统"];
-        }
-    }else if(sender.tag==8){
+//        if(IOS6){
+//            //应用分享
+//            NSArray *activity=nil;
+//            //判断微信是否已经安装
+//            if([WXApi isWXAppInstalled]){
+//                activity = @[[[WeixinSessionActivity alloc] init],[[WeixinTimelineActivity alloc] init]];
+//            }
+//            UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:@[@"安存语录,促使通话录音,严格满足证据的真实性、合法性要求,以公证的法定证明力为依托,是真正可成为被司法机关认可的呈堂证供的通话录音",[NSURL URLWithString:@"https://itunes.apple.com/cn/app/an-cun-yu-lu-ge-ren-ban/id638597148?mt=8"]] applicationActivities:activity];
+//            
+//            if(IOS7){
+//                activityView.excludedActivityTypes = @[UIActivityTypePostToFacebook,
+//                                                       UIActivityTypePostToTwitter,
+//                                                       UIActivityTypePrint,
+//                                                       UIActivityTypeCopyToPasteboard,
+//                                                       UIActivityTypeAssignToContact,
+//                                                       UIActivityTypeSaveToCameraRoll,
+//                                                       UIActivityTypeAddToReadingList,
+//                                                       UIActivityTypePostToFlickr,
+//                                                       UIActivityTypePostToVimeo,
+//                                                       UIActivityTypeAirDrop];
+//            }else if(IOS6){
+//                activityView.excludedActivityTypes = @[UIActivityTypePostToFacebook,
+//                                                       UIActivityTypePostToTwitter,
+//                                                       UIActivityTypePrint,
+//                                                       UIActivityTypeCopyToPasteboard,
+//                                                       UIActivityTypeAssignToContact,
+//                                                       UIActivityTypeSaveToCameraRoll];
+//            }
+//            [self presentViewController:activityView animated:YES completion:nil];
+//        }else{
+//            [Common alert:@"当前系统不支持应用分享，请升级系统"];
+//        }
+//    }else if(sender.tag==8){
         //重新登录
         [Common actionSheet:self message:@"确定要重新登录吗？" tag:1];
     }
