@@ -117,6 +117,7 @@
     [_regFirstView addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [control addSubview:_regFirstView];
     _regInputPhone=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 5, 270, 50) Placeholder:@"请输入手机号码"];
+    _regInputPhone.layer.cornerRadius = 25;
     [_regInputPhone setFont:[UIFont systemFontOfSize: 22]];
     [_regInputPhone setDelegate:self];
     [_regInputPhone setKeyboardType:UIKeyboardTypeNumberPad];
@@ -143,6 +144,7 @@
     [_regSecondView addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [control addSubview:_regSecondView];
     _regInputVerificationCode=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 5, 270, 50) Placeholder:@"请输入验证码"];
+    _regInputVerificationCode.layer.cornerRadius = 25;
     [_regInputVerificationCode setFont:[UIFont systemFontOfSize: 22]];
     [_regInputVerificationCode setKeyboardType:UIKeyboardTypeNumberPad];
     [_regInputVerificationCode setDelegate:self];
@@ -171,12 +173,14 @@
     [_regThirdView addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [control addSubview:_regThirdView];
     _regInputPassword=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 5, 271, 51) Placeholder:@"请输入密码"];
+    _regInputPassword.layer.cornerRadius = 25;
     [_regInputPassword setSecureTextEntry:YES];
     [_regInputPassword setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [_regInputPassword setDelegate:self];
     [_regThirdView addSubview:_regInputPassword];
     
     _regInputRePassword=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 66, 270, 50) Placeholder:@"再输入一次"];
+    _regInputRePassword.layer.cornerRadius = 25;
     [_regInputRePassword setFont:[UIFont systemFontOfSize: 22]];
     [_regInputRePassword setSecureTextEntry:YES];
     [_regInputRePassword setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];

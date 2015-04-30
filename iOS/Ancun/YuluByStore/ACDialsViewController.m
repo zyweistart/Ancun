@@ -444,7 +444,7 @@
                 //的电话值
                 NSString * personPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneRef, k);
                 if(flag) {
-                    if([name isEqualToString:@""]) {
+                    if([name isEqualToString:@""]||name==nil) {
                         name=personPhone;
                         nameFlag=@"1";
                     }
@@ -469,7 +469,6 @@
                     name=personPhone;
                 }
                 NSArray *nameDic=[[NSArray alloc]initWithObjects:name,personPhone,nameFlag,nil];
-                
                 NSString *personName=nil;
                 NSString *phoneNumber=[Common formatPhone:personPhone];
                 
@@ -518,7 +517,6 @@
                 [[Config Instance]setContact:contact];
                 
                 [mutable addObject:nameDic];
-//                name=@"";
             }
             if(!flag) {
                 if([mutable count]>0) {

@@ -43,6 +43,12 @@
 		C97889BB18E16B4400157577 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889A918E16B4400157577 /* UIKit.framework */; };
 		C97889BD18E16B4F00157577 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889BC18E16B4F00157577 /* Security.framework */; };
 		C97889BF18E16B9900157577 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889BE18E16B9900157577 /* StoreKit.framework */; };
+		C98519001AF20EFE003E0126 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F41AF20EFE003E0126 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C98519011AF20EFE003E0126 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F71AF20EFE003E0126 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C98519021AF20EFE003E0126 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F91AF20EFE003E0126 /* ATMHudView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C98519031AF20EFE003E0126 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518FB1AF20EFE003E0126 /* ATMProgressLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C98519041AF20EFE003E0126 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518FD1AF20EFE003E0126 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C98519051AF20EFE003E0126 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518FF1AF20EFE003E0126 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C98C6A6718FBC51700D3EF37 /* icon_session.png in Resources */ = {isa = PBXBuildFile; fileRef = C98C6A5A18FBC51700D3EF37 /* icon_session.png */; };
 		C98C6A6818FBC51700D3EF37 /* icon_session@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C98C6A5B18FBC51700D3EF37 /* icon_session@2x.png */; };
 		C98C6A6918FBC51700D3EF37 /* icon_timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = C98C6A5C18FBC51700D3EF37 /* icon_timeline.png */; };
@@ -109,12 +115,6 @@
 		C9D97C8A179FA6650076ACF3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D97AD0179FA6640076ACF3 /* libcrypto.a */; };
 		C9D97C8B179FA6650076ACF3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D97AD1179FA6640076ACF3 /* libssl.a */; };
 		C9D97C94179FA6650076ACF3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B34179FA6640076ACF3 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C9D97C95179FA6650076ACF3 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B37179FA6640076ACF3 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C9D97C96179FA6650076ACF3 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B3A179FA6640076ACF3 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C9D97C97179FA6650076ACF3 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B3C179FA6640076ACF3 /* ATMHudView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C9D97C98179FA6650076ACF3 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B3E179FA6640076ACF3 /* ATMProgressLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C9D97C99179FA6650076ACF3 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B40179FA6640076ACF3 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C9D97C9A179FA6650076ACF3 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B42179FA6640076ACF3 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9D97C9C179FA6650076ACF3 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B48179FA6640076ACF3 /* ChineseToPinyin.m */; };
 		C9D97CA1179FA6650076ACF3 /* GHNSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B58179FA6640076ACF3 /* GHNSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9D97CB0179FA6650076ACF3 /* GHNSString+HMAC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97B76179FA6640076ACF3 /* GHNSString+HMAC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -196,6 +196,19 @@
 		C97889BC18E16B4F00157577 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		C97889BE18E16B9900157577 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		C97DA4D717A9EFF7000D9B31 /* ydefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ydefines.h; sourceTree = "<group>"; };
+		C98518F31AF20EFE003E0126 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
+		C98518F41AF20EFE003E0126 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
+		C98518F51AF20EFE003E0126 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
+		C98518F61AF20EFE003E0126 /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
+		C98518F71AF20EFE003E0126 /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
+		C98518F81AF20EFE003E0126 /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
+		C98518F91AF20EFE003E0126 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		C98518FA1AF20EFE003E0126 /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
+		C98518FB1AF20EFE003E0126 /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
+		C98518FC1AF20EFE003E0126 /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
+		C98518FD1AF20EFE003E0126 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
+		C98518FE1AF20EFE003E0126 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
+		C98518FF1AF20EFE003E0126 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
 		C98C6A5A18FBC51700D3EF37 /* icon_session.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_session.png; sourceTree = "<group>"; };
 		C98C6A5B18FBC51700D3EF37 /* icon_session@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_session@2x.png"; sourceTree = "<group>"; };
 		C98C6A5C18FBC51700D3EF37 /* icon_timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_timeline.png; sourceTree = "<group>"; };
@@ -406,19 +419,6 @@
 		C9D97B1D179FA6640076ACF3 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
 		C9D97B33179FA6640076ACF3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		C9D97B34179FA6640076ACF3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		C9D97B36179FA6640076ACF3 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
-		C9D97B37179FA6640076ACF3 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
-		C9D97B38179FA6640076ACF3 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
-		C9D97B39179FA6640076ACF3 /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
-		C9D97B3A179FA6640076ACF3 /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
-		C9D97B3B179FA6640076ACF3 /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
-		C9D97B3C179FA6640076ACF3 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
-		C9D97B3D179FA6640076ACF3 /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
-		C9D97B3E179FA6640076ACF3 /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
-		C9D97B3F179FA6640076ACF3 /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
-		C9D97B40179FA6640076ACF3 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
-		C9D97B41179FA6640076ACF3 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
-		C9D97B42179FA6640076ACF3 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
 		C9D97B47179FA6640076ACF3 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
 		C9D97B48179FA6640076ACF3 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 		C9D97B57179FA6640076ACF3 /* GHNSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSData+Base64.h"; sourceTree = "<group>"; };
@@ -604,6 +604,26 @@
 				C9430B841ADCB32D001BED0A /* POVoiceHUDDelegate.h */,
 			);
 			path = POVoiceHUD;
+			sourceTree = "<group>";
+		};
+		C98518F21AF20EFE003E0126 /* ATMHud */ = {
+			isa = PBXGroup;
+			children = (
+				C98518F31AF20EFE003E0126 /* ATMHud.h */,
+				C98518F41AF20EFE003E0126 /* ATMHud.m */,
+				C98518F51AF20EFE003E0126 /* ATMHudDelegate.h */,
+				C98518F61AF20EFE003E0126 /* ATMHudQueueItem.h */,
+				C98518F71AF20EFE003E0126 /* ATMHudQueueItem.m */,
+				C98518F81AF20EFE003E0126 /* ATMHudView.h */,
+				C98518F91AF20EFE003E0126 /* ATMHudView.m */,
+				C98518FA1AF20EFE003E0126 /* ATMProgressLayer.h */,
+				C98518FB1AF20EFE003E0126 /* ATMProgressLayer.m */,
+				C98518FC1AF20EFE003E0126 /* ATMSoundFX.h */,
+				C98518FD1AF20EFE003E0126 /* ATMSoundFX.m */,
+				C98518FE1AF20EFE003E0126 /* ATMTextLayer.h */,
+				C98518FF1AF20EFE003E0126 /* ATMTextLayer.m */,
+			);
+			path = ATMHud;
 			sourceTree = "<group>";
 		};
 		C98C6A5818FBC51700D3EF37 /* WeixinActivity */ = {
@@ -831,18 +851,18 @@
 		C9D97AC9179FA6640076ACF3 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
-				C915F3861AE4A09200FC8B4A /* AttributedLabel.h */,
-				C915F3871AE4A09200FC8B4A /* AttributedLabel.m */,
-				C9430B801ADCB32D001BED0A /* POVoiceHUD */,
-				C9AEECB018FC15F4006D81A6 /* baidumtj */,
 				C9D97ACA179FA6640076ACF3 /* alipay */,
 				C9D97B1E179FA6640076ACF3 /* ASIHTTP */,
-				C9D97B35179FA6640076ACF3 /* ATMHud */,
+				C98518F21AF20EFE003E0126 /* ATMHud */,
+				C915F3861AE4A09200FC8B4A /* AttributedLabel.h */,
+				C915F3871AE4A09200FC8B4A /* AttributedLabel.m */,
+				C9AEECB018FC15F4006D81A6 /* baidumtj */,
 				C9D97B46179FA6640076ACF3 /* ChineseToPinyin */,
 				C9CB41B918ED0E2E00DB6099 /* EAIntroView */,
 				C9D97B4C179FA6640076ACF3 /* GHKit */,
 				C997105518F62EF100E56D22 /* KKGestureLockView */,
 				C9D97B9D179FA6640076ACF3 /* MBProgressHUD */,
+				C9430B801ADCB32D001BED0A /* POVoiceHUD */,
 				C9D97BA0179FA6640076ACF3 /* RefreshTableHeaderView */,
 				C9D4D17017E2B8EE0013D03E /* TouchJSON */,
 				C98C6A5818FBC51700D3EF37 /* WeixinActivity */,
@@ -953,26 +973,6 @@
 				C9D97B34179FA6640076ACF3 /* Reachability.m */,
 			);
 			path = ASIHTTP;
-			sourceTree = "<group>";
-		};
-		C9D97B35179FA6640076ACF3 /* ATMHud */ = {
-			isa = PBXGroup;
-			children = (
-				C9D97B36179FA6640076ACF3 /* ATMHud.h */,
-				C9D97B37179FA6640076ACF3 /* ATMHud.m */,
-				C9D97B38179FA6640076ACF3 /* ATMHudDelegate.h */,
-				C9D97B39179FA6640076ACF3 /* ATMHudQueueItem.h */,
-				C9D97B3A179FA6640076ACF3 /* ATMHudQueueItem.m */,
-				C9D97B3B179FA6640076ACF3 /* ATMHudView.h */,
-				C9D97B3C179FA6640076ACF3 /* ATMHudView.m */,
-				C9D97B3D179FA6640076ACF3 /* ATMProgressLayer.h */,
-				C9D97B3E179FA6640076ACF3 /* ATMProgressLayer.m */,
-				C9D97B3F179FA6640076ACF3 /* ATMSoundFX.h */,
-				C9D97B40179FA6640076ACF3 /* ATMSoundFX.m */,
-				C9D97B41179FA6640076ACF3 /* ATMTextLayer.h */,
-				C9D97B42179FA6640076ACF3 /* ATMTextLayer.m */,
-			);
-			path = ATMHud;
 			sourceTree = "<group>";
 		};
 		C9D97B46179FA6640076ACF3 /* ChineseToPinyin */ = {
@@ -1213,6 +1213,7 @@
 				C9D97AA3179FA6520076ACF3 /* ACRecordingManagerDetailListViewController.m in Sources */,
 				C98C6A6E18FBC51800D3EF37 /* WeixinTimelineActivity.m in Sources */,
 				C90EC3AD1AE77ADB000F7700 /* ACContactSingleCell.m in Sources */,
+				C98519021AF20EFE003E0126 /* ATMHudView.m in Sources */,
 				C9D47CFD18F387F300472625 /* ACModifyPasswordViewController.m in Sources */,
 				C9D97AAA179FA6520076ACF3 /* NSDictionary+MutableDeepCopy.m in Sources */,
 				C9D97C7B179FA6640076ACF3 /* BaseRefreshTableViewController.m in Sources */,
@@ -1227,33 +1228,31 @@
 				C9D97C81179FA6640076ACF3 /* FileUtils.m in Sources */,
 				C9D97C82179FA6640076ACF3 /* HttpRequest.m in Sources */,
 				C9D97C84179FA6640076ACF3 /* LoadingCell.m in Sources */,
+				C98519001AF20EFE003E0126 /* ATMHud.m in Sources */,
 				C997106118F631A200E56D22 /* ACSetGesturePasswordViewController.m in Sources */,
 				C9D97C86179FA6640076ACF3 /* LongPressButton.m in Sources */,
 				C9D97C87179FA6640076ACF3 /* Response.m in Sources */,
 				C91D0BD918EE83BA006B10A3 /* ACPaymentViewController.m in Sources */,
 				C99B80DC17A0C8C7004D0BFB /* ACGuideViewController.m in Sources */,
+				C98519011AF20EFE003E0126 /* ATMHudQueueItem.m in Sources */,
 				C9D97D81179FB3740076ACF3 /* NSString+Utils.m in Sources */,
 				C9D97C94179FA6650076ACF3 /* Reachability.m in Sources */,
-				C9D97C95179FA6650076ACF3 /* ATMHud.m in Sources */,
 				C9E42CEC1AF0CEDE00E3398C /* ACButton.m in Sources */,
 				C9CB41BF18ED0E2E00DB6099 /* EAIntroView.m in Sources */,
-				C9D97C96179FA6650076ACF3 /* ATMHudQueueItem.m in Sources */,
-				C9D97C97179FA6650076ACF3 /* ATMHudView.m in Sources */,
 				C9A560CC18FB7CA4006A5049 /* ACGesturePasswordViewController.m in Sources */,
 				C99F0C6A18EBDC9F00C27BFC /* ACRegistrationViewController.m in Sources */,
-				C9D97C98179FA6650076ACF3 /* ATMProgressLayer.m in Sources */,
 				C915F3881AE4A09200FC8B4A /* AttributedLabel.m in Sources */,
 				C914503C18FB91BB00B00B89 /* ACAgainSetGesturePasswordViewController.m in Sources */,
-				C9D97C99179FA6650076ACF3 /* ATMSoundFX.m in Sources */,
-				C9D97C9A179FA6650076ACF3 /* ATMTextLayer.m in Sources */,
 				C9E9A93A1AE0996E00F87EF2 /* RecordsSQL.m in Sources */,
 				C9D97C9C179FA6650076ACF3 /* ChineseToPinyin.m in Sources */,
 				C9D97CA1179FA6650076ACF3 /* GHNSData+Base64.m in Sources */,
 				C9D97CB0179FA6650076ACF3 /* GHNSString+HMAC.m in Sources */,
+				C98519051AF20EFE003E0126 /* ATMTextLayer.m in Sources */,
 				C9D47D0018F390C200472625 /* ACFeedBacksViewController.m in Sources */,
 				C9E42CE91AF0CD8B00E3398C /* LoginTextField.m in Sources */,
 				C9D97CC0179FA6650076ACF3 /* ybase64.c in Sources */,
 				C91D0BE718EE9F4A006B10A3 /* ACAccountPay2Cell.m in Sources */,
+				C98519031AF20EFE003E0126 /* ATMProgressLayer.m in Sources */,
 				C9D97CC1179FA6650076ACF3 /* MBProgressHUD.m in Sources */,
 				C99BC2E618ED2ACE00650DF5 /* ACForgetPasswordViewController.m in Sources */,
 				C9D97CC6179FA6650076ACF3 /* EGORefreshTableHeaderView.m in Sources */,
@@ -1284,6 +1283,7 @@
 				C9D4D19117E2B8EE0013D03E /* CJSONScanner.m in Sources */,
 				C9D4D19217E2B8EE0013D03E /* CJSONSerializer.m in Sources */,
 				C997105B18F62EF100E56D22 /* KKGestureLockView.m in Sources */,
+				C98519041AF20EFE003E0126 /* ATMSoundFX.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
