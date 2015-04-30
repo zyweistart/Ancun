@@ -23,14 +23,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(IOS7){
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-        [self buildUI7];
-    }else{
-        [self buildUI56];
-    }
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    self.modalPresentationCapturesStatusBarAppearance = NO;
+    [self buildUI7];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

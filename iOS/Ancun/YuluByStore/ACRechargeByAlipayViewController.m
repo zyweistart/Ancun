@@ -37,12 +37,7 @@
         
         self.navigationItem.title=@"账户充值";
         
-        UIView *container=nil;
-        if(IOS7){
-            container=[[UIView alloc]initWithFrame:CGRectMake1(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-        }else{
-            container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
-        }
+        UIView *container=[[UIView alloc]initWithFrame:CGRectMake1(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
         [self.view addSubview:container];
         
         _rechargeNav=[[ACRechargeNav alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];

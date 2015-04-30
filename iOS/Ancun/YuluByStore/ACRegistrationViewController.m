@@ -29,10 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    int h=0;
-    if(IOS7){
-        h=STATUSHEIGHT;
-    }
+    int h=STATUSHEIGHT;
     //背景
     [self.view setBackgroundColor:MAINBG1];
     
@@ -394,12 +391,8 @@
     [self backgroundDoneEditing:nil];
     ACNavigationWebPageViewController *navigationWebPageViewController=[[ACNavigationWebPageViewController alloc]initWithNavigationTitle:@"服务条款" resourcePath:@"TermsOfService"];
     UINavigationController *navigationWebPageViewControllerNav=[[UINavigationController alloc]initWithRootViewController:navigationWebPageViewController];
-    if(IOS7){
-        [[navigationWebPageViewControllerNav navigationBar]setBarTintColor:MAINBG];
-        [[navigationWebPageViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-    }else{
-        navigationWebPageViewControllerNav.navigationBar.tintColor=MAINBG;
-    }
+    [[navigationWebPageViewControllerNav navigationBar]setBarTintColor:MAINBG];
+    [[navigationWebPageViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     navigationWebPageViewController.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
                                                                        initWithTitle:@"返回"
                                                                        style:UIBarButtonItemStyleBordered

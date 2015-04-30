@@ -259,12 +259,8 @@
         [self presentViewController:_tabBarController animated:YES completion:^{
             if(self.gotoAgainGesurePassword){
                 UINavigationController *againSetGesturePasswordViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAgainSetGesturePasswordViewController alloc]init]];
-                if(IOS7){
-                    [[againSetGesturePasswordViewControllerNav navigationBar]setBarTintColor:MAINBG];
-                    [[againSetGesturePasswordViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-                }else{
-                    [againSetGesturePasswordViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-                }
+                [[againSetGesturePasswordViewControllerNav navigationBar]setBarTintColor:MAINBG];
+                [[againSetGesturePasswordViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
                 [_tabBarController presentViewController:againSetGesturePasswordViewControllerNav animated:YES completion:nil];
                 self.gotoAgainGesurePassword=NO;
             }

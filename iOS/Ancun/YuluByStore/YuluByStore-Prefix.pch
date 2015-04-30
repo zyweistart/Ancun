@@ -66,7 +66,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 
 #endif
 //#define IOS6 [[[UIDevice currentDevice] systemVersion]floatValue]>=6
-#define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
+//#define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
 #define inch35 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define inch4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 #define inch47 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)

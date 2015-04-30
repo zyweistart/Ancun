@@ -23,7 +23,7 @@
         [lbl setBackgroundColor:[UIColor clearColor]];
         [self addSubview:lbl];
         
-        UISwitch *si=[[UISwitch alloc]initWithFrame:CGRectMake1(IOS7?250:220, IOS7?7:9, 0, 0)];
+        UISwitch *si=[[UISwitch alloc]initWithFrame:CGRectMake1(250, 7, 0, 0)];
         
         NSString *gesturePwd=[Common getCache:DEFAULTDATA_GESTUREPWD];
         if([gesturePwd isNotEmpty]){
