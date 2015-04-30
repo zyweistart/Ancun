@@ -22,7 +22,6 @@
     UIView *dialView;
     UIView *tabBGView;
     UIButton *showHidden;
-    BOOL isAddTabBar;
     CGFloat mDialWidth,mDialHeight;
     int currentType;
 }
@@ -49,11 +48,10 @@
         [mapping setObject:@"#" forKey:@"10"];
         [mapping setObject:@"0" forKey:@"11"];
         [mapping setObject:@"*" forKey:@"12"];
-        CGFloat width=self.view.bounds.size.width;
         UIView *container=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.view addSubview:container];
         //头部
-        headDisplay=[[UIView alloc]initWithFrame:CGRectMake1(0, 20, width, 60)];
+        headDisplay=[[UIView alloc]initWithFrame:CGRectMake1(0, 20, WIDTH, 60)];
         [container addSubview:headDisplay];
         //添加到通讯录
         UIButton *leftBtn=[[UIButton alloc]initWithFrame:CGRectMake1(0,10,40,40)];
@@ -62,7 +60,7 @@
         [leftBtn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
 //        [headDisplay addSubview:leftBtn];
         //号码显示区域
-        lblDisplayPhone=[[UILabel alloc]initWithFrame:CGRectMake1(40, 0, headDisplay.frame.size.width-80, headDisplay.frame.size.height)];
+        lblDisplayPhone=[[UILabel alloc]initWithFrame:CGRectMake1(20, 10, 280, 40)];
         [lblDisplayPhone setTextColor:[UIColor whiteColor]];
         [lblDisplayPhone setBackgroundColor:[UIColor clearColor]];
         [lblDisplayPhone setTextAlignment:NSTextAlignmentCenter];
@@ -75,7 +73,7 @@
         [rightBtn addTarget:self action:@selector(longPressed) forControlEvents:ControlEventTouchLongPress];
         [rightBtn addTarget:self action:@selector(cancelLongPress) forControlEvents:ControlEventTouchCancel];
 //        [headDisplay addSubview:rightBtn];
-        self.message=[[UIView alloc]init];
+        self.message=[[UIView alloc]initWithFrame:CGRectMake1(0, 80, 320, HEIGHT-80-TABHEIGHT)];
         [self.message setBackgroundColor:[UIColor whiteColor]];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(20, 10, 280, 300)];
         [lbl setText:@"系统因权限限制\n需要进入系统设置->隐私->通讯录,开启通讯录权限许可后才能使用"];
@@ -86,19 +84,18 @@
         [self.message setHidden:YES];
         [container addSubview:self.message];
         //表视图
-        self.tableView=[[UITableView alloc]init];
+        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 80, 320, HEIGHT-80-TABHEIGHT)];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
         [container addSubview:self.tableView];
-        self.tableViewData=[[UITableView alloc]init];
+        self.tableViewData=[[UITableView alloc]initWithFrame:CGRectMake1(0, 80, 320, HEIGHT-80-TABHEIGHT)];
         [self.tableViewData setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableViewData setDelegate:self];
         [self.tableViewData setDataSource:self];
         [container addSubview:self.tableViewData];
-//        [self.tableViewData setHidden:YES];
         //搜索
-        self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
+        self.searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake1(0, 0, WIDTH, 40)];
         [self.searchBar setPlaceholder:@"姓名/号码"];
         [self.searchBar setDelegate:self];
         [self.searchBar setShowsCancelButton:YES];
@@ -107,7 +104,8 @@
         //拨号盘
         mDialWidth=107;
         mDialHeight=55;
-        dialView=[[UIView alloc]initWithFrame:CGRectMake1(0, self.view.bounds.size.height-4*mDialHeight-49, 320, 4*mDialHeight)];
+        dialView=[[UIView alloc]initWithFrame:CGRectMake1(0, HEIGHT-4*mDialHeight-49, WIDTH, 4*mDialHeight)];
+        
         [dialView setBackgroundColor:DIALVIEWBG];
         [container addSubview:dialView];
         for(int i=0;i<4;i++){
@@ -130,33 +128,18 @@
                 [dialView addSubview:dial];
             }
         }
-        isAddTabBar=NO;
-        //初始化加载通讯录
-        [self loadContact];
-        [self showDialText];
-    }
-    return self;
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    if(!isAddTabBar){
-        isAddTabBar=YES;
-        [self.message setFrame:CGRectMake1(0, 80, 320, self.view.bounds.size.height-80)];
-        [self.tableView setFrame:CGRectMake1(0, 80, 320, self.view.bounds.size.height-80)];
-        [self.tableViewData setFrame:CGRectMake1(0, 80, 320, self.view.bounds.size.height-80)];
-        CGFloat tabHeight=[self.tabBarController tabBar].bounds.size.height;
-        tabBGView=[[UIView alloc]initWithFrame:CGRectMake1(0, self.tabBarController.view.bounds.size.height-tabHeight, 320, tabHeight)];
+        
+        tabBGView=[[UIView alloc]initWithFrame:CGRectMake1(0, HEIGHT-TABHEIGHT, 320, TABHEIGHT)];
         [tabBGView setBackgroundColor:MAINBG];
-        showHidden=[[UIButton alloc]initWithFrame:CGRectMake1(5, 0, 50, tabHeight)];
+        showHidden=[[UIButton alloc]initWithFrame:CGRectMake1(5, 0, 50, TABHEIGHT)];
         [showHidden addTarget:self action:@selector(hidden:) forControlEvents:UIControlEventTouchUpInside];
         [tabBGView addSubview:showHidden];
-        UIButton *dial1=[[UIButton alloc]initWithFrame:CGRectMake1(60, 2, 200, tabHeight-4)];
+        UIButton *dial1=[[UIButton alloc]initWithFrame:CGRectMake1(60, 2, 200, TABHEIGHT-4)];
         [dial1 setTag:13];
         [dial1 addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         [dial1 setBackgroundImage:[UIImage imageNamed:@"call4"] forState:UIControlStateNormal];
         [tabBGView addSubview:dial1];
-        LongPressButton *btnDel=[[LongPressButton alloc]initWithFrame:CGRectMake1(265,0,50,tabHeight)];
+        LongPressButton *btnDel=[[LongPressButton alloc]initWithFrame:CGRectMake1(265,0,50,TABHEIGHT)];
         [btnDel setImage:[UIImage imageNamed:@"dialdel"] forState:UIControlStateNormal];
         [btnDel setTag:15];
         [btnDel addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
@@ -164,14 +147,18 @@
         [btnDel addTarget:self action:@selector(cancelLongPress) forControlEvents:ControlEventTouchCancel];
         [tabBGView addSubview:btnDel];
         [tabBGView setHidden:YES];
-//        [self.tabBarController.view addSubview:tabBGView];
         NSArray* windows = [UIApplication sharedApplication].windows;
         [[windows objectAtIndex:0] addSubview:tabBGView];
         
         [self dialViewShow];
         currentType=1;
         [self showHiddenTableView];
+        
+        //初始化加载通讯录
+        [self loadContact];
+        [self showDialText];
     }
+    return self;
 }
 
 #pragma mark -

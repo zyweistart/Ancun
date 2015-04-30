@@ -37,6 +37,7 @@
         [_lblTip4.titleLabel setFont:[UIFont systemFontOfSize:13]];
         [_lblTip4 setTitle:@"成功" forState:UIControlStateNormal];
         [self addSubview:_lblTip4];
+        
     }
     return self;
 }
@@ -54,7 +55,7 @@
 
 - (void)secondStep {
     [_lblTip1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_lblTip1 setBackgroundImage:[self createImageWithColor:NAVTOPCOLOR] forState:UIControlStateNormal];
+    [_lblTip1 setBackgroundColor:NAVTOPCOLOR];
     [_lblTip2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_lblTip2 setBackgroundImage:[UIImage imageNamed:@"nav"] forState:UIControlStateNormal];
     [_lblTip3 setTitleColor:TEXTCOLOR forState:UIControlStateNormal];
@@ -65,9 +66,9 @@
 
 - (void)thirdStep {
     [_lblTip1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_lblTip1 setBackgroundImage:[self createImageWithColor:NAVTOPCOLOR] forState:UIControlStateNormal];
+    [_lblTip1 setBackgroundColor:NAVTOPCOLOR];
     [_lblTip2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_lblTip2 setBackgroundImage:[self createImageWithColor:NAVTOPCOLOR] forState:UIControlStateNormal];
+    [_lblTip2 setBackgroundColor:NAVTOPCOLOR];
     [_lblTip3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_lblTip3 setBackgroundImage:[UIImage imageNamed:@"nav"] forState:UIControlStateNormal];
     [_lblTip4 setTitleColor:TEXTCOLOR forState:UIControlStateNormal];
@@ -76,13 +77,14 @@
 
 - (void)fourthStep {
     [_lblTip1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_lblTip1 setBackgroundImage:[self createImageWithColor:NAVTOPCOLOR] forState:UIControlStateNormal];
+    [_lblTip1 setBackgroundColor:NAVTOPCOLOR];
+    
     [_lblTip2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_lblTip2 setBackgroundImage:[self createImageWithColor:NAVTOPCOLOR] forState:UIControlStateNormal];
+    [_lblTip2 setBackgroundColor:NAVTOPCOLOR];
     [_lblTip3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_lblTip3 setBackgroundImage:[self createImageWithColor:NAVTOPCOLOR] forState:UIControlStateNormal];
+    [_lblTip3 setBackgroundColor:NAVTOPCOLOR];
     [_lblTip4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_lblTip4 setBackgroundImage:[self createImageWithColor:NAVTOPCOLOR] forState:UIControlStateNormal];
+    [_lblTip4 setBackgroundColor:NAVTOPCOLOR];
 }
 
 - (UIImage*)createImageWithColor:(UIColor*)color

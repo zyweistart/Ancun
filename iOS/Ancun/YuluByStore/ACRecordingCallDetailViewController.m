@@ -60,9 +60,11 @@
                         [_data objectForKey:@"recendtime"], nil];
         int vFrameWidth=291;
         int height=35;
-        UIControl *vFrame=[[UIControl alloc]initWithFrame:CGRectMake1(14.5, 10, vFrameWidth, 345)];
-        [vFrame setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"xqbg"]]];
-        [vFrame addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
+        UIImageView *vFrame=[[UIImageView alloc]initWithFrame:CGRectMake1(14.5, 10, vFrameWidth, 345)];
+//        [vFrame setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"xqbg"]]];
+        [vFrame setImage:[UIImage imageNamed:@"xqbg"]];
+        [vFrame setUserInteractionEnabled:YES];
+//        [vFrame addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [container addSubview:vFrame];
         for(int i=0;i<[names count];i++){
             UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake1(0, i*height, vFrameWidth, height)];
@@ -366,11 +368,7 @@
     }
     __block CGRect curFrame=self.view.frame;
     [UIView animateWithDuration:0.3f animations:^{
-        if(IOS7){
-            curFrame.origin.y=64;
-        }else{
-            curFrame.origin.y=0;
-        }
+        curFrame.origin.y=64;
         self.view.frame=curFrame;
     }];
 }

@@ -130,6 +130,9 @@
 		C9D97D77179FA6650076ACF3 /* TermsOfService.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9D97C79179FA6640076ACF3 /* TermsOfService.txt */; };
 		C9D97D78179FA6650076ACF3 /* TipContent.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9D97C7A179FA6640076ACF3 /* TipContent.txt */; };
 		C9D97D81179FB3740076ACF3 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97D80179FB3730076ACF3 /* NSString+Utils.m */; };
+		C9E42CE61AF0CBA600E3398C /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E42CE51AF0CBA600E3398C /* Launch Screen.xib */; };
+		C9E42CE91AF0CD8B00E3398C /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E42CE81AF0CD8B00E3398C /* LoginTextField.m */; };
+		C9E42CEC1AF0CEDE00E3398C /* ACButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E42CEB1AF0CEDE00E3398C /* ACButton.m */; };
 		C9E4CA681ADCAA8600875ED5 /* LocalRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E4CA671ADCAA8600875ED5 /* LocalRecordsViewController.m */; };
 		C9E8EE78179FD5E600E47BD9 /* ACRecordingManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D97A5D179FA6520076ACF3 /* ACRecordingManagerViewController.m */; };
 		C9E9A93A1AE0996E00F87EF2 /* RecordsSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */; };
@@ -438,6 +441,11 @@
 		C9D97C7A179FA6640076ACF3 /* TipContent.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TipContent.txt; sourceTree = "<group>"; };
 		C9D97D7F179FB3730076ACF3 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		C9D97D80179FB3730076ACF3 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		C9E42CE51AF0CBA600E3398C /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		C9E42CE71AF0CD8B00E3398C /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
+		C9E42CE81AF0CD8B00E3398C /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
+		C9E42CEA1AF0CEDE00E3398C /* ACButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACButton.h; sourceTree = "<group>"; };
+		C9E42CEB1AF0CEDE00E3398C /* ACButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACButton.m; sourceTree = "<group>"; };
 		C9E4CA661ADCAA8600875ED5 /* LocalRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalRecordsViewController.h; sourceTree = "<group>"; };
 		C9E4CA671ADCAA8600875ED5 /* LocalRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalRecordsViewController.m; sourceTree = "<group>"; };
 		C9E9A9381AE0996E00F87EF2 /* RecordsSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsSQL.h; sourceTree = "<group>"; };
@@ -1052,6 +1060,7 @@
 			isa = PBXGroup;
 			children = (
 				C9155D7918E90BC70075A693 /* ACContactsViewController.xib */,
+				C9E42CE51AF0CBA600E3398C /* Launch Screen.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -1094,6 +1103,10 @@
 				C9D97A48179FA6510076ACF3 /* ACPlayerView.m */,
 				C90A351817B9D81C00BECE31 /* ACRechargeNav.h */,
 				C90A351917B9D81C00BECE31 /* ACRechargeNav.m */,
+				C9E42CE71AF0CD8B00E3398C /* LoginTextField.h */,
+				C9E42CE81AF0CD8B00E3398C /* LoginTextField.m */,
+				C9E42CEA1AF0CEDE00E3398C /* ACButton.h */,
+				C9E42CEB1AF0CEDE00E3398C /* ACButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1163,6 +1176,7 @@
 				C9D97CC5179FA6650076ACF3 /* blueArrow@2x.png in Resources */,
 				C9D97CC7179FA6650076ACF3 /* grayArrow.png in Resources */,
 				C9D97CC8179FA6650076ACF3 /* grayArrow@2x.png in Resources */,
+				C9E42CE61AF0CBA600E3398C /* Launch Screen.xib in Resources */,
 				C978899718E16AC300157577 /* Images.xcassets in Resources */,
 				C9155D7A18E90BC70075A693 /* ACContactsViewController.xib in Resources */,
 				C98C6A6818FBC51700D3EF37 /* icon_session@2x.png in Resources */,
@@ -1221,6 +1235,7 @@
 				C9D97D81179FB3740076ACF3 /* NSString+Utils.m in Sources */,
 				C9D97C94179FA6650076ACF3 /* Reachability.m in Sources */,
 				C9D97C95179FA6650076ACF3 /* ATMHud.m in Sources */,
+				C9E42CEC1AF0CEDE00E3398C /* ACButton.m in Sources */,
 				C9CB41BF18ED0E2E00DB6099 /* EAIntroView.m in Sources */,
 				C9D97C96179FA6650076ACF3 /* ATMHudQueueItem.m in Sources */,
 				C9D97C97179FA6650076ACF3 /* ATMHudView.m in Sources */,
@@ -1236,6 +1251,7 @@
 				C9D97CA1179FA6650076ACF3 /* GHNSData+Base64.m in Sources */,
 				C9D97CB0179FA6650076ACF3 /* GHNSString+HMAC.m in Sources */,
 				C9D47D0018F390C200472625 /* ACFeedBacksViewController.m in Sources */,
+				C9E42CE91AF0CD8B00E3398C /* LoginTextField.m in Sources */,
 				C9D97CC0179FA6650076ACF3 /* ybase64.c in Sources */,
 				C91D0BE718EE9F4A006B10A3 /* ACAccountPay2Cell.m in Sources */,
 				C9D97CC1179FA6650076ACF3 /* MBProgressHUD.m in Sources */,

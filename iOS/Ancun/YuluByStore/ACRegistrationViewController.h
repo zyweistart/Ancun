@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginTextField.h"
+#import "ACButton.h"
 
 #define SECOND 60
 
@@ -20,7 +22,7 @@
     
     int _second;
     UILabel *_lblVerificationCodeInfo;
-    UIButton *_btnGetVerificationCode;
+    ACButton *_btnGetVerificationCode;
     UILabel *_lblTitlte;
     UIImageView *step2;
     UIImageView *step3;
@@ -28,10 +30,10 @@
     UIControl *_regSecondView;
     UIControl *_regThirdView;
     UIControl *_regFourthView;
-    UITextField *_regInputPhone;
-    UITextField *_regInputVerificationCode;
-    UITextField *_regInputPassword;
-    UITextField *_regInputRePassword;
+    LoginTextField *_regInputPhone;
+    LoginTextField *_regInputVerificationCode;
+    LoginTextField *_regInputPassword;
+    LoginTextField *_regInputRePassword;
     UIButton *_btnReadAgreementCheck;
     UIButton *_btnReadAgreement;
     UILabel *_lblSuccessInfo;

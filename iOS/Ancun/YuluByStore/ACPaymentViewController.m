@@ -63,12 +63,7 @@
 {
     [super viewDidLoad];
     
-    UIView *container=nil;
-    if(IOS7){
-        container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-    }else{
-        container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-    }
+    UIView *container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, WIDTH, HEIGHT-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
     [self.view addSubview:container];
     
     _rechargeNav=[[ACRechargeNav alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];

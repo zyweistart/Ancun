@@ -14,11 +14,12 @@
     UILabel *_lbl_playertimertotallong;
 }
 
-- (id)initWithController:(UIViewController*)controller
+
+- (id)initWithFrame:(CGRect)rect
 {
-    self = [super initWithFrame:CGRectMake1(0, 0, 320, 67)];
+    self = [super initWithFrame:rect];
     if(self){
-        [self setController:controller];
+//        [self setController:controller];
         [self setBackgroundColor:MAINBG];
         
         _btn_player=[[UIButton alloc]initWithFrame:CGRectMake1(9, 10, 54, 47)];
@@ -46,6 +47,13 @@
         [_lbl_playertimertotallong setBackgroundColor:[UIColor clearColor]];
         [self addSubview:_lbl_playertimertotallong];
     }
+    return self;
+}
+
+- (id)initWithController:(UIViewController*)controller
+{
+    [self setController:controller];
+    self = [self initWithFrame:CGRectMake1(0, 0, 320, 67)];
     return self;
 }
 

@@ -9,6 +9,8 @@
 #import "ACForgetPasswordViewController.h"
 #import "ACAgainSetGesturePasswordViewController.h"
 #import "NSString+Utils.h"
+#import "LoginTextField.h"
+#import "ACButton.h"
 
 @interface ACLoginViewController ()
 
@@ -16,8 +18,8 @@
 
 @implementation ACLoginViewController {
     
-    UITextField *_txtUserName;
-    UITextField *_txtPassword;
+    LoginTextField *_txtUserName;
+    LoginTextField *_txtPassword;
     
     unsigned long m_lastTabIndex;
     
@@ -31,54 +33,33 @@
     if(self) {
         //登录代理
         [[Config Instance] setLoginResultDelegate:self];
-        int h=0;
-        if(IOS7){
-            h=STATUSHEIGHT;
-        }
-        //背景
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"loginbg"]]];
         
-        float width=self.view.frame.size.width;
-        float height=self.view.frame.size.height;
-        UIControl *control=[[UIControl alloc]initWithFrame:CGRectMake1(0, h, width, height-h)];
+        //背景
+        [self.view setBackgroundColor:BGCOLOR];
+        
+        UIControl *control=[[UIControl alloc]initWithFrame:self.view.bounds];
         //触摸屏幕事件
         [control addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:control];
         //LOGO
-        UIView *logonv=[[UIView alloc]initWithFrame:CGRectMake1(width/2-130/2, inch4?54:30, 130, 130)];
-        [logonv setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_logo2"]]];
+        UIImageView *logonv=[[UIImageView alloc]initWithFrame:CGRectMake1(95, inch35?40:50, 130, 130)];
+        [logonv setImage:[UIImage imageNamed:@"login_logo2"]];
         [control addSubview:logonv];
-        //登录输入框
-        UIView *userNameInputView=[[UIView alloc]initWithFrame:CGRectMake1(width/2-271/2, inch4?225:170, 271, 51)];
-        [userNameInputView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
-        [control addSubview:userNameInputView];
         //账户输入框
-        _txtUserName=[[UITextField alloc] initWithFrame:CGRectMake1(20, 5, 231, 41)];
-        [_txtUserName setPlaceholder:@"账号"];
-        [_txtUserName setFont:[UIFont systemFontOfSize: 22]];
-        [_txtUserName setClearButtonMode:UITextFieldViewModeWhileEditing];
-        [_txtUserName setTextAlignment:NSTextAlignmentCenter];
-        [_txtUserName setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-        [_txtUserName setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+        _txtUserName=[[LoginTextField alloc] initWithFrame:CGRectMake1(45, inch35?190:220, 230, 50) Placeholder:@"账号"];
+        _txtUserName.layer.cornerRadius = 25;
+        [_txtUserName setDelegate:self];
         [_txtUserName setKeyboardType:UIKeyboardTypePhonePad];
-        [userNameInputView addSubview:_txtUserName];
-        UIView *passwordInputView=[[UIView alloc]initWithFrame:CGRectMake1(width/2-271/2, inch4?293:233, 271, 51)];
-        [passwordInputView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
-        [control addSubview:passwordInputView];
+        [self.view addSubview:_txtUserName];
         //密码输入框
-        _txtPassword=[[UITextField alloc] initWithFrame:CGRectMake1(20, 5, 231, 41)];
-        [_txtPassword setPlaceholder:@"密码"];
-        [_txtPassword setFont:[UIFont systemFontOfSize: 22]];
-        [_txtPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
-        [_txtPassword setTextAlignment:NSTextAlignmentCenter];
-        [_txtPassword setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-        [_txtPassword setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+        _txtPassword=[[LoginTextField alloc] initWithFrame:CGRectMake1(45, inch35?250:280, 230, 50) Placeholder:@"密码"];
+        _txtPassword.layer.cornerRadius = 25;
         [_txtPassword setSecureTextEntry:YES];
         [_txtPassword setDelegate:self];
         [_txtPassword setReturnKeyType:UIReturnKeyDone];
-        [passwordInputView addSubview:_txtPassword];
+        [self.view addSubview:_txtPassword];
         //记住密码复选框
-        btnRememberPwdImg=[[UIButton alloc]initWithFrame:CGRectMake1(35, inch4?356:296, 15, 15)];
+        btnRememberPwdImg=[[UIButton alloc]initWithFrame:CGRectMake1(45, inch35?312:342, 15, 15)];
         [btnRememberPwdImg addTarget:self action:@selector(rememberPassword:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnRememberPwdImg];
         rememberPassword=[Common getCacheByBool:DEFAULTDATA_AUTOLOGIN];
@@ -88,32 +69,30 @@
             [btnRememberPwdImg setImage:[UIImage imageNamed:@"login_g_hover"] forState:UIControlStateNormal];
         }
         //记住密码文字
-        UIButton *btnRemberPwdLbl=[[UIButton alloc]initWithFrame:CGRectMake1(55, inch4?354:294, 60, 18)];
-        btnRemberPwdLbl.titleLabel.font=[UIFont systemFontOfSize: 15];
+        UIButton *btnRemberPwdLbl=[[UIButton alloc]initWithFrame:CGRectMake1(60, inch35?310:340, 60, 18)];
         [btnRemberPwdLbl setTitle:@"记住密码" forState:UIControlStateNormal];
+        btnRemberPwdLbl.titleLabel.font=[UIFont systemFontOfSize: 15];
         [btnRemberPwdLbl addTarget:self action:@selector(rememberPassword:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnRemberPwdLbl];
         //找回密码
-        UIButton *btnForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(width/2+60, inch4?354:294, 68, 18)];
-        btnForgetPwd.titleLabel.font=[UIFont systemFontOfSize: 15];
+        UIButton *btnForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, inch35?310:340, 68, 18)];
         [btnForgetPwd setTitle:@"找回密码" forState:UIControlStateNormal];
+        btnForgetPwd.titleLabel.font=[UIFont systemFontOfSize: 15];
         [btnForgetPwd addTarget:self action:@selector(onClickForgetPwd:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnForgetPwd];
         //登录按钮
-        UIButton *btnLogin=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-271/2, inch4?387:327, 271, 51)];
-        [btnLogin setTitle:@"登录" forState:UIControlStateNormal];
+        ACButton *btnLogin=[[ACButton alloc]initWithFrame:CGRectMake1(25, inch35?340:380, 270, 50) Name:@"登录"];
         btnLogin.titleLabel.font=[UIFont systemFontOfSize:30];
-        [btnLogin setBackgroundImage:[UIImage imageNamed:@"login_button"] forState:UIControlStateNormal];
         [btnLogin addTarget:self action:@selector(onClickLogin:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnLogin];
         //注册按钮
-        UIButton *btnRegister=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-147.5, inch4?455:385, 295, 32)];
+        UIButton *btnRegister=[[UIButton alloc]initWithFrame:CGRectMake1(20, inch35?400:460, 280, 32)];
         btnRegister.titleLabel.font=[UIFont systemFontOfSize: 17.0];
         [btnRegister setTitle:@"还没有账户，马上去注册>>" forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(onClickRegister:) forControlEvents:UIControlEventTouchUpInside];
         [control addSubview:btnRegister];
         
-        UILabel *lblTipTxt=[[UILabel alloc]initWithFrame:CGRectMake1(width/2-147.5, inch4?492:402, 295, 64)];
+        UILabel *lblTipTxt=[[UILabel alloc]initWithFrame:CGRectMake1(20, inch35?430:492, 280, 40)];
         lblTipTxt.font=[UIFont systemFontOfSize:14];
         [lblTipTxt setNumberOfLines:0];
         [lblTipTxt setText:@"请使用本机号码注册或登录，非本机号码登录时通话录音将无法被正确保全."];
@@ -183,12 +162,14 @@
         [[contactViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                        dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
                                                                        UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-        if(IOS7){
-            [[contactViewControllerNav navigationBar]setBarTintColor:MAINBG];
-            [[contactViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-        }else{
-            [contactViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-        }
+//        if(IOS7){
+//            
+//        }else{
+//            [contactViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+//        }
+        
+        [[contactViewControllerNav navigationBar]setBarTintColor:MAINBG];
+        [[contactViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
         
         //我的账户
         UINavigationController *accountViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAccountViewController alloc]init]];
@@ -207,12 +188,12 @@
         [[accountViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                  dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
                                                                  UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-        if(IOS7){
+//        if(IOS7){
             [[accountViewControllerNav navigationBar]setBarTintColor:MAINBG];
             [[accountViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-        }else{
-            [accountViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-        }
+//        }else{
+//            [accountViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+//        }
         
         //录音管理
         UINavigationController *recordingManagerViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACRecordingManagerViewController alloc]init]];
@@ -231,12 +212,12 @@
         [[recordingManagerViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                        dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
                                                                        UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-        if(IOS7){
+//        if(IOS7){
             [[recordingManagerViewControllerNav navigationBar]setBarTintColor:MAINBG];
             [[recordingManagerViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-        }else{
-            [recordingManagerViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-        }
+//        }else{
+//            [recordingManagerViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+//        }
         //更多
         ACMoreViewController *moreViewController=[[ACMoreViewController alloc]init];
         [moreViewController checkVersion:NO];
@@ -253,12 +234,12 @@
         [[moreViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
                                                                                 dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
                                                                                 UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-        if(IOS7){
+//        if(IOS7){
             [[moreViewControllerNav navigationBar]setBarTintColor:MAINBG];
             [[moreViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-        }else{
-            [moreViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-        }
+//        }else{
+//            [moreViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+//        }
         //添加标签控制器
         UITabBarController *_tabBarController = [[UITabBarController alloc] init];
         [_tabBarController.view setBackgroundColor:MAINBG];
@@ -436,11 +417,7 @@
 {
     __block CGRect curFrame=self.view.frame;
     [UIView animateWithDuration:0.3f animations:^{
-        if(IOS7){
-            curFrame.origin.y=0;
-        }else{
-            curFrame.origin.y=20;
-        }
+        curFrame.origin.y=0;
         self.view.frame=curFrame;
     }];
 }

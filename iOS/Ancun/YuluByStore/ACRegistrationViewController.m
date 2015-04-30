@@ -61,11 +61,11 @@
     [control addSubview:_lblTitlte];
     
     //LOGO
-    UIView *logonv=[[UIView alloc]initWithFrame:CGRectMake1(width/2-106/2, inch4?70:40, 106, 103)];
-    [logonv setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_logo"]]];
+    UIImageView *logonv=[[UIImageView alloc]initWithFrame:CGRectMake1(105, inch35?40:70, 106, 103)];
+    [logonv setImage:[UIImage imageNamed:@"login_logo"]];
     [control addSubview:logonv];
     
-    UIView *schedule=[[UIView alloc]initWithFrame:CGRectMake1(10, inch4?210:150, 300, 66)];
+    UIView *schedule=[[UIView alloc]initWithFrame:CGRectMake1(10, inch35?150:210, 300, 66)];
     [control addSubview:schedule];
     
     UIImageView *step1=[[UIImageView alloc]initWithFrame:CGRectMake1(12, 10, 26, 26)];
@@ -112,20 +112,14 @@
     [lbl setTextAlignment:NSTextAlignmentCenter];
     [schedule addSubview:lbl];
     //////////第一步
-    int heigh1=inch4?280:220;
+    int heigh1=inch35?220:280;
     _regFirstView=[[UIControl alloc]initWithFrame:CGRectMake1(0, heigh1, width, 183)];
     [_regFirstView addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [control addSubview:_regFirstView];
-    _regInputPhone=[[UITextField alloc] initWithFrame:CGRectMake1(width/2-271/2, 5, 271, 51)];
-    [_regInputPhone setPlaceholder:@"请输入手机号码"];
-    [_regInputPhone setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
+    _regInputPhone=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 5, 270, 50) Placeholder:@"请输入手机号码"];
     [_regInputPhone setFont:[UIFont systemFontOfSize: 22]];
-    [_regInputPhone setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [_regInputPhone setTextAlignment:NSTextAlignmentCenter];
-    [_regInputPhone setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [_regInputPhone setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [_regInputPhone setKeyboardType:UIKeyboardTypeNumberPad];
     [_regInputPhone setDelegate:self];
+    [_regInputPhone setKeyboardType:UIKeyboardTypeNumberPad];
     [_regFirstView addSubview:_regInputPhone];
     
     checked=YES;
@@ -140,24 +134,16 @@
     [_btnReadAgreement addTarget:self action:@selector(termsOfService:) forControlEvents:UIControlEventTouchUpInside];
     [_regFirstView addSubview:_btnReadAgreement];
     
-    UIButton *btnValidPhoneByVerificationCode=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-271/2, 127, 271, 51)];
-    [btnValidPhoneByVerificationCode setTitle:@"获取验证码" forState:UIControlStateNormal];
+    ACButton *btnValidPhoneByVerificationCode=[[ACButton alloc]initWithFrame:CGRectMake1(25, 127, 270, 50) Name:@"获取验证码" Type:2];
     btnValidPhoneByVerificationCode.titleLabel.font=[UIFont systemFontOfSize:30];
-    [btnValidPhoneByVerificationCode setBackgroundImage:[UIImage imageNamed:@"buttuon1"] forState:UIControlStateNormal];
     [btnValidPhoneByVerificationCode addTarget:self action:@selector(validPhoneByVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
     [_regFirstView addSubview:btnValidPhoneByVerificationCode];
     //////////第二步
     _regSecondView=[[UIControl alloc]initWithFrame:CGRectMake1(0, heigh1, width, 183)];
     [_regSecondView addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [control addSubview:_regSecondView];
-    _regInputVerificationCode=[[UITextField alloc] initWithFrame:CGRectMake1(width/2-271/2, 5, 271, 51)];
-    [_regInputVerificationCode setPlaceholder:@"请输入验证码"];
-    [_regInputVerificationCode setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
+    _regInputVerificationCode=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 5, 270, 50) Placeholder:@"请输入验证码"];
     [_regInputVerificationCode setFont:[UIFont systemFontOfSize: 22]];
-    [_regInputVerificationCode setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [_regInputVerificationCode setTextAlignment:NSTextAlignmentCenter];
-    [_regInputVerificationCode setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [_regInputVerificationCode setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [_regInputVerificationCode setKeyboardType:UIKeyboardTypeNumberPad];
     [_regInputVerificationCode setDelegate:self];
     [_regSecondView addSubview:_regInputVerificationCode];
@@ -171,50 +157,33 @@
     [_lblVerificationCodeInfo setTextAlignment:NSTextAlignmentCenter];
     [_regSecondView addSubview:_lblVerificationCodeInfo];
     
-    _btnGetVerificationCode=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-271/2, 66, 271, 51)];
-    [_btnGetVerificationCode setTitle:@"获取验证码" forState:UIControlStateNormal];
+    _btnGetVerificationCode=[[ACButton alloc]initWithFrame:CGRectMake1(25, 66, 270, 50) Name:@"获取验证码" Type:2];
     _btnGetVerificationCode.titleLabel.font=[UIFont systemFontOfSize:30];
-    [_btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"buttuon1"] forState:UIControlStateNormal];
     [_btnGetVerificationCode addTarget:self action:@selector(getVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
     [_regSecondView addSubview:_btnGetVerificationCode];
     
-    UIButton *btnSubmitVerificationCode=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-271/2, 127, 271, 51)];
-    [btnSubmitVerificationCode setTitle:@"确认" forState:UIControlStateNormal];
+    ACButton *btnSubmitVerificationCode=[[ACButton alloc]initWithFrame:CGRectMake1(25, 127, 270, 50) Name:@"确认" Type:2];
     btnSubmitVerificationCode.titleLabel.font=[UIFont systemFontOfSize:30];
-    [btnSubmitVerificationCode setBackgroundImage:[UIImage imageNamed:@"buttuon1"] forState:UIControlStateNormal];
     [btnSubmitVerificationCode addTarget:self action:@selector(submitVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
     [_regSecondView addSubview:btnSubmitVerificationCode];
     //////////第三步
     _regThirdView=[[UIControl alloc]initWithFrame:CGRectMake1(0, heigh1, width, 216)];
     [_regThirdView addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [control addSubview:_regThirdView];
-    _regInputPassword=[[UITextField alloc] initWithFrame:CGRectMake1(width/2-271/2, 5, 271, 51)];
-    [_regInputPassword setPlaceholder:@"请输入密码"];
-    [_regInputPassword setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
-    [_regInputPassword setFont:[UIFont systemFontOfSize: 22]];
-    [_regInputPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [_regInputPassword setTextAlignment:NSTextAlignmentCenter];
-    [_regInputPassword setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [_regInputPassword setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    _regInputPassword=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 5, 271, 51) Placeholder:@"请输入密码"];
     [_regInputPassword setSecureTextEntry:YES];
     [_regInputPassword setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [_regInputPassword setDelegate:self];
     [_regThirdView addSubview:_regInputPassword];
     
-    _regInputRePassword=[[UITextField alloc] initWithFrame:CGRectMake1(width/2-271/2, 66, 271, 51)];
-    [_regInputRePassword setPlaceholder:@"再输入一次"];
-    [_regInputRePassword setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_input_bg"]]];
+    _regInputRePassword=[[LoginTextField alloc] initWithFrame:CGRectMake1(25, 66, 270, 50) Placeholder:@"再输入一次"];
     [_regInputRePassword setFont:[UIFont systemFontOfSize: 22]];
-    [_regInputRePassword setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [_regInputRePassword setTextAlignment:NSTextAlignmentCenter];
-    [_regInputRePassword setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [_regInputRePassword setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [_regInputRePassword setSecureTextEntry:YES];
     [_regInputRePassword setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [_regInputRePassword setDelegate:self];
     [_regThirdView addSubview:_regInputRePassword];
     
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(width/2-271/2, 127, 271, 18)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(25, 127, 270, 18)];
     [lbl setText:@"密码由6-16位英文字母、数字或符号组成"];
     [lbl setFont:[UIFont systemFontOfSize:12]];
     [lbl setTextAlignment:NSTextAlignmentCenter];
@@ -222,10 +191,8 @@
     [lbl setBackgroundColor:[UIColor clearColor]];
     [_regThirdView addSubview:lbl];
     
-    UIButton *btnSubmitPwd=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-271/2, 155, 271, 51)];
-    [btnSubmitPwd setTitle:@"提交密码" forState:UIControlStateNormal];
+    ACButton *btnSubmitPwd=[[ACButton alloc]initWithFrame:CGRectMake1(25, 155, 270, 50) Name:@"提交密码" Type:2];
     btnSubmitPwd.titleLabel.font=[UIFont systemFontOfSize:30];
-    [btnSubmitPwd setBackgroundImage:[UIImage imageNamed:@"buttuon1"] forState:UIControlStateNormal];
     [btnSubmitPwd addTarget:self action:@selector(setPassword:) forControlEvents:UIControlEventTouchUpInside];
     [_regThirdView addSubview:btnSubmitPwd];
     //////////第四步
@@ -233,11 +200,11 @@
     [_regFourthView addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [control addSubview:_regFourthView];
     
-    UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake1(width/2-48/2, 0, 48, 46)];
+    UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake1(135, 0, 48, 46)];
     [img1 setImage:[UIImage imageNamed:@"sucsse"]];
     [_regFourthView addSubview:img1];
     
-    _lblSuccessInfo=[[UILabel alloc]initWithFrame:CGRectMake1(width/2-271/2, 40, 271, 80)];
+    _lblSuccessInfo=[[UILabel alloc]initWithFrame:CGRectMake1(25, 40, 270, 80)];
     [_lblSuccessInfo setText:@"恭喜您，成功开通\n安存语录"];
     [_lblSuccessInfo setFont:[UIFont systemFontOfSize:25]];
     [_lblSuccessInfo setTextColor:[UIColor whiteColor]];
@@ -245,10 +212,8 @@
     [_lblSuccessInfo setTextAlignment:NSTextAlignmentCenter];
     [_lblSuccessInfo setBackgroundColor:[UIColor clearColor]];
     [_regFourthView addSubview:_lblSuccessInfo];
-    UIButton *btnDone=[[UIButton alloc]initWithFrame:CGRectMake1(width/2-271/2, 127, 271, 51)];
-    [btnDone setTitle:@"完成" forState:UIControlStateNormal];
+    ACButton *btnDone=[[ACButton alloc]initWithFrame:CGRectMake1(25, 127, 270, 50) Name:@"完成" Type:2];
     btnDone.titleLabel.font=[UIFont systemFontOfSize:30];
-    [btnDone setBackgroundImage:[UIImage imageNamed:@"buttuon1"] forState:UIControlStateNormal];
     [btnDone addTarget:self action:@selector(registerDone:) forControlEvents:UIControlEventTouchUpInside];
     [_regFourthView addSubview:btnDone];
     
@@ -357,7 +322,7 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest setMessage:@"获取验证码..."];
+//    [self.hRequest setMessage:@"获取验证码..."];
     [self.hRequest setRequestCode:REQUESTCODE_GETVERIFICATIONCODE];
     [self.hRequest handle:@"v4scodeGet" signKey:nil headParams:nil requestParams:requestParams];
 }
@@ -404,7 +369,7 @@
         [self.hRequest setDelegate:self];
         [self.hRequest setController:self];
         [self.hRequest setIsShowMessage:YES];
-        [self.hRequest setMessage:@"注册信息提交中..."];
+//        [self.hRequest setMessage:@"注册信息提交中..."];
         [self.hRequest setRequestCode:REQUESTCODE_SIGNUP];
         [self.hRequest handle:@"v4Signup" signKey:nil headParams:nil requestParams:requestParams];
     }
@@ -472,11 +437,7 @@
 {
     __block CGRect curFrame=self.view.frame;
     [UIView animateWithDuration:0.3f animations:^{
-        if(IOS7){
-            curFrame.origin.y=0;
-        }else{
-            curFrame.origin.y=20;
-        }
+        curFrame.origin.y=0;
         self.view.frame=curFrame;
     }];
 }

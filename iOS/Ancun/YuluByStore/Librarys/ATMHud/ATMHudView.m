@@ -75,7 +75,7 @@
 		self.layer.shadowOffset = CGSizeMake(0.0, 3.0);
 		self.layer.shadowOpacity = 0.4;
 		
-		progressRect = CGRectMake1(0, 0, 210, 20);
+		progressRect = CGRectMake(0, 0, 210, 20);
 		activityStyle = UIActivityIndicatorViewStyleWhite;
 		activitySize = CGSizeMake(20, 20);
     }
@@ -106,8 +106,8 @@
 
 - (void)calculate {
 	if (!caption || [caption isEqualToString:@""]) {
-		activityRect = CGRectMake1(p.margin, p.margin, activitySize.width, activitySize.height);
-		targetBounds = CGRectMake1(0, 0, p.margin*2+activitySize.width, p.margin*2+activitySize.height);
+		activityRect = CGRectMake(p.margin, p.margin, activitySize.width, activitySize.height);
+		targetBounds = CGRectMake(0, 0, p.margin*2+activitySize.width, p.margin*2+activitySize.height);
 	} else {
 		BOOL hasFixedSize = NO;
 		CGSize captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
@@ -119,7 +119,7 @@
 			}
 			hasFixedSize = YES;
 			captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(s.width-p.margin*2, 200) lineBreakMode:UILineBreakModeWordWrap];
-			targetBounds = CGRectMake1(0, 0, s.width, s.height);
+			targetBounds = CGRectMake(0, 0, s.width, s.height);
 		}
 		
 		captionRect = CGRectZero;
@@ -134,9 +134,9 @@
 					if (captionSize.width+p.margin*2 < progressRect.size.width) {
 						captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(progressRect.size.width, 200) lineBreakMode:UILineBreakModeWordWrap];
 						captionRect.size = captionSize;
-						targetBounds = CGRectMake1(0, 0, progressRect.size.width+p.margin*2, captionSize.height+p.margin*2+adjustment);
+						targetBounds = CGRectMake(0, 0, progressRect.size.width+p.margin*2, captionSize.height+p.margin*2+adjustment);
 					} else {
-						targetBounds = CGRectMake1(0, 0, captionSize.width+p.margin*2, captionSize.height+p.margin*2+adjustment);
+						targetBounds = CGRectMake(0, 0, captionSize.width+p.margin*2, captionSize.height+p.margin*2+adjustment);
 					}
 				} else {
 					if (image) {
@@ -144,7 +144,7 @@
 					} else if (showActivity) {
 						adjustment = p.padding+activitySize.height;
 					}
-					targetBounds = CGRectMake1(0, 0, captionSize.width+p.margin*2, captionSize.height+p.margin*2+adjustment);
+					targetBounds = CGRectMake(0, 0, captionSize.width+p.margin*2, captionSize.height+p.margin*2+adjustment);
 				}
 			} else if (p.accessoryPosition == ATMHudAccessoryPositionLeft || p.accessoryPosition == ATMHudAccessoryPositionRight) {
 				if (image) {
@@ -152,7 +152,7 @@
 				} else if (showActivity) {
 					adjustment = p.padding+activitySize.height;
 				}
-				targetBounds = CGRectMake1(0, 0, captionSize.width+p.margin*2+adjustment, captionSize.height+p.margin*2);
+				targetBounds = CGRectMake(0, 0, captionSize.width+p.margin*2+adjustment, captionSize.height+p.margin*2);
 			}
 		} else {
 			if (p.accessoryPosition == ATMHudAccessoryPositionTop || p.accessoryPosition == ATMHudAccessoryPositionBottom) {
@@ -176,14 +176,14 @@
 					captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
 					captionRect.size = captionSize;
 					
-					targetBounds = CGRectMake1(0, 0, captionSize.width+2*p.margin, targetBounds.size.height);
+					targetBounds = CGRectMake(0, 0, captionSize.width+2*p.margin, targetBounds.size.height);
 					marginX = p.margin;
 				}
 				
 				int deltaHeight = targetBounds.size.height-(adjustment+captionSize.height);
 				marginY = 0.5*deltaHeight;
 				if (marginY < p.margin) {
-					targetBounds = CGRectMake1(0, 0, targetBounds.size.width, captionSize.height+2*p.margin+adjustment);
+					targetBounds = CGRectMake(0, 0, targetBounds.size.width, captionSize.height+2*p.margin+adjustment);
 					marginY = p.margin;
 				}
 			} else if (p.accessoryPosition == ATMHudAccessoryPositionLeft || p.accessoryPosition == ATMHudAccessoryPositionRight) {
@@ -199,14 +199,14 @@
 					captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
 					captionRect.size = captionSize;
 					
-					targetBounds = CGRectMake1(0, 0, adjustment+captionSize.width+2*p.margin, targetBounds.size.height);
+					targetBounds = CGRectMake(0, 0, adjustment+captionSize.width+2*p.margin, targetBounds.size.height);
 					marginX = p.margin;
 				}
 				
 				int deltaHeight = targetBounds.size.height-captionSize.height;
 				marginY = 0.5*deltaHeight;
 				if (marginY < p.margin) {
-					targetBounds = CGRectMake1(0, 0, targetBounds.size.width, captionSize.height+2*p.margin);
+					targetBounds = CGRectMake(0, 0, targetBounds.size.width, captionSize.height+2*p.margin);
 					marginY = p.margin;
 				}
 			}
@@ -214,14 +214,14 @@
 		
 		switch (p.accessoryPosition) {
 			case ATMHudAccessoryPositionTop: {
-				activityRect = CGRectMake1((targetBounds.size.width-activitySize.width)*0.5, marginY, activitySize.width, activitySize.height);
+				activityRect = CGRectMake((targetBounds.size.width-activitySize.width)*0.5, marginY, activitySize.width, activitySize.height);
 				
 				imageRect = CGRectZero;
 				imageRect.origin.x = (targetBounds.size.width-image.size.width)*0.5;
 				imageRect.origin.y = marginY;
 				imageRect.size = image.size;
 				
-				progressRect = CGRectMake1((targetBounds.size.width-progressRect.size.width)*0.5, marginY, progressRect.size.width, progressRect.size.height);
+				progressRect = CGRectMake((targetBounds.size.width-progressRect.size.width)*0.5, marginY, progressRect.size.width, progressRect.size.height);
 				
 				captionRect.origin.x = (targetBounds.size.width-captionSize.width)*0.5;
 				captionRect.origin.y = adjustment+marginY;
@@ -229,7 +229,7 @@
 			}
 				
 			case ATMHudAccessoryPositionRight: {
-				activityRect = CGRectMake1(marginX+p.padding+captionSize.width, (targetBounds.size.height-activitySize.height)*0.5, activitySize.width, activitySize.height);
+				activityRect = CGRectMake(marginX+p.padding+captionSize.width, (targetBounds.size.height-activitySize.height)*0.5, activitySize.width, activitySize.height);
 				
 				imageRect = CGRectZero;
 				imageRect.origin.x = marginX+p.padding+captionSize.width;
@@ -242,14 +242,14 @@
 			}
 				
 			case ATMHudAccessoryPositionBottom: {
-				activityRect = CGRectMake1((targetBounds.size.width-activitySize.width)*0.5, captionRect.size.height+marginY+p.padding, activitySize.width, activitySize.height);
+				activityRect = CGRectMake((targetBounds.size.width-activitySize.width)*0.5, captionRect.size.height+marginY+p.padding, activitySize.width, activitySize.height);
 				
 				imageRect = CGRectZero;
 				imageRect.origin.x = (targetBounds.size.width-image.size.width)*0.5;
 				imageRect.origin.y = captionRect.size.height+marginY+p.padding;
 				imageRect.size = image.size;
 				
-				progressRect = CGRectMake1((targetBounds.size.width-progressRect.size.width)*0.5, captionRect.size.height+marginY+p.padding, progressRect.size.width, progressRect.size.height);
+				progressRect = CGRectMake((targetBounds.size.width-progressRect.size.width)*0.5, captionRect.size.height+marginY+p.padding, progressRect.size.width, progressRect.size.height);
 				
 				captionRect.origin.x = (targetBounds.size.width-captionSize.width)*0.5;
 				captionRect.origin.y = marginY;
@@ -257,7 +257,7 @@
 			}
 				
 			case ATMHudAccessoryPositionLeft: {
-				activityRect = CGRectMake1(marginX, (targetBounds.size.height-activitySize.height)*0.5, activitySize.width, activitySize.height);
+				activityRect = CGRectMake(marginX, (targetBounds.size.height-activitySize.height)*0.5, activitySize.width, activitySize.height);
 				
 				imageRect = CGRectZero;
 				imageRect.origin.x = marginX;
@@ -359,9 +359,9 @@
 	switch (mode) {
 		case ATMHudApplyModeShow: {
 			if (CGPointEqualToPoint(p.center, CGPointZero)) {
-				self.frame = CGRectMake1((self.superview.bounds.size.width-targetBounds.size.width)*0.5, (self.superview.bounds.size.height-targetBounds.size.height)*0.5, targetBounds.size.width, targetBounds.size.height);
+				self.frame = CGRectMake((self.superview.bounds.size.width-targetBounds.size.width)*0.5, (self.superview.bounds.size.height-targetBounds.size.height)*0.5, targetBounds.size.width, targetBounds.size.height);
 			} else {
-				self.bounds = CGRectMake1(0, 0, targetBounds.size.width, targetBounds.size.height);
+				self.bounds = CGRectMake(0, 0, targetBounds.size.width, targetBounds.size.height);
 				self.center = p.center;
 			}
 			
@@ -406,7 +406,7 @@
 			backgroundLayer.bounds = targetBounds;
 			
 			captionLayer.position = [self sharpPoint:CGPointMake(captionRect.origin.x, captionRect.origin.y)];
-			captionLayer.bounds = CGRectMake1(0, 0, captionRect.size.width, captionRect.size.height);
+			captionLayer.bounds = CGRectMake(0, 0, captionRect.size.width, captionRect.size.height);
 			CABasicAnimation *cAnimation = [CABasicAnimation animationWithKeyPath:@"caption"];
 			cAnimation.duration = 0.001;
 			cAnimation.toValue = caption;
@@ -415,10 +415,10 @@
 			
 			imageLayer.contents = (id)image.CGImage;
 			imageLayer.position = [self sharpPoint:CGPointMake(imageRect.origin.x, imageRect.origin.y)];
-			imageLayer.bounds = CGRectMake1(0, 0, imageRect.size.width, imageRect.size.height);
+			imageLayer.bounds = CGRectMake(0, 0, imageRect.size.width, imageRect.size.height);
 			
 			progressLayer.position = [self sharpPoint:CGPointMake(progressRect.origin.x, progressRect.origin.y)];
-			progressLayer.bounds = CGRectMake1(0, 0, progressRect.size.width, progressRect.size.height);
+			progressLayer.bounds = CGRectMake(0, 0, progressRect.size.width, progressRect.size.height);
 			progressLayer.progressBorderRadius = p.progressBorderRadius;
 			progressLayer.progressBorderWidth = p.progressBorderWidth;
 			progressLayer.progressBarRadius = p.progressBarRadius;
@@ -436,9 +436,9 @@
 			}
 			
 			if (CGPointEqualToPoint(p.center, CGPointZero)) {
-				self.frame = CGRectMake1((self.superview.bounds.size.width-targetBounds.size.width)*0.5, (self.superview.bounds.size.height-targetBounds.size.height)*0.5, targetBounds.size.width, targetBounds.size.height);
+				self.frame = CGRectMake((self.superview.bounds.size.width-targetBounds.size.width)*0.5, (self.superview.bounds.size.height-targetBounds.size.height)*0.5, targetBounds.size.width, targetBounds.size.height);
 			} else {
-				self.bounds = CGRectMake1(0, 0, targetBounds.size.width, targetBounds.size.height);
+				self.bounds = CGRectMake(0, 0, targetBounds.size.width, targetBounds.size.height);
 				self.center = p.center;
 			}
 			
@@ -483,8 +483,8 @@
 			imageLayer.position = [self sharpPoint:CGPointMake(imageRect.origin.x, imageRect.origin.y)];
 			progressLayer.position = [self sharpPoint:CGPointMake(progressRect.origin.x, progressRect.origin.y)];
 			
-			imageLayer.bounds = CGRectMake1(0, 0, imageRect.size.width, imageRect.size.height);
-			progressLayer.bounds = CGRectMake1(0, 0, progressRect.size.width, progressRect.size.height);
+			imageLayer.bounds = CGRectMake(0, 0, imageRect.size.width, imageRect.size.height);
+			progressLayer.bounds = CGRectMake(0, 0, progressRect.size.width, progressRect.size.height);
 			
 			progressLayer.progressBorderRadius = p.progressBorderRadius;
 			progressLayer.progressBorderWidth = p.progressBorderWidth;
@@ -492,7 +492,7 @@
 			progressLayer.progressBarInset = p.progressBarInset;
 			
 			captionLayer.position = [self sharpPoint:CGPointMake(captionRect.origin.x, captionRect.origin.y)];
-			captionLayer.bounds = CGRectMake1(0, 0, captionRect.size.width, captionRect.size.height);
+			captionLayer.bounds = CGRectMake(0, 0, captionRect.size.width, captionRect.size.height);
 			
 			imageLayer.contents = (id)image.CGImage;
 			[CATransaction commit];

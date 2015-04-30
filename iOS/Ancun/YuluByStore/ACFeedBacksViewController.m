@@ -7,6 +7,7 @@
 //
 
 #import "ACFeedBacksViewController.h"
+#import "LoginTextField.h"
 
 @interface ACFeedBacksViewController () <UITextViewDelegate,UITextFieldDelegate>
 
@@ -27,42 +28,34 @@
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
-        UIControl *container=nil;
-        if(IOS7){
-            container=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-        }else{
-            container=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-        }
+        UIControl *container=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, WIDTH, HEIGHT-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
         [container addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:container];
         
-        UIControl *view=[[UIControl alloc]initWithFrame:CGRectMake1(14.5, 10, 291, 194)];
-        [view addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
-        [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]]];
+        UIImageView *view=[[UIImageView alloc]initWithFrame:CGRectMake1(14.5, 10, 291, 194)];
+        [view setUserInteractionEnabled:YES];
+        [view setImage:[UIImage imageNamed:@"bg1"]];
         [container addSubview:view];
         
         tvContent=[[UITextView alloc] initWithFrame:CGRectMake1(17, 21.25, 257, 87)];
-        [tvContent setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bigtxtbg"]]];
+        tvContent.userInteractionEnabled=YES;
+        tvContent.layer.cornerRadius = 5;
+        tvContent.layer.masksToBounds = YES;
         [tvContent setDelegate:self];
         [view addSubview:tvContent];
         
-        lblContentPlaceholder=[[UILabel alloc]initWithFrame:CGRectMake1(5, IOS7?5:0, 247, 20)];
+        lblContentPlaceholder=[[UILabel alloc]initWithFrame:CGRectMake1(5, 5, 247, 20)];
         [lblContentPlaceholder setText:@"请输入反馈信息，我们将为您不断改进"];
         [lblContentPlaceholder setFont:[UIFont systemFontOfSize:13]];
         [lblContentPlaceholder setTextColor:[UIColor grayColor]];
         [lblContentPlaceholder setBackgroundColor:[UIColor clearColor]];
         [tvContent addSubview:lblContentPlaceholder];
         
-        txtEmail=[[UITextField alloc] initWithFrame:CGRectMake1(17, 128, 257, 45)];
-        [txtEmail setPlaceholder:@"电子邮箱(可选)"];
-        [txtEmail setFont:[UIFont systemFontOfSize: 15]];
-        [txtEmail setClearButtonMode:UITextFieldViewModeWhileEditing];
-        [txtEmail setTextAlignment:NSTextAlignmentCenter];
-        [txtEmail setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-        [txtEmail setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-        [txtEmail setBackground:[UIImage imageNamed:@"txtbg"]];
+        txtEmail=[[LoginTextField alloc] initWithFrame:CGRectMake1(17, 128, 257, 45) Placeholder:@"电子邮箱(可选)"];
+        txtEmail.layer.cornerRadius = 5;
         [txtEmail setDelegate:self];
-        [txtEmail setText:@""];
+        [txtEmail setFont:[UIFont systemFontOfSize: 15]];
+        [txtEmail setKeyboardType:UIKeyboardTypePhonePad];
         [view addSubview:txtEmail];
         
         UIButton *btnSubmit=[[UIButton alloc]initWithFrame:CGRectMake1(14.5, 224, 291, 40)];
@@ -120,11 +113,7 @@
 {
     __block CGRect curFrame=self.view.frame;
     [UIView animateWithDuration:0.3f animations:^{
-        if(IOS7){
-            curFrame.origin.y=64;
-        }else{
-            curFrame.origin.y=0;
-        }
+        curFrame.origin.y=64;
         self.view.frame=curFrame;
     }];
 }

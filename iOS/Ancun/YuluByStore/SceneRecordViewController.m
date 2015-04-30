@@ -15,7 +15,6 @@
 
 @implementation SceneRecordViewController{
     RecordsSQL *mRecordsSQL;
-    BOOL isAddTabBar;
 }
 
 - (id)init {
@@ -24,29 +23,23 @@
         self.title=@"现场录音";
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
-        _playerView=[[ACPlayerView alloc]initWithController:self];
-        CGFloat height=[_playerView frame].size.height;
-        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 0, 320, self.view.bounds.size.height-height)];
+        CGFloat playerHeight=67;
+        CGFloat sNavHeihgt=STATUSHEIGHT+TOPNAVIGATIONHEIGHT;
+        
+        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 0, WIDTH, HEIGHT-playerHeight)];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
         [self.view addSubview:self.tableView];
         
+        _playerView=[[ACPlayerView alloc]initWithFrame:CGRectMake1(0, HEIGHT-playerHeight-sNavHeihgt,WIDTH,playerHeight)];
+        [_playerView setController:self];
+        [self.view addSubview:_playerView];
+        
         mRecordsSQL=[[RecordsSQL alloc]init];
         [self reloadData];
     }
     return self;
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    if(!isAddTabBar){
-        isAddTabBar=YES;
-        CGFloat height=[_playerView frame].size.height;
-        CGFloat topHeight=self.view.bounds.size.height-height;
-        [_playerView setFrame:CGRectMake1(0,topHeight,320,height)];
-        [self.view addSubview:_playerView];
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

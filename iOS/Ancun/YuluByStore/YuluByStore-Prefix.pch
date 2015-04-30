@@ -35,13 +35,13 @@
 CG_INLINE CGFloat
 CGWidth(CGFloat width)
 {
-    ACAppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    ACAppDelegate *myDelegate = (ACAppDelegate*)[[UIApplication sharedApplication] delegate];
     return width * myDelegate.autoSizeScaleX;
 }
 CG_INLINE CGFloat
 CGHeight(CGFloat height)
 {
-    ACAppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    ACAppDelegate *myDelegate = (ACAppDelegate*)[[UIApplication sharedApplication] delegate];
     return height * myDelegate.autoSizeScaleY;
 }
 CG_INLINE CGSize
@@ -55,7 +55,7 @@ CGSizeMake1(CGFloat width, CGFloat height)
 CG_INLINE CGRect
 CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 {
-    ACAppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    ACAppDelegate *myDelegate = (ACAppDelegate*)[[UIApplication sharedApplication] delegate];
     CGRect rect;
     rect.origin.x = x * myDelegate.autoSizeScaleX;
     rect.origin.y = y * myDelegate.autoSizeScaleY;
@@ -67,12 +67,18 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #endif
 #define IOS6 [[[UIDevice currentDevice] systemVersion]floatValue]>=6
 #define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
+#define inch35 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define inch4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define WIDTH 320
+#define HEIGHT inch35?480:568
+#define TABHEIGHT 49
+
 //缓存常量唯一方法
 #define CACHE_DATA [NSString stringWithFormat:@"%@-%@",[NSString stringWithUTF8String:object_getClassName(self)],ACCESSID]
 #define CACHE_CONSTANT(STRING) [NSString stringWithFormat:@"%@-%@-%@",STRING,CACHE_DATA]
 //状态栏高度
-#define STATUSHEIGHT 20
+#define STATUSHEIGHT 10
 //顶部导航条高度
 #define TOPNAVIGATIONHEIGHT 44
 //底部标签高度
@@ -87,6 +93,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 //字体颜色
 #define FONTCOLOR2 [UIColor colorWithRed:(65/255.0) green:(194/255.0) blue:(252/255.0) alpha:1]
 #define TABNORMALBGCOLOR [UIColor colorWithRed:(253/255.0) green:(227/255.0) blue:(91/255.0) alpha:1]
+#define BGCOLOR [UIColor colorWithRed:(34/255.0) green:(132/255.0) blue:(214/255.0) alpha:1]
 //常量
 #define APPNAME @"安存语录"
 //微信注册APP

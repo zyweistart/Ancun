@@ -37,4 +37,6 @@
 
 + (Response*)toResponseData:(NSString*)repsonseString;
 
++ (UIImage*)createImageWithColor:(UIColor*)color;
+
 @end

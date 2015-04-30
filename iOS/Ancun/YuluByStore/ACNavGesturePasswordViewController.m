@@ -31,7 +31,7 @@
             cellCount=1;
         }
         [self.view setBackgroundColor:[UIColor whiteColor]];
-        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
+        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];

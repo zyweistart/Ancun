@@ -29,42 +29,13 @@
 
 - (id)init {
     
-    UIView *container=nil;
-    if(IOS7){
-        container=[[UIView alloc]initWithFrame:CGRectMake1(0, STATUSHEIGHT+TOPNAVIGATIONHEIGHT, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-    }else{
-        container=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-    }
-    [container setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:container];
-    
-    int topHeight=91;
-    
-    self.tableView=[[UITableView alloc]initWithFrame:
-                    CGRectMake1(0, topHeight,
-                               container.frame.size.width,
-                               container.frame.size.height-topHeight)];
-    [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
-    [container addSubview:self.tableView];
-    if (_refreshHeaderView == nil) {
-        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:
-                                           CGRectMake1(0.0f,
-                                                      0.0f - self.tableView.bounds.size.height,
-                                                      self.view.bounds.size.width,
-                                                      self.tableView.bounds.size.height)];
-        view.delegate = self;
-        [self.tableView addSubview:view];
-        _refreshHeaderView = view;
-    }
-    [_refreshHeaderView refreshLastUpdatedDate];
-    
     self = [super init];
 
     if (self) {
         
         self.title=@"我的账户";
+        
+        UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 91)];
         
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 15, 300, 21)];
         [lbl setFont:[UIFont systemFontOfSize:15]];
@@ -72,7 +43,7 @@
         [lbl setBackgroundColor:[UIColor whiteColor]];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [lbl setText:[NSString stringWithFormat:@"当前账户：%@",[[[Config Instance]userInfo]objectForKey:@"phone"]]];
-        [container addSubview:lbl];
+        [topView addSubview:lbl];
         
         _leftTopTab=[[UIButton alloc]initWithFrame:CGRectMake1(4, 51, 156, 35)];
         [_leftTopTab setTitle:@"充值套餐" forState:UIControlStateNormal];
@@ -80,7 +51,7 @@
         _leftTopTab.showsTouchWhenHighlighted = YES;//指定按钮被按下时发光
         [_leftTopTab setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_leftTopTab addTarget:self action:@selector(leftTopButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        [container addSubview:_leftTopTab];
+        [topView addSubview:_leftTopTab];
         
         _rightTopTab=[[UIButton alloc]initWithFrame:CGRectMake1(160, 51, 156, 35)];
         [_rightTopTab setTitle:@"使用记录" forState:UIControlStateNormal];
@@ -88,7 +59,8 @@
         _rightTopTab.showsTouchWhenHighlighted = YES;//指定按钮被按下时发光
         [_rightTopTab setTitleColor:FONTCOLOR2 forState:UIControlStateNormal];
         [_rightTopTab addTarget:self action:@selector(rightTopButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        [container addSubview:_rightTopTab];
+        [topView addSubview:_rightTopTab];
+        [self.tableView setTableHeaderView:topView];
         
         //增加充值按钮
         UIButton* goRecharge= [[UIButton alloc] initWithFrame:CGRectMake1(0, 0, 70, 30)];

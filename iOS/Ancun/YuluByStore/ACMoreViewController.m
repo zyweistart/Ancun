@@ -25,20 +25,16 @@
     self = [super init];
     if(self){
         self.title=@"更多";
-        UIScrollView *container=nil;
-        if(IOS7){
-            container=[[UIScrollView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-STATUSHEIGHT-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-        }else{
-            container=[[UIScrollView alloc]initWithFrame:CGRectMake1(0, 0, self.view.frame.size.width, self.view.frame.size.height-TOPNAVIGATIONHEIGHT-BOTTOMTABBARHEIGHT)];
-        }
-        int length=9;
-        [container setContentSize:CGSizeMake(self.view.frame.size.width, 10+length*69.5+1*(length-1)+10)];
+        UIScrollView *container=[[UIScrollView alloc]initWithFrame:self.view.bounds];
+        [container setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        int length=8;
+        [container setContentSize:CGSizeMake1(WIDTH, 10+length*69.5+1*(length-1)+10)];
         [container setScrollEnabled:YES];
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"morebg"]]];
+//        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"morebg"]]];
         [self.view addSubview:container];
         
-        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"检测新版本",@"正在计算数据大小",@"应用分享",@"重新登录", nil];
-        NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"4",@"9",@"6", nil];
+        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"检测新版本",@"正在计算数据大小",@"重新登录",@"应用分享", nil];
+        NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"4",@"6",@"9", nil];
         
         for(int i=0;i<length;i++){
             UIButton *btnBg=[[UIButton alloc]initWithFrame:CGRectMake1(15.75, 10+i*70+1*i,289,70)];
