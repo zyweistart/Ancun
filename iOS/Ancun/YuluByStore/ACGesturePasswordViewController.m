@@ -43,7 +43,7 @@
         self.lockView.contentInsets = UIEdgeInsetsMake(120, 20, 100, 20);
         errorCount=0;
         
-        self.lblInfo=[[UILabel alloc]initWithFrame:CGRectMake1(0, inch35?30:50, self.view.frame.size.width, 30)];
+        self.lblInfo=[[UILabel alloc]initWithFrame:CGRectMake1(0, inch35?50:30, WIDTH, 30)];
         [self.lblInfo setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
         [self.lblInfo setTextColor:[UIColor whiteColor]];
         [self.lblInfo setBackgroundColor:[UIColor clearColor]];
