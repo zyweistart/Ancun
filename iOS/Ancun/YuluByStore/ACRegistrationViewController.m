@@ -43,7 +43,7 @@
     [control addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:control];
     
-    UIButton *btnBack=[[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 60, 30)];
+    UIButton *btnBack=[[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 30, 30)];
     [btnBack setTitle:@"返回" forState:UIControlStateNormal];
     btnBack.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:15];
     [btnBack setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

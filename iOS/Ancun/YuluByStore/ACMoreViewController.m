@@ -83,7 +83,7 @@
             [FileUtils removeCacheFile];
 //            [Common setCache:[Config Instance].cacheKey data:nil];
             cachesize=0;
-            [Common alert:@"清除完成"];
+//            [Common alert:@"清除完成"];
             [NSThread detachNewThreadSelector:@selector(calculateTotal) toTarget:self withObject:nil];
         }
     }
