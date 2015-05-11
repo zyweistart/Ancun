@@ -24,18 +24,18 @@
         self.title=@"更多";
         UIScrollView *container=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [container setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        int length=8;
+        int length=7;
         [container setContentSize:CGSizeMake1(WIDTH, 10+length*69.5+1*(length-1)+10)];
         [container setScrollEnabled:YES];
 //        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"morebg"]]];
         [self.view addSubview:container];
         
-        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"检测新版本",@"正在计算数据大小",@"重新登录",@"应用分享", nil];
+        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"正在计算数据大小",@"重新登录",@"检测新版本",@"应用分享", nil];
         NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"4",@"6",@"9", nil];
         
         for(int i=0;i<length;i++){
             UIButton *btnBg=[[UIButton alloc]initWithFrame:CGRectMake1(15.75, 10+i*70+1*i,289,70)];
-            if(i==6){
+            if(i==5){
                 lblCachName=[[UILabel alloc]initWithFrame:CGRectMake1(40, 21, 200, 28)];
                 [lblCachName setText:[names objectAtIndex:i]];
                 [lblCachName setFont:[UIFont systemFontOfSize:22]];
@@ -116,10 +116,10 @@
         ACNavGesturePasswordViewController *navGesturePasswordViewController=[[ACNavGesturePasswordViewController alloc]init];
         navGesturePasswordViewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:navGesturePasswordViewController animated:YES];
+//    }else if(sender.tag==5){
+//        //检测新版本
+//        [self checkVersion:YES];
     }else if(sender.tag==5){
-        //检测新版本
-        [self checkVersion:YES];
-    }else if(sender.tag==6){
         //清理缓存
         if([[Config Instance]isCalculateTotal]){
             [Common alert:@"正在计算数据大小"];
@@ -130,7 +130,7 @@
                 [Common alert:@"当前的数据文件为0KB，无须清除"];
             }
         }
-    }else if(sender.tag==7){
+    }else if(sender.tag==6){
 //        if(IOS6){
 //            //应用分享
 //            NSArray *activity=nil;
