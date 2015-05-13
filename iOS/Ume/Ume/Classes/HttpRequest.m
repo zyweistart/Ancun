@@ -160,10 +160,8 @@
     } else if( [_delegate respondsToSelector: @selector(requestFinishedByResponse:requestCode:)]) {
         NSString *responseString =[[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
         Response *response=[Response toData:responseString];
-        //成功标记
-        [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
         if(![response successFlag]){
-            [Common alert:[response msg]];
+            [Common alert:[response message]];
         }
         [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
     }
@@ -184,6 +182,8 @@
         [_delegate connection:connection didFailWithError:error];
     } else if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
         [_delegate requestFailed:self.requestCode];
+    } else{
+        [Common alert:@"网络异常，请重试"];
     }
     //隐藏下载进度条
     if(_atmHud) {

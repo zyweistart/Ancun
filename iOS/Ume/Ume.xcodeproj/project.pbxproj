@@ -149,15 +149,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C90FF1EA1B033AE500280991 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				C91217941B02EFC200D9C57B /* CoreGraphics.framework */,
+				C91217981B02EFD200D9C57B /* Foundation.framework */,
+				C91217961B02EFCA00D9C57B /* UIKit.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		C91217091B02ED7B00D9C57B = {
 			isa = PBXGroup;
 			children = (
-				C91217981B02EFD200D9C57B /* Foundation.framework */,
-				C91217961B02EFCA00D9C57B /* UIKit.framework */,
-				C91217941B02EFC200D9C57B /* CoreGraphics.framework */,
+				C90FF1EA1B033AE500280991 /* Framework */,
+				C91217131B02ED7B00D9C57B /* Products */,
 				C91217141B02ED7B00D9C57B /* Ume */,
 				C912172E1B02ED7C00D9C57B /* UmeTests */,
-				C91217131B02ED7B00D9C57B /* Products */,
 			);
 			sourceTree = "<group>";
 		};

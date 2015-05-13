@@ -1,10 +1,3 @@
-//
-//  HttpConnection.h
-//  Ancun
-//
-//  Created by Start on 13-9-12.
-//
-//
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "Response.h"
@@ -20,10 +13,10 @@
 @interface HttpRequest : NSObject<NSURLConnectionDataDelegate,UIActionSheetDelegate>
 //请求码
 @property int requestCode;
-//是否为文件下载
-@property BOOL isFileDownload;
 //是否显示等待信息框
 @property BOOL isShowMessage;
+//是否为文件下载
+@property BOOL isFileDownload;
 //多文件上传数据提交
 @property BOOL isMultipartFormDataSubmit;
 //等待信息框的提示信息

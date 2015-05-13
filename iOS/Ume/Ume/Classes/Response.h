@@ -4,7 +4,7 @@
 
 @property BOOL successFlag;
 @property (strong,nonatomic) NSString *code;
-@property (strong,nonatomic) NSString *msg;
+@property (strong,nonatomic) NSString *message;
 @property (strong,nonatomic) NSData *data;
 @property (strong,nonatomic) NSString *responseString;
 @property (strong,nonatomic) NSDictionary *resultJSON;
