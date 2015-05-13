@@ -6,22 +6,16 @@
 - (id)init{
     self=[super init];
     if(self){
+        self.currentPage=0;
         self.isFirstRefresh=YES;
         self.dataItemArray=[[NSMutableArray alloc]init];
-//        [self.dataItemArray addObject:@"a1"];
-//        [self.dataItemArray addObject:@"a2"];
-//        [self.dataItemArray addObject:@"a3"];
-//        [self.dataItemArray addObject:@"a4"];
-        self.currentPage=0;
+        [self.dataItemArray addObject:@"a1"];
+        [self.dataItemArray addObject:@"a2"];
+        [self.dataItemArray addObject:@"a3"];
+        [self.dataItemArray addObject:@"a4"];
+        [self buildTableViewWithView:self.view];
     }
     return self;
-}
-
-#pragma mark - View lifecycle
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self buildTableViewWithView:self.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -51,6 +45,7 @@
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
         [self.tableView setPullDelegate:self];
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [view addSubview:self.tableView];
     }
     return self.tableView;
@@ -97,6 +92,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         cell.textLabel.text = @"数据项";
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }else{
         static NSString *CNOCell = @"NOCell";
@@ -135,7 +131,8 @@
 
 - (void)loadHttp
 {
-    //子类重写该方法完成网络请求
+    //注:子类必须重写该方法完成网络请求
+    [self performSelector:@selector(loadDone) withObject:nil afterDelay:3.0f];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
