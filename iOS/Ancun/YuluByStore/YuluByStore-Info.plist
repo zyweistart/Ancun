@@ -50,6 +50,16 @@
 				<string>wx18b0114ee26e8936</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>ancun</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ancun95105856</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>7</string>

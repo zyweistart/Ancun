@@ -9,7 +9,7 @@
 #endif
 
 #pragma mark 测试环境宏定义
-//#define TEST
+#define TEST
 #pragma mark 越狱版宏定义
 //#define JAILBREAK
 
