@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
+#import "TabBarFrameViewController.h"
 
 @interface AppDelegate ()
 
@@ -28,10 +28,12 @@
     //状态栏
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController=[[UINavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+    UINavigationController *tabBarFrameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[TabBarFrameViewController alloc]init]];
+    [[tabBarFrameViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[tabBarFrameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    self.window.rootViewController=tabBarFrameViewControllerNav;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

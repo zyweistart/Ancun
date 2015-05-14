@@ -24,8 +24,6 @@
 
 + (UIImage*)createImageWithColor:(UIColor*)color;
 
-+ (NSString*)getString:(NSString*)data;
-
-+ (NSString*)convertTime:(NSString*)time;
++ (NSString*)getString:(NSString*)data DefaultValue:(NSString*)value;
 
 @end

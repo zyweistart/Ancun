@@ -17,6 +17,7 @@
 - (id)init{
     self=[super init];
     if(self){
+        self.title=@"登陆";
         self.isFirstRefresh=NO;
     }
     return self;

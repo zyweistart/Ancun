@@ -15,6 +15,13 @@
 		C91217951B02EFC200D9C57B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217941B02EFC200D9C57B /* CoreGraphics.framework */; };
 		C91217971B02EFCA00D9C57B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217961B02EFCA00D9C57B /* UIKit.framework */; };
 		C91217991B02EFD200D9C57B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217981B02EFD200D9C57B /* Foundation.framework */; };
+		C9480BD01B047C590009344F /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BCF1B047C590009344F /* TabBarView.m */; };
+		C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BD21B047CD00009344F /* TabBarFrameViewController.m */; };
+		C9480BF01B048CED0009344F /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BEF1B048CED0009344F /* MessageCell.m */; };
+		C94997531B0475470023107F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997521B0475470023107F /* MainViewController.m */; };
+		C94997561B0477BD0023107F /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997551B0477BD0023107F /* MessageViewController.m */; };
+		C94997591B0477DE0023107F /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997581B0477DE0023107F /* DiscoverViewController.m */; };
+		C949975C1B0477EC0023107F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C949975B1B0477EC0023107F /* MyViewController.m */; };
 		C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5981B02F5120045A353 /* BaseTableViewController.m */; };
 		C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59A1B02F5120045A353 /* BaseViewController.m */; };
 		C970F5D01B02F5120045A353 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59C1B02F5120045A353 /* Common.m */; };
@@ -45,6 +52,7 @@
 		C970F5EC1B02F5CF0045A353 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5EB1B02F5CF0045A353 /* LoginViewController.m */; };
 		C970F5EF1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5EE1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m */; };
 		C970F5F21B02F6600045A353 /* UIButton+TitleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5F11B02F6600045A353 /* UIButton+TitleImage.m */; };
+		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +80,20 @@
 		C91217961B02EFCA00D9C57B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C91217981B02EFD200D9C57B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C912179A1B02F05C00D9C57B /* Ume-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ume-Prefix.pch"; sourceTree = "<group>"; };
+		C9480BCE1B047C590009344F /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
+		C9480BCF1B047C590009344F /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
+		C9480BD11B047CD00009344F /* TabBarFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarFrameViewController.h; sourceTree = "<group>"; };
+		C9480BD21B047CD00009344F /* TabBarFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarFrameViewController.m; sourceTree = "<group>"; };
+		C9480BEE1B048CED0009344F /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		C9480BEF1B048CED0009344F /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		C94997511B0475470023107F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C94997521B0475470023107F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C94997541B0477BD0023107F /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		C94997551B0477BD0023107F /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		C94997571B0477DE0023107F /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		C94997581B0477DE0023107F /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		C949975A1B0477EC0023107F /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		C949975B1B0477EC0023107F /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		C970F5971B02F5120045A353 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C970F5981B02F5120045A353 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C970F5991B02F5120045A353 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -126,6 +148,8 @@
 		C970F5EE1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEGOTableViewPullRefreshViewController.m; sourceTree = "<group>"; };
 		C970F5F01B02F6600045A353 /* UIButton+TitleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+TitleImage.h"; sourceTree = "<group>"; };
 		C970F5F11B02F6600045A353 /* UIButton+TitleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+TitleImage.m"; sourceTree = "<group>"; };
+		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
+		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,10 +255,20 @@
 		C912173E1B02EDAC00D9C57B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C9480BED1B048CDD0009344F /* Cell */,
 				C970F5E91B02F5BD0045A353 /* Controller */,
 				C970F5F31B03250E0045A353 /* View */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		C9480BED1B048CDD0009344F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C9480BEE1B048CED0009344F /* MessageCell.h */,
+				C9480BEF1B048CED0009344F /* MessageCell.m */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		C970F5961B02F5120045A353 /* Classes */ = {
@@ -356,6 +390,16 @@
 			children = (
 				C970F5EA1B02F5CF0045A353 /* LoginViewController.h */,
 				C970F5EB1B02F5CF0045A353 /* LoginViewController.m */,
+				C94997511B0475470023107F /* MainViewController.h */,
+				C94997521B0475470023107F /* MainViewController.m */,
+				C94997541B0477BD0023107F /* MessageViewController.h */,
+				C94997551B0477BD0023107F /* MessageViewController.m */,
+				C94997571B0477DE0023107F /* DiscoverViewController.h */,
+				C94997581B0477DE0023107F /* DiscoverViewController.m */,
+				C949975A1B0477EC0023107F /* MyViewController.h */,
+				C949975B1B0477EC0023107F /* MyViewController.m */,
+				C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */,
+				C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -363,6 +407,10 @@
 		C970F5F31B03250E0045A353 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C9480BCE1B047C590009344F /* TabBarView.h */,
+				C9480BCF1B047C590009344F /* TabBarView.m */,
+				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
+				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -475,14 +523,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9480BD01B047C590009344F /* TabBarView.m in Sources */,
 				C970F5DC1B02F5120045A353 /* EGORefreshTableHeaderView.m in Sources */,
 				C970F5EC1B02F5CF0045A353 /* LoginViewController.m in Sources */,
+				C94997561B0477BD0023107F /* MessageViewController.m in Sources */,
 				C970F5DA1B02F5120045A353 /* ATMSoundFX.m in Sources */,
+				C94997531B0475470023107F /* MainViewController.m in Sources */,
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
+				C949975C1B0477EC0023107F /* MyViewController.m in Sources */,
 				C970F5D41B02F5120045A353 /* User.m in Sources */,
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,
+				C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */,
+				C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */,
 				C970F5DD1B02F5120045A353 /* LoadMoreTableFooterView.m in Sources */,
+				C9480BF01B048CED0009344F /* MessageCell.m in Sources */,
 				C970F5DF1B02F5120045A353 /* PullTableView.m in Sources */,
+				C94997591B0477DE0023107F /* DiscoverViewController.m in Sources */,
 				C970F5DE1B02F5120045A353 /* MessageInterceptor.m in Sources */,
 				C970F5D51B02F5120045A353 /* Reachability.m in Sources */,
 				C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */,

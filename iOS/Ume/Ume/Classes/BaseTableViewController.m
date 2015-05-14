@@ -6,6 +6,15 @@
 
 @implementation BaseTableViewController
 
+- (id)init{
+    self=[super init];
+    if(self){
+        self.dataItemArray=[[NSMutableArray alloc]init];
+        [self buildTableViewWithView:self.view];
+    }
+    return self;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
      return [self.dataItemArray count];
@@ -22,6 +31,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     cell.textLabel.text = @"数据项";
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
 

@@ -67,28 +67,15 @@
     return theImage;
 }
 
-+ (NSString*)getString:(NSString*)data
++ (NSString*)getString:(NSString*)data DefaultValue:(NSString*)value
 {
     if(data==nil){
-        return @"";
+        return value;
     }
     if([data isKindOfClass:[NSNull class]]){
-        return @"";
+        return value;
     }
     return [NSString stringWithFormat:@"%@",data];
-}
-
-+ (NSString*)convertTime:(NSString*)time
-{
-    NSString *data=[Common getString:time];
-    if([@"" isEqualToString:data]){
-        return data;
-    }
-    if([data length]<11){
-        return data;
-    }
-    NSMutableString *str=[[NSMutableString alloc]initWithString:data];
-    return [str substringWithRange:NSMakeRange(0,10)];
 }
 
 @end
