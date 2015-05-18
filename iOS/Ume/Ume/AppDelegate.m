@@ -29,11 +29,12 @@
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *tabBarFrameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[TabBarFrameViewController alloc]init]];
-    [[tabBarFrameViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[tabBarFrameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+//    UINavigationController *tabBarFrameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[TabBarFrameViewController alloc]init]];
+//    [[tabBarFrameViewControllerNav navigationBar]setBarTintColor:NAVBG];
+//    [[tabBarFrameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+//    [tabBarFrameViewControllerNav setDelegate:self];
 //    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    self.window.rootViewController=tabBarFrameViewControllerNav;
+    self.window.rootViewController=[[TabBarFrameViewController alloc]init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

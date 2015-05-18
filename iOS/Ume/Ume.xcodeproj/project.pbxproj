@@ -15,13 +15,13 @@
 		C91217951B02EFC200D9C57B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217941B02EFC200D9C57B /* CoreGraphics.framework */; };
 		C91217971B02EFCA00D9C57B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217961B02EFCA00D9C57B /* UIKit.framework */; };
 		C91217991B02EFD200D9C57B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217981B02EFD200D9C57B /* Foundation.framework */; };
-		C9480BD01B047C590009344F /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BCF1B047C590009344F /* TabBarView.m */; };
 		C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BD21B047CD00009344F /* TabBarFrameViewController.m */; };
 		C9480BF01B048CED0009344F /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BEF1B048CED0009344F /* MessageCell.m */; };
 		C94997531B0475470023107F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997521B0475470023107F /* MainViewController.m */; };
 		C94997561B0477BD0023107F /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997551B0477BD0023107F /* MessageViewController.m */; };
 		C94997591B0477DE0023107F /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997581B0477DE0023107F /* DiscoverViewController.m */; };
 		C949975C1B0477EC0023107F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C949975B1B0477EC0023107F /* MyViewController.m */; };
+		C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */; };
 		C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5981B02F5120045A353 /* BaseTableViewController.m */; };
 		C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59A1B02F5120045A353 /* BaseViewController.m */; };
 		C970F5D01B02F5120045A353 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59C1B02F5120045A353 /* Common.m */; };
@@ -80,8 +80,6 @@
 		C91217961B02EFCA00D9C57B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C91217981B02EFD200D9C57B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C912179A1B02F05C00D9C57B /* Ume-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ume-Prefix.pch"; sourceTree = "<group>"; };
-		C9480BCE1B047C590009344F /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
-		C9480BCF1B047C590009344F /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
 		C9480BD11B047CD00009344F /* TabBarFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarFrameViewController.h; sourceTree = "<group>"; };
 		C9480BD21B047CD00009344F /* TabBarFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarFrameViewController.m; sourceTree = "<group>"; };
 		C9480BEE1B048CED0009344F /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -94,6 +92,8 @@
 		C94997581B0477DE0023107F /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		C949975A1B0477EC0023107F /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		C949975B1B0477EC0023107F /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		C9637BED1B058750005323E3 /* BaseTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarViewController.h; sourceTree = "<group>"; };
+		C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarViewController.m; sourceTree = "<group>"; };
 		C970F5971B02F5120045A353 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C970F5981B02F5120045A353 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C970F5991B02F5120045A353 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -276,6 +276,8 @@
 			children = (
 				C970F5ED1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.h */,
 				C970F5EE1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m */,
+				C9637BED1B058750005323E3 /* BaseTabBarViewController.h */,
+				C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */,
 				C970F5971B02F5120045A353 /* BaseTableViewController.h */,
 				C970F5981B02F5120045A353 /* BaseTableViewController.m */,
 				C970F5991B02F5120045A353 /* BaseViewController.h */,
@@ -407,8 +409,6 @@
 		C970F5F31B03250E0045A353 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C9480BCE1B047C590009344F /* TabBarView.h */,
-				C9480BCF1B047C590009344F /* TabBarView.m */,
 				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
 				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 			);
@@ -523,7 +523,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9480BD01B047C590009344F /* TabBarView.m in Sources */,
 				C970F5DC1B02F5120045A353 /* EGORefreshTableHeaderView.m in Sources */,
 				C970F5EC1B02F5CF0045A353 /* LoginViewController.m in Sources */,
 				C94997561B0477BD0023107F /* MessageViewController.m in Sources */,
@@ -550,6 +549,7 @@
 				C970F5E81B02F5120045A353 /* MBProgressHUD.m in Sources */,
 				C970F5D91B02F5120045A353 /* ATMProgressLayer.m in Sources */,
 				C970F5EF1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
+				C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */,
 				C970F5DB1B02F5120045A353 /* ATMTextLayer.m in Sources */,
 				C970F5D31B02F5120045A353 /* Response.m in Sources */,
 				C91217181B02ED7C00D9C57B /* main.m in Sources */,

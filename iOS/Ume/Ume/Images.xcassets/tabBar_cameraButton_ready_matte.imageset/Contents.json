@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tabbar_mainbtn_bg.png"
+      "filename" : "tabBar_cameraButton_ready_matte.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "tabbar_mainbtn_bg@2x.png"
+      "filename" : "tabBar_cameraButton_ready_matte@2x.png"
     },
     {
       "idiom" : "universal",

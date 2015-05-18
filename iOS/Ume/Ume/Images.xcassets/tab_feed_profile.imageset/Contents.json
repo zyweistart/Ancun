@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tabbar_mainbtn.png"
+      "filename" : "tab_feed_profile.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "tabbar_mainbtn@2x.png"
+      "filename" : "tab_feed_profile@2x.png"
     },
     {
       "idiom" : "universal",

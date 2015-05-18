@@ -7,6 +7,7 @@
 //
 
 #import "MessageViewController.h"
+#import "LoginViewController.h"
 #import "MessageCell.h"
 
 #define DISNAME @"DISNAME"
@@ -53,6 +54,10 @@
         [cell.lblCount setHidden:YES];
     }
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 }
 
 @end
