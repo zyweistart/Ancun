@@ -1,7 +1,11 @@
 #import <UIKit/UIKit.h>
-#import "BaseTabBarViewController.h"
+#import "EAIntroView.h"
+#import "HttpRequest.h"
 
-@interface TabBarFrameViewController : BaseTabBarViewController
+
+@interface TabBarFrameViewController : UITabBarController<UITabBarControllerDelegate,EAIntroDelegate,HttpViewDelegate>
+
+@property (strong,nonatomic) HttpRequest *hRequest;
 
 @end
 

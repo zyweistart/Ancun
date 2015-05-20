@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Ancun. All rights reserved.
 //
 
-#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "BaseViewController.h"
 
-@interface LoginViewController : BaseEGOTableViewPullRefreshViewController
+@interface LoginViewController : BaseViewController
 
 @end

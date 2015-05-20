@@ -52,6 +52,13 @@
 		C970F5EC1B02F5CF0045A353 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5EB1B02F5CF0045A353 /* LoginViewController.m */; };
 		C970F5EF1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5EE1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m */; };
 		C970F5F21B02F6600045A353 /* UIButton+TitleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5F11B02F6600045A353 /* UIButton+TitleImage.m */; };
+		C9ACE8B91B0C5D4300385809 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8B61B0C5D4300385809 /* EAIntroPage.m */; };
+		C9ACE8BA1B0C5D4300385809 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8B81B0C5D4300385809 /* EAIntroView.m */; };
+		C9ACE8C01B0C621800385809 /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8BF1B0C621800385809 /* CButton.m */; };
+		C9ACE8C31B0C645000385809 /* CTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8C21B0C645000385809 /* CTextField.m */; };
+		C9ACE8C61B0C65EA00385809 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8C51B0C65EA00385809 /* CLabel.m */; };
+		C9ACE8C91B0C69E900385809 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8C81B0C69E900385809 /* RegisterViewController.m */; };
+		C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */; };
 		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +155,20 @@
 		C970F5EE1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEGOTableViewPullRefreshViewController.m; sourceTree = "<group>"; };
 		C970F5F01B02F6600045A353 /* UIButton+TitleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+TitleImage.h"; sourceTree = "<group>"; };
 		C970F5F11B02F6600045A353 /* UIButton+TitleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+TitleImage.m"; sourceTree = "<group>"; };
+		C9ACE8B51B0C5D4300385809 /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
+		C9ACE8B61B0C5D4300385809 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
+		C9ACE8B71B0C5D4300385809 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
+		C9ACE8B81B0C5D4300385809 /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
+		C9ACE8BE1B0C621800385809 /* CButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CButton.h; sourceTree = "<group>"; };
+		C9ACE8BF1B0C621800385809 /* CButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButton.m; sourceTree = "<group>"; };
+		C9ACE8C11B0C645000385809 /* CTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextField.h; sourceTree = "<group>"; };
+		C9ACE8C21B0C645000385809 /* CTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTextField.m; sourceTree = "<group>"; };
+		C9ACE8C41B0C65EA00385809 /* CLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabel.h; sourceTree = "<group>"; };
+		C9ACE8C51B0C65EA00385809 /* CLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLabel.m; sourceTree = "<group>"; };
+		C9ACE8C71B0C69E900385809 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		C9ACE8C81B0C69E900385809 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		C9ACE8CA1B0C69F200385809 /* ForgetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdViewController.h; sourceTree = "<group>"; };
+		C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdViewController.m; sourceTree = "<group>"; };
 		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
 		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -302,6 +323,7 @@
 		C970F5A61B02F5120045A353 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9ACE8B41B0C5D4300385809 /* EAIntroView */,
 				C970F5A71B02F5120045A353 /* ASIHTTP */,
 				C970F5AA1B02F5120045A353 /* ATMHud */,
 				C970F5B81B02F5120045A353 /* EGOTableViewPullRefresh */,
@@ -402,6 +424,10 @@
 				C949975B1B0477EC0023107F /* MyViewController.m */,
 				C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */,
 				C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */,
+				C9ACE8C71B0C69E900385809 /* RegisterViewController.h */,
+				C9ACE8C81B0C69E900385809 /* RegisterViewController.m */,
+				C9ACE8CA1B0C69F200385809 /* ForgetPwdViewController.h */,
+				C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -409,10 +435,27 @@
 		C970F5F31B03250E0045A353 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C9ACE8BE1B0C621800385809 /* CButton.h */,
+				C9ACE8BF1B0C621800385809 /* CButton.m */,
+				C9ACE8C41B0C65EA00385809 /* CLabel.h */,
+				C9ACE8C51B0C65EA00385809 /* CLabel.m */,
+				C9ACE8C11B0C645000385809 /* CTextField.h */,
+				C9ACE8C21B0C645000385809 /* CTextField.m */,
 				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
 				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		C9ACE8B41B0C5D4300385809 /* EAIntroView */ = {
+			isa = PBXGroup;
+			children = (
+				C9ACE8B51B0C5D4300385809 /* EAIntroPage.h */,
+				C9ACE8B61B0C5D4300385809 /* EAIntroPage.m */,
+				C9ACE8B71B0C5D4300385809 /* EAIntroView.h */,
+				C9ACE8B81B0C5D4300385809 /* EAIntroView.m */,
+			);
+			path = EAIntroView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -530,10 +573,13 @@
 				C94997531B0475470023107F /* MainViewController.m in Sources */,
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
 				C949975C1B0477EC0023107F /* MyViewController.m in Sources */,
+				C9ACE8C31B0C645000385809 /* CTextField.m in Sources */,
+				C9ACE8C01B0C621800385809 /* CButton.m in Sources */,
 				C970F5D41B02F5120045A353 /* User.m in Sources */,
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,
 				C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */,
 				C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */,
+				C9ACE8B91B0C5D4300385809 /* EAIntroPage.m in Sources */,
 				C970F5DD1B02F5120045A353 /* LoadMoreTableFooterView.m in Sources */,
 				C9480BF01B048CED0009344F /* MessageCell.m in Sources */,
 				C970F5DF1B02F5120045A353 /* PullTableView.m in Sources */,
@@ -543,8 +589,11 @@
 				C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */,
 				C912171B1B02ED7C00D9C57B /* AppDelegate.m in Sources */,
 				C970F5D11B02F5120045A353 /* HttpRequest.m in Sources */,
+				C9ACE8C61B0C65EA00385809 /* CLabel.m in Sources */,
+				C9ACE8BA1B0C5D4300385809 /* EAIntroView.m in Sources */,
 				C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */,
 				C970F5F21B02F6600045A353 /* UIButton+TitleImage.m in Sources */,
+				C9ACE8C91B0C69E900385809 /* RegisterViewController.m in Sources */,
 				C970F5D81B02F5120045A353 /* ATMHudView.m in Sources */,
 				C970F5E81B02F5120045A353 /* MBProgressHUD.m in Sources */,
 				C970F5D91B02F5120045A353 /* ATMProgressLayer.m in Sources */,
@@ -553,6 +602,7 @@
 				C970F5DB1B02F5120045A353 /* ATMTextLayer.m in Sources */,
 				C970F5D31B02F5120045A353 /* Response.m in Sources */,
 				C91217181B02ED7C00D9C57B /* main.m in Sources */,
+				C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */,
 				C970F5D61B02F5120045A353 /* ATMHud.m in Sources */,
 				C970F5D21B02F5120045A353 /* NSString+Utils.m in Sources */,
 			);
