@@ -26,7 +26,7 @@ static User * instance = nil;
     [Common setCache:ACCOUNTUSERNAME data:u];
     [Common setCache:ACCOUNTPASSWORD data:p];
     [Common setCacheByBool:ISACCOUNTAUTOLOGIN data:YES];
-    self.accessToken=[d objectForKey:@"access_token"];
+    self.accessToken=@"123";
     self.resultData=[[NSMutableDictionary alloc]initWithDictionary:[d objectForKey:@"userInfo"]];
 }
 

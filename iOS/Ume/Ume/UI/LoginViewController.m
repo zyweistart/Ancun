@@ -27,6 +27,14 @@
     if(self){
         self.title=@"登录";
         //
+        UIButton *bScreening = [[UIButton alloc]init];
+        [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
+        [bScreening setTitle:@"关闭" forState:UIControlStateNormal];
+        [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bScreening setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bScreening addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bScreening];
+        //
         UIButton *bRegister = [UIButton buttonWithType:UIButtonTypeCustom];
         [bRegister setTitle:@"注册" forState:UIControlStateNormal];
         [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -39,6 +47,7 @@
         [self.view addSubview:tfUserName];
         //
         tfPassword=[[CTextField alloc]initWithFrame:CGRectMake1(20, 70, 280, 40) Placeholder:@"请输入密码"];
+        [tfPassword setSecureTextEntry:YES];
         [self.view addSubview:tfPassword];
         //
         UIButton *bForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, 120, 80, 30)];
@@ -68,7 +77,8 @@
 
 - (void)goLogin:(id)sender
 {
-    
+    [[User Instance]LoginSuccessWithUserName:@"" Password:@"" Data:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

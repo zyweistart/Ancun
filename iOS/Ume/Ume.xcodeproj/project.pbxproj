@@ -59,6 +59,7 @@
 		C9ACE8C61B0C65EA00385809 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8C51B0C65EA00385809 /* CLabel.m */; };
 		C9ACE8C91B0C69E900385809 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8C81B0C69E900385809 /* RegisterViewController.m */; };
 		C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */; };
+		C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */; };
 		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -169,6 +170,8 @@
 		C9ACE8C81B0C69E900385809 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		C9ACE8CA1B0C69F200385809 /* ForgetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdViewController.h; sourceTree = "<group>"; };
 		C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdViewController.m; sourceTree = "<group>"; };
+		C9ACE8CD1B0C6B9D00385809 /* ContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentCell.h; sourceTree = "<group>"; };
+		C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
 		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
 		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -283,11 +286,26 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		C93E14761B0DB2080068E188 /* 用户 */ = {
+			isa = PBXGroup;
+			children = (
+				C970F5EA1B02F5CF0045A353 /* LoginViewController.h */,
+				C970F5EB1B02F5CF0045A353 /* LoginViewController.m */,
+				C9ACE8C71B0C69E900385809 /* RegisterViewController.h */,
+				C9ACE8C81B0C69E900385809 /* RegisterViewController.m */,
+				C9ACE8CA1B0C69F200385809 /* ForgetPwdViewController.h */,
+				C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */,
+			);
+			name = "用户";
+			sourceTree = "<group>";
+		};
 		C9480BED1B048CDD0009344F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				C9480BEE1B048CED0009344F /* MessageCell.h */,
 				C9480BEF1B048CED0009344F /* MessageCell.m */,
+				C9ACE8CD1B0C6B9D00385809 /* ContentCell.h */,
+				C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -412,8 +430,7 @@
 		C970F5E91B02F5BD0045A353 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C970F5EA1B02F5CF0045A353 /* LoginViewController.h */,
-				C970F5EB1B02F5CF0045A353 /* LoginViewController.m */,
+				C93E14761B0DB2080068E188 /* 用户 */,
 				C94997511B0475470023107F /* MainViewController.h */,
 				C94997521B0475470023107F /* MainViewController.m */,
 				C94997541B0477BD0023107F /* MessageViewController.h */,
@@ -424,10 +441,6 @@
 				C949975B1B0477EC0023107F /* MyViewController.m */,
 				C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */,
 				C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */,
-				C9ACE8C71B0C69E900385809 /* RegisterViewController.h */,
-				C9ACE8C81B0C69E900385809 /* RegisterViewController.m */,
-				C9ACE8CA1B0C69F200385809 /* ForgetPwdViewController.h */,
-				C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -577,6 +590,7 @@
 				C9ACE8C01B0C621800385809 /* CButton.m in Sources */,
 				C970F5D41B02F5120045A353 /* User.m in Sources */,
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,
+				C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */,
 				C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */,
 				C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */,
 				C9ACE8B91B0C5D4300385809 /* EAIntroPage.m in Sources */,
