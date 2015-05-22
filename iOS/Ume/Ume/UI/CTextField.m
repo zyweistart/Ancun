@@ -7,6 +7,7 @@
 //
 
 #import "CTextField.h"
+#define  NAVIGATION_BAR_HEIGHT 40
 
 @implementation CTextField
 
@@ -19,6 +20,7 @@
         self.layer.borderWidth=1;
         self.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
         [self setPlaceholder:ph];
+        [self setDelegate:self];
         [self setTextColor:DEFAULTITLECOLOR(190)];
         [self setFont:[UIFont systemFontOfSize:14]];
         [self setTextAlignment:NSTextAlignmentLeft];
@@ -48,6 +50,28 @@
 
 - (CGRect)editingRectForBounds:(CGRect)bounds {
     return [self textRectForBounds:bounds];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.scrollFrame.contentSize = CGSizeMake1(self.width,self.height+216);
+    CGPoint pt = [textField convertPoint:CGPointMake(0, 0) toView:self.scrollFrame];
+    if(self.scrollFrame.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0){
+        [self.scrollFrame setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    //设定动画持续时间
+    [UIView setAnimationDuration:0.3];
+    self.scrollFrame.contentSize = CGSizeMake1(self.width,self.height);
+    //动画结束
+    [UIView commitAnimations];
+    return YES;
 }
 
 @end

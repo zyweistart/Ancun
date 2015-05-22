@@ -13,7 +13,7 @@
 @end
 
 @implementation MainViewController{
-    UIView *downRefresh;
+    UIView *bgView;
 }
 
 - (id)init{
@@ -33,13 +33,19 @@
                                                 target:nil action:nil];
         negativeSpacerRight.width = -10;
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bScreening], nil];
+        
+        bgView=[[UIView alloc]initWithFrame:self.view.bounds];
+        [bgView setBackgroundColor:DEFAULTITLECOLORA(100,0.5)];
+        [bgView setUserInteractionEnabled:YES];
+        [bgView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goScreening)]];
+        [self.view addSubview:bgView];
+        [bgView setHidden:YES];
         //筛选
-        downRefresh=[[UIView alloc]initWithFrame:CGRectMake1(219, 1, 100, 120)];
+        UIView *downRefresh=[[UIView alloc]initWithFrame:CGRectMake1(219, 1, 100, 120)];
         downRefresh.layer.borderWidth=1;
         downRefresh.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
         [downRefresh setBackgroundColor:[UIColor whiteColor]];
-        [self.view addSubview:downRefresh];
-        [downRefresh setHidden:YES];
+        [bgView addSubview:downRefresh];
         UIButton *button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 100, 30)];
         [button1 setTitle:@"最新" forState:UIControlStateNormal];
         [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -80,12 +86,13 @@
 
 - (void)goScreening
 {
-    [downRefresh setHidden:![downRefresh isHidden]];
+    [bgView setHidden:![bgView isHidden]];
 }
 
 - (void)hScreening:(UIButton*)sender
 {
-    NSLog(@"筛选条件%d",sender.tag);
+    [self goScreening];
+    NSLog(@"筛选条件%ld",sender.tag);
 }
 
 @end

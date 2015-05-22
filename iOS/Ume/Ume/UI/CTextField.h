@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CTextField : UITextField{
+@interface CTextField : UITextField<UITextFieldDelegate>{
     BOOL isEnablePadding;
     float paddingLeft;
     float paddingRight;
     float paddingTop;
     float paddingBottom;
 }
+
+@property CGFloat width;
+@property CGFloat height;
+@property (strong,nonatomic)UIScrollView *scrollFrame;
 
 - (id)initWithFrame:(CGRect)rect Placeholder:(NSString*)ph;
 
