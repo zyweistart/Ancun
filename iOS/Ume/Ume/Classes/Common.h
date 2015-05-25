@@ -24,6 +24,6 @@
 
 + (UIImage*)createImageWithColor:(UIColor*)color;
 
-+ (NSString*)getString:(NSString*)data DefaultValue:(NSString*)value;
++ (NSString*)getString:(id)data DefaultValue:(NSString*)value;
 
 @end

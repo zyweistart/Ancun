@@ -37,13 +37,18 @@
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params
 {
     if ([HttpRequest isNetworkConnection]) {
-        NSString *url=@"";
+        NSMutableString *URL=[[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@?%@",HTTP_URL,action]];
+        for(id p in params){
+            NSString *v=[params objectForKey:p];
+            [URL appendFormat:@"&%@=%@",p,v];
+        }
+//        NSLog(@"%@",URL);
         // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
         // 设置请求方法
-        request.HTTPMethod = @"POST";
+//        request.HTTPMethod = @"POST";
         // 60秒请求超时
-        request.timeoutInterval = 60;
+        request.timeoutInterval = 120;
         
         if(self.isMultipartFormDataSubmit){
             NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
@@ -85,11 +90,11 @@
             [request setHTTPBody:body];
             
         }else{
-            NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
-            // 对字符串进行编码后转成NSData对象
-            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
-            // 设置请求主体
-            request.HTTPBody = data;
+//            NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
+//            // 对字符串进行编码后转成NSData对象
+//            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
+//            // 设置请求主体
+//            request.HTTPBody = data;
         }
         // 初始化一个连接
         NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -161,7 +166,9 @@
         NSString *responseString =[[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
         Response *response=[Response toData:responseString];
         if(![response successFlag]){
-            [Common alert:[response message]];
+            if([response message]!=nil&&![@""isEqualToString:[response message]]){
+                [Common alert:[response message]];
+            }
         }
         [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
     }

@@ -15,15 +15,16 @@
 
 + (User *) Instance;
 
-- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSMutableDictionary*) d;
+- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSDictionary*) d;
 
 @property (strong,nonatomic) NSString *accessToken;
-@property (strong,nonatomic) NSMutableDictionary *resultData;
+@property (strong,nonatomic) NSDictionary *resultData;
 
-- (BOOL)isLogin;
 - (NSString*)getUserName;
 - (NSString*)getPassword;
+- (BOOL)isAutoLogin;
 
+- (BOOL)isLogin;
 - (void)clear;
 
 @end

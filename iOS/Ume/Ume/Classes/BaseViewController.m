@@ -34,16 +34,16 @@
     
 }
 
-- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
-{
-    if([response successFlag]){
-        
-    }
-}
-
-- (void)requestFailed:(int)reqCode
-{
-    NSLog(@"网络请求失败");
-}
+//- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+//{
+//    if([response successFlag]){
+//        
+//    }
+//}
+//
+//- (void)requestFailed:(int)reqCode
+//{
+//    NSLog(@"网络请求失败");
+//}
 
 @end

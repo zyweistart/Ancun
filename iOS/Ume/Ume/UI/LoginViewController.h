@@ -7,7 +7,15 @@
 //
 
 #import "BaseViewController.h"
+@protocol LoginDelegate <NSURLConnectionDataDelegate>
+
+@optional
+- (void)handleLogin:(NSDictionary*)data;
+
+@end
 
 @interface LoginViewController : BaseViewController
+
+@property (strong,nonatomic) NSObject<LoginDelegate> *delegate;
 
 @end

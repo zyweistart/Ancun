@@ -21,13 +21,13 @@ static User * instance = nil;
     return instance;
 }
 
-- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSMutableDictionary*) d
+- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSDictionary*) d
 {
     [Common setCache:ACCOUNTUSERNAME data:u];
     [Common setCache:ACCOUNTPASSWORD data:p];
     [Common setCacheByBool:ISACCOUNTAUTOLOGIN data:YES];
-    self.accessToken=@"123";
-    self.resultData=[[NSMutableDictionary alloc]initWithDictionary:[d objectForKey:@"userInfo"]];
+    self.accessToken=[d objectForKey:@"enkey"];
+    self.resultData=d;
 }
 
 - (NSString*)getUserName
@@ -48,6 +48,11 @@ static User * instance = nil;
     return @"";
 }
 
+- (BOOL)isAutoLogin
+{
+    return [Common getCacheByBool:ISACCOUNTAUTOLOGIN];
+}
+
 - (BOOL)isLogin
 {
     if(self.accessToken==nil||[@"" isEqualToString:self.accessToken]){
@@ -55,20 +60,15 @@ static User * instance = nil;
     }else{
         return YES;
     }
-//    if([Common getCacheByBool:ISACCOUNTAUTOLOGIN]){
-//        return YES;
-//    }else{
-//        return NO;
-//    }
 }
 
 - (void)clear
 {
+    self.resultData=nil;
+    self.accessToken=nil;
     [Common setCache:ACCOUNTUSERNAME data:@""];
     [Common setCache:ACCOUNTPASSWORD data:@""];
     [Common setCacheByBool:ISACCOUNTAUTOLOGIN data:NO];
-    self.accessToken=nil;
-    self.resultData=nil;
 }
 
 @end

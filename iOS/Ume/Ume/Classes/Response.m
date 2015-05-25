@@ -21,12 +21,14 @@
             NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:[response data] options:NSJSONReadingMutableLeaves error:nil];
             if(resultJSON!=nil){
                 [response setResultJSON:resultJSON];
-                NSString *code=[resultJSON objectForKey:@"code"];
+                NSString *code=[resultJSON objectForKey:@"result"];
                 [response setCode:[NSString stringWithFormat:@"%@",code]];
                 //判断是否成功
-                [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
-                NSString *message=[resultJSON objectForKey:@"message"];
-                [response setMessage:[NSString stringWithFormat:@"%@",message]];
+                [response setSuccessFlag:[@"success" isEqualToString:[response code]]];
+                if(![response successFlag]){
+                    NSString *message=[resultJSON objectForKey:@"reason"];
+                    [response setMessage:[NSString stringWithFormat:@"%@",message]];
+                }
             }
         }
     }

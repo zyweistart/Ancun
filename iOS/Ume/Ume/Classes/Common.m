@@ -67,12 +67,9 @@
     return theImage;
 }
 
-+ (NSString*)getString:(NSString*)data DefaultValue:(NSString*)value
++ (NSString*)getString:(id)data DefaultValue:(NSString*)value
 {
     if(data==nil){
-        return value;
-    }
-    if([data isKindOfClass:[NSNull class]]){
         return value;
     }
     return [NSString stringWithFormat:@"%@",data];
