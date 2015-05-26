@@ -17,7 +17,6 @@
     if(self){
         self.isShowMessage=NO;
         self.isFileDownload=NO;
-        self.isMultipartFormDataSubmit=NO;
     }
     return self;
 }
@@ -42,54 +41,16 @@
             NSString *v=[params objectForKey:p];
             [URL appendFormat:@"&%@=%@",p,v];
         }
-//        NSLog(@"%@",URL);
         // 初始化一个请求
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
-        // 设置请求方法
-//        request.HTTPMethod = @"POST";
         // 60秒请求超时
         request.timeoutInterval = 120;
         
-        if(self.isMultipartFormDataSubmit){
-            NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-            
-            NSString *boundary=@"AaB03x";
-            
-            // post body
-            NSMutableData *body = [NSMutableData data];
-            
-            // add params (all params are strings)
-            for (NSString *param in params) {
-                id value=[params objectForKey:param];
-                if(![value isKindOfClass:[NSData class]]){
-                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
-                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", [param stringByAddingPercentEscapesUsingEncoding:gbkEncoding]] dataUsingEncoding:gbkEncoding]];
-                    [body appendData:[[NSString stringWithFormat:@"%@\r\n", value] dataUsingEncoding:gbkEncoding]];
-                }
-            }
-            // add image data
-            for (NSString *param in params) {
-                id value=[params objectForKey:param];
-                if([value isKindOfClass:[NSData class]]){
-                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
-                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.png\"\r\n",param,param] dataUsingEncoding:gbkEncoding]];
-                    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:gbkEncoding]];
-                    [body appendData:value];
-                    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:gbkEncoding]];
-                }
-            }
-            [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:gbkEncoding]];
-            
-            //        NSLog(@"%@",[[NSString alloc] initWithData:body  encoding:gbkEncoding]);
-            
-            [request setValue:[NSString stringWithFormat:@"multipart/form-data, boundary=%@",boundary] forHTTPHeaderField: @"Content-Type"];
-            
-            // set the content-length
-            [request setValue:[NSString stringWithFormat:@"%ld",[body length]] forHTTPHeaderField:@"Content-Length"];
-            
-            [request setHTTPBody:body];
-            
+        if(self.uploadFileData){
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:self.uploadFileData];
         }else{
+            [request setHTTPMethod:@"GET"];
 //            NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
 //            // 对字符串进行编码后转成NSData对象
 //            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];

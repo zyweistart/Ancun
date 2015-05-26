@@ -38,11 +38,11 @@
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bScreening];
         //
         UIButton *bRegister = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bRegister setFrame:CGRectMake1(0, 0, 30, 30)];
         [bRegister setTitle:@"注册" forState:UIControlStateNormal];
         [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [bRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
-        bRegister.frame = CGRectMake(0, 0, 70, 30);
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bRegister];
         //
         tfUserName=[[CTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Placeholder:@"请输入账户"];
@@ -96,7 +96,14 @@
         [Common alert:@"密码不能为空"];
         return;
     }
-    [self handleGetInit];
+//    [self handleGetInit];
+
+    NSDictionary *data=[NSDictionary dictionaryWithObjectsAndKeys:
+                        @"44A9CE83845076EEFE391430DABA3F26",@"enkey",
+                        @"1633540878",@"sessionid",
+                        @"276339",@"uid", nil];
+    [[User Instance]LoginSuccessWithUserName:tUserName Password:[tfPassword text] Data:data];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 //初始化
 - (void)handleGetInit

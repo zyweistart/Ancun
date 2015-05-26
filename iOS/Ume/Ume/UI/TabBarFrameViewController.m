@@ -5,6 +5,7 @@
 #import "DiscoverViewController.h"
 #import "MyViewController.h"
 #import "LoginViewController.h"
+#import "LocalRecordsViewController.h"
 #import "CButton.h"
 
 #define HTTP_REQUESTCODE_DOWNIMAGE 500
@@ -28,7 +29,7 @@
                             [self viewControllerWithTabTitle:@"消息" image:[UIImage imageNamed:@"tab_live"] ViewController:[[MessageViewController alloc]init]],
                             [self viewControllerWithTabTitle:@"" image:nil ViewController:[[PublishedSpeechSoundViewController alloc]init]],
                             [self viewControllerWithTabTitle:@"发现" image:[UIImage imageNamed:@"tab_feed_profile"] ViewController:[[DiscoverViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"我的" image:[UIImage imageNamed:@"tab_messages"] ViewController:[[MyViewController alloc]init]], nil];
+                            [self viewControllerWithTabTitle:@"我的" image:[UIImage imageNamed:@"tab_messages"] ViewController:[[LocalRecordsViewController alloc]init]], nil];
     [self addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take"] highlightImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte"]];
     
     noLoginView=[[UIView alloc]initWithFrame:CGRectMake1(0, HEIGHT-66, 320, 66)];

@@ -17,7 +17,8 @@
 
 - (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSDictionary*) d;
 
-@property (strong,nonatomic) NSString *accessToken;
+@property (strong,nonatomic) NSString *uid;
+@property (strong,nonatomic) NSString *sessionid;
 @property (strong,nonatomic) NSDictionary *resultData;
 
 - (NSString*)getUserName;
