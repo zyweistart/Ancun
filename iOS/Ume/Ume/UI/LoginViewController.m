@@ -66,8 +66,10 @@
         //自动登陆
         if([[User Instance]isAutoLogin]){
             [tfUserName setText:[[User Instance]getUserName]];
+            tUserName=[tfUserName text];
             [tfPassword setText:[[User Instance]getPassword]];
-            [self goLogin:nil];
+            tPassWord=[tfPassword text];
+            [self handleGetInit];
         }
         
     }
@@ -96,14 +98,16 @@
         [Common alert:@"密码不能为空"];
         return;
     }
-//    [self handleGetInit];
+    tPassWord=[[[NSString stringWithFormat:@"%@_%@",tUid,tPassWord]md5]uppercaseString];
+    tPassWord=[[[NSString stringWithFormat:@"%@%@",tTimeStamp,tPassWord]md5]uppercaseString];
+    [self handleGetInit];
 
-    NSDictionary *data=[NSDictionary dictionaryWithObjectsAndKeys:
-                        @"44A9CE83845076EEFE391430DABA3F26",@"enkey",
-                        @"1633540878",@"sessionid",
-                        @"276339",@"uid", nil];
-    [[User Instance]LoginSuccessWithUserName:tUserName Password:[tfPassword text] Data:data];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    NSDictionary *data=[NSDictionary dictionaryWithObjectsAndKeys:
+//                        @"44A9CE83845076EEFE391430DABA3F26",@"enkey",
+//                        @"1633540878",@"sessionid",
+//                        @"276339",@"uid", nil];
+//    [[User Instance]LoginSuccessWithUserName:tUserName Password:[tfPassword text] Data:data];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 //初始化
 - (void)handleGetInit
@@ -120,8 +124,6 @@
 //登陆
 - (void)handleGoLogin
 {
-    tPassWord=[[[NSString stringWithFormat:@"%@_%@",tUid,tPassWord]md5]uppercaseString];
-    tPassWord=[[[NSString stringWithFormat:@"%@%@",tTimeStamp,tPassWord]md5]uppercaseString];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:tUserName forKey:@"mobile"];
     [params setObject:tPassWord forKey:@"digest"];//加密后的密码
@@ -151,7 +153,7 @@
             tTimeStamp=[Common getString:[[response resultJSON]objectForKey:@"timestamp"] DefaultValue:@""];
             [self handleGoLogin];
         }else if(reqCode==501){
-            [[User Instance]LoginSuccessWithUserName:tUserName Password:[tfPassword text] Data:[response resultJSON]];
+            [[User Instance]LoginSuccessWithUserName:tUserName Password:tPassWord Data:[response resultJSON]];
             if(self.delegate){
                 [self.delegate handleLogin:nil];
             }else{

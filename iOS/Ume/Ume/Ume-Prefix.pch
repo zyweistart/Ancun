@@ -21,7 +21,7 @@
 
 #ifdef TEST
 //测试环境定义的常量
-#define HTTP_URL @"http://211.155.232.135:8340/"
+#define HTTP_URL @"http://211.155.232.138:8340/"
 #else
 //正式环境定义的常量
 #define HTTP_URL @"http://211.155.232.135:8340/"

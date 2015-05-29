@@ -3,6 +3,25 @@
 
 @implementation NSString (Utils)
 
+- (NSData*)hexToBytes{
+    if (self == nil) {
+        return nil;
+    }
+    long l = [self length];
+    if (l % 2 == 1) {
+        return nil;
+    }
+    Byte b[l/2];
+    //获取指针的个数
+    for (int i=0;i!=l/2;i++) {
+        NSString *str=[self substringWithRange:NSMakeRange(i*2,2)];
+        //十六进度字符串转为整型
+        long v=strtoul([str UTF8String],0,16);
+        b[i]=(Byte)v;
+    }
+    return [[NSData alloc] initWithBytes:b length:l/2];
+}
+
 - (NSString*)md5{
     const char *cStr = [self UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];

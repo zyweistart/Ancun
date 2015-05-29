@@ -6,6 +6,8 @@ enum DateType{
 
 @interface NSString (Utils)
 
+- (NSData*)hexToBytes;
+
 - (NSString *)md5;
 
 - (NSData *)base64Decode;
