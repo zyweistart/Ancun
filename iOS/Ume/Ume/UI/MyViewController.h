@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 Ancun. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface MyViewController : BaseViewController
+@interface MyViewController : BaseTableViewController
+
+@property (strong, nonatomic) UIImageView *expandZoomImageView;
 
 @end

@@ -9,6 +9,7 @@
 #import "MessageViewController.h"
 #import "LoginViewController.h"
 #import "MessageCell.h"
+#import "CLabel.h"
 
 #define DISNAME @"DISNAME"
 #define DISVALUE @"DISVALUE"
@@ -23,6 +24,18 @@
     self=[super init];
     if(self){
         self.title=@"消息";
+        //
+        UIButton *bScreening = [[UIButton alloc]init];
+        [bScreening setFrame:CGRectMake1(0, 0, 80, 30)];
+        [bScreening setTitle:@"我关注的" forState:UIControlStateNormal];
+        [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bScreening setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [bScreening addTarget:self action:@selector(goScreening) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -10;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bScreening], nil];
         
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"最懂我的",DISNAME,@"0",DISVALUE, nil]];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"对我心动的",DISNAME,@"0",DISVALUE, nil]];
@@ -31,7 +44,22 @@
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"评论",DISNAME,@"0",DISVALUE, nil]];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"私信",DISNAME,@"0",DISVALUE, nil]];
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 60)];
-        [bottomView setBackgroundColor:[UIColor redColor]];
+        UIView *topLine=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 1)];
+        [topLine setBackgroundColor:DEFAUL3COLOR];
+        [bottomView addSubview:topLine];
+        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+        [image setImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte"]];
+        [bottomView addSubview:image];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(60, 5, 80, 25) Text:@"lohas"];
+        [bottomView addSubview:lbl];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 230, 25) Text:@"感谢您使用懂我啡因jkd顺顺在在在在在在"];
+        [bottomView addSubview:lbl];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(220, 5, 80, 25) Text:@"今天:09:14"];
+        [lbl setTextAlignment:NSTextAlignmentRight];
+        [bottomView addSubview:lbl];
+        UIView *bottomLine=[[UIView alloc]initWithFrame:CGRectMake1(0, 59, 320, 1)];
+        [bottomLine setBackgroundColor:DEFAUL3COLOR];
+        [bottomView addSubview:bottomLine];
         [self.tableView setTableFooterView:bottomView];
     }
     return self;

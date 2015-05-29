@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "ContentCell.h"
 
 @interface MainViewController ()
 
@@ -93,6 +94,29 @@
 {
     [self goScreening];
     NSLog(@"筛选条件%ld",sender.tag);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([[self dataItemArray] count]>0){
+        return CGHeight(100);
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([[self dataItemArray] count]>0){
+        static NSString *cellIdentifier = @"SAMPLECell";
+        ContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[ContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
 }
 
 @end

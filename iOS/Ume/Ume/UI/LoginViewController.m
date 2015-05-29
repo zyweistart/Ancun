@@ -63,17 +63,21 @@
         CButton *cLogin=[[CButton alloc]initWithFrame:CGRectMake1(40, 160, 240, 40) Name:@"登录"];
         [cLogin addTarget:self action:@selector(goLogin:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:cLogin];
-        //自动登陆
-        if([[User Instance]isAutoLogin]){
-            [tfUserName setText:[[User Instance]getUserName]];
-            tUserName=[tfUserName text];
-            [tfPassword setText:[[User Instance]getPassword]];
-            tPassWord=[tfPassword text];
-            [self handleGetInit];
-        }
-        
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //自动登陆
+    if([[User Instance]isAutoLogin]){
+        [tfUserName setText:[[User Instance]getUserName]];
+        tUserName=[tfUserName text];
+        [tfPassword setText:[[User Instance]getPassword]];
+        tPassWord=[tfPassword text];
+        [self handleGetInit];
+    }
 }
 
 - (void)goRegister:(id)sender
@@ -98,17 +102,9 @@
         [Common alert:@"密码不能为空"];
         return;
     }
-    tPassWord=[[[NSString stringWithFormat:@"%@_%@",tUid,tPassWord]md5]uppercaseString];
-    tPassWord=[[[NSString stringWithFormat:@"%@%@",tTimeStamp,tPassWord]md5]uppercaseString];
     [self handleGetInit];
-
-//    NSDictionary *data=[NSDictionary dictionaryWithObjectsAndKeys:
-//                        @"44A9CE83845076EEFE391430DABA3F26",@"enkey",
-//                        @"1633540878",@"sessionid",
-//                        @"276339",@"uid", nil];
-//    [[User Instance]LoginSuccessWithUserName:tUserName Password:[tfPassword text] Data:data];
-//    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 //初始化
 - (void)handleGetInit
 {
@@ -126,7 +122,7 @@
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:tUserName forKey:@"mobile"];
-    [params setObject:tPassWord forKey:@"digest"];//加密后的密码
+    [params setObject:[self passwordDigest:tPassWord Uid:tUid TimeStamp:tTimeStamp] forKey:@"digest"];//加密后的密码
     NSString *model=[[UIDevice currentDevice] model];
     [params setObject:model forKey:@"teltype"];//品牌
     NSString *systemVersion=[[UIDevice currentDevice] systemVersion];
@@ -166,6 +162,12 @@
             [[User Instance]clear];
         }
     }
+}
+
+- (NSString*)passwordDigest:(NSString*)password Uid:(NSString*)uid TimeStamp:(NSString*)timestamp
+{
+    password=[[[NSString stringWithFormat:@"%@_%@",uid,password]md5]uppercaseString];
+    return [[[NSString stringWithFormat:@"%@%@",timestamp,password]md5]uppercaseString];
 }
 
 @end

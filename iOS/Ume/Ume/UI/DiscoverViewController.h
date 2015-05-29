@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "HMBannerView.h"
 
-@interface DiscoverViewController : BaseTableViewController
+@interface DiscoverViewController : BaseTableViewController<HMBannerViewDelegate>
+
+@property (nonatomic, strong) HMBannerView *bannerView;
 
 @end
