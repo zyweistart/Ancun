@@ -32,15 +32,10 @@ static CGFloat kImageOriginHight = 220.f;
     self=[super init];
     if(self){
         [self setTitle:@"我的"];
-        self.dataItemArray=[[NSMutableArray alloc]init];
         
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"心情轨迹",@"我发布的",@"设置", nil]];
         
-        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        [self.view addSubview:self.tableView];
+        [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         
         self.expandZoomImageView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, kImageOriginHight)];
         self.expandZoomImageView.userInteractionEnabled=YES;

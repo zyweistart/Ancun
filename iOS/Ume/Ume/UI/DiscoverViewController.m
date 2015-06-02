@@ -24,6 +24,7 @@
     self=[super init];
     if(self){
         self.title=@"发现";
+        [self buildTableViewWithView:self.view];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"tabBar_cameraButton_ready_matte",IMAGED,@"遇见心动",TITLED,@"我的心声你懂吗", DESCRIPTIOND,nil]];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"tabBar_cameraButton_ready_matte",IMAGED,@"心情诊断室",TITLED,@"我的心声说给你听", DESCRIPTIOND,nil]];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"tabBar_cameraButton_ready_matte",IMAGED,@"附近心情",TITLED,@"周围他/她们心情如何", DESCRIPTIOND,nil]];

@@ -10,7 +10,6 @@
     self=[super init];
     if(self){
         self.dataItemArray=[[NSMutableArray alloc]init];
-        [self buildTableViewWithView:self.view];
     }
     return self;
 }
@@ -38,8 +37,13 @@
 //创建UITableView
 - (UITableView *)buildTableViewWithView:(UIView*)view;
 {
+    return [self buildTableViewWithView:view style:UITableViewStylePlain];
+}
+
+- (UITableView *)buildTableViewWithView:(UIView*)view style:(UITableViewStyle)style
+{
     if(self.tableView==nil){
-        self.tableView=[[UITableView alloc]initWithFrame:view.bounds];
+        self.tableView=[[UITableView alloc]initWithFrame:view.bounds style:style];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];

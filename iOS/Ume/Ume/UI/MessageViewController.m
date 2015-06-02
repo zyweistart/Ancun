@@ -24,6 +24,7 @@
     self=[super init];
     if(self){
         self.title=@"消息";
+        [self buildTableViewWithView:self.view];
         //
         UIButton *bScreening = [[UIButton alloc]init];
         [bScreening setFrame:CGRectMake1(0, 0, 80, 30)];
