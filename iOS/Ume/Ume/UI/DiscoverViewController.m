@@ -38,7 +38,7 @@
         bannerDic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"http://pic05.babytreeimg.com/foto3/photos/2014/0124/88/2/4170109a13aca59db86761_b.png", IMAGEURL, nil];
         [dataArray1 addObject:bannerDic1];
         
-        HMBannerView *bannerView = [[HMBannerView alloc] initWithFrame:CGRectMake1(0, 200, 320, 70) scrollDirection:ScrollDirectionLandscape images:dataArray1];
+        HMBannerView *bannerView = [[HMBannerView alloc] initWithFrame:CGRectMake1(0, 200, 320, 100) scrollDirection:ScrollDirectionLandscape images:dataArray1];
         [bannerView setRollingDelayTime:2.0];
         [bannerView setDelegate:self];
         [bannerView setSquare:0];
@@ -66,8 +66,12 @@
     [cell.image setImage:[UIImage imageNamed:image]];
     NSString *title=[data objectForKey:TITLED];
     [cell.cTitle setText:title];
+    [cell.cTitle setFont:[UIFont systemFontOfSize:18]];
+    [cell.cTitle setTextColor:[UIColor blackColor]];
     NSString *description=[data objectForKey:DESCRIPTIOND];
     [cell.cDescription setText:description];
+    [cell.cDescription setFont:[UIFont systemFontOfSize:14]];
+    [cell.cDescription setTextColor:DEFAUL1COLOR];
     return cell;
 }
 

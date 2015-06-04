@@ -36,21 +36,6 @@
     [super viewDidUnload];
 }
 
-//创建PullTableView
-- (PullTableView *)buildTableViewWithView:(UIView*)view;
-{
-    if(self.tableView==nil){
-        self.tableView=[[PullTableView alloc]initWithFrame:view.bounds];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        [self.tableView setPullDelegate:self];
-        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [view addSubview:self.tableView];
-    }
-    return self.tableView;
-}
-
 #pragma mark - PullTableViewDelegate
 
 - (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
@@ -174,6 +159,25 @@
     }else if(self.tableView.pullTableIsLoadingMore){
         self.tableView.pullTableIsLoadingMore = NO;
     }
+}
+
+//创建PullTableView
+- (PullTableView *)buildTableViewWithView:(UIView*)view;
+{
+    return [self buildTableViewWithView:view style:UITableViewStylePlain];
+}
+
+- (PullTableView *)buildTableViewWithView:(UIView*)view style:(UITableViewStyle)style
+{
+    if(self.tableView==nil){
+        self.tableView=[[PullTableView alloc]initWithFrame:view.bounds style:style];
+        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.tableView setDelegate:self];
+        [self.tableView setDataSource:self];
+        [self.tableView setPullDelegate:self];
+        [view addSubview:self.tableView];
+    }
+    return self.tableView;
 }
 
 @end

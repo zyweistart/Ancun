@@ -7,6 +7,13 @@
 //
 
 #import "MessageViewController.h"
+#import "MessageZDWDViewController.h"
+#import "MessageAWViewController.h"
+#import "MessageZGViewController.h"
+#import "MessagePLViewController.h"
+#import "MessageDWXDViewController.h"
+#import "MessageSXViewController.h"
+#import "MessageListViewController.h"
 #import "LoginViewController.h"
 #import "MessageCell.h"
 #import "CLabel.h"
@@ -86,7 +93,29 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+    NSInteger row=indexPath.row;
+    if(row==0){
+        //最懂我的
+        [self.navigationController pushViewController:[[MessageZDWDViewController alloc]init] animated:YES];
+    }else if(row==1){
+        //对我心动的
+        [self.navigationController pushViewController:[[MessageDWXDViewController alloc]init] animated:YES];
+    }else if(row==2){
+        //@我的
+        [self.navigationController pushViewController:[[MessageAWViewController alloc]init] animated:YES];
+    }else if(row==3){
+        //赞过
+        [self.navigationController pushViewController:[[MessageZGViewController alloc]init] animated:YES];
+    }else if(row==4){
+        //评论
+        [self.navigationController pushViewController:[[MessagePLViewController alloc]init] animated:YES];
+    }else if(row==5){
+        //私信
+        [self.navigationController pushViewController:[[MessageSXViewController alloc]init] animated:YES];
+    }else if(row==6){
+        //官方消息
+        [self.navigationController pushViewController:[[MessageListViewController alloc]init] animated:YES];
+    }
 }
 
 @end

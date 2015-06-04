@@ -7,7 +7,13 @@
 //
 
 #import "MyViewController.h"
-
+#import "MyPublishListViewController.h"
+#import "MyHeartbeatViewController.h"
+#import "MyFollowViewController.h"
+#import "MyFansViewcontroller.h"
+#import "MyImageViewController.h"
+#import "SettingViewController.h"
+#import "MoodTrackViewcontroller.h"
 #import "UIButton+TitleImage.h"
 #import "CLabel.h"
 
@@ -67,26 +73,32 @@ static CGFloat kImageOriginHight = 220.f;
         //底部功能
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(40, 140, 240, 20)];
         [personalFrame addSubview:bottomFrame];
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(0, 0, 79, 20) Text:@"5关注"];
-        [lbl setTextColor:[UIColor whiteColor]];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [bottomFrame addSubview:lbl];
+        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 20)];
+        [button setTitle:@"5关注" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(goFollow:) forControlEvents:UIControlEventTouchUpInside];
+        [bottomFrame addSubview:button];
         //竖线
         UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(79, 0, 1, 20)];
         [line1 setBackgroundColor:LINEBGCOLOR];
         [bottomFrame addSubview:line1];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(80, 0, 79, 20) Text:@"25粉丝"];
-        [lbl setTextColor:[UIColor whiteColor]];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [bottomFrame addSubview:lbl];
+        button=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 79, 20)];
+        [button setTitle:@"25粉丝" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(goFans:) forControlEvents:UIControlEventTouchUpInside];
+        [bottomFrame addSubview:button];
         //竖线
         UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(159, 0, 1, 20)];
         [line2 setBackgroundColor:LINEBGCOLOR];
         [bottomFrame addSubview:line2];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(160, 0, 80, 20) Text:@"63心动"];
-        [lbl setTextColor:[UIColor whiteColor]];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [bottomFrame addSubview:lbl];
+        button=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 80, 20)];
+        [button setTitle:@"63心动" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(goMood:) forControlEvents:UIControlEventTouchUpInside];
+        [bottomFrame addSubview:button];
         
     }
     return self;
@@ -145,6 +157,35 @@ static CGFloat kImageOriginHight = 220.f;
     cell.textLabel.text = content;
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger row=indexPath.row;
+    if(row==0){
+        //心情轨迹
+        [self.navigationController pushViewController:[[MoodTrackViewController alloc]init] animated:YES];
+    }else if(row==1){
+        //我发布的
+        [self.navigationController pushViewController:[[MyPublishListViewController alloc]init] animated:YES];
+    }else if(row==2){
+        //设置
+        [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
+    }
+}
+//关注
+- (void)goFollow:(id)sender
+{
+    [self.navigationController pushViewController:[[MyFollowViewController alloc]init] animated:YES];
+}
+//粉丝
+- (void)goFans:(id)sender
+{
+    [self.navigationController pushViewController:[[MyFansViewController alloc]init] animated:YES];
+}
+//心动
+- (void)goMood:(id)sender
+{
+    [self.navigationController pushViewController:[[MoodTrackViewController alloc]init] animated:YES];
 }
 
 - (void)showUser

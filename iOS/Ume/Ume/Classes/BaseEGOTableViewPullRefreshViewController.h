@@ -10,11 +10,12 @@
 @property (strong,nonatomic) PullTableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataItemArray;
 
-- (PullTableView *)buildTableViewWithView:(UIView*)view;
-
 - (void)refreshTable;
 - (void)loadMoreDataToTable;
 - (void)loadDone;
 - (void)loadHttp;
+
+- (PullTableView *)buildTableViewWithView:(UIView*)view;
+- (PullTableView *)buildTableViewWithView:(UIView*)view style:(UITableViewStyle)style;
 
 @end
