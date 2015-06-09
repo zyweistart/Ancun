@@ -78,6 +78,4 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define DEFAUL2COLOR DEFAULTITLECOLOR(220)
 #define DEFAUL3COLOR DEFAULTITLECOLOR(240)
 
-
-
 #endif
