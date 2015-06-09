@@ -101,6 +101,14 @@
 		C9DBE72B1B183BD6002ECDE4 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A61B183BD6002ECDE4 /* UIImage+WebP.m */; };
 		C9DBE72C1B183BD6002ECDE4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */; };
 		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
+		C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */; };
+		C9FE7E1A1B26B9790049AEC9 /* UYourDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */; };
+		C9FE7E1D1B26BC450049AEC9 /* MessageZDWDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */; };
+		C9FE7E231B26D60C0049AEC9 /* MessageAWCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E221B26D60C0049AEC9 /* MessageAWCell.m */; };
+		C9FE7E261B26D6190049AEC9 /* MessageZGCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E251B26D6190049AEC9 /* MessageZGCell.m */; };
+		C9FE7E291B26D6250049AEC9 /* MessagePLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E281B26D6250049AEC9 /* MessagePLCell.m */; };
+		C9FE7E2C1B26D64B0049AEC9 /* MessageDWXDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E2B1B26D64B0049AEC9 /* MessageDWXDCell.m */; };
+		C9FE7E2F1B26D69E0049AEC9 /* MessageSXCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E2E1B26D69E0049AEC9 /* MessageSXCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +304,22 @@
 		C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
 		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
+		C9FE7E111B26B8730049AEC9 /* LoginMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMainViewController.h; sourceTree = "<group>"; };
+		C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMainViewController.m; sourceTree = "<group>"; };
+		C9FE7E181B26B9790049AEC9 /* UYourDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UYourDetailViewController.h; sourceTree = "<group>"; };
+		C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UYourDetailViewController.m; sourceTree = "<group>"; };
+		C9FE7E1B1B26BC450049AEC9 /* MessageZDWDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageZDWDCell.h; sourceTree = "<group>"; };
+		C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageZDWDCell.m; sourceTree = "<group>"; };
+		C9FE7E211B26D60C0049AEC9 /* MessageAWCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageAWCell.h; sourceTree = "<group>"; };
+		C9FE7E221B26D60C0049AEC9 /* MessageAWCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageAWCell.m; sourceTree = "<group>"; };
+		C9FE7E241B26D6190049AEC9 /* MessageZGCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageZGCell.h; sourceTree = "<group>"; };
+		C9FE7E251B26D6190049AEC9 /* MessageZGCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageZGCell.m; sourceTree = "<group>"; };
+		C9FE7E271B26D6250049AEC9 /* MessagePLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePLCell.h; sourceTree = "<group>"; };
+		C9FE7E281B26D6250049AEC9 /* MessagePLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePLCell.m; sourceTree = "<group>"; };
+		C9FE7E2A1B26D64B0049AEC9 /* MessageDWXDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDWXDCell.h; sourceTree = "<group>"; };
+		C9FE7E2B1B26D64B0049AEC9 /* MessageDWXDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDWXDCell.m; sourceTree = "<group>"; };
+		C9FE7E2D1B26D69E0049AEC9 /* MessageSXCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSXCell.h; sourceTree = "<group>"; };
+		C9FE7E2E1B26D69E0049AEC9 /* MessageSXCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSXCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +441,8 @@
 				C9ACE8C81B0C69E900385809 /* RegisterViewController.m */,
 				C9ACE8CA1B0C69F200385809 /* ForgetPwdViewController.h */,
 				C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */,
+				C9FE7E111B26B8730049AEC9 /* LoginMainViewController.h */,
+				C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */,
 			);
 			name = "用户";
 			sourceTree = "<group>";
@@ -430,6 +456,18 @@
 				C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */,
 				C9DBE1A71B180BA0002ECDE4 /* DiscoverCell.h */,
 				C9DBE1A81B180BA0002ECDE4 /* DiscoverCell.m */,
+				C9FE7E1B1B26BC450049AEC9 /* MessageZDWDCell.h */,
+				C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */,
+				C9FE7E211B26D60C0049AEC9 /* MessageAWCell.h */,
+				C9FE7E221B26D60C0049AEC9 /* MessageAWCell.m */,
+				C9FE7E241B26D6190049AEC9 /* MessageZGCell.h */,
+				C9FE7E251B26D6190049AEC9 /* MessageZGCell.m */,
+				C9FE7E271B26D6250049AEC9 /* MessagePLCell.h */,
+				C9FE7E281B26D6250049AEC9 /* MessagePLCell.m */,
+				C9FE7E2A1B26D64B0049AEC9 /* MessageDWXDCell.h */,
+				C9FE7E2B1B26D64B0049AEC9 /* MessageDWXDCell.m */,
+				C9FE7E2D1B26D69E0049AEC9 /* MessageSXCell.h */,
+				C9FE7E2E1B26D69E0049AEC9 /* MessageSXCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -565,6 +603,7 @@
 		C970F5E91B02F5BD0045A353 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9FE7E141B26B94E0049AEC9 /* 懂你 */,
 				C9909FA71B1E9EA600A84594 /* 发现 */,
 				C9909FA61B1E9E9D00A84594 /* 我的 */,
 				C9909F901B1E9BF100A84594 /* 消息 */,
@@ -731,6 +770,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		C9FE7E141B26B94E0049AEC9 /* 懂你 */ = {
+			isa = PBXGroup;
+			children = (
+				C9FE7E181B26B9790049AEC9 /* UYourDetailViewController.h */,
+				C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */,
+			);
+			name = "懂你";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -853,6 +901,7 @@
 				C94997531B0475470023107F /* MainViewController.m in Sources */,
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
 				C9909F991B1E9C6F00A84594 /* MessageZGViewController.m in Sources */,
+				C9FE7E1A1B26B9790049AEC9 /* UYourDetailViewController.m in Sources */,
 				C9909FA21B1E9CB800A84594 /* MessageSXViewController.m in Sources */,
 				C949975C1B0477EC0023107F /* MyViewController.m in Sources */,
 				C9DBE7291B183BD6002ECDE4 /* UIImage+GIF.m in Sources */,
@@ -865,6 +914,7 @@
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,
 				C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */,
 				C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */,
+				C9FE7E231B26D60C0049AEC9 /* MessageAWCell.m in Sources */,
 				C981F6581B1717D100FA112C /* AESCrypt.m in Sources */,
 				C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */,
 				C9909FB01B1E9F3400A84594 /* MyFollowViewController.m in Sources */,
@@ -878,8 +928,10 @@
 				C94997591B0477DE0023107F /* DiscoverViewController.m in Sources */,
 				C95647691B15A6A30003CF70 /* UploadCrypt.m in Sources */,
 				C9DBE72B1B183BD6002ECDE4 /* UIImage+WebP.m in Sources */,
+				C9FE7E291B26D6250049AEC9 /* MessagePLCell.m in Sources */,
 				C970F5DE1B02F5120045A353 /* MessageInterceptor.m in Sources */,
 				C981F6591B1717D100FA112C /* NSData+Base64.m in Sources */,
+				C9FE7E261B26D6190049AEC9 /* MessageZGCell.m in Sources */,
 				C970F5D51B02F5120045A353 /* Reachability.m in Sources */,
 				C9DBE7211B183BD6002ECDE4 /* NSData+GIF.m in Sources */,
 				C9DBE1A91B180BA0002ECDE4 /* DiscoverCell.m in Sources */,
@@ -892,15 +944,18 @@
 				C970F5D11B02F5120045A353 /* HttpRequest.m in Sources */,
 				C9ACE8C61B0C65EA00385809 /* CLabel.m in Sources */,
 				C9909FB31B1E9F4A00A84594 /* MyFansViewController.m in Sources */,
+				C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */,
 				C9ACE8BA1B0C5D4300385809 /* EAIntroView.m in Sources */,
 				C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */,
 				C981F65A1B1717D100FA112C /* NSData+CommonCrypto.m in Sources */,
+				C9FE7E1D1B26BC450049AEC9 /* MessageZDWDCell.m in Sources */,
 				C970F5F21B02F6600045A353 /* UIButton+TitleImage.m in Sources */,
 				C9909F9F1B1E9C8E00A84594 /* MessageDWXDViewController.m in Sources */,
 				C9ACE8C91B0C69E900385809 /* RegisterViewController.m in Sources */,
 				C970F5D81B02F5120045A353 /* ATMHudView.m in Sources */,
 				C970F5E81B02F5120045A353 /* MBProgressHUD.m in Sources */,
 				C9909FBC1B1E9FCF00A84594 /* MoodTrackViewController.m in Sources */,
+				C9FE7E2F1B26D69E0049AEC9 /* MessageSXCell.m in Sources */,
 				C970F5D91B02F5120045A353 /* ATMProgressLayer.m in Sources */,
 				C9DBE7261B183BD6002ECDE4 /* SDWebImageManager.m in Sources */,
 				C970F5EF1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
@@ -916,6 +971,7 @@
 				C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */,
 				C970F5D61B02F5120045A353 /* ATMHud.m in Sources */,
 				C970F5D21B02F5120045A353 /* NSString+Utils.m in Sources */,
+				C9FE7E2C1B26D64B0049AEC9 /* MessageDWXDCell.m in Sources */,
 				C9DBE7251B183BD6002ECDE4 /* SDWebImageDownloader.m in Sources */,
 				C9DBE7281B183BD6002ECDE4 /* UIButton+WebCache.m in Sources */,
 				C9DBE7271B183BD6002ECDE4 /* SDWebImagePrefetcher.m in Sources */,

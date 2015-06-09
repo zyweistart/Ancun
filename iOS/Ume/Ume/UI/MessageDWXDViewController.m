@@ -7,6 +7,7 @@
 //
 
 #import "MessageDWXDViewController.h"
+#import "MessageDWXDCell.h"
 
 @interface MessageDWXDViewController ()
 
@@ -21,6 +22,19 @@
         self.isFirstRefresh=NO;
     }
     return self;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return CGHeight(200);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"SAMPLECell";
+    MessageDWXDCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell) {
+        cell = [[MessageDWXDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    return cell;
 }
 
 @end

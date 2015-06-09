@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "UYourDetailViewController.h"
 #import "ContentCell.h"
 
 @interface MainViewController ()
@@ -117,6 +118,12 @@
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+    [self.navigationController pushViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES];
 }
 
 @end
