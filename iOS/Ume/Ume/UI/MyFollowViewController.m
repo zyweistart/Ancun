@@ -7,6 +7,7 @@
 //
 
 #import "MyFollowViewController.h"
+#import "MessageSXCell.h"
 
 @interface MyFollowViewController ()
 
@@ -21,6 +22,19 @@
         self.isFirstRefresh=NO;
     }
     return self;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return CGHeight(60);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"SAMPLECell";
+    MessageSXCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell) {
+        cell = [[MessageSXCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    return cell;
 }
 
 @end

@@ -104,6 +104,7 @@
         center.y = center.y - heightDifference/2.0;
         button.center = center;
     }
+    [button addTarget:self action:@selector(published:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }
 
@@ -129,6 +130,14 @@
 - (void)goLogin:(id)sender
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+    [self presentViewController:frameViewControllerNav animated:YES completion:nil];
+}
+
+- (void)published:(id)sender
+{
+    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[PublishedSpeechSoundViewController alloc]init]];
     [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
     [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     [self presentViewController:frameViewControllerNav animated:YES completion:nil];

@@ -18,18 +18,22 @@
     self=[super init];
     if(self){
         self.title=@"发布";
-//        //筛选
-//        UIButton *bScreening = [[UIButton alloc]init];
-//        [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
-//        [bScreening setTitle:@"返回" forState:UIControlStateNormal];
-//        [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-//        [bScreening setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [bScreening addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
-//        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
-//                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-//                                                target:nil action:nil];
-//        negativeSpacer.width = -10;
-//        self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacer,[[UIBarButtonItem alloc] initWithCustomView:bScreening], nil];
+        //
+        UIButton *bClose = [[UIButton alloc]init];
+        [bClose setFrame:CGRectMake1(0, 0, 30, 30)];
+        [bClose setTitle:@"关闭" forState:UIControlStateNormal];
+        [bClose.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bClose setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bClose];
+        //
+        UIButton *bPublished = [[UIButton alloc]init];
+        [bPublished setFrame:CGRectMake1(0, 0, 30, 30)];
+        [bPublished setTitle:@"发布" forState:UIControlStateNormal];
+        [bPublished.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bPublished setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bPublished addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
     }
     return self;
 }

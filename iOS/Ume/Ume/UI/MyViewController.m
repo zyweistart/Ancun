@@ -14,6 +14,7 @@
 #import "MyImageViewController.h"
 #import "SettingViewController.h"
 #import "MoodTrackViewcontroller.h"
+#import "MyFlowersViewController.h"
 #import "UIButton+TitleImage.h"
 #import "CLabel.h"
 
@@ -49,27 +50,41 @@ static CGFloat kImageOriginHight = 220.f;
         self.tableView.contentInset = UIEdgeInsetsMake(CGHeight(kImageOriginHight), 0, 0, 0);
         [self.tableView addSubview:self.expandZoomImageView];
         
-        //设置
-        UIButton *btnSetting = [[UIButton alloc]initWithFrame:CGRectMake1(270, 20, 40, 40)];
-        [btnSetting setImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
-        [self.expandZoomImageView addSubview:btnSetting];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 10, 60, 30) Text:@"当前心情"];
+        [lbl setTextColor:[UIColor whiteColor]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [self.expandZoomImageView addSubview:lbl];
+        
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 30)Text:@"杭州市 摩羯座"];
+        [lbl setTextColor:[UIColor whiteColor]];
+        [lbl setTextAlignment:NSTextAlignmentRight];
+        [self.expandZoomImageView addSubview:lbl];
         
         personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-170, 320, 160)];
         [self.expandZoomImageView addSubview:personalFrame];
         //头像
-        bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 0, 80, 80)];
+        bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 0, 80, 90)];
         [personalFrame addSubview:bHead];
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
         iUserNameImage.layer.cornerRadius=30;
         iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setUserInteractionEnabled:YES];
         [bHead addSubview:iUserNameImage];
-        lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 60,80,20)];
+        lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70,80,20)];
         [lblUserName setFont:[UIFont systemFontOfSize:14]];
         [lblUserName setTextColor:[UIColor whiteColor]];
         [lblUserName setTextAlignment:NSTextAlignmentCenter];
         [lblUserName setUserInteractionEnabled:YES];
         [bHead addSubview:lblUserName];
+        //鲜花
+        UIButton *bFlowers=[[UIButton alloc]initWithFrame:CGRectMake1(240, 15, 80, 30)];
+        [bFlowers setTitle:@"135朵鲜花" forState:UIControlStateNormal];
+        [bFlowers setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [bFlowers setBackgroundColor:[UIColor whiteColor]];
+        [bFlowers.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [bFlowers addTarget:self action:@selector(goFlowers:) forControlEvents:UIControlEventTouchUpInside];
+        [personalFrame addSubview:bFlowers];
+        
         //底部功能
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(40, 140, 240, 20)];
         [personalFrame addSubview:bottomFrame];
@@ -99,7 +114,6 @@ static CGFloat kImageOriginHight = 220.f;
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(goMood:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:button];
-        
     }
     return self;
 }
@@ -186,6 +200,11 @@ static CGFloat kImageOriginHight = 220.f;
 - (void)goMood:(id)sender
 {
     [self.navigationController pushViewController:[[MoodTrackViewController alloc]init] animated:YES];
+}
+//鲜花
+- (void)goFlowers:(id)sender
+{
+    [self.navigationController pushViewController:[[MyFlowersViewController alloc]init] animated:YES];
 }
 
 - (void)showUser

@@ -17,6 +17,7 @@
 		C91217951B02EFC200D9C57B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217941B02EFC200D9C57B /* CoreGraphics.framework */; };
 		C91217971B02EFCA00D9C57B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217961B02EFCA00D9C57B /* UIKit.framework */; };
 		C91217991B02EFD200D9C57B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217981B02EFD200D9C57B /* Foundation.framework */; };
+		C92CBCF61B27D288003DA9DF /* MyFlowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92CBCF51B27D288003DA9DF /* MyFlowersViewController.m */; };
 		C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BD21B047CD00009344F /* TabBarFrameViewController.m */; };
 		C9480BF01B048CED0009344F /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BEF1B048CED0009344F /* MessageCell.m */; };
 		C94997531B0475470023107F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997521B0475470023107F /* MainViewController.m */; };
@@ -140,6 +141,8 @@
 		C91217961B02EFCA00D9C57B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C91217981B02EFD200D9C57B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C912179A1B02F05C00D9C57B /* Ume-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ume-Prefix.pch"; sourceTree = "<group>"; };
+		C92CBCF41B27D288003DA9DF /* MyFlowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFlowersViewController.h; sourceTree = "<group>"; };
+		C92CBCF51B27D288003DA9DF /* MyFlowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFlowersViewController.m; sourceTree = "<group>"; };
 		C9480BD11B047CD00009344F /* TabBarFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarFrameViewController.h; sourceTree = "<group>"; };
 		C9480BD21B047CD00009344F /* TabBarFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarFrameViewController.m; sourceTree = "<group>"; };
 		C9480BEE1B048CED0009344F /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -692,6 +695,8 @@
 				C9909FB81B1E9FA200A84594 /* SettingViewController.m */,
 				C9909FBA1B1E9FCF00A84594 /* MoodTrackViewController.h */,
 				C9909FBB1B1E9FCF00A84594 /* MoodTrackViewController.m */,
+				C92CBCF41B27D288003DA9DF /* MyFlowersViewController.h */,
+				C92CBCF51B27D288003DA9DF /* MyFlowersViewController.m */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -898,6 +903,7 @@
 				C9DBE72A1B183BD6002ECDE4 /* UIImage+MultiFormat.m in Sources */,
 				C9909F961B1E9C6100A84594 /* MessageAWViewController.m in Sources */,
 				C970F5DA1B02F5120045A353 /* ATMSoundFX.m in Sources */,
+				C92CBCF61B27D288003DA9DF /* MyFlowersViewController.m in Sources */,
 				C94997531B0475470023107F /* MainViewController.m in Sources */,
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
 				C9909F991B1E9C6F00A84594 /* MessageZGViewController.m in Sources */,
