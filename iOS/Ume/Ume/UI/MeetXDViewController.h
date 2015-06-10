@@ -7,11 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "JHGridTableView.h"
 
-@interface MeetXDViewController : BaseViewController<JHGridTableViewDatasource,JHGridTableViewDelegate>
-{
-    JHGridTableView *gridTableView;
-}
+@interface MeetXDViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end
