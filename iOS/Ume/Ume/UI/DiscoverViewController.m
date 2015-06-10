@@ -7,6 +7,7 @@
 //
 
 #import "DiscoverViewController.h"
+#import "MeetXDViewController.h"
 #import "DiscoverCell.h"
 
 #define IMAGED @"IMAGED"
@@ -77,7 +78,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"fdjskfj");
+    NSInteger row=[indexPath row];
+    if(row==0){
+        [self.navigationController pushViewController:[[MeetXDViewController alloc]init] animated:YES];
+    }
 }
 
 #pragma mark HMBannerViewDelegate

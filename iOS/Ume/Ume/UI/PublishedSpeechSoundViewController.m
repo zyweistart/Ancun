@@ -7,6 +7,7 @@
 //
 
 #import "PublishedSpeechSoundViewController.h"
+#import "CLabel.h"
 
 @interface PublishedSpeechSoundViewController ()
 
@@ -34,8 +35,39 @@
         [bPublished setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [bPublished addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
+        
+        UIImageView *imageHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 150)];
+        [imageHeader setUserInteractionEnabled:YES];
+        [imageHeader setImage:[UIImage imageNamed:@"personalbg"]];
+        [self.view addSubview:imageHeader];
+        UIButton *bSwitch=[[UIButton alloc]initWithFrame:CGRectMake1(270, 5, 40, 30)];
+        [bSwitch setTitle:@"换一张" forState:UIControlStateNormal];
+        [bSwitch setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bSwitch.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [bSwitch addTarget:self action:@selector(goSwitch:) forControlEvents:UIControlEventTouchUpInside];
+        [imageHeader addSubview:bSwitch];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(60, 60, 200, 30) Text:@"说说我的心情，寻找懂我的人"];
+        [lbl setFont:[UIFont systemFontOfSize:16]];
+        [lbl setTextColor:[UIColor whiteColor]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [imageHeader addSubview:lbl];
+        
+        CGFloat topHeight=568-30-64;
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, topHeight, 150, 30) Text:@"同步到：微信 QQ Sina"];
+        [lbl setTextColor:[UIColor blackColor]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [self.view addSubview:lbl];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(160, topHeight, 150, 30) Text:@"保存到心情轨迹"];
+        [lbl setTextColor:[UIColor blackColor]];
+        [lbl setTextAlignment:NSTextAlignmentRight];
+        [self.view addSubview:lbl];
     }
     return self;
+}
+
+- (void)goSwitch:(id)sender
+{
+    NSLog(@"换一张");
 }
 
 @end
