@@ -19,4 +19,6 @@
 - (id)initWithFrame:(CGRect)rect Name:(NSString*)name;
 - (id)initWithFrame:(CGRect)rect Name:(NSString*)name Type:(int)type;
 
+- (void)setType:(int)type;
+
 @end

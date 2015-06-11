@@ -8,6 +8,7 @@
 
 #import "DiscoverViewController.h"
 #import "MeetXDViewController.h"
+#import "NearbyViewController.h"
 #import "DiscoverCell.h"
 
 #define IMAGED @"IMAGED"
@@ -81,6 +82,8 @@
     NSInteger row=[indexPath row];
     if(row==0){
         [self.navigationController pushViewController:[[MeetXDViewController alloc]init] animated:YES];
+    }else if(row==2){
+        [self.navigationController pushViewController:[[NearbyViewController alloc]init] animated:YES];
     }
 }
 

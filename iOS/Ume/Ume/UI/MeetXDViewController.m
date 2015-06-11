@@ -24,8 +24,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"九宫格";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"遇见心动";
+    
+    //筛选
+    UIButton *bPublished = [[UIButton alloc]init];
+    [bPublished setFrame:CGRectMake1(0, 0, 80, 30)];
+    [bPublished setTitle:@"发布形象" forState:UIControlStateNormal];
+    [bPublished.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [bPublished setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [bPublished addTarget:self action:@selector(goPublished:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                            initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                            target:nil action:nil];
+    negativeSpacerRight.width = -10;
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublished], nil];
     
     self.image = [self cutCenterImage:[UIImage imageNamed:@"macbook_pro.jpg"]  size:CGSizeMake(kImageWidth, kImageHeight)];
     
@@ -52,7 +64,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    return 3;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -103,6 +115,11 @@
                                           cancelButtonTitle:@"好的，知道了"
                                           otherButtonTitles:nil, nil];
     [alert show];
+}
+
+- (void)goPublished:(id)sender
+{
+    NSLog(@"发布形象");
 }
 
 #pragma mark 根据size截取图片中间矩形区域的图片 这里的size是正方形

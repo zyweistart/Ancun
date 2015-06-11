@@ -23,16 +23,23 @@
         [self setTitle:name forState:UIControlStateNormal];
         [self.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
-        if(type==1){
-            [self setBackgroundImage:[Common createImageWithColor:BUTTONNORMALCOLOR] forState:UIControlStateNormal];
-            [self setBackgroundImage:[Common createImageWithColor:BUTTONPRESENDCOLOR] forState:UIControlStateHighlighted];
-        }else{
-            [self setBackgroundImage:[Common createImageWithColor:BUTTON2ORMALCOLOR] forState:UIControlStateNormal];
-            [self setBackgroundImage:[Common createImageWithColor:BUTTON2PRESENDCOLOR] forState:UIControlStateHighlighted];
-        }
-        
+        [self setType:type];
     }
     return self;
+}
+
+- (void)setType:(int)type
+{
+    if(type==1){
+        [self setBackgroundImage:[Common createImageWithColor:BUTTONNORMALCOLOR] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:BUTTONPRESENDCOLOR] forState:UIControlStateHighlighted];
+    }else if(type==3){
+        [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateHighlighted];
+    }else{
+        [self setBackgroundImage:[Common createImageWithColor:BUTTON2ORMALCOLOR] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:BUTTON2PRESENDCOLOR] forState:UIControlStateHighlighted];
+    }
 }
 
 @end
