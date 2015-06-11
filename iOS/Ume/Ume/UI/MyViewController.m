@@ -79,12 +79,11 @@ static CGFloat kImageOriginHight = 220.f;
         //鲜花
         UIButton *bFlowers=[[UIButton alloc]initWithFrame:CGRectMake1(240, 15, 80, 30)];
         [bFlowers setTitle:@"135朵鲜花" forState:UIControlStateNormal];
-        [bFlowers setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [bFlowers setBackgroundColor:[UIColor whiteColor]];
+        [bFlowers setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
+        [bFlowers setBackgroundColor:DEFAULTITLECOLORA(200,0.5)];
         [bFlowers.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [bFlowers addTarget:self action:@selector(goFlowers:) forControlEvents:UIControlEventTouchUpInside];
         [personalFrame addSubview:bFlowers];
-        
         //底部功能
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(40, 140, 240, 20)];
         [personalFrame addSubview:bottomFrame];

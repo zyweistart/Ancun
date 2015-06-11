@@ -211,7 +211,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        return CGHeight(85);
+        return CGHeight(120);
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -227,7 +227,6 @@
         }
 //        NSUInteger row=[indexPath row];
 //        NSDictionary *d=[self.dataItemArray objectAtIndex:row];
-        [cell.textLabel setText:@"右右顺在"];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

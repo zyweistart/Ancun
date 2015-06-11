@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLabel.h"
 
 @interface NearbyXQCell : UITableViewCell
+
+@property (strong,nonatomic)UIImageView *image;
+@property (strong,nonatomic)CLabel *cTitle;
+@property (strong,nonatomic)CLabel *cDescription;
 
 @end
