@@ -8,22 +8,20 @@
 
 #import "CaptureViewController.h"
 
-@interface CaptureViewController ()
-{
+@interface CaptureViewController (){
     AGSimpleImageEditorView *editorView;
 }
+
 @end
 
 @implementation CaptureViewController
-@synthesize delegate;
-@synthesize image;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     //添加导航栏和完成按钮
-    UINavigationBar *naviBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UINavigationBar *naviBar = [[UINavigationBar alloc] initWithFrame:CGRectMake1(0, 20, 320, 44)];
     [self.view addSubview:naviBar];
     
     UINavigationItem *naviItem = [[UINavigationItem alloc] initWithTitle:@"图片裁剪"];
@@ -53,21 +51,13 @@
 }
 
 //完成截取
--(void)saveButton
+- (void)saveButton
 {
     //output为截取后的图片，UIImage类型
     UIImage *resultImage = editorView.output;
-    
     //通过代理回传给上一个界面显示
     [self.delegate passImage:resultImage];
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

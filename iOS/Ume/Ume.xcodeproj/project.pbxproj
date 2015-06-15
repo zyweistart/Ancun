@@ -96,6 +96,7 @@
 		C9ACE8C91B0C69E900385809 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8C81B0C69E900385809 /* RegisterViewController.m */; };
 		C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */; };
 		C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */; };
+		C9AD44E01B2EABBC00338AEE /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */; };
 		C9DBE1A91B180BA0002ECDE4 /* DiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE1A81B180BA0002ECDE4 /* DiscoverCell.m */; };
 		C9DBE1B01B1813ED002ECDE4 /* HMBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE1AC1B1813ED002ECDE4 /* HMBannerView.m */; };
 		C9DBE1B11B1813ED002ECDE4 /* banner_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9DBE1AE1B1813ED002ECDE4 /* banner_close@2x.png */; };
@@ -304,6 +305,8 @@
 		C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdViewController.m; sourceTree = "<group>"; };
 		C9ACE8CD1B0C6B9D00385809 /* ContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentCell.h; sourceTree = "<group>"; };
 		C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
+		C9AD44DE1B2EABBC00338AEE /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
+		C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		C9DBE1A71B180BA0002ECDE4 /* DiscoverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverCell.h; sourceTree = "<group>"; };
 		C9DBE1A81B180BA0002ECDE4 /* DiscoverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverCell.m; sourceTree = "<group>"; };
 		C9DBE1AB1B1813ED002ECDE4 /* HMBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMBannerView.h; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 				C95647681B15A6A30003CF70 /* UploadCrypt.m */,
 				C970F5A41B02F5120045A353 /* User.h */,
 				C970F5A51B02F5120045A353 /* User.m */,
+				C9AD44DE1B2EABBC00338AEE /* UIImage+Utils.h */,
+				C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1037,6 +1042,7 @@
 				C912171B1B02ED7C00D9C57B /* AppDelegate.m in Sources */,
 				C970F5D11B02F5120045A353 /* HttpRequest.m in Sources */,
 				C9ACE8C61B0C65EA00385809 /* CLabel.m in Sources */,
+				C9AD44E01B2EABBC00338AEE /* UIImage+Utils.m in Sources */,
 				C95F64441B2A7FFF00D27452 /* MyImagesCell.m in Sources */,
 				C9909FB31B1E9F4A00A84594 /* MyFansViewController.m in Sources */,
 				C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */,

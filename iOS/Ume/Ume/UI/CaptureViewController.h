@@ -11,12 +11,8 @@
 #import "PassImageDelegate.h"
 
 @interface CaptureViewController : UIViewController
-{
-    UIImage *image;
-}
 
 @property(nonatomic,strong) UIImage *image;
-
 @property(strong,nonatomic) NSObject<PassImageDelegate> *delegate;
 
 @end
