@@ -9,6 +9,7 @@
 #import "MeetXDViewController.h"
 #import "UITableGridViewCell.h"
 #import "UIImageButton.h"
+#import "SJAvatarBrowser.h"
 #import "CButton.h"
 #import "CLabel.h"
 #define kImageWidth  CGWidth(100) //UITableViewCell里面图片的宽度
@@ -39,7 +40,7 @@
     negativeSpacerRight.width = -10;
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublished], nil];
     
-    self.image = [self cutCenterImage:[UIImage imageNamed:@"macbook_pro.jpg"]  size:CGSizeMake(kImageWidth, kImageHeight)];
+    self.image = [self cutCenterImage:[UIImage imageNamed:@"personalbg"]  size:CGSizeMake(kImageWidth, kImageHeight)];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -108,13 +109,16 @@
 }
 
 - (void)imageItemClick:(UIImageButton *)button{
-    NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:msg
-                                                   delegate:nil
-                                          cancelButtonTitle:@"好的，知道了"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+//    NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                    message:msg
+//                                                   delegate:nil
+//                                          cancelButtonTitle:@"好的，知道了"
+//                                          otherButtonTitles:nil, nil];
+//    [alert show];
+    UIImageView *image=[[UIImageView alloc]init];
+    [image setImage:self.image];
+    [SJAvatarBrowser showImage:image];
 }
 
 - (void)goPublished:(id)sender

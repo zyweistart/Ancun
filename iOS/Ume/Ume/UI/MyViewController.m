@@ -15,6 +15,7 @@
 #import "SettingViewController.h"
 #import "MoodTrackViewcontroller.h"
 #import "MyFlowersViewController.h"
+#import "MyImagesCell.h"
 #import "UIButton+TitleImage.h"
 #import "CLabel.h"
 
@@ -39,8 +40,9 @@ static CGFloat kImageOriginHight = 220.f;
     self=[super init];
     if(self){
         [self setTitle:@"我的"];
-        
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"心情轨迹",@"我发布的",@"设置", nil]];
+        [self.dataItemArray addObject:@"心情轨迹"];
+        [self.dataItemArray addObject:@"我发布的"];
+        [self.dataItemArray addObject:@"设置"];
         
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         
@@ -50,12 +52,12 @@ static CGFloat kImageOriginHight = 220.f;
         self.tableView.contentInset = UIEdgeInsetsMake(CGHeight(kImageOriginHight), 0, 0, 0);
         [self.tableView addSubview:self.expandZoomImageView];
         
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 10, 60, 30) Text:@"当前心情"];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 20, 60, 30) Text:@"当前心情"];
         [lbl setTextColor:[UIColor whiteColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [self.expandZoomImageView addSubview:lbl];
         
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 30)Text:@"杭州市 摩羯座"];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(210, 20, 100, 30)Text:@"杭州市 摩羯座"];
         [lbl setTextColor:[UIColor whiteColor]];
         [lbl setTextAlignment:NSTextAlignmentRight];
         [self.expandZoomImageView addSubview:lbl];
@@ -63,12 +65,14 @@ static CGFloat kImageOriginHight = 220.f;
         personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-170, 320, 160)];
         [self.expandZoomImageView addSubview:personalFrame];
         //头像
-        bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 0, 80, 90)];
+        bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 20, 80, 90)];
         [personalFrame addSubview:bHead];
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
         iUserNameImage.layer.cornerRadius=30;
         iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setUserInteractionEnabled:YES];
+        [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(imageTaped:)]];
         [bHead addSubview:iUserNameImage];
         lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70,80,20)];
         [lblUserName setFont:[UIFont systemFontOfSize:14]];
@@ -77,7 +81,7 @@ static CGFloat kImageOriginHight = 220.f;
         [lblUserName setUserInteractionEnabled:YES];
         [bHead addSubview:lblUserName];
         //鲜花
-        UIButton *bFlowers=[[UIButton alloc]initWithFrame:CGRectMake1(240, 15, 80, 30)];
+        UIButton *bFlowers=[[UIButton alloc]initWithFrame:CGRectMake1(240, 35, 80, 30)];
         [bFlowers setTitle:@"135朵鲜花" forState:UIControlStateNormal];
         [bFlowers setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
         [bFlowers setBackgroundColor:DEFAULTITLECOLORA(200,0.5)];
@@ -117,8 +121,14 @@ static CGFloat kImageOriginHight = 220.f;
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.expandZoomImageView.frame = CGRectMake(0, -CGHeight(kImageOriginHight), self.tableView.frame.size.width, CGHeight(kImageOriginHight));
     [self showUser];
 }
@@ -136,12 +146,16 @@ static CGFloat kImageOriginHight = 220.f;
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.dataItemArray count];
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.dataItemArray objectAtIndex:section] count];
+    if(section==0){
+        return 1;
+    }else{
+        return [self.dataItemArray count];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -156,20 +170,47 @@ static CGFloat kImageOriginHight = 220.f;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGHeight(45);
+    NSInteger section=[indexPath section];
+    if(section==0){
+        return CGHeight(80);
+    }else{
+        return CGHeight(45);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CMainCell = @"CMainCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+    NSInteger row=[indexPath row];
+    NSInteger section=[indexPath section];
+    if(section==0){
+        //照片
+        static NSString *CMainCell = @"MyImagesCell";
+        MyImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        if (cell == nil) {
+            cell = [[MyImagesCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+        }
+        //总图像数
+        int count=5;
+        //计算总宽度
+        CGFloat width=10+(count*60)+(count*10);
+        [cell.scrollViewFrame setContentSize:CGSizeMake1(width,80)];
+        for(int i=0;i<count;i++){
+            UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10+(i*60)+(i*10), 10, 60, 60)];
+            [image setBackgroundColor:[UIColor redColor]];
+            [cell.scrollViewFrame addSubview:image];
+        }
+        return cell;
+    }else{
+        static NSString *CMainCell = @"CMainCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+        }
+        NSString *content=[self.dataItemArray objectAtIndex:row];
+        cell.textLabel.text = content;
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        return cell;
     }
-    NSString *content=[[self.dataItemArray objectAtIndex:[indexPath section]]objectAtIndex:[indexPath row]];
-    cell.textLabel.text = content;
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -211,6 +252,95 @@ static CGFloat kImageOriginHight = 220.f;
     [bHead setHidden:NO];
     [iUserNameImage setImage:[UIImage imageNamed:@"camera_button_take"]];
     [lblUserName setText:@"辰羽"];
+}
+
+
+
+
+
+//弹出选项列表选择图片来源
+- (void)imageTaped:(id)sender {
+    UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera",@"Photo library", nil];
+    [chooseImageSheet showInView:self.view];
+}
+
+#pragma mark UIActionSheetDelegate Method
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    switch (buttonIndex) {
+        case 0://Take picture
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                
+            }else{
+                NSLog(@"模拟器无法打开相机");
+            }
+            [self presentViewController:picker animated:YES completion:nil];
+            break;
+        case 1://From album
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [[picker navigationBar]setBarTintColor:NAVBG];
+            [self presentViewController:picker animated:YES completion:nil];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma 拍照选择照片协议方法
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    NSData *data;
+    if ([mediaType isEqualToString:@"public.image"]){
+        
+        //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
+        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        //图片压缩，因为原图都是很大的，不必要传原图
+        UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
+        
+        //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
+        if (UIImagePNGRepresentation(scaleImage) == nil) {
+            //将图片转换为JPG格式的二进制数据
+            data = UIImageJPEGRepresentation(scaleImage, 1);
+        } else {
+            //将图片转换为PNG格式的二进制数据
+            data = UIImagePNGRepresentation(scaleImage);
+        }
+        
+        //将二进制数据生成UIImage
+        UIImage *image = [UIImage imageWithData:data];
+        
+        //将图片传递给截取界面进行截取并设置回调方法（协议）
+        CaptureViewController *captureView = [[CaptureViewController alloc] init];
+        captureView.delegate = self;
+        captureView.image = image;
+        //隐藏UIImagePickerController本身的导航栏
+        picker.navigationBar.hidden = YES;
+        [picker pushViewController:captureView animated:YES];
+        
+    }
+}
+
+#pragma mark - 图片回传协议方法
+-(void)passImage:(UIImage *)image
+{
+    NSLog(@"%@",image);
+    [iUserNameImage setImage:image];
+}
+
+#pragma mark- 缩放图片
+-(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
+{
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height *scaleSize)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
 }
 
 @end

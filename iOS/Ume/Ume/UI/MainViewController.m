@@ -81,6 +81,11 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 - (void)loadHttp
 {
     [super loadHttp];
