@@ -264,7 +264,7 @@ static CGFloat kImageOriginHight = 220.f;
 #pragma mark UIActionSheetDelegate Method
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    UIImagePickerController * picker = [[UIImagePickerController alloc]init];
     picker.delegate = self;
     switch (buttonIndex) {
         case 0:
@@ -272,10 +272,10 @@ static CGFloat kImageOriginHight = 220.f;
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [[picker navigationBar]setBarTintColor:NAVBG];
+                [self presentViewController:picker animated:YES completion:nil];
             }else{
-                NSLog(@"模拟器无法打开相机");
+                [Common alert:@"出错啦,无法打开相机"];
             }
-            [self presentViewController:picker animated:YES completion:nil];
             break;
         case 1:
             //From album
@@ -291,7 +291,7 @@ static CGFloat kImageOriginHight = 220.f;
 #pragma 拍照选择照片协议方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [UIApplication sharedApplication].statusBarHidden = NO;
+//    [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     NSData *data;
     if ([mediaType isEqualToString:@"public.image"]){
@@ -313,8 +313,6 @@ static CGFloat kImageOriginHight = 220.f;
         CaptureViewController *captureViewController = [[CaptureViewController alloc] init];
         captureViewController.delegate = self;
         captureViewController.image = image;
-        //隐藏UIImagePickerController本身的导航栏
-        picker.navigationBar.hidden = YES;
         [picker pushViewController:captureViewController animated:YES];
     }
 }

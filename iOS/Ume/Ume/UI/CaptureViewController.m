@@ -22,7 +22,7 @@
     
     //添加导航栏和完成按钮
     UINavigationBar *naviBar = [[UINavigationBar alloc] initWithFrame:CGRectMake1(0, 20, 320, 44)];
-    [self.view addSubview:naviBar];
+//    [self.view addSubview:naviBar];
     
     UINavigationItem *naviItem = [[UINavigationItem alloc] initWithTitle:@"图片裁剪"];
     [naviBar pushNavigationItem:naviItem animated:YES];
