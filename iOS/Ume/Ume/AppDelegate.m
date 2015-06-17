@@ -27,7 +27,10 @@
     }
     //状态栏
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [application setStatusBarStyle:UIStatusBarStyleLightContent];
+//    [application setStatusBarStyle:UIStatusBarStyleLightContent];
+//    [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+//    [[UINavigationBar appearance] setBarTintColor:NAVBG];
+//    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    UINavigationController *tabBarFrameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[TabBarFrameViewController alloc]init]];
 //    [[tabBarFrameViewControllerNav navigationBar]setBarTintColor:NAVBG];

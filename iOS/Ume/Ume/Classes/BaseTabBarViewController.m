@@ -9,8 +9,6 @@
 -(UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image ViewController:(UIViewController*)viewController
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:viewController];
-    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     frameViewControllerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:image tag:0];
     return frameViewControllerNav;
 }

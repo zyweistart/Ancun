@@ -19,11 +19,15 @@
 #import "UIButton+TitleImage.h"
 #import "CLabel.h"
 #import "UIImage+Utils.h"
+#import "SJAvatarBrowser.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #define LOGINREGISTERBGCOLOR [UIColor colorWithRed:(58/255.0) green:(117/255.0) blue:(207/255.0) alpha:0.5]
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
 
 static CGFloat kImageOriginHight = 220.f;
+#define ORIGINAL_MAX_WIDTH 640.0f
 
 @interface MyViewController ()
 
@@ -73,7 +77,7 @@ static CGFloat kImageOriginHight = 220.f;
         iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setUserInteractionEnabled:YES];
         [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                              initWithTarget:self action:@selector(imageTaped:)]];
+                                              initWithTarget:self action:@selector(editPortrait:)]];
         [bHead addSubview:iUserNameImage];
         lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70,80,20)];
         [lblUserName setFont:[UIFont systemFontOfSize:14]];
@@ -197,7 +201,10 @@ static CGFloat kImageOriginHight = 220.f;
         [cell.scrollViewFrame setContentSize:CGSizeMake1(width,80)];
         for(int i=0;i<count;i++){
             UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10+(i*60)+(i*10), 10, 60, 60)];
-            [image setBackgroundColor:[UIColor redColor]];
+            [image setImage:[UIImage imageNamed:@"personalbg"]];
+            [image setUserInteractionEnabled:YES];
+            [image addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                                  initWithTarget:self action:@selector(zoomImage:)]];
             [cell.scrollViewFrame addSubview:image];
         }
         return cell;
@@ -256,71 +263,230 @@ static CGFloat kImageOriginHight = 220.f;
 }
 
 //弹出选项列表选择图片来源
-- (void)imageTaped:(id)sender {
-    UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍一张",@"从相册选择", nil];
-    [chooseImageSheet showInView:self.view];
+- (void)editPortrait:(id)sender {
+    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"拍一照", @"从相册中选取", nil];
+    [choiceSheet showInView:self.view];
 }
 
-#pragma mark UIActionSheetDelegate Method
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-    picker.delegate = self;
-    switch (buttonIndex) {
-        case 0:
-            //Take picture
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [[picker navigationBar]setBarTintColor:NAVBG];
-                [self presentViewController:picker animated:YES completion:nil];
-            }else{
-                [Common alert:@"出错啦,无法打开相机"];
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        // 拍照
+        if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+            controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+            if ([self isFrontCameraAvailable]) {
+                controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
             }
-            break;
-        case 1:
-            //From album
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [[picker navigationBar]setBarTintColor:NAVBG];
-            [self presentViewController:picker animated:YES completion:nil];
-            break;
-        default:
-            break;
-    }
-}
-
-#pragma 拍照选择照片协议方法
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-//    [UIApplication sharedApplication].statusBarHidden = NO;
-    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    NSData *data;
-    if ([mediaType isEqualToString:@"public.image"]){
-        //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
-        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-        //图片压缩，因为原图都是很大的，不必要传原图
-        UIImage *scaleImage = [originImage scaleImagetoScale:0.3];
-        //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
-        if (UIImagePNGRepresentation(scaleImage) == nil) {
-            //将图片转换为JPG格式的二进制数据
-            data = UIImageJPEGRepresentation(scaleImage, 1);
-        } else {
-            //将图片转换为PNG格式的二进制数据
-            data = UIImagePNGRepresentation(scaleImage);
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            controller.mediaTypes = mediaTypes;
+            controller.delegate = self;
+            [self presentViewController:controller
+                               animated:YES
+                             completion:^(void){
+                                 NSLog(@"Picker View Controller is presented");
+                             }];
         }
-        //将二进制数据生成UIImage
-        UIImage *image = [UIImage imageWithData:data];
-        //将图片传递给截取界面进行截取并设置回调方法（协议）
-        CaptureViewController *captureViewController = [[CaptureViewController alloc] init];
-        captureViewController.delegate = self;
-        captureViewController.image = image;
-        [picker pushViewController:captureViewController animated:YES];
+    } else if (buttonIndex == 1) {
+        // 从相册中选取
+        if ([self isPhotoLibraryAvailable]) {
+            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+            controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            controller.mediaTypes = mediaTypes;
+            controller.delegate = self;
+            [self presentViewController:controller
+                               animated:YES
+                             completion:^(void){
+                                 NSLog(@"Picker View Controller is presented");
+                             }];
+        }
     }
 }
 
-#pragma mark - 图片回传协议方法
--(void)passImage:(UIImage *)image
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:YES completion:^() {
+        UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        portraitImg = [self imageByScalingToMaxSize:portraitImg];
+        // 裁剪
+        VPImageCropperViewController *imgEditorVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width) limitScaleRatio:3.0];
+        imgEditorVC.delegate = self;
+        [self presentViewController:imgEditorVC animated:YES completion:^{
+            // TO DO
+        }];
+    }];
+}
+
+#pragma mark VPImageCropperDelegate
+- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
+    self.portraitImageView.image = editedImage;
+    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+    }];
+}
+
+- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
+    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^(){
+    }];
+}
+
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+}
+
+#pragma mark camera utility
+- (BOOL) isCameraAvailable{
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+}
+
+- (BOOL) isRearCameraAvailable{
+    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+}
+
+- (BOOL) isFrontCameraAvailable {
+    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
+}
+
+- (BOOL) doesCameraSupportTakingPhotos {
+    return [self cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypeCamera];
+}
+
+- (BOOL) isPhotoLibraryAvailable{
+    return [UIImagePickerController isSourceTypeAvailable:
+            UIImagePickerControllerSourceTypePhotoLibrary];
+}
+- (BOOL) canUserPickVideosFromPhotoLibrary{
+    return [self
+            cameraSupportsMedia:(__bridge NSString *)kUTTypeMovie sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+- (BOOL) canUserPickPhotosFromPhotoLibrary{
+    return [self
+            cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType{
+    __block BOOL result = NO;
+    if ([paramMediaType length] == 0) {
+        return NO;
+    }
+    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:paramSourceType];
+    [availableMediaTypes enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *mediaType = (NSString *)obj;
+        if ([mediaType isEqualToString:paramMediaType]){
+            result = YES;
+            *stop= YES;
+        }
+    }];
+    return result;
+}
+
+#pragma mark image scale utility
+- (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage {
+    if (sourceImage.size.width < ORIGINAL_MAX_WIDTH) return sourceImage;
+    CGFloat btWidth = 0.0f;
+    CGFloat btHeight = 0.0f;
+    if (sourceImage.size.width > sourceImage.size.height) {
+        btHeight = ORIGINAL_MAX_WIDTH;
+        btWidth = sourceImage.size.width * (ORIGINAL_MAX_WIDTH / sourceImage.size.height);
+    } else {
+        btWidth = ORIGINAL_MAX_WIDTH;
+        btHeight = sourceImage.size.height * (ORIGINAL_MAX_WIDTH / sourceImage.size.width);
+    }
+    CGSize targetSize = CGSizeMake(btWidth, btHeight);
+    return [self imageByScalingAndCroppingForSourceImage:sourceImage targetSize:targetSize];
+}
+
+- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize {
+    UIImage *newImage = nil;
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO){
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        
+        if (widthFactor > heightFactor)
+            scaleFactor = widthFactor; // scale to fit height
+        else
+            scaleFactor = heightFactor; // scale to fit width
+        scaledWidth  = width * scaleFactor;
+        scaledHeight = height * scaleFactor;
+        
+        // center the image
+        if (widthFactor > heightFactor){
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        }else{
+            if (widthFactor < heightFactor){
+                thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+            }
+        }
+    }
+    UIGraphicsBeginImageContext(targetSize); // this will crop
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width  = scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    if(newImage == nil) NSLog(@"could not scale image");
+    
+    //pop the context to get back to the default
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+#pragma mark portraitImageView getter
+- (UIImageView *)portraitImageView {
+    if (!iUserNameImage) {
+        CGFloat w = 100.0f; CGFloat h = w;
+        CGFloat x = (self.view.frame.size.width - w) / 2;
+        CGFloat y = (self.view.frame.size.height - h) / 2;
+        iUserNameImage = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        [iUserNameImage.layer setCornerRadius:(iUserNameImage.frame.size.height/2)];
+        [iUserNameImage.layer setMasksToBounds:YES];
+        [iUserNameImage setContentMode:UIViewContentModeScaleAspectFill];
+        [iUserNameImage setClipsToBounds:YES];
+        iUserNameImage.layer.shadowColor = [UIColor blackColor].CGColor;
+        iUserNameImage.layer.shadowOffset = CGSizeMake(4, 4);
+        iUserNameImage.layer.shadowOpacity = 0.5;
+        iUserNameImage.layer.shadowRadius = 2.0;
+        iUserNameImage.layer.borderColor = [[UIColor blackColor] CGColor];
+        iUserNameImage.layer.borderWidth = 2.0f;
+        iUserNameImage.userInteractionEnabled = YES;
+        iUserNameImage.backgroundColor = [UIColor blackColor];
+        UITapGestureRecognizer *portraitTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editPortrait:)];
+        [iUserNameImage addGestureRecognizer:portraitTap];
+    }
+    return iUserNameImage;
+}
+
+- (void)zoomImage:(UITapGestureRecognizer*)sender
 {
-    [iUserNameImage setImage:image];
+    UIImageView *imageV=(UIImageView*)[sender view];
+    [SJAvatarBrowser showImage:imageV];
 }
 
 @end

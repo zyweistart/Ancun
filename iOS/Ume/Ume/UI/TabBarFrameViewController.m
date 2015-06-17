@@ -82,8 +82,8 @@
 - (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image ViewController:(UIViewController*)viewController
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:viewController];
-    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+//    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
+//    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     frameViewControllerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:image tag:0];
     return frameViewControllerNav;
 }
@@ -130,16 +130,12 @@
 - (void)goLogin:(id)sender
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
-    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     [self presentViewController:frameViewControllerNav animated:YES completion:nil];
 }
 
 - (void)published:(id)sender
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[PublishedSpeechSoundViewController alloc]init]];
-    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     [self presentViewController:frameViewControllerNav animated:YES completion:nil];
 }
 
