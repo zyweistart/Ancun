@@ -27,17 +27,13 @@
     }
     //状态栏
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-//    [application setStatusBarStyle:UIStatusBarStyleLightContent];
 //    [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 //    [[UINavigationBar appearance] setBarTintColor:NAVBG];
-//    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    UINavigationController *tabBarFrameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[TabBarFrameViewController alloc]init]];
-//    [[tabBarFrameViewControllerNav navigationBar]setBarTintColor:NAVBG];
-//    [[tabBarFrameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-//    [tabBarFrameViewControllerNav setDelegate:self];
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    self.window.rootViewController=[[TabBarFrameViewController alloc]init];
+    TabBarFrameViewController *tabBarFrameViewController=[[TabBarFrameViewController alloc]init];
+    self.window.rootViewController=tabBarFrameViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

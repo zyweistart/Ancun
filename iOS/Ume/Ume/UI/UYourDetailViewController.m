@@ -20,7 +20,6 @@
     self=[super init];
     if(self){
         self.data=data;
-        NSLog(@"%@",self.data);
         self.title=@"懂你详情";
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 100)];
         [image setBackgroundColor:[UIColor redColor]];

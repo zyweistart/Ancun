@@ -33,7 +33,7 @@
         [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
         [bScreening setTitle:@"关闭" forState:UIControlStateNormal];
         [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bScreening setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bScreening setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [bScreening addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bScreening];
         //
@@ -41,7 +41,7 @@
         [bRegister setFrame:CGRectMake1(0, 0, 30, 30)];
         [bRegister setTitle:@"注册" forState:UIControlStateNormal];
         [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bRegister setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bRegister];
         //

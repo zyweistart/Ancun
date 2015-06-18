@@ -20,7 +20,7 @@
 #import "CLabel.h"
 #import "UIImage+Utils.h"
 #import "SJAvatarBrowser.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+//#import <AssetsLibrary/AssetsLibrary.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #define LOGINREGISTERBGCOLOR [UIColor colorWithRed:(58/255.0) green:(117/255.0) blue:(207/255.0) alpha:0.5]
@@ -125,11 +125,6 @@ static CGFloat kImageOriginHight = 220.f;
         [self showUser];
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -301,11 +296,7 @@ static CGFloat kImageOriginHight = 220.f;
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
             controller.delegate = self;
-            [self presentViewController:controller
-                               animated:YES
-                             completion:^(void){
-                                 NSLog(@"Picker View Controller is presented");
-                             }];
+            [self presentViewController:controller animated:YES completion:nil];
         }
     }
 }
@@ -326,7 +317,7 @@ static CGFloat kImageOriginHight = 220.f;
 
 #pragma mark VPImageCropperDelegate
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
-    self.portraitImageView.image = editedImage;
+    [iUserNameImage setImage:editedImage];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
     }];
 }
@@ -456,31 +447,6 @@ static CGFloat kImageOriginHight = 220.f;
     //pop the context to get back to the default
     UIGraphicsEndImageContext();
     return newImage;
-}
-
-#pragma mark portraitImageView getter
-- (UIImageView *)portraitImageView {
-    if (!iUserNameImage) {
-        CGFloat w = 100.0f; CGFloat h = w;
-        CGFloat x = (self.view.frame.size.width - w) / 2;
-        CGFloat y = (self.view.frame.size.height - h) / 2;
-        iUserNameImage = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, w, h)];
-        [iUserNameImage.layer setCornerRadius:(iUserNameImage.frame.size.height/2)];
-        [iUserNameImage.layer setMasksToBounds:YES];
-        [iUserNameImage setContentMode:UIViewContentModeScaleAspectFill];
-        [iUserNameImage setClipsToBounds:YES];
-        iUserNameImage.layer.shadowColor = [UIColor blackColor].CGColor;
-        iUserNameImage.layer.shadowOffset = CGSizeMake(4, 4);
-        iUserNameImage.layer.shadowOpacity = 0.5;
-        iUserNameImage.layer.shadowRadius = 2.0;
-        iUserNameImage.layer.borderColor = [[UIColor blackColor] CGColor];
-        iUserNameImage.layer.borderWidth = 2.0f;
-        iUserNameImage.userInteractionEnabled = YES;
-        iUserNameImage.backgroundColor = [UIColor blackColor];
-        UITapGestureRecognizer *portraitTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editPortrait:)];
-        [iUserNameImage addGestureRecognizer:portraitTap];
-    }
-    return iUserNameImage;
 }
 
 - (void)zoomImage:(UITapGestureRecognizer*)sender

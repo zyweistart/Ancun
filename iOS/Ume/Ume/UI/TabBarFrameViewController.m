@@ -20,10 +20,17 @@
     BOOL isFirstAddView;
 }
 
+- (id)init
+{
+    self=[super init];
+    if(self){
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     self.viewControllers = [NSArray arrayWithObjects:
                             [self viewControllerWithTabTitle:@"懂你" image:[UIImage imageNamed:@"tab_feed"] ViewController:[[MainViewController alloc]init]],
                             [self viewControllerWithTabTitle:@"消息" image:[UIImage imageNamed:@"tab_live"] ViewController:[[MessageViewController alloc]init]],
@@ -33,7 +40,7 @@
     [self addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take"] highlightImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte"]];
     
     noLoginView=[[UIView alloc]initWithFrame:CGRectMake1(0, HEIGHT-66, 320, 66)];
-    [noLoginView setBackgroundColor:DEFAULTITLECOLOR(20)];
+    [noLoginView setBackgroundColor:DEFAULTITLECOLORA(0,0.5)];
     [self.view addSubview:noLoginView];
     CButton *cLogin=[[CButton alloc]initWithFrame:CGRectMake1(10, 13, 300, 40) Name:@"登录懂我，发现不一样的自己"];
     [cLogin addTarget:self action:@selector(goLogin:) forControlEvents:UIControlEventTouchUpInside];

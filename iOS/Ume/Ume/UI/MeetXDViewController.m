@@ -32,7 +32,7 @@
     [bPublished setFrame:CGRectMake1(0, 0, 80, 30)];
     [bPublished setTitle:@"发布形象" forState:UIControlStateNormal];
     [bPublished.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [bPublished setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [bPublished setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [bPublished addTarget:self action:@selector(goPublished:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
                                             initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
