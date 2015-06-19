@@ -10,4 +10,9 @@
 
 @interface PublishedSpeechSoundViewController : BaseViewController
 
+@property (nonatomic) BOOL isRecording;
+@property (strong,nonatomic)NSFileManager *fileManager;
+@property (strong, nonatomic) UIButton *recordButton;
+@property (strong, nonatomic) UIButton *recordDeleteButton;
+
 @end
