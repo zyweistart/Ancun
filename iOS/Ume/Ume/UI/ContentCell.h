@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CLabel.h"
 @interface ContentCell : UITableViewCell
+
+@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)UIImageView *youHeader;
+@property (strong,nonatomic)CLabel *lblName;
+@property (strong,nonatomic)CLabel *lblTime;
 
 @end

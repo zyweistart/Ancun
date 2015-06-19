@@ -51,32 +51,40 @@
         UIButton *button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 100, 30)];
         [button1 setTitle:@"最新" forState:UIControlStateNormal];
         [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:DEFAULTITLECOLOR(130) forState:UIControlStateNormal];
+        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button1.tag=1;
         [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
         [downRefresh addSubview:button1];
+        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(5, 30, 90, 1)];
+        [line setBackgroundColor:DEFAULTITLECOLOR(200)];
+        [downRefresh addSubview:line];
         button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 30, 100, 30)];
         [button1 setTitle:@"最热" forState:UIControlStateNormal];
         [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:DEFAULTITLECOLOR(130) forState:UIControlStateNormal];
+        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button1.tag=2;
         [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
         [downRefresh addSubview:button1];
+        line=[[UIView alloc]initWithFrame:CGRectMake1(5, 60, 90, 1)];
+        [line setBackgroundColor:DEFAULTITLECOLOR(200)];
+        [downRefresh addSubview:line];
         button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 60, 100, 30)];
         [button1 setTitle:@"离我最近" forState:UIControlStateNormal];
         [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:DEFAULTITLECOLOR(130) forState:UIControlStateNormal];
+        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button1.tag=3;
         [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
         [downRefresh addSubview:button1];
+        line=[[UIView alloc]initWithFrame:CGRectMake1(5, 90, 90, 1)];
+        [line setBackgroundColor:DEFAULTITLECOLOR(200)];
+        [downRefresh addSubview:line];
         button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 90, 100, 30)];
         [button1 setTitle:@"只看异性" forState:UIControlStateNormal];
         [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:DEFAULTITLECOLOR(130) forState:UIControlStateNormal];
+        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button1.tag=4;
         [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
         [downRefresh addSubview:button1];
-        
     }
     return self;
 }
@@ -105,7 +113,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        return CGHeight(200);
+        return CGHeight(205);
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
