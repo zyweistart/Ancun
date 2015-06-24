@@ -2,6 +2,7 @@
 #import "ATMHud.h"
 #import "MBProgressHUD.h"
 #import "Reachability.h"
+#import "NSString+Utils.h"
 
 @implementation HttpRequest
 {
@@ -36,11 +37,34 @@
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params
 {
     if ([HttpRequest isNetworkConnection]) {
-        NSMutableString *URL=[[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@?%@",HTTP_URL,action]];
+        NSMutableString *URL=[[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@?",HTTP_URL]];
+        //时间戳
+        NSTimeInterval time=[[NSDate date] timeIntervalSince1970]*1000;
+        [params setObject:[NSString stringWithFormat:@"%0.lf",time] forKey:@"httpTime"];
+        //参数拼接URL
         for(id p in params){
             NSString *v=[params objectForKey:p];
-            [URL appendFormat:@"&%@=%@",p,v];
+            [URL appendFormat:@"%@=%@&",p,v];
         }
+        NSMutableArray *paramsArray=[[NSMutableArray alloc]init];
+        for(id p in params){
+            [paramsArray addObject:p];
+        }
+        //参数排序签名
+        NSArray *paramsSortArray = [paramsArray sortedArrayUsingComparator:
+                                    ^NSComparisonResult(NSString *obj1, NSString *obj2) {
+                                        return [obj1 compare:obj2];
+                                    }];
+        NSMutableString *aParamsString=[[NSMutableString alloc]init];
+        for(int i=0;i<[paramsSortArray count];i++){
+            NSString *p=paramsSortArray[i];
+            NSString *v=[params objectForKey:p];
+            [aParamsString appendFormat:@"%@=%@",p,v];
+            if(i+1<[paramsSortArray count]){
+                [aParamsString appendString:@"|"];
+            }
+        }
+        [URL appendFormat:@"sign=%@",[aParamsString md5]];
         // 初始化一个请求
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
         // 60秒请求超时

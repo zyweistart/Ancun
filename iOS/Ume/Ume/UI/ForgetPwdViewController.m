@@ -27,7 +27,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"忘记密码";
+        [self cTitle:@"忘记密码"];
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [scrollFrame setContentSize:CGSizeMake1(__SCREEN_WIDTH, __SCREEN_HEIGHT)];

@@ -11,8 +11,10 @@
 #define BUTTONNORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
 #define BUTTONPRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
 
-#define BUTTON2ORMALCOLOR [UIColor colorWithRed:(11/255.0) green:(132/255.0) blue:(43/255.0) alpha:1]
-#define BUTTON2PRESENDCOLOR [UIColor colorWithRed:(178/255.0) green:(235/255.0) blue:(193/255.0) alpha:1]
+#define BUTTON2NORMALCOLOR [UIColor colorWithRed:(255/255.0) green:(216/255.0) blue:(0/255.0) alpha:1]
+#define BUTTON2PRESENDCOLOR [UIColor colorWithRed:(228/255.0) green:(212/255.0) blue:(124/255.0) alpha:1]
+#define BUTTON3NORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
+#define BUTTON3PRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
 
 @interface CButton : UIButton
 

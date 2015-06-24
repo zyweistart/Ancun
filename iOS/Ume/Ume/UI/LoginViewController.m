@@ -10,7 +10,7 @@
 #import "RegisterViewController.h"
 #import "ForgetPwdViewController.h"
 #import "CLabel.h"
-#import "CTextField.h"
+#import "ImageTextField.h"
 #import "CButton.h"
 #import "NSString+Utils.h"
 
@@ -19,21 +19,21 @@
 @end
 
 @implementation LoginViewController{
-    CTextField *tfUserName;
-    CTextField *tfPassword;
+    ImageTextField *tfUserName;
+    ImageTextField *tfPassword;
     NSString *tUid,*tTimeStamp,*tUserName,*tPassWord;
 }
 
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"登录";
+        [self cTitle:@"登录"];
         //
         UIButton *bScreening = [[UIButton alloc]init];
         [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
         [bScreening setTitle:@"关闭" forState:UIControlStateNormal];
         [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bScreening setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [bScreening setTitleColor:DEFAULTITLECOLOR(120) forState:UIControlStateNormal];
         [bScreening addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bScreening];
         //
@@ -41,18 +41,18 @@
         [bRegister setFrame:CGRectMake1(0, 0, 30, 30)];
         [bRegister setTitle:@"注册" forState:UIControlStateNormal];
         [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bRegister setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [bRegister setTitleColor:COLOR2552160 forState:UIControlStateNormal];
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bRegister];
         //
-        tfUserName=[[CTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Placeholder:@"请输入账户"];
+        tfUserName=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Image:@"tabBar_cameraButton_ready_matte" Placeholder:@"请输入账户"];
         [self.view addSubview:tfUserName];
         //
-        tfPassword=[[CTextField alloc]initWithFrame:CGRectMake1(20, 70, 280, 40) Placeholder:@"请输入密码"];
-        [tfPassword setSecureTextEntry:YES];
+        tfPassword=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 70, 280, 40) Image:@"tabBar_cameraButton_ready_matte" Placeholder:@"请输入密码"];
+        [tfPassword.textField setSecureTextEntry:YES];
         [self.view addSubview:tfPassword];
         //
-        UIButton *bForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, 120, 80, 30)];
+        UIButton *bForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, 110, 80, 40)];
         [bForgetPwd setTitle:@"忘记密码?" forState:UIControlStateNormal];
         [bForgetPwd setTitleColor:DEFAULTITLECOLOR(190) forState:UIControlStateNormal];
         [bForgetPwd.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -60,7 +60,8 @@
         [self.view addSubview:bForgetPwd];
         [self.view addSubview:bForgetPwd];
         //
-        CButton *cLogin=[[CButton alloc]initWithFrame:CGRectMake1(40, 160, 240, 40) Name:@"登录"];
+        CButton *cLogin=[[CButton alloc]initWithFrame:CGRectMake1(20, 150, 280, 40) Name:@"登录" Type:4];
+        [cLogin setTitleColor:DEFAULTITLECOLOR(120) forState:UIControlStateNormal];
         [cLogin addTarget:self action:@selector(goLogin:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:cLogin];
     }
@@ -72,10 +73,10 @@
     [super viewDidAppear:animated];
     //自动登陆
     if([[User Instance]isAutoLogin]){
-        [tfUserName setText:[[User Instance]getUserName]];
-        tUserName=[tfUserName text];
-        [tfPassword setText:[[User Instance]getPassword]];
-        tPassWord=[tfPassword text];
+        [tfUserName.textField setText:[[User Instance]getUserName]];
+        tUserName=[tfUserName.textField text];
+        [tfPassword.textField setText:[[User Instance]getPassword]];
+        tPassWord=[tfPassword.textField text];
         [self handleGetInit];
     }
 }
@@ -83,6 +84,15 @@
 - (void)goRegister:(id)sender
 {
     [self.navigationController pushViewController:[[RegisterViewController alloc]init] animated:YES];
+//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//    [params setObject:@"13065732754" forKey:@"mobile"];
+//    [params setObject:@"sendcode" forKey:@"act"];
+//    self.hRequest=[[HttpRequest alloc]init];
+//    [self.hRequest setRequestCode:502];
+//    [self.hRequest setDelegate:self];
+//    [self.hRequest setController:self];
+//    [self.hRequest setIsShowMessage:YES];
+//    [self.hRequest handle:nil requestParams:params];
 }
 
 - (void)goForgetPwd:(id)sender
@@ -92,12 +102,12 @@
 
 - (void)goLogin:(id)sender
 {
-    tUserName=[tfUserName text];
+    tUserName=[tfUserName.textField text];
     if([@"" isEqualToString:tUserName]){
         [Common alert:@"账号不能为空"];
         return;
     }
-    tPassWord=[tfPassword text];
+    tPassWord=[tfPassword.textField text];
     if([@"" isEqualToString:tPassWord]){
         [Common alert:@"密码不能为空"];
         return;
@@ -158,7 +168,7 @@
         }
     }else{
         if(reqCode==501){
-            [tfPassword setText:@""];
+            [tfPassword.textField setText:@""];
             [[User Instance]clear];
         }
     }

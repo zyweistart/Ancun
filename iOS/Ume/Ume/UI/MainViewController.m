@@ -21,7 +21,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"懂你";
+        [self cTitle:@"懂你"];
         self.isFirstRefresh=NO;
         //筛选
         UIButton *bScreening = [[UIButton alloc]init];

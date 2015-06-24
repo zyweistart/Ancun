@@ -19,6 +19,10 @@
 		C91217991B02EFD200D9C57B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217981B02EFD200D9C57B /* Foundation.framework */; };
 		C9282D8E1B3147A9001B0C57 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9282D8D1B3147A9001B0C57 /* VPImageCropperViewController.m */; };
 		C92CBCF61B27D288003DA9DF /* MyFlowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92CBCF51B27D288003DA9DF /* MyFlowersViewController.m */; };
+		C947C1CF1B3A81280052B446 /* RegisterGetCheckCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947C1CE1B3A81280052B446 /* RegisterGetCheckCodeViewController.m */; };
+		C947C1D21B3A84C70052B446 /* ImageTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C947C1D11B3A84C70052B446 /* ImageTextField.m */; };
+		C947C1D51B3A929E0052B446 /* RegisterTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947C1D41B3A929E0052B446 /* RegisterTestViewController.m */; };
+		C947C1D81B3A92C70052B446 /* RegisterDoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947C1D71B3A92C70052B446 /* RegisterDoneViewController.m */; };
 		C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BD21B047CD00009344F /* TabBarFrameViewController.m */; };
 		C9480BF01B048CED0009344F /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9480BEF1B048CED0009344F /* MessageCell.m */; };
 		C94997531B0475470023107F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997521B0475470023107F /* MainViewController.m */; };
@@ -155,6 +159,14 @@
 		C9282D8D1B3147A9001B0C57 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		C92CBCF41B27D288003DA9DF /* MyFlowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFlowersViewController.h; sourceTree = "<group>"; };
 		C92CBCF51B27D288003DA9DF /* MyFlowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFlowersViewController.m; sourceTree = "<group>"; };
+		C947C1CD1B3A81280052B446 /* RegisterGetCheckCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterGetCheckCodeViewController.h; sourceTree = "<group>"; };
+		C947C1CE1B3A81280052B446 /* RegisterGetCheckCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterGetCheckCodeViewController.m; sourceTree = "<group>"; };
+		C947C1D01B3A84C70052B446 /* ImageTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextField.h; sourceTree = "<group>"; };
+		C947C1D11B3A84C70052B446 /* ImageTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextField.m; sourceTree = "<group>"; };
+		C947C1D31B3A929E0052B446 /* RegisterTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterTestViewController.h; sourceTree = "<group>"; };
+		C947C1D41B3A929E0052B446 /* RegisterTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterTestViewController.m; sourceTree = "<group>"; };
+		C947C1D61B3A92C70052B446 /* RegisterDoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDoneViewController.h; sourceTree = "<group>"; };
+		C947C1D71B3A92C70052B446 /* RegisterDoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterDoneViewController.m; sourceTree = "<group>"; };
 		C9480BD11B047CD00009344F /* TabBarFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarFrameViewController.h; sourceTree = "<group>"; };
 		C9480BD21B047CD00009344F /* TabBarFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarFrameViewController.m; sourceTree = "<group>"; };
 		C9480BEE1B048CED0009344F /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -477,16 +489,30 @@
 		C93E14761B0DB2080068E188 /* 用户 */ = {
 			isa = PBXGroup;
 			children = (
+				C947C1CC1B3A80D80052B446 /* 注册 */,
 				C970F5EA1B02F5CF0045A353 /* LoginViewController.h */,
 				C970F5EB1B02F5CF0045A353 /* LoginViewController.m */,
-				C9ACE8C71B0C69E900385809 /* RegisterViewController.h */,
-				C9ACE8C81B0C69E900385809 /* RegisterViewController.m */,
 				C9ACE8CA1B0C69F200385809 /* ForgetPwdViewController.h */,
 				C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */,
 				C9FE7E111B26B8730049AEC9 /* LoginMainViewController.h */,
 				C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */,
 			);
 			name = "用户";
+			sourceTree = "<group>";
+		};
+		C947C1CC1B3A80D80052B446 /* 注册 */ = {
+			isa = PBXGroup;
+			children = (
+				C9ACE8C71B0C69E900385809 /* RegisterViewController.h */,
+				C9ACE8C81B0C69E900385809 /* RegisterViewController.m */,
+				C947C1CD1B3A81280052B446 /* RegisterGetCheckCodeViewController.h */,
+				C947C1CE1B3A81280052B446 /* RegisterGetCheckCodeViewController.m */,
+				C947C1D31B3A929E0052B446 /* RegisterTestViewController.h */,
+				C947C1D41B3A929E0052B446 /* RegisterTestViewController.m */,
+				C947C1D61B3A92C70052B446 /* RegisterDoneViewController.h */,
+				C947C1D71B3A92C70052B446 /* RegisterDoneViewController.m */,
+			);
+			name = "注册";
 			sourceTree = "<group>";
 		};
 		C9480BED1B048CDD0009344F /* Cell */ = {
@@ -706,6 +732,8 @@
 				C9ACE8C51B0C65EA00385809 /* CLabel.m */,
 				C9ACE8C11B0C645000385809 /* CTextField.h */,
 				C9ACE8C21B0C645000385809 /* CTextField.m */,
+				C947C1D01B3A84C70052B446 /* ImageTextField.h */,
+				C947C1D11B3A84C70052B446 /* ImageTextField.m */,
 				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
 				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 			);
@@ -983,6 +1011,7 @@
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
 				C9909F991B1E9C6F00A84594 /* MessageZGViewController.m in Sources */,
 				C9FE7E1A1B26B9790049AEC9 /* UYourDetailViewController.m in Sources */,
+				C947C1D21B3A84C70052B446 /* ImageTextField.m in Sources */,
 				C9909FA21B1E9CB800A84594 /* MessageSXViewController.m in Sources */,
 				C949975C1B0477EC0023107F /* MyViewController.m in Sources */,
 				C9DBE7291B183BD6002ECDE4 /* UIImage+GIF.m in Sources */,
@@ -992,6 +1021,7 @@
 				C970F5D41B02F5120045A353 /* User.m in Sources */,
 				C9DBE7201B183BD6002ECDE4 /* MKAnnotationView+WebCache.m in Sources */,
 				C9DBE7221B183BD6002ECDE4 /* NSData+ImageContentType.m in Sources */,
+				C947C1CF1B3A81280052B446 /* RegisterGetCheckCodeViewController.m in Sources */,
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,
 				C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */,
 				C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */,
@@ -1000,6 +1030,7 @@
 				C9480BD31B047CD00009344F /* TabBarFrameViewController.m in Sources */,
 				C9909FB01B1E9F3400A84594 /* MyFollowViewController.m in Sources */,
 				C9ACE8B91B0C5D4300385809 /* EAIntroPage.m in Sources */,
+				C947C1D81B3A92C70052B446 /* RegisterDoneViewController.m in Sources */,
 				C9DBE72C1B183BD6002ECDE4 /* UIImageView+WebCache.m in Sources */,
 				C9282D8E1B3147A9001B0C57 /* VPImageCropperViewController.m in Sources */,
 				C970F5DD1B02F5120045A353 /* LoadMoreTableFooterView.m in Sources */,
@@ -1045,6 +1076,7 @@
 				C97524461B29213E00DE0709 /* NearbyViewController.m in Sources */,
 				C9FE7E2F1B26D69E0049AEC9 /* MessageSXCell.m in Sources */,
 				C970F5D91B02F5120045A353 /* ATMProgressLayer.m in Sources */,
+				C947C1D51B3A929E0052B446 /* RegisterTestViewController.m in Sources */,
 				C9DBE7261B183BD6002ECDE4 /* SDWebImageManager.m in Sources */,
 				C970F5EF1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */,

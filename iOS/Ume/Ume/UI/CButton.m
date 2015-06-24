@@ -33,12 +33,18 @@
     if(type==1){
         [self setBackgroundImage:[Common createImageWithColor:BUTTONNORMALCOLOR] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:BUTTONPRESENDCOLOR] forState:UIControlStateHighlighted];
+    }else if(type==2){
+        [self setBackgroundImage:[Common createImageWithColor:BUTTON2NORMALCOLOR] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:BUTTON2PRESENDCOLOR] forState:UIControlStateHighlighted];
     }else if(type==3){
+        [self setBackgroundImage:[Common createImageWithColor:BUTTON3NORMALCOLOR] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:BUTTON3PRESENDCOLOR] forState:UIControlStateHighlighted];
+    }else if(type==4){
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLOR(216)] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLOR(240)] forState:UIControlStateHighlighted];
+    }else{
         [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateHighlighted];
-    }else{
-        [self setBackgroundImage:[Common createImageWithColor:BUTTON2ORMALCOLOR] forState:UIControlStateNormal];
-        [self setBackgroundImage:[Common createImageWithColor:BUTTON2PRESENDCOLOR] forState:UIControlStateHighlighted];
     }
 }
 

@@ -41,7 +41,7 @@ enum
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"发布";
+        [self cTitle:@"发布"];
         //
         UIButton *bClose = [[UIButton alloc]init];
         [bClose setFrame:CGRectMake1(0, 0, 30, 30)];

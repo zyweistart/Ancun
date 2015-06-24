@@ -11,5 +11,5 @@
 @property (strong,nonatomic) NSObject<ResultDelegate> *resultDelegate;
 
 - (void)goBack:(id)sender;
-
+- (void)cTitle:(NSString*)title;
 @end

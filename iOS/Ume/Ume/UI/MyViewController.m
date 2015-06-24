@@ -44,7 +44,7 @@ static CGFloat kImageOriginHight = 220.f;
 - (id)init{
     self=[super init];
     if(self){
-        [self setTitle:@"我的"];
+        [self cTitle:@"我的"];
         [self.dataItemArray addObject:@"心情轨迹"];
         [self.dataItemArray addObject:@"我发布的"];
         [self.dataItemArray addObject:@"设置"];

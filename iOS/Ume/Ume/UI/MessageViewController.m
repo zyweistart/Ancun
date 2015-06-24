@@ -30,7 +30,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"消息";
+        [self cTitle:@"消息"];
         [self buildTableViewWithView:self.view];
         //
         UIButton *bScreening = [[UIButton alloc]init];
