@@ -75,7 +75,21 @@
         [Common alert:@"请输入校验码"];
         return;
     }
-    [self.navigationController pushViewController:[[RegisterTestViewController alloc]init] animated:YES];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:code forKey:@"code"];
+    [params setObject:@"APPSTORE" forKey:@"regfrom"];
+    [params setObject:[[User Instance]nickName] forKey:@"nc"];
+    [params setObject:[[User Instance]sex] forKey:@"gender"];
+    [params setObject:[[User Instance]phone] forKey:@"mobile"];
+    [params setObject:[[User Instance]pwd] forKey:@"pwd"];
+    [params setObject:@"" forKey:@"imsi"];
+    [params setObject:@"verify" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:nil requestParams:params];
 }
 
 - (void)get:(id)sender
@@ -85,21 +99,11 @@
     [params setObject:phone forKey:@"mobile"];
     [params setObject:@"sendcode" forKey:@"act"];
     self.hRequest=[[HttpRequest alloc]init];
-    [self.hRequest setRequestCode:502];
+    [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
     [self.hRequest handle:nil requestParams:params];
-}
-
-- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
-{
-    if([response successFlag]){
-        if(reqCode==500){
-            second=SECOND;
-            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
-        }
-    }
 }
 
 - (void)updateTimer{
@@ -113,6 +117,20 @@
     }else{
         [button setEnabled:NO];
         [button setTitle:[NSString stringWithFormat:@"%d秒后重新获取",second] forState:UIControlStateNormal];
+    }
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            //获取校验码
+            second=SECOND;
+            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+        }else if(reqCode==501){
+            //注册成功
+            [self.navigationController pushViewController:[[RegisterTestViewController alloc]init] animated:YES];
+        }
     }
 }
 

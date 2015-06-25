@@ -116,6 +116,10 @@
 		C9DBE72B1B183BD6002ECDE4 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A61B183BD6002ECDE4 /* UIImage+WebP.m */; };
 		C9DBE72C1B183BD6002ECDE4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */; };
 		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
+		C9FB529E1B3BDB430005F85A /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB529D1B3BDB430005F85A /* NSString+DES.m */; };
+		C9FB52A71B3BDC820005F85A /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A11B3BDC820005F85A /* Base64Util.m */; };
+		C9FB52A81B3BDC820005F85A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A31B3BDC820005F85A /* GTMBase64.m */; };
+		C9FB52A91B3BDC820005F85A /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A61B3BDC820005F85A /* MD5Encryption.m */; };
 		C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */; };
 		C9FE7E1A1B26B9790049AEC9 /* UYourDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */; };
 		C9FE7E1D1B26BC450049AEC9 /* MessageZDWDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */; };
@@ -349,6 +353,15 @@
 		C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
 		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
+		C9FB529C1B3BDB430005F85A /* NSString+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DES.h"; sourceTree = "<group>"; };
+		C9FB529D1B3BDB430005F85A /* NSString+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DES.m"; sourceTree = "<group>"; };
+		C9FB52A01B3BDC820005F85A /* Base64Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Util.h; sourceTree = "<group>"; };
+		C9FB52A11B3BDC820005F85A /* Base64Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Util.m; sourceTree = "<group>"; };
+		C9FB52A21B3BDC820005F85A /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		C9FB52A31B3BDC820005F85A /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		C9FB52A41B3BDC820005F85A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		C9FB52A51B3BDC820005F85A /* MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encryption.h; sourceTree = "<group>"; };
+		C9FB52A61B3BDC820005F85A /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
 		C9FE7E111B26B8730049AEC9 /* LoginMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMainViewController.h; sourceTree = "<group>"; };
 		C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMainViewController.m; sourceTree = "<group>"; };
 		C9FE7E181B26B9790049AEC9 /* UYourDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UYourDetailViewController.h; sourceTree = "<group>"; };
@@ -600,6 +613,8 @@
 				C970F5A51B02F5120045A353 /* User.m */,
 				C9AD44DE1B2EABBC00338AEE /* UIImage+Utils.h */,
 				C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */,
+				C9FB529C1B3BDB430005F85A /* NSString+DES.h */,
+				C9FB529D1B3BDB430005F85A /* NSString+DES.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -607,6 +622,7 @@
 		C970F5A61B02F5120045A353 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9FB529F1B3BDC820005F85A /* Encryption */,
 				C9282D8B1B3147A9001B0C57 /* VPImageCropper */,
 				C95F64451B2AAB9E00D27452 /* SJAvatarBrowser */,
 				C9DBE5DB1B183BD5002ECDE4 /* SDWebImage */,
@@ -877,6 +893,20 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		C9FB529F1B3BDC820005F85A /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				C9FB52A01B3BDC820005F85A /* Base64Util.h */,
+				C9FB52A11B3BDC820005F85A /* Base64Util.m */,
+				C9FB52A21B3BDC820005F85A /* GTMBase64.h */,
+				C9FB52A31B3BDC820005F85A /* GTMBase64.m */,
+				C9FB52A41B3BDC820005F85A /* GTMDefines.h */,
+				C9FB52A51B3BDC820005F85A /* MD5Encryption.h */,
+				C9FB52A61B3BDC820005F85A /* MD5Encryption.m */,
+			);
+			path = Encryption;
+			sourceTree = "<group>";
+		};
 		C9FE7E141B26B94E0049AEC9 /* 懂你 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,6 +1036,7 @@
 				C9DBE72A1B183BD6002ECDE4 /* UIImage+MultiFormat.m in Sources */,
 				C9909F961B1E9C6100A84594 /* MessageAWViewController.m in Sources */,
 				C970F5DA1B02F5120045A353 /* ATMSoundFX.m in Sources */,
+				C9FB529E1B3BDB430005F85A /* NSString+DES.m in Sources */,
 				C92CBCF61B27D288003DA9DF /* MyFlowersViewController.m in Sources */,
 				C94997531B0475470023107F /* MainViewController.m in Sources */,
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
@@ -1014,6 +1045,7 @@
 				C947C1D21B3A84C70052B446 /* ImageTextField.m in Sources */,
 				C9909FA21B1E9CB800A84594 /* MessageSXViewController.m in Sources */,
 				C949975C1B0477EC0023107F /* MyViewController.m in Sources */,
+				C9FB52A91B3BDC820005F85A /* MD5Encryption.m in Sources */,
 				C9DBE7291B183BD6002ECDE4 /* UIImage+GIF.m in Sources */,
 				C9ACE8C31B0C645000385809 /* CTextField.m in Sources */,
 				C981F6461B17019200FA112C /* AES.m in Sources */,
@@ -1035,6 +1067,7 @@
 				C9282D8E1B3147A9001B0C57 /* VPImageCropperViewController.m in Sources */,
 				C970F5DD1B02F5120045A353 /* LoadMoreTableFooterView.m in Sources */,
 				C9480BF01B048CED0009344F /* MessageCell.m in Sources */,
+				C9FB52A71B3BDC820005F85A /* Base64Util.m in Sources */,
 				C9909FB91B1E9FA200A84594 /* SettingViewController.m in Sources */,
 				C970F5DF1B02F5120045A353 /* PullTableView.m in Sources */,
 				C902ADD31B140762004EFD41 /* DataOutputStream.m in Sources */,
@@ -1069,6 +1102,7 @@
 				C9909F9F1B1E9C8E00A84594 /* MessageDWXDViewController.m in Sources */,
 				C95F64481B2AAB9E00D27452 /* SJAvatarBrowser.m in Sources */,
 				C975244C1B295EBF00DE0709 /* NearbyXQCell.m in Sources */,
+				C9FB52A81B3BDC820005F85A /* GTMBase64.m in Sources */,
 				C9ACE8C91B0C69E900385809 /* RegisterViewController.m in Sources */,
 				C970F5D81B02F5120045A353 /* ATMHudView.m in Sources */,
 				C970F5E81B02F5120045A353 /* MBProgressHUD.m in Sources */,

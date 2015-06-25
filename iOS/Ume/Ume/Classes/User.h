@@ -17,7 +17,6 @@
 
 - (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSDictionary*) d;
 
-
 @property (strong,nonatomic) NSString *sex;
 @property (strong,nonatomic) NSString *phone;
 @property (strong,nonatomic) NSString *pwd;

@@ -10,6 +10,7 @@
 #import "RegisterGetCheckCodeViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "ImageTextField.h"
+#import "NSString+DES.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
@@ -118,7 +119,8 @@
         [Common alert:@"密码不能为空"];
         return;
     }
-    [[User Instance]setPwd:password];
+    NSString *encrypt = [password encryptUseDES];
+    [[User Instance]setPwd:encrypt];
     //昵称
     NSString *nickname=[tNickname.textField text];
     if([@"" isEqualToString:nickname]){
