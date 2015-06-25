@@ -26,7 +26,7 @@
         [self.textField setPlaceholder:ph];
         [self.textField setDelegate:self];
         [self.textField setTextColor:DEFAULTITLECOLOR(190)];
-        [self.textField setFont:[UIFont systemFontOfSize:16]];
+        [self.textField setFont:[UIFont systemFontOfSize:18]];
         [self.textField setTextAlignment:NSTextAlignmentLeft];
         [self.textField setClearButtonMode:UITextFieldViewModeWhileEditing];
         [self addSubview:self.textField];

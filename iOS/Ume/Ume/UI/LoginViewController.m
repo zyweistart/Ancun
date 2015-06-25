@@ -84,15 +84,6 @@
 - (void)goRegister:(id)sender
 {
     [self.navigationController pushViewController:[[RegisterViewController alloc]init] animated:YES];
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"13065732754" forKey:@"mobile"];
-//    [params setObject:@"sendcode" forKey:@"act"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:502];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest setIsShowMessage:YES];
-//    [self.hRequest handle:nil requestParams:params];
 }
 
 - (void)goForgetPwd:(id)sender

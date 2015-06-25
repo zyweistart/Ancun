@@ -26,9 +26,6 @@ static User * instance = nil;
     [Common setCache:ACCOUNTUSERNAME data:u];
     [Common setCache:ACCOUNTPASSWORD data:p];
     [Common setCacheByBool:ISACCOUNTAUTOLOGIN data:YES];
-    self.uid=[d objectForKey:@"uid"];
-    self.enKey=[d objectForKey:@"enkey"];
-    self.sessionid=[d objectForKey:@"sessionid"];
     self.resultData=d;
 }
 
@@ -57,7 +54,7 @@ static User * instance = nil;
 
 - (BOOL)isLogin
 {
-    if(self.sessionid==nil||[@"" isEqualToString:self.sessionid]){
+    if(self.uid==nil||[@"" isEqualToString:self.uid]){
         return NO;
     }else{
         return YES;
@@ -66,8 +63,6 @@ static User * instance = nil;
 
 - (void)clear
 {
-    self.uid=nil;
-    self.sessionid=nil;
     self.resultData=nil;
     [Common setCache:ACCOUNTUSERNAME data:@""];
     [Common setCache:ACCOUNTPASSWORD data:@""];

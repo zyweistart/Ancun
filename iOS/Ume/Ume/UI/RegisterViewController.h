@@ -7,7 +7,9 @@
 //
 
 #import "BaseViewController.h"
+#import "VPImageCropperViewController.h"
 
-@interface RegisterViewController : BaseViewController
+@interface RegisterViewController : BaseViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,VPImageCropperDelegate>
+
 
 @end

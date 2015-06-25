@@ -11,6 +11,8 @@
 #import "CLabel.h"
 #import "CButton.h"
 
+#define SECOND 60
+
 @interface RegisterGetCheckCodeViewController ()
 
 @end
@@ -18,6 +20,8 @@
 @implementation RegisterGetCheckCodeViewController{
     UITextField *textField;
     CButton *button;
+    int second;
+    NSTimer *verificationCodeTime;
 }
 
 - (id)init{
@@ -35,7 +39,7 @@
         CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 40) Text:@"验证码已发送到"];
         [lbl setFont:[UIFont systemFontOfSize:16]];
         [self.view addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(110, 0, 90, 40) Text:@"13750820210"];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(110, 0, 90, 40) Text:[[User Instance]phone]];
         [lbl setTextColor:DEFAULTITLECOLORRGB(163,200,236)];
         [lbl setFont:[UIFont systemFontOfSize:16]];
         [self.view addSubview:lbl];
@@ -55,7 +59,7 @@
         [textField setTextAlignment:NSTextAlignmentLeft];
         [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
         [frame addSubview:textField];
-        button=[[CButton alloc]initWithFrame:CGRectMake1(175, 5, 120, 30) Name:@"59秒后重新获取" Type:2];
+        button=[[CButton alloc]initWithFrame:CGRectMake1(175, 5, 120, 30) Name:@"发送校验码" Type:2];
         [button setTitleColor:DEFAULTITLECOLOR(120) forState:UIControlStateNormal];
         [button addTarget:self action:@selector(get:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -66,12 +70,50 @@
 
 - (void)goDone:(id)sender
 {
+    NSString *code=[textField text];
+    if([@"" isEqualToString:code]){
+        [Common alert:@"请输入校验码"];
+        return;
+    }
     [self.navigationController pushViewController:[[RegisterTestViewController alloc]init] animated:YES];
 }
 
 - (void)get:(id)sender
 {
-    
+    NSString *phone=[[User Instance]phone];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:phone forKey:@"mobile"];
+    [params setObject:@"sendcode" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:502];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:nil requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            second=SECOND;
+            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+        }
+    }
+}
+
+- (void)updateTimer{
+    --second;
+    if(second==0){
+        [button setEnabled:YES];
+        [button setTitle:@"发送校验码" forState:UIControlStateNormal];
+        if(verificationCodeTime){
+            [verificationCodeTime invalidate];
+        }
+    }else{
+        [button setEnabled:NO];
+        [button setTitle:[NSString stringWithFormat:@"%d秒后重新获取",second] forState:UIControlStateNormal];
+    }
 }
 
 @end

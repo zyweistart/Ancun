@@ -16,6 +16,15 @@
     return self;
 }
 
+- (id)initWithData:(NSDictionary*)data
+{
+    self=[self init];
+    if(self){
+        self.data=data;
+    }
+    return self;
+}
+
 - (void)cTitle:(NSString*)title
 {
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 80, 30)];
