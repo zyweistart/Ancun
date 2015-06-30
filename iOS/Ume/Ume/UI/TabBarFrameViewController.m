@@ -5,7 +5,6 @@
 #import "DiscoverViewController.h"
 #import "MyViewController.h"
 #import "LoginViewController.h"
-#import "LocalRecordsViewController.h"
 #import "CButton.h"
 
 #define HTTP_REQUESTCODE_DOWNIMAGE 500

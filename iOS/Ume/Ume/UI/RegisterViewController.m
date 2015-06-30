@@ -59,7 +59,7 @@
         [mButton setImage:[UIImage imageNamed:@"icon_boy"] forState:UIControlStateSelected];
         [mButton addTarget:self action:@selector(mSex:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:mButton];
-        fButton=[[UIButton alloc]initWithFrame:CGRectMake1(270, 30, 40, 40)];
+        fButton=[[UIButton alloc]initWithFrame:CGRectMake1(260, 30, 40, 40)];
         [fButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [fButton setTitle:@"女" forState:UIControlStateNormal];
         [fButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
@@ -131,8 +131,8 @@
         [Common alert:@"密码不能为空"];
         return;
     }
-    NSString *encrypt = [password encryptUseDES];
-    [[User Instance]setPwd:encrypt];
+//    NSString *encrypt = [password encryptUseDES];
+    [[User Instance]setPwd:password];
     //昵称
     NSString *nickname=[tNickname.textField text];
     if([@"" isEqualToString:nickname]){

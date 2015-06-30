@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C902ADD31B140762004EFD41 /* DataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C902ADD21B140762004EFD41 /* DataOutputStream.m */; };
-		C902ADD61B140C12004EFD41 /* LocalRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C902ADD51B140C12004EFD41 /* LocalRecordsViewController.m */; };
 		C91217181B02ED7C00D9C57B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C91217171B02ED7C00D9C57B /* main.m */; };
 		C912171B1B02ED7C00D9C57B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C912171A1B02ED7C00D9C57B /* AppDelegate.m */; };
 		C91217231B02ED7C00D9C57B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91217221B02ED7C00D9C57B /* Images.xcassets */; };
@@ -143,8 +142,6 @@
 /* Begin PBXFileReference section */
 		C902ADD11B140762004EFD41 /* DataOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataOutputStream.h; sourceTree = "<group>"; };
 		C902ADD21B140762004EFD41 /* DataOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOutputStream.m; sourceTree = "<group>"; };
-		C902ADD41B140C12004EFD41 /* LocalRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalRecordsViewController.h; sourceTree = "<group>"; };
-		C902ADD51B140C12004EFD41 /* LocalRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalRecordsViewController.m; sourceTree = "<group>"; };
 		C91217121B02ED7B00D9C57B /* Ume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91217161B02ED7C00D9C57B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C91217171B02ED7C00D9C57B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -725,8 +722,6 @@
 				C93E14761B0DB2080068E188 /* 用户 */,
 				C94997571B0477DE0023107F /* DiscoverViewController.h */,
 				C94997581B0477DE0023107F /* DiscoverViewController.m */,
-				C902ADD41B140C12004EFD41 /* LocalRecordsViewController.h */,
-				C902ADD51B140C12004EFD41 /* LocalRecordsViewController.m */,
 				C94997511B0475470023107F /* MainViewController.h */,
 				C94997521B0475470023107F /* MainViewController.m */,
 				C94997541B0477BD0023107F /* MessageViewController.h */,
@@ -1116,7 +1111,6 @@
 				C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */,
 				C981F64C1B17076200FA112C /* NSData+AES256.m in Sources */,
 				C9909F9C1B1E9C7F00A84594 /* MessagePLViewController.m in Sources */,
-				C902ADD61B140C12004EFD41 /* LocalRecordsViewController.m in Sources */,
 				C96840561B282A69001D3952 /* UITableGridViewCell.m in Sources */,
 				C970F5DB1B02F5120045A353 /* ATMTextLayer.m in Sources */,
 				C970F5D31B02F5120045A353 /* Response.m in Sources */,
