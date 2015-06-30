@@ -32,12 +32,12 @@
 {
     [super viewDidLoad];
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:@"懂你" image:[UIImage imageNamed:@"tab_feed"] ViewController:[[MainViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"消息" image:[UIImage imageNamed:@"tab_live"] ViewController:[[MessageViewController alloc]init]],
+                            [self viewControllerWithTabTitle:@"懂你" image:@"icon-nav-heart" ViewController:[[MainViewController alloc]init]],
+                            [self viewControllerWithTabTitle:@"消息" image:@"icon-nav-message" ViewController:[[MessageViewController alloc]init]],
                             [self viewControllerWithTabTitle:@"" image:nil ViewController:[[PublishedSpeechSoundViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"发现" image:[UIImage imageNamed:@"tab_feed_profile"] ViewController:[[DiscoverViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"我的" image:[UIImage imageNamed:@"tab_messages"] ViewController:[[MyViewController alloc]init]], nil];
-    [self addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take"] highlightImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte"]];
+                            [self viewControllerWithTabTitle:@"发现" image:@"icon-nav-search" ViewController:[[DiscoverViewController alloc]init]],
+                            [self viewControllerWithTabTitle:@"我的" image:@"icon-nav-me" ViewController:[[MyViewController alloc]init]], nil];
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"icon-nav-share"] highlightImage:[UIImage imageNamed:@"icon-nav-share"]];
     
     noLoginView=[[UIView alloc]initWithFrame:CGRectMake1(0, HEIGHT-66, 320, 66)];
     [noLoginView setBackgroundColor:DEFAULTITLECOLORA(0,0.5)];
@@ -86,12 +86,16 @@
     [Common setCache:DEFAULTDATA_LASTVERSIONNO data:currentVersionNo];
 }
 
-- (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image ViewController:(UIViewController*)viewController
+- (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(NSString*)image ViewController:(UIViewController*)viewController
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:viewController];
 //    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
 //    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-    frameViewControllerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:image tag:0];
+    UITabBarItem *tabBarItem=[[UITabBarItem alloc]init];
+    [tabBarItem setTitle:title];
+    [tabBarItem setImage:[UIImage imageNamed:image]];
+    [tabBarItem setSelectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@2",image]]];
+    frameViewControllerNav.tabBarItem = tabBarItem;
     return frameViewControllerNav;
 }
 
@@ -99,10 +103,13 @@
 {
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
-    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+//    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+    [button setFrame:CGRectMake1(0, 0, 56, 56)];
+    button.layer.cornerRadius=button.bounds.size.width/2;
+    button.layer.masksToBounds=YES;
+    [button setBackgroundColor:COLOR2552160];
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
-    
     CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
     if (heightDifference < 0){
         button.center = self.tabBar.center;

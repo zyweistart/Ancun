@@ -30,7 +30,7 @@
 //    [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 //    [[UINavigationBar appearance] setBarTintColor:NAVBG];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
-    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+//    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     TabBarFrameViewController *tabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     self.window.rootViewController=tabBarFrameViewController;

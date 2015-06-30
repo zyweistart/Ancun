@@ -211,6 +211,7 @@ static CGFloat kImageOriginHight = 220.f;
         }
         NSString *content=[self.dataItemArray objectAtIndex:row];
         cell.textLabel.text = content;
+        [cell.imageView setImage:[UIImage imageNamed:content]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }

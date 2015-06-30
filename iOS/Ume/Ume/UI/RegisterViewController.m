@@ -39,37 +39,50 @@
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bNextSteup];
         
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(140, 20, 60, 60)];
-        [iUserNameImage setImage:[UIImage imageNamed:@"camera_button_take"]];
-        iUserNameImage.layer.cornerRadius=30;
+        [iUserNameImage setImage:[UIImage imageNamed:@"img_boy"]];
+        iUserNameImage.layer.cornerRadius=iUserNameImage.bounds.size.width/2;
         iUserNameImage.layer.masksToBounds = YES;
+        iUserNameImage.layer.borderWidth=1;
+        iUserNameImage.layer.borderColor=[DEFAULTITLECOLOR(150) CGColor];
         [iUserNameImage setUserInteractionEnabled:YES];
         [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(editPortrait:)]];
         [self.view addSubview:iUserNameImage];
         
         mButton=[[UIButton alloc]initWithFrame:CGRectMake1(220, 30, 40, 40)];
+        [mButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [mButton setTitle:@"男" forState:UIControlStateNormal];
-        [mButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [mButton setTitleColor:[UIColor yellowColor] forState:UIControlStateSelected];
+        [mButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+        [mButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [mButton setTitleColor:DEFAULTITLECOLORRGB(47,160,248) forState:UIControlStateSelected];
+        [mButton setImage:[UIImage imageNamed:@"icon_boy_g"] forState:UIControlStateNormal];
+        [mButton setImage:[UIImage imageNamed:@"icon_boy"] forState:UIControlStateSelected];
         [mButton addTarget:self action:@selector(mSex:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:mButton];
         fButton=[[UIButton alloc]initWithFrame:CGRectMake1(270, 30, 40, 40)];
+        [fButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [fButton setTitle:@"女" forState:UIControlStateNormal];
-        [fButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [fButton setTitleColor:[UIColor yellowColor] forState:UIControlStateSelected];
+        [fButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+        [fButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [fButton setTitleColor:DEFAULTITLECOLORRGB(242,82,159) forState:UIControlStateSelected];
+        [fButton setImage:[UIImage imageNamed:@"icon_girl_g"] forState:UIControlStateNormal];
+        [fButton setImage:[UIImage imageNamed:@"icon_girl"] forState:UIControlStateSelected];
         [fButton addTarget:self action:@selector(fSex:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:fButton];
         
         [mButton setSelected:YES];
         [fButton setSelected:NO];
         
-        tPhone=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 100, 280, 40) Image:@"tabBar_cameraButton_ready_matte" Placeholder:@"手机号"];
+        tPhone=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 100, 280, 40) Image:@"icon_phone" Placeholder:@"手机号"];
         [tPhone.textField setKeyboardType:UIKeyboardTypePhonePad];
+        [tPhone.textField setDelegate:self];
         [self.view addSubview:tPhone];
-        tPassword=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 150, 280, 40) Image:@"tabBar_cameraButton_ready_matte" Placeholder:@"密码"];
+        tPassword=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 150, 280, 40) Image:@"icon_mima" Placeholder:@"密码"];
         [tPassword.textField setSecureTextEntry:YES];
+        [tPassword.textField setDelegate:self];
         [self.view addSubview:tPassword];
-        tNickname=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 200, 280, 40) Image:@"tabBar_cameraButton_ready_matte" Placeholder:@"昵称"];
+        tNickname=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 200, 280, 40) Image:@"icon_name" Placeholder:@"昵称"];
+        [tNickname.textField setDelegate:self];
         [self.view addSubview:tNickname];
         
         
@@ -322,5 +335,52 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self changeTextFieldStatus:textField];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    [self changeTextFieldStatus:nil];
+    return YES;
+}
+
+- (void)changeTextFieldStatus:(UITextField*)textField
+{
+    if(textField==tPhone.textField){
+        [tPhone.image setImage:[UIImage imageNamed:@"icon_phone2"]];
+        tPhone.layer.borderColor=[COLOR2552160 CGColor];
+        [tPassword.image setImage:[UIImage imageNamed:@"icon_mima"]];
+        tPassword.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tNickname.image setImage:[UIImage imageNamed:@"icon_name"]];
+        tNickname.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+    }else if(textField==tPassword.textField){
+        [tPhone.image setImage:[UIImage imageNamed:@"icon_phone"]];
+        tPhone.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tPassword.image setImage:[UIImage imageNamed:@"icon_mima2"]];
+        tPassword.layer.borderColor=[COLOR2552160 CGColor];
+        [tNickname.image setImage:[UIImage imageNamed:@"icon_name"]];
+        tNickname.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+    }else if(textField==tNickname.textField){
+        [tPhone.image setImage:[UIImage imageNamed:@"icon_phone"]];
+        tPhone.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tPassword.image setImage:[UIImage imageNamed:@"icon_mima"]];
+        tPassword.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tNickname.image setImage:[UIImage imageNamed:@"icon_name2"]];
+        tNickname.layer.borderColor=[COLOR2552160 CGColor];
+    }else{
+        [tPhone.image setImage:[UIImage imageNamed:@"icon_phone"]];
+        tPhone.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tPassword.image setImage:[UIImage imageNamed:@"icon_mima"]];
+        tPassword.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tNickname.image setImage:[UIImage imageNamed:@"icon_name"]];
+        tNickname.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+    }
+}
+
+
 
 @end

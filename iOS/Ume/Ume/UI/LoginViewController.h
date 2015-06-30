@@ -14,7 +14,7 @@
 
 @end
 
-@interface LoginViewController : BaseViewController
+@interface LoginViewController : BaseViewController<UITextFieldDelegate>
 
 @property (strong,nonatomic) NSObject<LoginDelegate> *delegate;
 

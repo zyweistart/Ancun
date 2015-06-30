@@ -10,6 +10,7 @@
 #import "CLabel.h"
 #import <AVFoundation/AVFoundation.h>
 #import "NSString+Utils.h"
+#import "CButton.h"
 
 #define BLACKCOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 #define TIMECOLOR [UIColor colorWithRed:(40/255.0) green:(145/255.0) blue:(228/255.0) alpha:1]
@@ -36,6 +37,7 @@ enum
     NSTimer *timer;
     AVAudioRecorder *recorder;
     UILabel *lblTimeCount;
+    UIButton *saveTo;
 }
 
 - (id)init{
@@ -45,9 +47,8 @@ enum
         //
         UIButton *bClose = [[UIButton alloc]init];
         [bClose setFrame:CGRectMake1(0, 0, 30, 30)];
-        [bClose setTitle:@"关闭" forState:UIControlStateNormal];
-        [bClose.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bClose setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateHighlighted];
         [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bClose];
         //
@@ -55,18 +56,15 @@ enum
         [bPublished setFrame:CGRectMake1(0, 0, 30, 30)];
         [bPublished setTitle:@"发布" forState:UIControlStateNormal];
         [bPublished.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bPublished setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bPublished setTitleColor:COLOR2552160 forState:UIControlStateNormal];
         [bPublished addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
         
-        UIImageView *imageHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 150)];
+        UIImageView *imageHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 250)];
         [imageHeader setUserInteractionEnabled:YES];
         [imageHeader setImage:[UIImage imageNamed:@"personalbg"]];
         [self.view addSubview:imageHeader];
-        UIButton *bSwitch=[[UIButton alloc]initWithFrame:CGRectMake1(270, 5, 40, 30)];
-        [bSwitch setTitle:@"换一张" forState:UIControlStateNormal];
-        [bSwitch setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [bSwitch.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        CButton *bSwitch=[[CButton alloc]initWithFrame:CGRectMake1(230, 10, 80, 30) Name:@"换一张" Type:5];
         [bSwitch addTarget:self action:@selector(goSwitch:) forControlEvents:UIControlEventTouchUpInside];
         [imageHeader addSubview:bSwitch];
         CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(0, 60, 320, 30) Text:@"说说我的心情，寻找懂我的人"];
@@ -75,41 +73,80 @@ enum
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [imageHeader addSubview:lbl];
         
-        CGFloat topHeight=568-30-64;
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, topHeight, 150, 30) Text:@"同步到：微信 QQ Sina"];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 250, 150, 30) Text:@"同步到：微信 QQ Sina"];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [self.view addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(160, topHeight, 150, 30) Text:@"保存到心情轨迹"];
-        [lbl setTextColor:[UIColor blackColor]];
-        [lbl setTextAlignment:NSTextAlignmentRight];
-        [self.view addSubview:lbl];
+        
+        saveTo=[[UIButton alloc]initWithFrame:CGRectMake1(160, 250, 150, 30)];
+        [saveTo.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [saveTo setTitle:@"保存到心情轨迹" forState:UIControlStateNormal];
+        [saveTo setImage:[UIImage imageNamed:@"icon-select-off"] forState:UIControlStateNormal];
+        [saveTo setImage:[UIImage imageNamed:@"icon-select-on"] forState:UIControlStateSelected];
+        [saveTo setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+        [saveTo setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [saveTo addTarget:self action:@selector(saveTob:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:saveTo];
         //录音计时
-        lblTimeCount=[[UILabel alloc]initWithFrame:CGRectMake1(80, 150, 100, 40)];
+        lblTimeCount=[[UILabel alloc]initWithFrame:CGRectMake1(110, 320, 100, 40)];
         [lblTimeCount setText:@"00"];
+        [lblTimeCount setTextColor:DEFAULTITLECOLOR(130)];
+        [lblTimeCount setFont:[UIFont systemFontOfSize:25]];
+        [lblTimeCount setTextAlignment:NSTextAlignmentCenter];
         [self.view addSubview:lblTimeCount];
         //录音按钮
-        self.recordButton=[[UIButton alloc]initWithFrame:CGRectMake1(85, 200, 40, 40)];
-        [self.recordButton setTitle:@"开始" forState:UIControlStateNormal];
-        [self.recordButton setTitle:@"暂停" forState:UIControlStateSelected];
-        [self.recordButton setImage:[UIImage imageNamed:@"player_r"] forState:UIControlStateNormal];
-        [self.recordButton setImage:[UIImage imageNamed:@"player_s"] forState:UIControlStateSelected];
-        [self.recordButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self.recordButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        self.recordButton=[[UIButton alloc]initWithFrame:CGRectMake1(110, 360, 100, 100)];
+        self.recordButton.layer.cornerRadius=self.recordButton.bounds.size.width/2;
+        self.recordButton.layer.masksToBounds = YES;
+        [self.recordButton setBackgroundColor:COLOR2552160];
+        [self.recordButton setImage:[UIImage imageNamed:@"icon-play-big"] forState:UIControlStateNormal];
+        [self.recordButton setImage:[UIImage imageNamed:@"icon-stop-big"] forState:UIControlStateSelected];
         [self.recordButton addTarget:self action:@selector(startStopRecording:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.recordButton];
         
-        self.recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(185, 200, 40, 40)];
+        self.recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(260, 400, 40, 40)];
+        self.recordDeleteButton.layer.cornerRadius=self.recordDeleteButton.bounds.size.width/2;
+        self.recordDeleteButton.layer.masksToBounds = YES;
+        self.recordDeleteButton.layer.borderWidth=1;
+        self.recordDeleteButton.layer.borderColor=[[UIColor redColor]CGColor];
         [self.recordDeleteButton setTitle:@"删除" forState:UIControlStateNormal];
-        [self.recordDeleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.recordDeleteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [self.recordDeleteButton addTarget:self action:@selector(deleteRecording:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:self.recordDeleteButton];
+//        [self.view addSubview:self.recordDeleteButton];
         [self.recordDeleteButton setHidden:YES];
-        
+        //文件管理
         self.fileManager = [NSFileManager defaultManager];
         
+        CGFloat width=[self getPlayerWidthToSecond:71];
+        UIButton *but=[[UIButton alloc]initWithFrame:CGRectMake1(10, 300, width, 30)];
+        if(width>60){
+            but.layer.cornerRadius=CGWidth(15);
+        }else{
+            but.layer.cornerRadius=CGWidth(10);
+        }
+        but.layer.masksToBounds=YES;
+        but.layer.borderWidth=1;
+        but.layer.borderColor=[COLOR2552160 CGColor];
+        [but setImage:[UIImage imageNamed:@"icon-nav-me2"] forState:UIControlStateNormal];
+        [but setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+        [but setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        [but addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:but];
     }
     return self;
+}
+
+- (void)player:(id)sender
+{
+}
+
+- (CGFloat)getPlayerWidthToSecond:(int)curSecond
+{
+    if(curSecond>65){
+        return 150;
+    }
+    return 35+curSecond;
 }
 
 - (void)viewDidLoad
@@ -191,6 +228,11 @@ enum
     }else{
         [lblTimeCount setText:[NSString stringWithFormat:@"%ld",currentRecordLongTime]];
     }
+}
+
+- (void)saveTob:(id)sender
+{
+    [saveTo setSelected:!saveTo.selected];
 }
 
 @end

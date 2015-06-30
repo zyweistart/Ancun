@@ -45,11 +45,13 @@
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bRegister];
         //
-        tfUserName=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Image:@"tabBar_cameraButton_ready_matte" Placeholder:@"请输入账户"];
+        tfUserName=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Image:@"icon_phone" Placeholder:@"请输入账户"];
+        [tfUserName.textField setDelegate:self];
         [self.view addSubview:tfUserName];
         //
-        tfPassword=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 70, 280, 40) Image:@"tabBar_cameraButton_ready_matte" Placeholder:@"请输入密码"];
+        tfPassword=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 70, 280, 40) Image:@"icon_mima" Placeholder:@"请输入密码"];
         [tfPassword.textField setSecureTextEntry:YES];
+        [tfPassword.textField setDelegate:self];
         [self.view addSubview:tfPassword];
         //
         UIButton *bForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, 110, 80, 40)];
@@ -169,6 +171,38 @@
 {
     password=[[[NSString stringWithFormat:@"%@_%@",uid,password]md5]uppercaseString];
     return [[[NSString stringWithFormat:@"%@%@",timestamp,password]md5]uppercaseString];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self changeTextFieldStatus:textField];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    [self changeTextFieldStatus:nil];
+    return YES;
+}
+
+- (void)changeTextFieldStatus:(UITextField*)textField
+{
+    if(textField==tfUserName.textField){
+        [tfUserName.image setImage:[UIImage imageNamed:@"icon_phone2"]];
+        tfUserName.layer.borderColor=[COLOR2552160 CGColor];
+        [tfPassword.image setImage:[UIImage imageNamed:@"icon_mima"]];
+        tfPassword.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+    }else if(textField==tfPassword.textField){
+        [tfUserName.image setImage:[UIImage imageNamed:@"icon_phone"]];
+        tfUserName.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tfPassword.image setImage:[UIImage imageNamed:@"icon_mima2"]];
+        tfPassword.layer.borderColor=[COLOR2552160 CGColor];
+    }else{
+        [tfUserName.image setImage:[UIImage imageNamed:@"icon_phone"]];
+        tfUserName.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+        [tfPassword.image setImage:[UIImage imageNamed:@"icon_mima"]];
+        tfPassword.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
+    }
 }
 
 @end

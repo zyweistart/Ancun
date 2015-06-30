@@ -19,12 +19,12 @@
         self.layer.masksToBounds = YES;
         self.layer.borderWidth=1;
         self.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
-        self.image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 5, 30, 30)];
+        self.image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 5, 23, 30)];
         [self.image setImage:[UIImage imageNamed:imageNamed]];
         [self addSubview:self.image];
         self.textField=[[UITextField alloc]initWithFrame:CGRectMake(CGWidth(50), 0, rect.size.width-CGWidth(50), rect.size.height)];
         [self.textField setPlaceholder:ph];
-        [self.textField setDelegate:self];
+//        [self.textField setDelegate:self];
         [self.textField setTextColor:DEFAULTITLECOLOR(190)];
         [self.textField setFont:[UIFont systemFontOfSize:18]];
         [self.textField setTextAlignment:NSTextAlignmentLeft];
