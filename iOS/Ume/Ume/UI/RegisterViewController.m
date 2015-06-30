@@ -85,7 +85,6 @@
         [tNickname.textField setDelegate:self];
         [self.view addSubview:tNickname];
         
-        
         [tPhone.textField setText:@"13065732754"];
         [tPassword.textField setText:@"123456"];
         [tNickname.textField setText:@"政治"];
@@ -380,7 +379,5 @@
         tNickname.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
     }
 }
-
-
 
 @end

@@ -10,6 +10,7 @@
 
 @interface MessageCell : UITableViewCell
 
+@property UIImageView *image;
 @property UILabel *lblTitle;
 @property UILabel *lblCount;
 

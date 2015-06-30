@@ -22,6 +22,7 @@
 #import "SJAvatarBrowser.h"
 //#import <AssetsLibrary/AssetsLibrary.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "MessageCell.h"
 
 #define LOGINREGISTERBGCOLOR [UIColor colorWithRed:(58/255.0) green:(117/255.0) blue:(207/255.0) alpha:0.5]
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
@@ -205,13 +206,14 @@ static CGFloat kImageOriginHight = 220.f;
         return cell;
     }else{
         static NSString *CMainCell = @"CMainCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+            cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
         }
         NSString *content=[self.dataItemArray objectAtIndex:row];
-        cell.textLabel.text = content;
-        [cell.imageView setImage:[UIImage imageNamed:content]];
+        [cell.image setImage:[UIImage imageNamed:content]];
+        [cell.lblTitle setText:content];
+        [cell.lblCount setHidden:YES];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }

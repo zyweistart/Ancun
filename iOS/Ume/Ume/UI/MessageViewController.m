@@ -37,8 +37,8 @@
         [bScreening setFrame:CGRectMake1(0, 0, 80, 30)];
         [bScreening setTitle:@"我关注的" forState:UIControlStateNormal];
         [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bScreening setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        [bScreening addTarget:self action:@selector(goScreening) forControlEvents:UIControlEventTouchUpInside];
+        [bScreening setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        [bScreening addTarget:self action:@selector(goScreening) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                 target:nil action:nil];
@@ -81,6 +81,7 @@
     }
     NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
     NSString *name=[data objectForKey:DISNAME];
+    [cell.image setImage:[UIImage imageNamed:name]];
     [cell.lblTitle setText:name];
     NSString *value=[data objectForKey:DISVALUE];
     if(value!=nil&&![@""isEqualToString:value]&&![@"0"isEqualToString:value]){

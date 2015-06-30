@@ -13,7 +13,10 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 45)];
+        self.image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 8, 24, 24)];
+        [self addSubview:self.image];
+        
+        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(44, 0, 100, 45)];
         [self.lblTitle setFont:[UIFont systemFontOfSize:16]];
         [self.lblTitle setTextColor:DEFAULTITLECOLOR(30)];
         [self.lblTitle setTextAlignment:NSTextAlignmentLeft];

@@ -73,13 +73,13 @@ enum
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [imageHeader addSubview:lbl];
         
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 250, 150, 30) Text:@"同步到：微信 QQ Sina"];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 250, 150, 30) Text:@"换图片   @某人"];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [self.view addSubview:lbl];
         
-        saveTo=[[UIButton alloc]initWithFrame:CGRectMake1(160, 250, 150, 30)];
+        saveTo=[[UIButton alloc]initWithFrame:CGRectMake1(200, 250, 110, 30)];
         [saveTo.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [saveTo setTitle:@"保存到心情轨迹" forState:UIControlStateNormal];
         [saveTo setImage:[UIImage imageNamed:@"icon-select-off"] forState:UIControlStateNormal];
