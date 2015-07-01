@@ -92,8 +92,10 @@
 //    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     UITabBarItem *tabBarItem=[[UITabBarItem alloc]init];
     [tabBarItem setTitle:title];
-    [tabBarItem setImage:[UIImage imageNamed:image]];
-    [tabBarItem setSelectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@2",image]]];
+    if(image){
+        [tabBarItem setImage:[UIImage imageNamed:image]];
+        [tabBarItem setSelectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@2",image]]];
+    }
     frameViewControllerNav.tabBarItem = tabBarItem;
     return frameViewControllerNav;
 }

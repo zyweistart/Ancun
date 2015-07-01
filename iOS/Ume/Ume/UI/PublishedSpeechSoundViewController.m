@@ -37,7 +37,8 @@ enum
     NSTimer *timer;
     AVAudioRecorder *recorder;
     UILabel *lblTimeCount;
-    UIButton *saveTo;
+    UIButton *switchToImage,*atToMe,*saveTo;
+    UIImageView *bgPlayer;
 }
 
 - (id)init{
@@ -60,27 +61,42 @@ enum
         [bPublished addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
         
-        UIImageView *imageHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 250)];
+        UIImageView *imageHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(5, 5, 310, 250)];
         [imageHeader setUserInteractionEnabled:YES];
         [imageHeader setImage:[UIImage imageNamed:@"personalbg"]];
         [self.view addSubview:imageHeader];
-        CButton *bSwitch=[[CButton alloc]initWithFrame:CGRectMake1(230, 10, 80, 30) Name:@"换一张" Type:5];
+        CButton *bSwitch=[[CButton alloc]initWithFrame:CGRectMake1(220, 10, 80, 30) Name:@"换一张" Type:5];
+        [bSwitch.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        bSwitch.layer.cornerRadius=CGWidth(15);
         [bSwitch addTarget:self action:@selector(goSwitch:) forControlEvents:UIControlEventTouchUpInside];
         [imageHeader addSubview:bSwitch];
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(0, 60, 320, 30) Text:@"说说我的心情，寻找懂我的人"];
-        [lbl setFont:[UIFont systemFontOfSize:16]];
-        [lbl setTextColor:[UIColor whiteColor]];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [imageHeader addSubview:lbl];
         
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 250, 150, 30) Text:@"换图片   @某人"];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextColor:[UIColor blackColor]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [self.view addSubview:lbl];
-        
-        saveTo=[[UIButton alloc]initWithFrame:CGRectMake1(200, 250, 110, 30)];
-        [saveTo.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        UITextView *textContent=[[UITextView alloc]initWithFrame:CGRectMake1(10, 60, 290, 120)];
+        [textContent setText:@"每张脸诉说千种情绪,却很容易掩饰心情。\n最快乐的面具下,也许是一颗最痛的心。"];
+        [textContent setScrollEnabled:YES];
+        [textContent setFont:[UIFont systemFontOfSize:18]];
+        [textContent setTextColor:DEFAULTITLECOLOR(200)];
+        [textContent setBackgroundColor:[UIColor clearColor]];
+        [textContent setDelegate:self];
+        [textContent setTextAlignment:NSTextAlignmentCenter];
+        [imageHeader addSubview:textContent];
+        //换图片
+        switchToImage=[[UIButton alloc]initWithFrame:CGRectMake1(10, 255, 50, 30)];
+        [switchToImage.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [switchToImage setTitle:@"换图片" forState:UIControlStateNormal];
+        [switchToImage setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [switchToImage addTarget:self action:@selector(switchToImageb:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:switchToImage];
+        //@某人
+        atToMe=[[UIButton alloc]initWithFrame:CGRectMake1(70, 255, 50, 30)];
+        [atToMe.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [atToMe setTitle:@"@某人" forState:UIControlStateNormal];
+        [atToMe setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [atToMe addTarget:self action:@selector(atToMeb:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:atToMe];
+        //保存到
+        saveTo=[[UIButton alloc]initWithFrame:CGRectMake1(190, 255, 120, 30)];
+        [saveTo.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [saveTo setTitle:@"保存到心情轨迹" forState:UIControlStateNormal];
         [saveTo setImage:[UIImage imageNamed:@"icon-select-off"] forState:UIControlStateNormal];
         [saveTo setImage:[UIImage imageNamed:@"icon-select-on"] forState:UIControlStateSelected];
@@ -88,24 +104,31 @@ enum
         [saveTo setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
         [saveTo addTarget:self action:@selector(saveTob:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:saveTo];
+        //默认设置为选中
+        [saveTo setSelected:YES];
+        
+        bgPlayer=[[UIImageView alloc]initWithFrame:CGRectMake1(70, 320, 180, 180)];
+        [bgPlayer setBackgroundColor:[UIColor greenColor]];
+        [bgPlayer setUserInteractionEnabled:YES];
+        [self.view addSubview:bgPlayer];
         //录音计时
-        lblTimeCount=[[UILabel alloc]initWithFrame:CGRectMake1(110, 320, 100, 40)];
+        lblTimeCount=[[UILabel alloc]initWithFrame:CGRectMake1(40, 0, 100, 140)];
         [lblTimeCount setText:@"00"];
         [lblTimeCount setTextColor:DEFAULTITLECOLOR(130)];
         [lblTimeCount setFont:[UIFont systemFontOfSize:25]];
         [lblTimeCount setTextAlignment:NSTextAlignmentCenter];
-        [self.view addSubview:lblTimeCount];
+        [bgPlayer addSubview:lblTimeCount];
         //录音按钮
-        self.recordButton=[[UIButton alloc]initWithFrame:CGRectMake1(110, 360, 100, 100)];
+        self.recordButton=[[UIButton alloc]initWithFrame:CGRectMake1(40, 40, 100, 100)];
         self.recordButton.layer.cornerRadius=self.recordButton.bounds.size.width/2;
         self.recordButton.layer.masksToBounds = YES;
         [self.recordButton setBackgroundColor:COLOR2552160];
         [self.recordButton setImage:[UIImage imageNamed:@"icon-play-big"] forState:UIControlStateNormal];
         [self.recordButton setImage:[UIImage imageNamed:@"icon-stop-big"] forState:UIControlStateSelected];
         [self.recordButton addTarget:self action:@selector(startStopRecording:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:self.recordButton];
+        [bgPlayer addSubview:self.recordButton];
         
-        self.recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(260, 400, 40, 40)];
+        self.recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(250, 400, 40, 40)];
         self.recordDeleteButton.layer.cornerRadius=self.recordDeleteButton.bounds.size.width/2;
         self.recordDeleteButton.layer.masksToBounds = YES;
         self.recordDeleteButton.layer.borderWidth=1;
@@ -113,7 +136,7 @@ enum
         [self.recordDeleteButton setTitle:@"删除" forState:UIControlStateNormal];
         [self.recordDeleteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [self.recordDeleteButton addTarget:self action:@selector(deleteRecording:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:self.recordDeleteButton];
+        [self.view addSubview:self.recordDeleteButton];
         [self.recordDeleteButton setHidden:YES];
         //文件管理
         self.fileManager = [NSFileManager defaultManager];
@@ -230,9 +253,27 @@ enum
     }
 }
 
+- (void)switchToImageb:(id)sender
+{
+    NSLog(@"换图片");
+}
+
+- (void)atToMeb:(id)sender
+{
+    NSLog(@"@某人");
+}
+
 - (void)saveTob:(id)sender
 {
     [saveTo setSelected:!saveTo.selected];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 @end

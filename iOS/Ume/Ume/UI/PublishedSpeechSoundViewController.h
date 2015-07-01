@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface PublishedSpeechSoundViewController : BaseViewController
+@interface PublishedSpeechSoundViewController : BaseViewController<UITextViewDelegate>
 
 @property (nonatomic) BOOL isRecording;
 @property (strong,nonatomic)NSFileManager *fileManager;

@@ -67,7 +67,7 @@
         [URL appendFormat:@"sign=%@",[aParamsString md5]];
         // 初始化一个请求
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
-        NSLog(@"%@",URL);
+//        NSLog(@"%@",URL);
         // 60秒请求超时
         request.timeoutInterval = 120;
         
