@@ -24,6 +24,7 @@
     if(self){
         [self cTitle:@"懂你"];
         self.isFirstRefresh=NO;
+        self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         //筛选
         UIButton *bScreening = [[UIButton alloc]init];
         [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
@@ -76,47 +77,6 @@
     [super viewDidLoad];
 }
 
-- (void)loadHttp
-{
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"type"];//筛选1最新 2最热 3离我最近 4只看美女
-    [params setObject:@"getPublish" forKey:@"act"];
-    self.hRequest=[[HttpRequest alloc]init];
-    [self.hRequest setRequestCode:500];
-    [self.hRequest setDelegate:self];
-    [self.hRequest setController:self];
-    [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:nil requestParams:params];
-}
-
-- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
-{
-    NSLog(@"%@",[response responseString]);
-    
-    
-    
-    if([response successFlag]){
-        NSDictionary *rData=[[response resultJSON] objectForKey:@"Data"];
-        if(rData){
-            //当前页
-            self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
-            //获取数据列表
-            NSDictionary *tabData=[rData objectForKey:@"Tab"];
-            if(tabData){
-                NSMutableArray *nsArr=[[NSMutableArray alloc]init];
-                for(id data in tabData){
-                    [nsArr addObject:data];
-                }
-                if([self currentPage]==1){
-                    [[self dataItemArray] removeAllObjects];
-                }
-                [[self dataItemArray] addObjectsFromArray:nsArr];
-            }
-        }
-    }
-    [self loadDone];
-}
-
 - (void)goScreening
 {
     [bgView setHidden:![bgView isHidden]];
@@ -150,18 +110,64 @@
         if(!cell) {
             cell = [[ContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        NSDictionary *data=[[self dataItemArray]objectAtIndex:[indexPath row]];
+        [cell setData:data];
+        [cell.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+        [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
+        [cell.lblName setText:@"Jackywell"];
+        [cell.lblTime setText:@"15:22"];
+        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
+//        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
+//        [HttpRequest AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
+        [cell.mBackground setImage:[UIImage imageNamed:@"personalbg"]];
+        
+        NSString *content=[data objectForKey:@"content"];
+        [cell.lblContent setText:content];
+        [cell.lblContent sizeToFit];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+//    [self.navigationController pushViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES];
+//}
+
+- (void)loadHttp
 {
-    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-    [self.navigationController pushViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"1" forKey:@"type"];//筛选1最新 2最热 3离我最近 4只看美女
+    [params setObject:@"getPublish" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:nil requestParams:params];
 }
 
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        NSDictionary *rData=[[response resultJSON] objectForKey:@"data"];
+        if(rData){
+            NSMutableArray *nsArr=[[NSMutableArray alloc]init];
+            for(id data in rData){
+                [nsArr addObject:data];
+            }
+            if([self currentPage]==1){
+                [[self dataItemArray] removeAllObjects];
+            }
+            [[self dataItemArray] addObjectsFromArray:nsArr];
+        }
+    }
+    [self loadDone];
+}
+
+//筛选按钮创建
 - (UIButton*)createButton:(CGRect)rect Title:(NSString *)title Tag:(NSInteger)tag
 {
     UIButton *button1=[[UIButton alloc]initWithFrame:rect];
