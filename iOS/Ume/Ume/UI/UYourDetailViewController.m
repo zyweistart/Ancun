@@ -69,6 +69,15 @@
         self.youHeader.layer.borderWidth=1;
         self.youHeader.layer.borderColor=[[UIColor grayColor]CGColor];
         [topView addSubview:self.youHeader];
+        UIView *titleHead=[[UIView alloc]initWithFrame:CGRectMake1(0, 60, 320, 40)];
+        [titleHead setBackgroundColor:DEFAULTITLECOLOR(245)];
+        [topView addSubview:titleHead];
+        //总数
+        self.lblCount=[[CLabel alloc]initWithFrame:CGRectMake1(10, 0, 150, 40) Text:@"所有懂你(123)"];
+        [self.lblCount setFont:[UIFont systemFontOfSize:14]];
+        [self.lblCount setTextColor:DEFAULTITLECOLOR(100)];
+        [titleHead addSubview:self.lblCount];
+        
         [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];

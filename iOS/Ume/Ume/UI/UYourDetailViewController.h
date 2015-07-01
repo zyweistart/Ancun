@@ -20,5 +20,6 @@
 @property (strong,nonatomic)UIButton *bPlayer;
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
+@property (strong,nonatomic)CLabel *lblCount;
 
 @end
