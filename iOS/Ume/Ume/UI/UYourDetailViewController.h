@@ -7,11 +7,18 @@
 //
 
 #import "BaseViewController.h"
+#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "CLabel.h"
 
-@interface UYourDetailViewController : BaseViewController
-
-@property (strong,nonatomic)NSDictionary *data;
+@interface UYourDetailViewController : BaseEGOTableViewPullRefreshViewController
 
 - (id)initWithData:(NSDictionary*)data;
+
+@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)UIImageView *mFelationship;
+@property (strong,nonatomic)UIImageView *youHeader;
+@property (strong,nonatomic)UIButton *bPlayer;
+@property (strong,nonatomic)CLabel *lblName;
+@property (strong,nonatomic)CLabel *lblTime;
 
 @end

@@ -113,29 +113,30 @@
         if(!cell) {
             cell = [[ContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        NSDictionary *data=[[self dataItemArray]objectAtIndex:[indexPath row]];
-        [cell setData:data];
-        [cell.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
-        [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
-        [cell.lblName setText:@"Jackywell"];
-        [cell.lblTime setText:@"15:22"];
-        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
-//        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
-//        [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
-        NSString *content=[data objectForKey:@"content"];
-        [cell.lblContent setText:content];
-        [cell.lblContent sizeToFit];
+//        NSDictionary *data=[[self dataItemArray]objectAtIndex:[indexPath row]];
+//        [cell setData:data];
+//        [cell.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+//        [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
+//        [cell.lblName setText:@"Jackywell"];
+//        [cell.lblTime setText:@"15:22"];
+//        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
+////        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
+////        [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
+//        NSString *content=[data objectForKey:@"content"];
+//        [cell.lblContent setText:content];
+//        [cell.lblContent sizeToFit];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
 //    [self.navigationController pushViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES];
-//}
+    [self presentViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES completion:nil];
+}
 
 - (void)loadHttp
 {
