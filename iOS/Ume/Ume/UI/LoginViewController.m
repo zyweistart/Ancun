@@ -22,6 +22,7 @@
     ImageTextField *tfUserName;
     ImageTextField *tfPassword;
     NSString *tUid,*tTimeStamp,*tUserName,*tPassWord;
+    CButton *cLogin;
 }
 
 - (id)init{
@@ -29,13 +30,12 @@
     if(self){
         [self cTitle:@"登录"];
         //
-        UIButton *bScreening = [[UIButton alloc]init];
-        [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
-        [bScreening setTitle:@"关闭" forState:UIControlStateNormal];
-        [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bScreening setTitleColor:DEFAULTITLECOLOR(120) forState:UIControlStateNormal];
-        [bScreening addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bScreening];
+        UIButton *bClose = [[UIButton alloc]init];
+        [bClose setFrame:CGRectMake1(0, 0, 30, 30)];
+        [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateHighlighted];
+        [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bClose];
         //
         UIButton *bRegister = [UIButton buttonWithType:UIButtonTypeCustom];
         [bRegister setFrame:CGRectMake1(0, 0, 30, 30)];
@@ -62,7 +62,7 @@
         [self.view addSubview:bForgetPwd];
         [self.view addSubview:bForgetPwd];
         //
-        CButton *cLogin=[[CButton alloc]initWithFrame:CGRectMake1(20, 150, 280, 40) Name:@"登录" Type:4];
+        cLogin=[[CButton alloc]initWithFrame:CGRectMake1(20, 150, 280, 40) Name:@"登录" Type:4];
         [cLogin setTitleColor:DEFAULTITLECOLOR(120) forState:UIControlStateNormal];
         [cLogin addTarget:self action:@selector(goLogin:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:cLogin];
@@ -175,6 +175,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [cLogin setType:2];
     [self changeTextFieldStatus:textField];
 }
 

@@ -14,7 +14,9 @@
 
 @end
 
-@implementation RegisterDoneViewController
+@implementation RegisterDoneViewController{
+    CLabel *lblMood;
+}
 
 - (id)init{
     self=[super init];
@@ -29,16 +31,16 @@
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:rButton];
         
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(130, 60, 60, 60)];
-        [image setImage:[UIImage imageNamed:@"暂无数据"]];
+        [image setImage:[UIImage imageNamed:@"qx-tianmi"]];
         [self.view addSubview:image];
         CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(55, 135, 80, 35) Text:@"今天情绪为"];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [lbl setFont:[UIFont systemFontOfSize:18]];
         [self.view addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(135, 130, 40, 40) Text:@"开心"];
-        [lbl setTextColor:COLOR2552160];
-        [lbl setFont:[UIFont systemFontOfSize:22]];
-        [self.view addSubview:lbl];
+        lblMood=[[CLabel alloc]initWithFrame:CGRectMake1(135, 130, 40, 40) Text:@"开心"];
+        [lblMood setTextColor:COLOR2552160];
+        [lblMood setFont:[UIFont systemFontOfSize:24]];
+        [self.view addSubview:lblMood];
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(175, 135, 100, 35) Text:@",约会正当时！"];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [lbl setFont:[UIFont systemFontOfSize:18]];

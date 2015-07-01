@@ -18,7 +18,7 @@
     
     self=[super initWithFrame:rect];
     if(self){
-        self.layer.cornerRadius = CGWidth(10);
+        self.layer.cornerRadius = CGWidth(7);
         self.layer.masksToBounds = YES;
         [self setTitle:name forState:UIControlStateNormal];
         [self.titleLabel setFont:[UIFont systemFontOfSize:18]];
@@ -44,6 +44,9 @@
         [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLOR(240)] forState:UIControlStateHighlighted];
     }else if(type==5){
         [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORA(240,0.2)] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLOR(255)] forState:UIControlStateHighlighted];
+    }else if(type==6){
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORA(240,0.8)] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLOR(255)] forState:UIControlStateHighlighted];
     }else{
         [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];

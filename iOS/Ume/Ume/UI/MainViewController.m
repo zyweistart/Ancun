@@ -16,6 +16,7 @@
 
 @implementation MainViewController{
     UIView *bgView;
+    UIButton *mButton1,*mButton2,*mButton3,*mButton4;
 }
 
 - (id)init{
@@ -28,7 +29,7 @@
         [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
         [bScreening setTitle:@"筛选" forState:UIControlStateNormal];
         [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bScreening setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [bScreening setTitleColor:COLOR2552160 forState:UIControlStateNormal];
         [bScreening addTarget:self action:@selector(goScreening) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
@@ -48,43 +49,24 @@
         downRefresh.layer.borderColor=DEFAULTITLECOLOR(190).CGColor;
         [downRefresh setBackgroundColor:[UIColor whiteColor]];
         [bgView addSubview:downRefresh];
-        UIButton *button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 100, 30)];
-        [button1 setTitle:@"最新" forState:UIControlStateNormal];
-        [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        button1.tag=1;
-        [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
-        [downRefresh addSubview:button1];
-        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(5, 30, 90, 1)];
+        
+        mButton1=[self createButton:CGRectMake1(0, 0, 100, 30) Title:@"最新" Tag:1];
+        [downRefresh addSubview:mButton1];
+        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(5, 30, 90, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(200)];
         [downRefresh addSubview:line];
-        button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 30, 100, 30)];
-        [button1 setTitle:@"最热" forState:UIControlStateNormal];
-        [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        button1.tag=2;
-        [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
-        [downRefresh addSubview:button1];
-        line=[[UIView alloc]initWithFrame:CGRectMake1(5, 60, 90, 1)];
+        mButton2=[self createButton:CGRectMake1(0, 30, 100, 30) Title:@"最热" Tag:2];
+        [downRefresh addSubview:mButton2];
+        line=[[UIView alloc]initWithFrame:CGRectMake1(5, 60, 90, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(200)];
         [downRefresh addSubview:line];
-        button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 60, 100, 30)];
-        [button1 setTitle:@"离我最近" forState:UIControlStateNormal];
-        [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        button1.tag=3;
-        [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
-        [downRefresh addSubview:button1];
-        line=[[UIView alloc]initWithFrame:CGRectMake1(5, 90, 90, 1)];
+        mButton3=[self createButton:CGRectMake1(0, 60, 100, 30) Title:@"离我最近" Tag:3];
+        [downRefresh addSubview:mButton3];
+        line=[[UIView alloc]initWithFrame:CGRectMake1(5, 90, 90, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(200)];
         [downRefresh addSubview:line];
-        button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 90, 100, 30)];
-        [button1 setTitle:@"只看异性" forState:UIControlStateNormal];
-        [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        button1.tag=4;
-        [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
-        [downRefresh addSubview:button1];
+        mButton4=[self createButton:CGRectMake1(0, 90, 100, 30)Title:@"只看异性" Tag:4];
+        [downRefresh addSubview:mButton4];
     }
     return self;
 }
@@ -96,7 +78,43 @@
 
 - (void)loadHttp
 {
-    [super loadHttp];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"1" forKey:@"type"];//筛选1最新 2最热 3离我最近 4只看美女
+    [params setObject:@"getPublish" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:nil requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    NSLog(@"%@",[response responseString]);
+    
+    
+    
+    if([response successFlag]){
+        NSDictionary *rData=[[response resultJSON] objectForKey:@"Data"];
+        if(rData){
+            //当前页
+            self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
+            //获取数据列表
+            NSDictionary *tabData=[rData objectForKey:@"Tab"];
+            if(tabData){
+                NSMutableArray *nsArr=[[NSMutableArray alloc]init];
+                for(id data in tabData){
+                    [nsArr addObject:data];
+                }
+                if([self currentPage]==1){
+                    [[self dataItemArray] removeAllObjects];
+                }
+                [[self dataItemArray] addObjectsFromArray:nsArr];
+            }
+        }
+    }
+    [self loadDone];
 }
 
 - (void)goScreening
@@ -106,7 +124,12 @@
 
 - (void)hScreening:(UIButton*)sender
 {
+    [mButton1 setSelected:NO];
+    [mButton2 setSelected:NO];
+    [mButton3 setSelected:NO];
+    [mButton4 setSelected:NO];
     [self goScreening];
+    [sender setSelected:YES];
     NSLog(@"筛选条件%ld",sender.tag);
 }
 
@@ -137,6 +160,20 @@
 {
     NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
     [self.navigationController pushViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES];
+}
+
+- (UIButton*)createButton:(CGRect)rect Title:(NSString *)title Tag:(NSInteger)tag
+{
+    UIButton *button1=[[UIButton alloc]initWithFrame:rect];
+    [button1 setTitle:title forState:UIControlStateNormal];
+    [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [button1 setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+    button1.tag=4;
+    [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
+    [button1 setImage:[UIImage imageNamed:@"icon-select"] forState:UIControlStateSelected];
+    [button1 setTitleEdgeInsets:UIEdgeInsetsMake(0, -button1.imageView.bounds.size.width, 0, button1.imageView.bounds.size.width)];
+    [button1 setImageEdgeInsets:UIEdgeInsetsMake(0, button1.titleLabel.bounds.size.width, 0, -button1.titleLabel.bounds.size.width-CGWidth(15))];
+    return button1;
 }
 
 @end

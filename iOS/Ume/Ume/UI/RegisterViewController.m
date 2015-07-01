@@ -38,7 +38,7 @@
         [bNextSteup addTarget:self action:@selector(goNextSteup:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bNextSteup];
         
-        iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(140, 20, 60, 60)];
+        iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(100, 20, 60, 60)];
         [iUserNameImage setImage:[UIImage imageNamed:@"img_boy"]];
         iUserNameImage.layer.cornerRadius=iUserNameImage.bounds.size.width/2;
         iUserNameImage.layer.masksToBounds = YES;
@@ -49,7 +49,7 @@
                                               initWithTarget:self action:@selector(editPortrait:)]];
         [self.view addSubview:iUserNameImage];
         
-        mButton=[[UIButton alloc]initWithFrame:CGRectMake1(220, 30, 40, 40)];
+        mButton=[[UIButton alloc]initWithFrame:CGRectMake1(180, 30, 40, 40)];
         [mButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [mButton setTitle:@"男" forState:UIControlStateNormal];
         [mButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
@@ -59,7 +59,7 @@
         [mButton setImage:[UIImage imageNamed:@"icon_boy"] forState:UIControlStateSelected];
         [mButton addTarget:self action:@selector(mSex:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:mButton];
-        fButton=[[UIButton alloc]initWithFrame:CGRectMake1(260, 30, 40, 40)];
+        fButton=[[UIButton alloc]initWithFrame:CGRectMake1(220, 30, 40, 40)];
         [fButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [fButton setTitle:@"女" forState:UIControlStateNormal];
         [fButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
