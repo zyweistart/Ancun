@@ -25,7 +25,10 @@
 
 @end
 
-@implementation MessageViewController
+@implementation MessageViewController{
+    UIImageView *mMessageHead;
+    CLabel *lblMessageName,*lblMessageContent,*lblMessageTime;
+}
 
 - (id)init{
     self=[super init];
@@ -52,23 +55,34 @@
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"评论",DISNAME,@"0",DISVALUE, nil]];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"私信",DISNAME,@"0",DISVALUE, nil]];
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 60)];
+        [self.tableView setTableFooterView:bottomView];
         UIView *topLine=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 1)];
         [topLine setBackgroundColor:DEFAUL3COLOR];
         [bottomView addSubview:topLine];
-        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-        [image setImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte"]];
-        [bottomView addSubview:image];
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(60, 5, 80, 25) Text:@"lohas"];
-        [bottomView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 230, 25) Text:@"感谢您使用懂我啡因jkd顺顺在在在在在在"];
-        [bottomView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(220, 5, 80, 25) Text:@"今天:09:14"];
-        [lbl setTextAlignment:NSTextAlignmentRight];
-        [bottomView addSubview:lbl];
+        //头像
+        mMessageHead=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+        [mMessageHead setImage:[UIImage imageNamed:@"img_boy"]];
+        mMessageHead.layer.cornerRadius=mMessageHead.bounds.size.width/2;
+        mMessageHead.layer.masksToBounds=YES;
+        mMessageHead.layer.borderWidth=1;
+        mMessageHead.layer.borderColor=DEFAULTITLECOLOR(221).CGColor;
+        [bottomView addSubview:mMessageHead];
+        //姓名
+        lblMessageName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 5, 80, 25) Text:@"小秘书"];
+        [lblMessageName setFont:[UIFont systemFontOfSize:18]];
+        [lblMessageName setTextColor:DEFAULTITLECOLORRGB(244,142,107)];
+        [bottomView addSubview:lblMessageName];
+        //内容
+        lblMessageContent=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 230, 25) Text:@"感谢您使用懂我啡因jkd顺顺在在在在在在"];
+        [lblMessageContent setTextColor:[UIColor blackColor]];
+        [bottomView addSubview:lblMessageContent];
+        //时间
+        lblMessageTime=[[CLabel alloc]initWithFrame:CGRectMake1(220, 5, 80, 25) Text:@"今天:09:14"];
+        [lblMessageTime setTextAlignment:NSTextAlignmentRight];
+        [bottomView addSubview:lblMessageTime];
         UIView *bottomLine=[[UIView alloc]initWithFrame:CGRectMake1(0, 59, 320, 1)];
         [bottomLine setBackgroundColor:DEFAUL3COLOR];
         [bottomView addSubview:bottomLine];
-        [self.tableView setTableFooterView:bottomView];
     }
     return self;
 }

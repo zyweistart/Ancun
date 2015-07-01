@@ -28,6 +28,4 @@
 + (BOOL)isNetworkConnection;
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params;
 
-+ (void)AsynchronousDownloadImageWithUrl:(NSString *)u ShowImageView:(UIImageView*)showImage;
-
 @end

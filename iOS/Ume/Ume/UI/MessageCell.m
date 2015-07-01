@@ -23,7 +23,7 @@
         [self addSubview:self.lblTitle];
         
         self.lblCount=[[UILabel alloc]initWithFrame:CGRectMake1(270, 12.5, 20, 20)];
-        self.lblCount.layer.cornerRadius = CGWidth(20/2);
+        self.lblCount.layer.cornerRadius = self.lblCount.bounds.size.width/2;
         self.lblCount.layer.masksToBounds = YES;
         [self.lblCount setFont:[UIFont systemFontOfSize:16]];
         [self.lblCount setTextColor:[UIColor whiteColor]];

@@ -97,6 +97,7 @@
 		C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */; };
 		C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */; };
 		C9AD44E01B2EABBC00338AEE /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */; };
+		C9BDA7231B43BE20006D6FDD /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BDA7221B43BE20006D6FDD /* HttpDownload.m */; };
 		C9DBE1A91B180BA0002ECDE4 /* DiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE1A81B180BA0002ECDE4 /* DiscoverCell.m */; };
 		C9DBE1B01B1813ED002ECDE4 /* HMBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE1AC1B1813ED002ECDE4 /* HMBannerView.m */; };
 		C9DBE1B11B1813ED002ECDE4 /* banner_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9DBE1AE1B1813ED002ECDE4 /* banner_close@2x.png */; };
@@ -312,6 +313,8 @@
 		C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
 		C9AD44DE1B2EABBC00338AEE /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		C9BDA7211B43BE20006D6FDD /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
+		C9BDA7221B43BE20006D6FDD /* HttpDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDownload.m; sourceTree = "<group>"; };
 		C9DBE1A71B180BA0002ECDE4 /* DiscoverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverCell.h; sourceTree = "<group>"; };
 		C9DBE1A81B180BA0002ECDE4 /* DiscoverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverCell.m; sourceTree = "<group>"; };
 		C9DBE1AB1B1813ED002ECDE4 /* HMBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMBannerView.h; sourceTree = "<group>"; };
@@ -612,6 +615,8 @@
 				C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */,
 				C9FB529C1B3BDB430005F85A /* NSString+DES.h */,
 				C9FB529D1B3BDB430005F85A /* NSString+DES.m */,
+				C9BDA7211B43BE20006D6FDD /* HttpDownload.h */,
+				C9BDA7221B43BE20006D6FDD /* HttpDownload.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1047,6 +1052,7 @@
 				C9ACE8C01B0C621800385809 /* CButton.m in Sources */,
 				C970F5D41B02F5120045A353 /* User.m in Sources */,
 				C9DBE7201B183BD6002ECDE4 /* MKAnnotationView+WebCache.m in Sources */,
+				C9BDA7231B43BE20006D6FDD /* HttpDownload.m in Sources */,
 				C9DBE7221B183BD6002ECDE4 /* NSData+ImageContentType.m in Sources */,
 				C947C1CF1B3A81280052B446 /* RegisterGetCheckCodeViewController.m in Sources */,
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,

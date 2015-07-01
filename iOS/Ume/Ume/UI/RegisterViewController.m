@@ -59,7 +59,7 @@
         [mButton setImage:[UIImage imageNamed:@"icon_boy"] forState:UIControlStateSelected];
         [mButton addTarget:self action:@selector(mSex:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:mButton];
-        fButton=[[UIButton alloc]initWithFrame:CGRectMake1(220, 30, 40, 40)];
+        fButton=[[UIButton alloc]initWithFrame:CGRectMake1(230, 30, 40, 40)];
         [fButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [fButton setTitle:@"女" forState:UIControlStateNormal];
         [fButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];

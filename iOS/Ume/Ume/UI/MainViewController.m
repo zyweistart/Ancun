@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "UYourDetailViewController.h"
 #import "ContentCell.h"
+#import "HttpDownload.h"
 
 @interface MainViewController ()
 
@@ -17,6 +18,7 @@
 @implementation MainViewController{
     UIView *bgView;
     UIButton *mButton1,*mButton2,*mButton3,*mButton4;
+    HttpDownload *httpDownload;
 }
 
 - (id)init{
@@ -25,6 +27,7 @@
         [self cTitle:@"懂你"];
         self.isFirstRefresh=NO;
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+        httpDownload=[[HttpDownload alloc]init];
         //筛选
         UIButton *bScreening = [[UIButton alloc]init];
         [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
@@ -118,9 +121,7 @@
         [cell.lblTime setText:@"15:22"];
         [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
 //        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
-//        [HttpRequest AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
-        [cell.mBackground setImage:[UIImage imageNamed:@"personalbg"]];
-        
+//        [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
         NSString *content=[data objectForKey:@"content"];
         [cell.lblContent setText:content];
         [cell.lblContent sizeToFit];
@@ -145,7 +146,6 @@
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
-    [self.hRequest setIsShowMessage:YES];
     [self.hRequest handle:nil requestParams:params];
 }
 

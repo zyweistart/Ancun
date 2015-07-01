@@ -39,7 +39,7 @@
         [self.view addSubview:lbl];
         lblMood=[[CLabel alloc]initWithFrame:CGRectMake1(135, 130, 40, 40) Text:@"开心"];
         [lblMood setTextColor:COLOR2552160];
-        [lblMood setFont:[UIFont systemFontOfSize:24]];
+        [lblMood setFont:[UIFont systemFontOfSize:22]];
         [self.view addSubview:lblMood];
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(175, 135, 100, 35) Text:@",约会正当时！"];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];

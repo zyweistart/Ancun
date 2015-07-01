@@ -44,14 +44,14 @@
         [button setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
         [frame addSubview:button];
         //录音
-        UIButton *recording=[[UIButton alloc]initWithFrame:CGRectMake1(120, 250, 80.0f, 80.0f)];
+        UIButton *recording=[[UIButton alloc]initWithFrame:CGRectMake1(120, 300, 80.0f, 80.0f)];
         recording.layer.cornerRadius = recording.bounds.size.width/2;
         recording.layer.masksToBounds = YES;
         [recording setImage:[UIImage imageNamed:@"icon-luyin"] forState:UIControlStateNormal];
         [recording setBackgroundColor:COLOR2552160];
         [recording addTarget:self action:@selector(goRecording:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:recording];
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 330, 300, 40) Text:@"按住录音"];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 380, 300, 40) Text:@"按住录音"];
         [lbl setFont:[UIFont systemFontOfSize:20]];
         [lbl setTextColor:DEFAULTITLECOLOR(100)];
         [lbl setTextAlignment:NSTextAlignmentCenter];

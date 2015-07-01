@@ -48,6 +48,7 @@
         self.youHeader.layer.borderColor=[[UIColor grayColor]CGColor];
         [topView addSubview:self.youHeader];
         self.mBackground=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 60, 310, 140)];
+        [self.mBackground setUserInteractionEnabled:YES];
         [self.mBackground setBackgroundColor:DEFAULTITLECOLOR(221)];
         [contentView addSubview:self.mBackground];
         self.bPlayer=[[UIButton alloc]initWithFrame:CGRectMake1(140, 10, 40, 40)];
@@ -56,7 +57,7 @@
         self.bPlayer.layer.borderWidth=1;
         self.bPlayer.layer.borderColor=[[UIColor whiteColor]CGColor];
         [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateNormal];
-        [self.bPlayer setImage:[UIImage imageNamed:@"icon-stop-small"] forState:UIControlStateSelected];
+        [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
         [self.mBackground addSubview:self.bPlayer];
         self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 60, 300, 40)];
         [self.lblContent setFont:[UIFont systemFontOfSize:15]];
@@ -64,6 +65,7 @@
         [self.lblContent setNumberOfLines:2];
         [self.mBackground addSubview:self.lblContent];
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 100, 310, 40)];
+        [bottomView setUserInteractionEnabled:YES];
         [self.mBackground addSubview:bottomView];
         //私信
         self.bPrivateLetter=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 103, 40)];
@@ -72,6 +74,7 @@
         [self.bPrivateLetter.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [self.bPrivateLetter setImage:[UIImage imageNamed:@"icon-home-私信"] forState:UIControlStateNormal];
         [self.bPrivateLetter setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-5), 0, 0)];
+        [self.bPrivateLetter addTarget:self action:@selector(privatel:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:self.bPrivateLetter];
         //分享
         self.bShare=[[UIButton alloc]initWithFrame:CGRectMake1(104, 0, 103, 40)];
@@ -80,6 +83,7 @@
         [self.bShare.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [self.bShare setImage:[UIImage imageNamed:@"icon-home-share"] forState:UIControlStateNormal];
         [self.bShare setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-5), 0, 0)];
+        [self.bShare addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:self.bShare];
         //懂我
         self.bDM=[[UIButton alloc]initWithFrame:CGRectMake1(208, 0, 102, 40)];
@@ -93,6 +97,24 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
+}
+
+- (void)player:(id)sender
+{
+    [self.bPlayer setImage:[UIImage imageNamed:@"icon-stop-small"] forState:UIControlStateNormal];
+//    NSLog(@"播放");
+//    [self.bPlayer setSelected:self.bPlayer.selected];
+}
+
+- (void)privatel:(id)sender
+{
+    NSLog(@"私信");
+}
+
+- (void)share:(id)sender
+{
+    NSLog(@"共享");
+    //    [self.bPlayer setSelected:self.bPlayer.selected];
 }
 
 @end

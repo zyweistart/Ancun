@@ -34,6 +34,7 @@
         [self setBackgroundImage:[Common createImageWithColor:BUTTONNORMALCOLOR] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:BUTTONPRESENDCOLOR] forState:UIControlStateHighlighted];
     }else if(type==2){
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:BUTTON2NORMALCOLOR] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:BUTTON2PRESENDCOLOR] forState:UIControlStateHighlighted];
     }else if(type==3){

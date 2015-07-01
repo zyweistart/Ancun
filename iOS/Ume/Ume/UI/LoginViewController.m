@@ -54,7 +54,7 @@
         [tfPassword.textField setDelegate:self];
         [self.view addSubview:tfPassword];
         //
-        UIButton *bForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, 110, 80, 40)];
+        UIButton *bForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, 110, 80, 30)];
         [bForgetPwd setTitle:@"忘记密码?" forState:UIControlStateNormal];
         [bForgetPwd setTitleColor:DEFAULTITLECOLOR(190) forState:UIControlStateNormal];
         [bForgetPwd.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -66,6 +66,20 @@
         [cLogin setTitleColor:DEFAULTITLECOLOR(120) forState:UIControlStateNormal];
         [cLogin addTarget:self action:@selector(goLogin:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:cLogin];
+        
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 340, 300, 40) Text:@"快捷登陆"];
+        [lbl setFont:[UIFont systemFontOfSize:16]];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [self.view addSubview:lbl];
+        UIButton *kSina=[[UIButton alloc]initWithFrame:CGRectMake1(94, 380, 24, 24)];
+        [kSina setImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
+        [self.view addSubview:kSina];
+        UIButton *kQQ=[[UIButton alloc]initWithFrame:CGRectMake1(148, 380, 24, 24)];
+        [kQQ setImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
+        [self.view addSubview:kQQ];
+        UIButton *kWX=[[UIButton alloc]initWithFrame:CGRectMake1(202, 380, 24, 24)];
+        [kWX setImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
+        [self.view addSubview:kWX];
     }
     return self;
 }
