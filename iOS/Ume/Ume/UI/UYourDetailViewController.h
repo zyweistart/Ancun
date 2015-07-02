@@ -21,5 +21,6 @@
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblCount;
+@property (strong,nonatomic)CLabel *lblContent;
 
 @end

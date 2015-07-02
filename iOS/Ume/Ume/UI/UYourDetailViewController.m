@@ -7,6 +7,7 @@
 //
 
 #import "UYourDetailViewController.h"
+#import "ReplyMDCell.h"
 #import "CLabel.h"
 
 @interface UYourDetailViewController ()
@@ -41,6 +42,23 @@
         [bShare setImage:[UIImage imageNamed:@"icon-top-share"] forState:UIControlStateNormal];
         [bShare addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         [image addSubview:bShare];
+        //播放
+        self.bPlayer=[[UIButton alloc]initWithFrame:CGRectMake1(140, 60, 40, 40)];
+        self.bPlayer.layer.cornerRadius=self.bPlayer.bounds.size.width/2;
+        self.bPlayer.layer.masksToBounds=YES;
+        self.bPlayer.layer.borderWidth=1;
+        self.bPlayer.layer.borderColor=[[UIColor whiteColor]CGColor];
+        [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateNormal];
+        [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
+        [image addSubview:self.bPlayer];
+        //内容
+        self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 130, 300, 40)];
+        [self.lblContent setFont:[UIFont systemFontOfSize:15]];
+        [self.lblContent setTextColor:[UIColor whiteColor]];
+        [self.lblContent setNumberOfLines:2];
+        [self.lblContent setText:@"有时候，渴望像孩子一样的生活，高兴时可以毫不掩饰地笑，悲伤时可以无所顾忌地哭，可以快乐地去唱，可以率真地去画，可以胜颗童身份证的心去感受生活，可以用一双清澈的..."];
+        [image addSubview:self.lblContent];
+        
         UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 200, 320, 60)];
         [headContent addSubview:contentView];
         UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 60)];
@@ -85,6 +103,46 @@
         [self.tableView setTableHeaderView:headContent];
     }
     return self;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([[self dataItemArray] count]>0){
+        return CGHeight(130);
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([[self dataItemArray] count]>0){
+        static NSString *cellIdentifier = @"SAMPLECell";
+        ReplyMDCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[ReplyMDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        //        NSDictionary *data=[[self dataItemArray]objectAtIndex:[indexPath row]];
+        //        [cell setData:data];
+        //        [cell.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+        //        [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
+        //        [cell.lblName setText:@"Jackywell"];
+        //        [cell.lblTime setText:@"15:22"];
+        //        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
+        ////        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
+        ////        [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
+        //        NSString *content=[data objectForKey:@"content"];
+        //        [cell.lblContent setText:content];
+        //        [cell.lblContent sizeToFit];
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)player:(id)sender
+{
+    
 }
 
 @end
