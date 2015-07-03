@@ -18,4 +18,5 @@
 @property (strong,nonatomic)CLabel *lblPCount;
 @property (strong,nonatomic)CLabel *lblZCount;
 
+@property (strong,nonatomic)UIButton *player;
 @end

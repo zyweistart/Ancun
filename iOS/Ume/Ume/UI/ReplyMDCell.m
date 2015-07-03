@@ -34,20 +34,38 @@
         [self.lblValue setTextColor:DEFAULTITLECOLOR(150)];
         [contentView addSubview:self.lblValue];
         //语音
+        
         CGFloat width=[self getPlayerWidthToSecond:71];
-        UIButton *but=[[UIButton alloc]initWithFrame:CGRectMake1(30, 60, width, 30)];
+        self.player=[[UIButton alloc]initWithFrame:CGRectMake1(30, 60, width, 30)];
         if(width>60){
-            but.layer.cornerRadius=CGWidth(15);
+            self.player.layer.cornerRadius=CGWidth(15);
         }else{
-            but.layer.cornerRadius=CGWidth(10);
+            self.player.layer.cornerRadius=CGWidth(10);
         }
-        but.layer.masksToBounds=YES;
-        but.layer.borderWidth=1;
-        but.layer.borderColor=[COLOR2552160 CGColor];
-        [but setImage:[UIImage imageNamed:@"icon-nav-me2"] forState:UIControlStateNormal];
-        [but setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        [but setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [contentView addSubview:but];
+        self.player.layer.masksToBounds=YES;
+        self.player.layer.borderWidth=1;
+        self.player.layer.borderColor=[COLOR2552160 CGColor];
+        [self.player setImage:[UIImage imageNamed:@"语音播放-1"] forState:UIControlStateNormal];
+        [self.player setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(5), 0, 0)];
+        [self.player.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [self.player setTitle:@"55'" forState:UIControlStateNormal];
+        [self.player setTitleEdgeInsets:UIEdgeInsetsMake(0, CGWidth(10), 0, 0)];
+        [self.player setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.player setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        self.player.imageView.animationImages = [NSArray arrayWithObjects:
+                                      [UIImage imageNamed:@"语音播放-1"],
+                                      [UIImage imageNamed:@"语音播放-2"],
+                                      [UIImage imageNamed:@"语音播放-3"],
+                                      [UIImage imageNamed:@"语音播放-4"], nil];
+        self.player.imageView.animationDuration = 1.0;
+        self.player.imageView.animationRepeatCount = 0;
+        [self.player addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
+        [contentView addSubview:self.player];
+        
+        
+        
+        
+        
         //线
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(20, 100, 280, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(240)];
@@ -83,6 +101,11 @@
         return 150;
     }
     return 35+curSecond;
+}
+
+- (void)player:(id)sender
+{
+    [self.player.imageView startAnimating];
 }
 
 @end

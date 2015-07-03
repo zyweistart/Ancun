@@ -14,7 +14,9 @@
 
 @end
 
-@implementation UYourDetailViewController
+@implementation UYourDetailViewController{
+    UIImageView *sonic;
+}
 
 - (id)initWithData:(NSDictionary*)data
 {
@@ -52,6 +54,17 @@
         [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateNormal];
         [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
         [image addSubview:self.bPlayer];
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //内容
         self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 130, 300, 40)];
         [self.lblContent setFont:[UIFont systemFontOfSize:15]];

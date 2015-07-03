@@ -57,6 +57,13 @@
         self.bPlayer.layer.borderWidth=1;
         self.bPlayer.layer.borderColor=[[UIColor whiteColor]CGColor];
         [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateNormal];
+        self.bPlayer.imageView.animationImages = [NSArray arrayWithObjects:
+                                                 [UIImage imageNamed:@"播放中-1"],
+                                                 [UIImage imageNamed:@"播放中-2"],
+                                                 [UIImage imageNamed:@"播放中-3"],
+                                                 [UIImage imageNamed:@"播放中-4"], nil];
+        self.bPlayer.imageView.animationDuration = 1.0;
+        self.bPlayer.imageView.animationRepeatCount = 0;
         [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
         [self.mBackground addSubview:self.bPlayer];
         self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 60, 300, 40)];
@@ -101,7 +108,12 @@
 
 - (void)player:(id)sender
 {
-    [self.bPlayer setImage:[UIImage imageNamed:@"icon-stop-small"] forState:UIControlStateNormal];
+    if([self.bPlayer.imageView isAnimating]){
+        [self.bPlayer.imageView stopAnimating];
+    }else{
+        [self.bPlayer.imageView startAnimating];
+    }
+//    [self.bPlayer setImage:[UIImage imageNamed:@"icon-stop-small"] forState:UIControlStateNormal];
 //    NSLog(@"播放");
 //    [self.bPlayer setSelected:self.bPlayer.selected];
 }
