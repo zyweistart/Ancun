@@ -23,6 +23,7 @@
         self.data=data;
         [self cTitle:@"懂你详情"];
         self.isFirstRefresh=NO;
+        [self.navigationController.navigationBar setHidden:YES];
         UIView *headContent=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 300)];
         [self.view addSubview:headContent];
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
@@ -96,11 +97,34 @@
         [self.lblCount setTextColor:DEFAULTITLECOLOR(100)];
         [titleHead addSubview:self.lblCount];
         
+        //底部
+        CGFloat height=40;
+        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(height), CGWidth(320), CGHeight(height))];
+        [bottomView setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview:bottomView];
+        //私信
+        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 159, height)];
+        [button setTitle:@"私信" forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"icon-home-私信"] forState:UIControlStateNormal];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-10), 0, 0)];
+        [button setBackgroundColor:COLOR2552160];
+        [bottomView addSubview:button];
+        //你最懂我
+        button=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 160, height)];
+        [button setTitle:@"你最懂我" forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"icon-home-懂你"] forState:UIControlStateNormal];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-10), 0, 0)];
+        [button setBackgroundColor:COLOR2552160];
+        [bottomView addSubview:button];
+        
         [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];
         [self.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
         [self.tableView setTableHeaderView:headContent];
+        
     }
     return self;
 }

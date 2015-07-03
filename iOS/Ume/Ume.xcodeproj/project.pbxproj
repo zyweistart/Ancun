@@ -68,6 +68,13 @@
 		C97524461B29213E00DE0709 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97524451B29213E00DE0709 /* NearbyViewController.m */; };
 		C97524491B29383800DE0709 /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C97524481B29383800DE0709 /* CustomAnnotation.m */; };
 		C975244C1B295EBF00DE0709 /* NearbyXQCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C975244B1B295EBF00DE0709 /* NearbyXQCell.m */; };
+		C9807A3B1B46383E00E79F67 /* AudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9807A311B46383E00E79F67 /* AudioButton.m */; };
+		C9807A3C1B46383E00E79F67 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9807A331B46383E00E79F67 /* AudioPlayer.m */; };
+		C9807A3D1B46383E00E79F67 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9807A351B46383E00E79F67 /* AudioStreamer.m */; };
+		C9807A3E1B46383E00E79F67 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = C9807A371B46383E00E79F67 /* loading.png */; };
+		C9807A3F1B46383E00E79F67 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C9807A381B46383E00E79F67 /* play.png */; };
+		C9807A401B46383E00E79F67 /* screenshots.png in Resources */ = {isa = PBXBuildFile; fileRef = C9807A391B46383E00E79F67 /* screenshots.png */; };
+		C9807A411B46383E00E79F67 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = C9807A3A1B46383E00E79F67 /* stop.png */; };
 		C981F6461B17019200FA112C /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = C981F6451B17019200FA112C /* AES.m */; };
 		C981F64C1B17076200FA112C /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = C981F64B1B17076200FA112C /* NSData+AES256.m */; };
 		C981F6581B1717D100FA112C /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C981F6501B1717D100FA112C /* AESCrypt.m */; };
@@ -256,6 +263,16 @@
 		C97524481B29383800DE0709 /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotation.m; sourceTree = "<group>"; };
 		C975244A1B295EBF00DE0709 /* NearbyXQCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyXQCell.h; sourceTree = "<group>"; };
 		C975244B1B295EBF00DE0709 /* NearbyXQCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyXQCell.m; sourceTree = "<group>"; };
+		C9807A301B46383E00E79F67 /* AudioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioButton.h; sourceTree = "<group>"; };
+		C9807A311B46383E00E79F67 /* AudioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioButton.m; sourceTree = "<group>"; };
+		C9807A321B46383E00E79F67 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		C9807A331B46383E00E79F67 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		C9807A341B46383E00E79F67 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		C9807A351B46383E00E79F67 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		C9807A371B46383E00E79F67 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		C9807A381B46383E00E79F67 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		C9807A391B46383E00E79F67 /* screenshots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshots.png; sourceTree = "<group>"; };
+		C9807A3A1B46383E00E79F67 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		C981F6441B17019200FA112C /* AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES.h; sourceTree = "<group>"; };
 		C981F6451B17019200FA112C /* AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES.m; sourceTree = "<group>"; };
 		C981F64A1B17076200FA112C /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
@@ -629,6 +646,7 @@
 		C970F5A61B02F5120045A353 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9807A2F1B46383E00E79F67 /* AudioPlayer */,
 				C9FB529F1B3BDC820005F85A /* Encryption */,
 				C9282D8B1B3147A9001B0C57 /* VPImageCropper */,
 				C95F64451B2AAB9E00D27452 /* SJAvatarBrowser */,
@@ -759,6 +777,31 @@
 				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		C9807A2F1B46383E00E79F67 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				C9807A301B46383E00E79F67 /* AudioButton.h */,
+				C9807A311B46383E00E79F67 /* AudioButton.m */,
+				C9807A321B46383E00E79F67 /* AudioPlayer.h */,
+				C9807A331B46383E00E79F67 /* AudioPlayer.m */,
+				C9807A341B46383E00E79F67 /* AudioStreamer.h */,
+				C9807A351B46383E00E79F67 /* AudioStreamer.m */,
+				C9807A361B46383E00E79F67 /* images */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		C9807A361B46383E00E79F67 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C9807A371B46383E00E79F67 /* loading.png */,
+				C9807A381B46383E00E79F67 /* play.png */,
+				C9807A391B46383E00E79F67 /* screenshots.png */,
+				C9807A3A1B46383E00E79F67 /* stop.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		C981F64D1B1717D100FA112C /* AESCrypt */ = {
@@ -1005,12 +1048,16 @@
 				C9DBE1B21B1813ED002ECDE4 /* banner_shadowline@2x.png in Resources */,
 				C970F5E01B02F5120045A353 /* blackArrow.png in Resources */,
 				C9DBE1B11B1813ED002ECDE4 /* banner_close@2x.png in Resources */,
+				C9807A401B46383E00E79F67 /* screenshots.png in Resources */,
 				C91217261B02ED7C00D9C57B /* LaunchScreen.xib in Resources */,
 				C970F5E71B02F5120045A353 /* whiteArrow@2x.png in Resources */,
+				C9807A411B46383E00E79F67 /* stop.png in Resources */,
+				C9807A3E1B46383E00E79F67 /* loading.png in Resources */,
 				C970F5E51B02F5120045A353 /* grayArrow@2x.png in Resources */,
 				C970F5E31B02F5120045A353 /* blueArrow@2x.png in Resources */,
 				C970F5E21B02F5120045A353 /* blueArrow.png in Resources */,
 				C970F5E11B02F5120045A353 /* blackArrow@2x.png in Resources */,
+				C9807A3F1B46383E00E79F67 /* play.png in Resources */,
 				C970F5E61B02F5120045A353 /* whiteArrow.png in Resources */,
 				C970F5E41B02F5120045A353 /* grayArrow.png in Resources */,
 				C91217231B02ED7C00D9C57B /* Images.xcassets in Resources */,
@@ -1086,6 +1133,7 @@
 				C981F6591B1717D100FA112C /* NSData+Base64.m in Sources */,
 				C9FE7E261B26D6190049AEC9 /* MessageZGCell.m in Sources */,
 				C970F5D51B02F5120045A353 /* Reachability.m in Sources */,
+				C9807A3C1B46383E00E79F67 /* AudioPlayer.m in Sources */,
 				C9DBE7211B183BD6002ECDE4 /* NSData+GIF.m in Sources */,
 				C9DBE1A91B180BA0002ECDE4 /* DiscoverCell.m in Sources */,
 				C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */,
@@ -1098,6 +1146,7 @@
 				C970F5D11B02F5120045A353 /* HttpRequest.m in Sources */,
 				C9ACE8C61B0C65EA00385809 /* CLabel.m in Sources */,
 				C9AD44E01B2EABBC00338AEE /* UIImage+Utils.m in Sources */,
+				C9807A3D1B46383E00E79F67 /* AudioStreamer.m in Sources */,
 				C95F64441B2A7FFF00D27452 /* MyImagesCell.m in Sources */,
 				C9909FB31B1E9F4A00A84594 /* MyFansViewController.m in Sources */,
 				C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */,
@@ -1116,6 +1165,7 @@
 				C9909FBC1B1E9FCF00A84594 /* MoodTrackViewController.m in Sources */,
 				C97524461B29213E00DE0709 /* NearbyViewController.m in Sources */,
 				C9FE7E2F1B26D69E0049AEC9 /* MessageSXCell.m in Sources */,
+				C9807A3B1B46383E00E79F67 /* AudioButton.m in Sources */,
 				C970F5D91B02F5120045A353 /* ATMProgressLayer.m in Sources */,
 				C947C1D51B3A929E0052B446 /* RegisterTestViewController.m in Sources */,
 				C9DBE7261B183BD6002ECDE4 /* SDWebImageManager.m in Sources */,

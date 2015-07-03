@@ -134,8 +134,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-//    [self.navigationController pushViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES];
-    [self presentViewController:[[UYourDetailViewController alloc]initWithData:data] animated:YES completion:nil];
+    UYourDetailViewController *yourDetailViewController=[[UYourDetailViewController alloc]initWithData:data];
+//    [yourDetailViewController setHidesBottomBarWhenPushed:YES];
+//    [self.navigationController pushViewController:yourDetailViewController animated:YES];
+    [self presentViewController:yourDetailViewController animated:YES completion:nil];
 }
 
 - (void)loadHttp

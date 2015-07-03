@@ -65,6 +65,8 @@
         [self.lblZCount setTextAlignment:NSTextAlignmentRight];
         [contentView addSubview:self.lblZCount];
         
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];
