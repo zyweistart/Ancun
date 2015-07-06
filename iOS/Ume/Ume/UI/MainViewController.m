@@ -10,6 +10,7 @@
 #import "UYourDetailViewController.h"
 #import "ContentCell.h"
 #import "HttpDownload.h"
+#import "AudioPlayer.h"
 
 @interface MainViewController ()
 
@@ -25,7 +26,7 @@
     self=[super init];
     if(self){
         [self cTitle:@"懂你"];
-        self.isFirstRefresh=NO;
+//        self.isFirstRefresh=YES;
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         httpDownload=[[HttpDownload alloc]init];
         //筛选
@@ -113,18 +114,29 @@
         if(!cell) {
             cell = [[ContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-//        NSDictionary *data=[[self dataItemArray]objectAtIndex:[indexPath row]];
-//        [cell setData:data];
-//        [cell.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
-//        [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
-//        [cell.lblName setText:@"Jackywell"];
-//        [cell.lblTime setText:@"15:22"];
-//        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
-////        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
-////        [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
-//        NSString *content=[data objectForKey:@"content"];
-//        [cell.lblContent setText:content];
-//        [cell.lblContent sizeToFit];
+        NSMutableDictionary *data=[[self dataItemArray]objectAtIndex:[indexPath row]];
+//        NSLog(@"%@",data);
+        [cell setData:data];
+        [cell.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+        [cell.lblName setText:@"Jackywell"];
+        [cell.lblTime setText:@"15:22"];
+        [cell setFelationshipStat:1];
+        [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
+        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
+        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
+        [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
+        NSString *content=[data objectForKey:@"content"];
+        [cell.lblContent setText:content];
+        [cell.lblContent sizeToFit];
+        
+        NSString *pstatus=[data objectForKey:@"pstatus"];
+        if([@"1" isEqualToString:pstatus]){
+            [cell.bPlayer.imageView startAnimating];
+        }else{
+            [cell.bPlayer.imageView stopAnimating];
+        }
+//        cell.bPlayer.tag = indexPath.row;
+//        [cell.bPlayer addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -159,7 +171,7 @@
         if(rData){
             NSMutableArray *nsArr=[[NSMutableArray alloc]init];
             for(id data in rData){
-                [nsArr addObject:data];
+                [nsArr addObject:[NSMutableDictionary dictionaryWithDictionary:data]];
             }
             if([self currentPage]==1){
                 [[self dataItemArray] removeAllObjects];
@@ -183,6 +195,27 @@
     [button1 setTitleEdgeInsets:UIEdgeInsetsMake(0, -button1.imageView.bounds.size.width, 0, button1.imageView.bounds.size.width)];
     [button1 setImageEdgeInsets:UIEdgeInsetsMake(0, button1.titleLabel.bounds.size.width, 0, -button1.titleLabel.bounds.size.width-CGWidth(15))];
     return button1;
+}
+
+- (void)playAudio:(UIButton *)button
+{
+    NSInteger index = button.tag;
+    NSDictionary *item = [self.dataItemArray objectAtIndex:index];
+    
+    if (_audioPlayer == nil) {
+        _audioPlayer = [[AudioPlayer alloc] init];
+    }
+    
+    if ([_audioPlayer.button isEqual:button]) {
+        [_audioPlayer play];
+    } else {
+        [_audioPlayer stop];
+        
+        _audioPlayer.button = button;
+        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"recordUrl"]];
+        
+        [_audioPlayer play];
+    }
 }
 
 @end

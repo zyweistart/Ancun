@@ -108,14 +108,19 @@
 
 - (void)player:(id)sender
 {
-    if([self.bPlayer.imageView isAnimating]){
+    NSString *pstatus=[self.data objectForKey:@"pstatus"];
+    //判断状态是否为播放(1:播放0:暂停)
+    if([@"1" isEqualToString:pstatus]){
+        //暂停标记
+        [self.data setValue:@"0" forKey:@"pstatus"];
+        //暂停播放
         [self.bPlayer.imageView stopAnimating];
     }else{
+        //播放标记
+        [self.data setValue:@"1" forKey:@"pstatus"];
+        //开始播放
         [self.bPlayer.imageView startAnimating];
     }
-//    [self.bPlayer setImage:[UIImage imageNamed:@"icon-stop-small"] forState:UIControlStateNormal];
-//    NSLog(@"播放");
-//    [self.bPlayer setSelected:self.bPlayer.selected];
 }
 
 - (void)privatel:(id)sender
@@ -127,6 +132,25 @@
 {
     NSLog(@"共享");
     //    [self.bPlayer setSelected:self.bPlayer.selected];
+}
+
+- (void)setFelationshipStat:(int)status
+{
+    if(status==1){
+        [self.lblName setTextColor:DEFAULTITLECOLORRGB(242, 82, 159)];
+        [self.mFelationship setImage:[UIImage imageNamed:@"icon-match"]];
+    }else{
+        [self.lblName setTextColor:DEFAULTITLECOLORRGB(47, 160, 248)];
+        [self.mFelationship setImage:[UIImage imageNamed:@"icon-match-gray-1"]];
+        self.mFelationship.animationImages = [NSArray arrayWithObjects:
+                                              [UIImage imageNamed:@"icon-match-gray-1"],
+                                              [UIImage imageNamed:@"icon-match-gray-2"],
+                                              [UIImage imageNamed:@"icon-match-gray-3"],
+                                              [UIImage imageNamed:@"icon-match-gray-4"], nil];
+        self.mFelationship.animationDuration = 1.0;
+        self.mFelationship.animationRepeatCount = 0;
+        [self.mFelationship startAnimating];
+    }
 }
 
 @end

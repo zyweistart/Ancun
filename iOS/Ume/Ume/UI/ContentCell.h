@@ -22,6 +22,8 @@
 @property (strong,nonatomic)UIButton *bDM;
 @property (strong,nonatomic)UIButton *bPrivateLetter;
 
-@property (strong,nonatomic)NSDictionary *data;
+@property (strong,nonatomic)NSMutableDictionary *data;
+
+- (void)setFelationshipStat:(int)status;
 
 @end

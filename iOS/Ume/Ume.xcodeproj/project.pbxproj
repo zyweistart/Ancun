@@ -29,6 +29,8 @@
 		C94997591B0477DE0023107F /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997581B0477DE0023107F /* DiscoverViewController.m */; };
 		C949975C1B0477EC0023107F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C949975B1B0477EC0023107F /* MyViewController.m */; };
 		C95647691B15A6A30003CF70 /* UploadCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C95647681B15A6A30003CF70 /* UploadCrypt.m */; };
+		C95713721B4A2E72001F6B2A /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C95713691B4A2E72001F6B2A /* AudioPlayer.m */; };
+		C95713731B4A2E72001F6B2A /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = C957136B1B4A2E72001F6B2A /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C95D39671B281A49005408AB /* MeetXDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95D39661B281A49005408AB /* MeetXDViewController.m */; };
 		C95F64441B2A7FFF00D27452 /* MyImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C95F64431B2A7FFF00D27452 /* MyImagesCell.m */; };
 		C95F64481B2AAB9E00D27452 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C95F64471B2AAB9E00D27452 /* SJAvatarBrowser.m */; };
@@ -184,6 +186,10 @@
 		C949975B1B0477EC0023107F /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		C95647671B15A6A30003CF70 /* UploadCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCrypt.h; sourceTree = "<group>"; };
 		C95647681B15A6A30003CF70 /* UploadCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCrypt.m; sourceTree = "<group>"; };
+		C95713681B4A2E72001F6B2A /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		C95713691B4A2E72001F6B2A /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		C957136A1B4A2E72001F6B2A /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		C957136B1B4A2E72001F6B2A /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
 		C95D39651B281A49005408AB /* MeetXDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetXDViewController.h; sourceTree = "<group>"; };
 		C95D39661B281A49005408AB /* MeetXDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetXDViewController.m; sourceTree = "<group>"; };
 		C95F64421B2A7FFF00D27452 /* MyImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyImagesCell.h; sourceTree = "<group>"; };
@@ -566,6 +572,17 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		C95713651B4A2E72001F6B2A /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				C95713681B4A2E72001F6B2A /* AudioPlayer.h */,
+				C95713691B4A2E72001F6B2A /* AudioPlayer.m */,
+				C957136A1B4A2E72001F6B2A /* AudioStreamer.h */,
+				C957136B1B4A2E72001F6B2A /* AudioStreamer.m */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
 		C95F64451B2AAB9E00D27452 /* SJAvatarBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,6 +646,7 @@
 		C970F5A61B02F5120045A353 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C95713651B4A2E72001F6B2A /* AudioPlayer */,
 				C9FB529F1B3BDC820005F85A /* Encryption */,
 				C9282D8B1B3147A9001B0C57 /* VPImageCropper */,
 				C95F64451B2AAB9E00D27452 /* SJAvatarBrowser */,
@@ -1086,6 +1104,7 @@
 				C981F6591B1717D100FA112C /* NSData+Base64.m in Sources */,
 				C9FE7E261B26D6190049AEC9 /* MessageZGCell.m in Sources */,
 				C970F5D51B02F5120045A353 /* Reachability.m in Sources */,
+				C95713721B4A2E72001F6B2A /* AudioPlayer.m in Sources */,
 				C9DBE7211B183BD6002ECDE4 /* NSData+GIF.m in Sources */,
 				C9DBE1A91B180BA0002ECDE4 /* DiscoverCell.m in Sources */,
 				C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */,
@@ -1098,6 +1117,7 @@
 				C970F5D11B02F5120045A353 /* HttpRequest.m in Sources */,
 				C9ACE8C61B0C65EA00385809 /* CLabel.m in Sources */,
 				C9AD44E01B2EABBC00338AEE /* UIImage+Utils.m in Sources */,
+				C95713731B4A2E72001F6B2A /* AudioStreamer.m in Sources */,
 				C95F64441B2A7FFF00D27452 /* MyImagesCell.m in Sources */,
 				C9909FB31B1E9F4A00A84594 /* MyFansViewController.m in Sources */,
 				C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */,

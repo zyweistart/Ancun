@@ -7,7 +7,10 @@
 //
 
 #import "BaseEGOTableViewPullRefreshViewController.h"
+@class AudioPlayer;
 
 @interface MainViewController : BaseEGOTableViewPullRefreshViewController
+
+@property (strong,nonatomic) AudioPlayer *audioPlayer;
 
 @end
