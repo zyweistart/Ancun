@@ -31,6 +31,7 @@
 		C95647691B15A6A30003CF70 /* UploadCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C95647681B15A6A30003CF70 /* UploadCrypt.m */; };
 		C95713721B4A2E72001F6B2A /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C95713691B4A2E72001F6B2A /* AudioPlayer.m */; };
 		C95713731B4A2E72001F6B2A /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = C957136B1B4A2E72001F6B2A /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C95713791B4A7154001F6B2A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95713781B4A7154001F6B2A /* AVFoundation.framework */; };
 		C95D39671B281A49005408AB /* MeetXDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95D39661B281A49005408AB /* MeetXDViewController.m */; };
 		C95F64441B2A7FFF00D27452 /* MyImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C95F64431B2A7FFF00D27452 /* MyImagesCell.m */; };
 		C95F64481B2AAB9E00D27452 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C95F64471B2AAB9E00D27452 /* SJAvatarBrowser.m */; };
@@ -190,6 +191,7 @@
 		C95713691B4A2E72001F6B2A /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
 		C957136A1B4A2E72001F6B2A /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
 		C957136B1B4A2E72001F6B2A /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		C95713781B4A7154001F6B2A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C95D39651B281A49005408AB /* MeetXDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetXDViewController.h; sourceTree = "<group>"; };
 		C95D39661B281A49005408AB /* MeetXDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetXDViewController.m; sourceTree = "<group>"; };
 		C95F64421B2A7FFF00D27452 /* MyImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyImagesCell.h; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95713791B4A7154001F6B2A /* AVFoundation.framework in Frameworks */,
 				C91217991B02EFD200D9C57B /* Foundation.framework in Frameworks */,
 				C91217971B02EFCA00D9C57B /* UIKit.framework in Frameworks */,
 				C91217951B02EFC200D9C57B /* CoreGraphics.framework in Frameworks */,
@@ -413,6 +416,7 @@
 		C90FF1EA1B033AE500280991 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				C95713781B4A7154001F6B2A /* AVFoundation.framework */,
 				C91217941B02EFC200D9C57B /* CoreGraphics.framework */,
 				C91217981B02EFD200D9C57B /* Foundation.framework */,
 				C91217961B02EFCA00D9C57B /* UIKit.framework */,

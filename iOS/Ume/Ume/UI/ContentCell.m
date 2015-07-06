@@ -57,6 +57,7 @@
         self.bPlayer.layer.borderWidth=1;
         self.bPlayer.layer.borderColor=[[UIColor whiteColor]CGColor];
         [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateNormal];
+        [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateHighlighted];
         self.bPlayer.imageView.animationImages = [NSArray arrayWithObjects:
                                                  [UIImage imageNamed:@"播放中-1"],
                                                  [UIImage imageNamed:@"播放中-2"],
@@ -64,7 +65,7 @@
                                                  [UIImage imageNamed:@"播放中-4"], nil];
         self.bPlayer.imageView.animationDuration = 1.0;
         self.bPlayer.imageView.animationRepeatCount = 0;
-        [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
         [self.mBackground addSubview:self.bPlayer];
         self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 60, 300, 40)];
         [self.lblContent setFont:[UIFont systemFontOfSize:15]];

@@ -52,15 +52,9 @@
     }
 }
 
-
 - (void)stop
-{    
-//    [button setProgress:0];
-//    [button stopSpin];
-
-//    button.image = [UIImage imageNamed:playImage];
+{
     [button.imageView stopAnimating];
-//    [button setImage:[UIImage imageNamed:@"icon-stop-big"] forState:UIControlStateNormal];
     button = nil; // 避免播放器的闪烁问题
     
     // release streamer
@@ -83,20 +77,19 @@
 - (void)playbackStateChanged:(NSNotification *)notification
 {
 	if ([streamer isWaiting]){
-        [button.imageView startAnimating];
+        NSLog(@"isWaiting");
     } else if ([streamer isIdle]) {
-        [button.imageView stopAnimating];
-		[self stop];
+        [self stop];
+        NSLog(@"isIdle");
     } else if ([streamer isPaused]) {
-        [button.imageView stopAnimating];
+        NSLog(@"isPaused");
     } else if ([streamer isPlaying]) {
-        [button.imageView startAnimating];
+        NSLog(@"isPlaying");
     } else if ([streamer isFinishing]) {
-        [button.imageView stopAnimating];
+        NSLog(@"isFinishing");
 	} else {
-        
+        NSLog(@"other");
     }
 }
-
 
 @end
