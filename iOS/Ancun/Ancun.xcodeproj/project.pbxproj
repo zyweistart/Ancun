@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90417461B4B797F00F32A1B /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C90417431B4B797F00F32A1B /* libMobClickLibrary.a */; };
+		C90417481B4B7A0100F32A1B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C90417471B4B7A0100F32A1B /* libz.dylib */; };
 		C90A351A17B9D81C00BECE31 /* ACRechargeNav.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A351917B9D81C00BECE31 /* ACRechargeNav.m */; };
 		C90A351D17BA054F00BECE31 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A351C17BA054F00BECE31 /* BaseViewController.m */; };
 		C90BCF7A17D037B700813641 /* ACNavigationWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BCF7917D037B300813641 /* ACNavigationWebPageViewController.m */; };
@@ -135,6 +137,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C90417431B4B797F00F32A1B /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		C90417441B4B797F00F32A1B /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		C90417451B4B797F00F32A1B /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		C90417471B4B7A0100F32A1B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		C90A351817B9D81C00BECE31 /* ACRechargeNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRechargeNav.h; sourceTree = "<group>"; };
 		C90A351917B9D81C00BECE31 /* ACRechargeNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRechargeNav.m; sourceTree = "<group>"; };
 		C90A351B17BA054F00BECE31 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -443,6 +449,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C90417481B4B7A0100F32A1B /* libz.dylib in Frameworks */,
 				C9E9A93D1AE09BFA00F87EF2 /* libsqlite3.0.dylib in Frameworks */,
 				C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */,
 				C97889BF18E16B9900157577 /* StoreKit.framework in Frameworks */,
@@ -458,6 +465,7 @@
 				C97889B218E16B4400157577 /* CoreText.framework in Frameworks */,
 				C97889B318E16B4400157577 /* Foundation.framework in Frameworks */,
 				C97889B418E16B4400157577 /* libstdc++.dylib in Frameworks */,
+				C90417461B4B797F00F32A1B /* libMobClickLibrary.a in Frameworks */,
 				C97889B518E16B4400157577 /* libz.1.2.5.dylib in Frameworks */,
 				C97889B618E16B4400157577 /* MessageUI.framework in Frameworks */,
 				C97889B718E16B4400157577 /* MobileCoreServices.framework in Frameworks */,
@@ -474,6 +482,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C90417421B4B797F00F32A1B /* UMAnalytics_Sdk_3.5.8 */ = {
+			isa = PBXGroup;
+			children = (
+				C90417431B4B797F00F32A1B /* libMobClickLibrary.a */,
+				C90417441B4B797F00F32A1B /* MobClick.h */,
+				C90417451B4B797F00F32A1B /* MobClickSocialAnalytics.h */,
+			);
+			path = UMAnalytics_Sdk_3.5.8;
+			sourceTree = "<group>";
+		};
 		C914503D18FBAC0300B00B89 /* Gesture */ = {
 			isa = PBXGroup;
 			children = (
@@ -707,6 +725,7 @@
 		C9D97989179FA3500076ACF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C90417471B4B7A0100F32A1B /* libz.dylib */,
 				C9E9A93B1AE09BFA00F87EF2 /* libsqlite3.0.dylib */,
 				C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */,
 				C92809FF1AD7674F00ECC070 /* CoreGraphics.framework */,
@@ -801,6 +820,7 @@
 		C9D97AC9179FA6640076ACF3 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C90417421B4B797F00F32A1B /* UMAnalytics_Sdk_3.5.8 */,
 				C9D97ACA179FA6640076ACF3 /* alipay */,
 				C9D97B1E179FA6640076ACF3 /* ASIHTTP */,
 				C98518F21AF20EFE003E0126 /* ATMHud */,
@@ -1300,6 +1320,7 @@
 					YuluByStore/Librarys/alipay,
 					YuluByStore/Librarys/baidumtj,
 					YuluByStore/Librarys/WeixinActivity/Resources,
+					"$(PROJECT_DIR)/YuluByStore/Librarys/UMAnalytics_Sdk_3.5.8",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1344,6 +1365,7 @@
 					YuluByStore/Librarys/alipay,
 					YuluByStore/Librarys/baidumtj,
 					YuluByStore/Librarys/WeixinActivity/Resources,
+					"$(PROJECT_DIR)/YuluByStore/Librarys/UMAnalytics_Sdk_3.5.8",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

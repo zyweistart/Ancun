@@ -14,6 +14,7 @@
 #import "UIWindow+PazLabs.h"
 #ifndef TEST
 #import "BaiduMobStat.h"
+#import "MobClick.h"
 #endif
 #ifdef JAILBREAK
     #import "AlixPay.h"
@@ -41,7 +42,13 @@
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
 #ifndef TEST
+    
     NSBundle *bundle=[NSBundle mainBundle];
+    
+    NSString *channel=[bundle objectForInfoDictionaryKey:@"ChannelId"];
+    //有盟
+    [MobClick startWithAppkey:@"559b412c67e58e03380074d2" reportPolicy:BATCH channelId:channel];
+    
     //测试环境下不进行百度统计
     BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
     statTracker.enableExceptionLog = NO; // 是否允许截获并发送崩溃信息，请设置YES或者NO
