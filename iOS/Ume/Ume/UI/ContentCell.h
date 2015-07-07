@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CLabel.h"
+@class PlayerButton;
 @interface ContentCell : UITableViewCell
 
 @property (strong,nonatomic)UIImageView *meHeader;
 @property (strong,nonatomic)UIImageView *mFelationship;
 @property (strong,nonatomic)UIImageView *youHeader;
 @property (strong,nonatomic)UIImageView *mBackground;
-@property (strong,nonatomic)UIButton *bPlayer;
+@property (strong,nonatomic)PlayerButton *bPlayer;
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblContent;

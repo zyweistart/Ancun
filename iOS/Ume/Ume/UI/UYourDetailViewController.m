@@ -46,12 +46,7 @@
         [bShare addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         [image addSubview:bShare];
         //播放
-        self.bPlayer=[[UIButton alloc]initWithFrame:CGRectMake1(140, 60, 40, 40)];
-        self.bPlayer.layer.cornerRadius=self.bPlayer.bounds.size.width/2;
-        self.bPlayer.layer.masksToBounds=YES;
-        self.bPlayer.layer.borderWidth=1;
-        self.bPlayer.layer.borderColor=[[UIColor whiteColor]CGColor];
-        [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateNormal];
+        self.bPlayer=[[PlayerButton alloc]initWithFrame:CGRectMake1(140, 60, 40, 40)];
         [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
         [image addSubview:self.bPlayer];
         
@@ -179,7 +174,7 @@
 
 - (void)player:(id)sender
 {
-    
+    [self.bPlayer.imageView startAnimating];
 }
 
 @end

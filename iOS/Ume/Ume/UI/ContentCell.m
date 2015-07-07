@@ -7,6 +7,7 @@
 //
 
 #import "ContentCell.h"
+#import "PlayerButton.h"
 #import "CLabel.h"
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
 
@@ -48,24 +49,12 @@
         self.youHeader.layer.borderColor=[[UIColor grayColor]CGColor];
         [topView addSubview:self.youHeader];
         self.mBackground=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 60, 310, 140)];
+        
+        [self.mBackground setContentMode:UIViewContentModeScaleToFill];
         [self.mBackground setUserInteractionEnabled:YES];
         [self.mBackground setBackgroundColor:DEFAULTITLECOLOR(221)];
         [contentView addSubview:self.mBackground];
-        self.bPlayer=[[UIButton alloc]initWithFrame:CGRectMake1(140, 10, 40, 40)];
-        self.bPlayer.layer.cornerRadius=self.bPlayer.bounds.size.width/2;
-        self.bPlayer.layer.masksToBounds=YES;
-        self.bPlayer.layer.borderWidth=1;
-        self.bPlayer.layer.borderColor=[[UIColor whiteColor]CGColor];
-        [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateNormal];
-        [self.bPlayer setImage:[UIImage imageNamed:@"icon-play-small"] forState:UIControlStateHighlighted];
-        self.bPlayer.imageView.animationImages = [NSArray arrayWithObjects:
-                                                 [UIImage imageNamed:@"播放中-1"],
-                                                 [UIImage imageNamed:@"播放中-2"],
-                                                 [UIImage imageNamed:@"播放中-3"],
-                                                 [UIImage imageNamed:@"播放中-4"], nil];
-        self.bPlayer.imageView.animationDuration = 1.0;
-        self.bPlayer.imageView.animationRepeatCount = 0;
-//        [self.bPlayer addTarget:self action:@selector(player:) forControlEvents:UIControlEventTouchUpInside];
+        self.bPlayer=[[PlayerButton alloc]initWithFrame:CGRectMake1(140, 10, 40, 40)];
         [self.mBackground addSubview:self.bPlayer];
         self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 60, 300, 40)];
         [self.lblContent setFont:[UIFont systemFontOfSize:15]];

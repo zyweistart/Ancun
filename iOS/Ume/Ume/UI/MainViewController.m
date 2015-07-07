@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 #import "UYourDetailViewController.h"
 #import "ContentCell.h"
-#import "HttpDownload.h"
 #import "AudioPlayer.h"
 #import "NSString+Utils.h"
 
@@ -21,6 +20,7 @@
     UIView *bgView;
     UIButton *mButton1,*mButton2,*mButton3,*mButton4;
     HttpDownload *httpDownload;
+    UIButton *currentPlayerButton;
 }
 
 - (id)init{
@@ -30,6 +30,7 @@
 //        self.isFirstRefresh=YES;
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         httpDownload=[[HttpDownload alloc]init];
+        [httpDownload setDelegate:self];
         //筛选
         UIButton *bScreening = [[UIButton alloc]init];
         [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
@@ -199,108 +200,50 @@
 
 - (void)playAudio:(UIButton *)button
 {
-    NSInteger index = button.tag;
-    NSMutableDictionary *item = [self.dataItemArray objectAtIndex:index];
-//    if (_audioPlayer == nil) {
-//        _audioPlayer = [[AudioPlayer alloc] init];
-//    }
-//    if([_audioPlayer.button isEqual:button]){
-//        NSInteger tempRow=_audioPlayer.button.tag;
-//        NSMutableDictionary *temp = [self.dataItemArray objectAtIndex:tempRow];
-//        [temp setValue:@"0" forKey:@"pstatus"];
-//        NSIndexPath *indexPath_1=[NSIndexPath indexPathForRow:tempRow inSection:0];
-//        NSArray *indexArray=[NSArray arrayWithObject:indexPath_1];
-//        [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationAutomatic];
-//        [_audioPlayer stop];
-//    }else{
-//        if(_audioPlayer.button!=nil){
-//            NSInteger tempRow=_audioPlayer.button.tag;
-//            NSMutableDictionary *temp = [self.dataItemArray objectAtIndex:tempRow];
-//            [temp setValue:@"0" forKey:@"pstatus"];
-//            NSIndexPath *indexPath_1=[NSIndexPath indexPathForRow:tempRow inSection:0];
-//            NSArray *indexArray=[NSArray arrayWithObject:indexPath_1];
-//            [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationAutomatic];
-//            [_audioPlayer stop];
-//        }
-//        [item setValue:@"1" forKey:@"pstatus"];
-//        [button.imageView startAnimating];
-//        _audioPlayer.button = button;
-//        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"recordUrl"]];
-//        [_audioPlayer play];
-//    }
-    
-    
-//    NSString *urlStr = [item objectForKey:@"recordUrl"];
-//    NSURL *url = [[NSURL alloc]initWithString:urlStr];
-//    NSData * audioData = [NSData dataWithContentsOfURL:url];
-//    
-//    //将数据保存到本地指定位置
-//    NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//    NSString *filePath = [NSString stringWithFormat:@"%@/%@.arm", docDirPath , @"temp"];
-//    NSLog(@"filePath ==== %@",filePath);
-//    [audioData writeToFile:filePath atomically:YES];
-    
-    
-    [button.imageView startAnimating];
-    NSString *urlStr = [item objectForKey:@"recordUrl"];
-    //创建文件管理器
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    //获取Documents主目录
-    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    //得到相应的Documents的路径
-    NSString *docDir = [paths objectAtIndex:0];
-    //更改到待操作的目录下
-    [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
-    //生成唯一文件夹名
-    NSString *fName=[NSString stringWithFormat:@"%@.amr",[urlStr md5]];
-    NSString *path = [docDir stringByAppendingPathComponent:fName];
-    if(![fileManager fileExistsAtPath:path]){
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-        dispatch_async(queue, ^{
-            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                if (data) {
-                    //获取临时目录
-                    NSString* tmpDir=NSTemporaryDirectory();
-                    //更改到待操作的临时目录
-                    [fileManager changeCurrentDirectoryPath:[tmpDir stringByExpandingTildeInPath]];
-                    NSString *tmpPath = [tmpDir stringByAppendingPathComponent:fName];
-                    //创建数据缓冲区
-                    NSMutableData* writer = [[NSMutableData alloc] init];
-                    //将字符串添加到缓冲中
-                    [writer appendData: data];
-                    //将其他数据添加到缓冲中
-                    //将缓冲的数据写入到临时文件中
-                    [writer writeToFile:tmpPath atomically:YES];
-                    //把临时下载好的文件移动到主文档目录下
-                    [fileManager moveItemAtPath:tmpPath toPath:path error:nil];
-                    //播放本地音乐
-                    NSURL *fileURL = [NSURL fileURLWithPath:path];
-                    self.aPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
-                    [self.aPlayer setDelegate:self];
-                    [self.aPlayer prepareToPlay];
-                    [self.aPlayer play];
-                }
-            });
-            
-        });
-    }else{
-        //播放本地音乐
-        if(self.aPlayer){
-            [self.aPlayer stop];
-        }
-        NSURL *fileURL = [NSURL fileURLWithPath:path];
-        self.aPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
-        [self.aPlayer setDelegate:self];
-        [self.aPlayer setVolume:1.0];
-        [self.aPlayer prepareToPlay];
-        [self.aPlayer play];
+    if(currentPlayerButton){
+        [self stopPlayerAnimating];
     }
+    currentPlayerButton=button;
+    NSInteger currentPlayerRow = currentPlayerButton.tag;
+    NSMutableDictionary *item = [self.dataItemArray objectAtIndex:currentPlayerRow];
+    [item setObject:@"1" forKey:@"pstatus"];
+    [currentPlayerButton.imageView startAnimating];
+    NSString *urlStr = [item objectForKey:@"recordUrl"];
+    [httpDownload AsynchronousDownloadWithUrl:urlStr RequestCode:500];
+}
+
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path
+{
+    //播放本地音乐
+    if(self.audioPlayer){
+        [self.audioPlayer stop];
+        self.audioPlayer=nil;
+    }
+    NSURL *fileURL = [NSURL fileURLWithPath:path];
+    self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
+    [self.audioPlayer setDelegate:self];
+    [self.audioPlayer setVolume:1.0];
+    [self.audioPlayer prepareToPlay];
+    [self.audioPlayer play];
 }
 
 //播放结束时执行的动作
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag{
-    [self.aPlayer stop];
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    if(currentPlayerButton){
+        [self stopPlayerAnimating];
+    }
+    [self.audioPlayer stop];
+    self.audioPlayer=nil;
+}
+
+- (void)stopPlayerAnimating
+{
+    NSInteger currentPlayerRow = currentPlayerButton.tag;
+    NSMutableDictionary *item = [self.dataItemArray objectAtIndex:currentPlayerRow];
+    [item setObject:@"0" forKey:@"pstatus"];
+    [currentPlayerButton.imageView stopAnimating];
+    currentPlayerButton=nil;
 }
 
 @end

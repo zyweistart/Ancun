@@ -7,10 +7,12 @@
 //
 
 #import "BaseEGOTableViewPullRefreshViewController.h"
+#import "HttpDownload.h"
+#import "PlayerButton.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface MainViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate>
+@interface MainViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,HttpDownloadDelegate>
 
-@property (strong,nonatomic) AVAudioPlayer *aPlayer;
+@property (strong,nonatomic) AVAudioPlayer *audioPlayer;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "PlayerButton.h"
 #import "BaseEGOTableViewPullRefreshViewController.h"
 #import "CLabel.h"
 
@@ -17,7 +18,7 @@
 @property (strong,nonatomic)UIImageView *meHeader;
 @property (strong,nonatomic)UIImageView *mFelationship;
 @property (strong,nonatomic)UIImageView *youHeader;
-@property (strong,nonatomic)UIButton *bPlayer;
+@property (strong,nonatomic)PlayerButton *bPlayer;
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblCount;

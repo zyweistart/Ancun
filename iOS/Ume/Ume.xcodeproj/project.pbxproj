@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C902ADD31B140762004EFD41 /* DataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C902ADD21B140762004EFD41 /* DataOutputStream.m */; };
+		C90417411B4B749F00F32A1B /* PlayerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C90417401B4B749F00F32A1B /* PlayerButton.m */; };
 		C91217181B02ED7C00D9C57B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C91217171B02ED7C00D9C57B /* main.m */; };
 		C912171B1B02ED7C00D9C57B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C912171A1B02ED7C00D9C57B /* AppDelegate.m */; };
 		C91217231B02ED7C00D9C57B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91217221B02ED7C00D9C57B /* Images.xcassets */; };
@@ -147,6 +148,8 @@
 /* Begin PBXFileReference section */
 		C902ADD11B140762004EFD41 /* DataOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataOutputStream.h; sourceTree = "<group>"; };
 		C902ADD21B140762004EFD41 /* DataOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOutputStream.m; sourceTree = "<group>"; };
+		C904173F1B4B749F00F32A1B /* PlayerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerButton.h; sourceTree = "<group>"; };
+		C90417401B4B749F00F32A1B /* PlayerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerButton.m; sourceTree = "<group>"; };
 		C91217121B02ED7B00D9C57B /* Ume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91217161B02ED7C00D9C57B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C91217171B02ED7C00D9C57B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -779,6 +782,8 @@
 				C947C1D11B3A84C70052B446 /* ImageTextField.m */,
 				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
 				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
+				C904173F1B4B749F00F32A1B /* PlayerButton.h */,
+				C90417401B4B749F00F32A1B /* PlayerButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1095,6 +1100,7 @@
 				C9282D8E1B3147A9001B0C57 /* VPImageCropperViewController.m in Sources */,
 				C970F5DD1B02F5120045A353 /* LoadMoreTableFooterView.m in Sources */,
 				C9480BF01B048CED0009344F /* MessageCell.m in Sources */,
+				C90417411B4B749F00F32A1B /* PlayerButton.m in Sources */,
 				C9FB52A71B3BDC820005F85A /* Base64Util.m in Sources */,
 				C9909FB91B1E9FA200A84594 /* SettingViewController.m in Sources */,
 				C970F5DF1B02F5120045A353 /* PullTableView.m in Sources */,
