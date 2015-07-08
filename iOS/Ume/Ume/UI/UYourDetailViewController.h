@@ -29,6 +29,7 @@
 @property (strong,nonatomic)AVAudioPlayer *audioPlayer;
 @property (strong,nonatomic)HttpDownload *httpDownload;
 
+@property (nonatomic) BOOL isRecording;
 @property (strong,nonatomic)NSFileManager *fileManager;
 
 @end

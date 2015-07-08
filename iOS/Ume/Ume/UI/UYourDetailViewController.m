@@ -10,8 +10,19 @@
 #import "WordsDetailViewController.h"
 #import "PlayerVoiceButton.h"
 #import "ReplyMDCell.h"
-#import "CLabel.h"
 #import <AVFoundation/AVFoundation.h>
+#import "NSString+Utils.h"
+#import "CLabel.h"
+
+enum
+{
+    ENC_AAC = 1,
+    ENC_ALAC = 2,
+    ENC_IMA4 = 3,
+    ENC_ILBC = 4,
+    ENC_ULAW = 5,
+    ENC_PCM = 6,
+} encodingTypes;
 
 @interface UYourDetailViewController ()
 
@@ -27,6 +38,14 @@
     UIButton *recordDeleteButton;
     CLabel *lblPressRecording;
     NSInteger recordingStep;
+    
+    NSString *recordedFileName;
+    NSString *recordedFilePath;
+    long currentRecordLongTime;
+    
+    NSTimer *timer;
+    AVAudioRecorder *recorder;
+    UILabel *lblTimeCount;
 }
 
 - (id)initWithData:(NSDictionary*)data
@@ -387,7 +406,6 @@
     [buttonPlayer stopAnimating];
 }
 
-
 //删除录音
 - (void)deleteRecording:(id)sender
 {
@@ -395,8 +413,8 @@
     if([self.fileManager removeItemAtPath:recordedFilePath error:NULL]){
         //删除成功
         [lblTimeCount setText:@"00"];
-        [self.recordButton setHidden:NO];
-        [self.recordDeleteButton setHidden:YES];
+        [startRecordingButton setHidden:NO];
+        [recordDeleteButton setHidden:YES];
     }
 }
 
@@ -417,14 +435,14 @@
         if([recorder prepareToRecord]){
             [recorder record];
             self.isRecording = YES;
-            [self.recordButton setSelected:YES];
+            [playRecordingButton setSelected:YES];
             [lblTimeCount setText:@"00"];
             //当前录音总时长
             currentRecordLongTime=0;
             //当前录音开始时间
             timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
         }
-        [self.recordDeleteButton setHidden:YES];
+        [recordDeleteButton setHidden:YES];
     }else{
         [self stopRecorder];
     }
@@ -432,10 +450,10 @@
 
 - (void)stopRecorder
 {
-    [self.recordDeleteButton setHidden:NO];
+    [recordDeleteButton setHidden:NO];
     [lblTimeCount setText:@"00"];
     self.isRecording = NO;
-    [self.recordButton setSelected:NO];
+    [startRecordingButton setSelected:NO];
     [timer invalidate];
     [recorder stop];
     recorder = nil;
