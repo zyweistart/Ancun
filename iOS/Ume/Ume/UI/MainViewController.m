@@ -125,11 +125,18 @@
         [cell setFelationshipStat:1];
         [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
         NSString *pstatus=[data objectForKey:@"pstatus"];
+        
         if([@"1" isEqualToString:pstatus]){
-            [cell.bPlayer.imageView startAnimating];
+            if(currentPlayerButton!=nil&&currentPlayerButton.tag==row){
+                [cell.bPlayer.imageView startAnimating];
+            }else{
+                [data setObject:@"0" forKey:@"pstatus"];
+                [cell.imageView stopAnimating];
+            }
         }else{
             [cell.bPlayer.imageView stopAnimating];
         }
+        
         [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
         NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
         [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
@@ -163,24 +170,6 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:nil requestParams:params];
-}
-
-- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
-{
-    if([response successFlag]){
-        NSDictionary *rData=[[response resultJSON] objectForKey:@"data"];
-        if(rData){
-            NSMutableArray *nsArr=[[NSMutableArray alloc]init];
-            for(id data in rData){
-                [nsArr addObject:[NSMutableDictionary dictionaryWithDictionary:data]];
-            }
-            if([self currentPage]==1){
-                [[self dataItemArray] removeAllObjects];
-            }
-            [[self dataItemArray] addObjectsFromArray:nsArr];
-        }
-    }
-    [self loadDone];
 }
 
 //筛选按钮创建

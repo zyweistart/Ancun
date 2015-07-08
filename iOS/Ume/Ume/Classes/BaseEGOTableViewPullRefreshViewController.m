@@ -123,22 +123,16 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        NSDictionary *rData=[[response resultJSON] objectForKey:@"Data"];
+        NSDictionary *rData=[[response resultJSON] objectForKey:@"data"];
         if(rData){
-            //当前页
-            self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
-            //获取数据列表
-            NSDictionary *tabData=[rData objectForKey:@"Tab"];
-            if(tabData){
-                NSMutableArray *nsArr=[[NSMutableArray alloc]init];
-                for(id data in tabData){
-                    [nsArr addObject:data];
-                }
-                if([self currentPage]==1){
-                    [[self dataItemArray] removeAllObjects];
-                }
-                [[self dataItemArray] addObjectsFromArray:nsArr];
+            NSMutableArray *nsArr=[[NSMutableArray alloc]init];
+            for(id data in rData){
+                [nsArr addObject:[NSMutableDictionary dictionaryWithDictionary:data]];
             }
+            if([self currentPage]==1){
+                [[self dataItemArray] removeAllObjects];
+            }
+            [[self dataItemArray] addObjectsFromArray:nsArr];
         }
     }
     [self loadDone];

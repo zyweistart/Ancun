@@ -160,7 +160,7 @@ enum
     return self;
 }
 
-- (void)player:(id)sender
+- (void)player:(UIButton*)sender
 {
 }
 

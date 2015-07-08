@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CLabel.h"
+#import "PlayerVoiceButton.h"
 
 @interface ReplyMDCell : UITableViewCell
 
@@ -15,8 +16,8 @@
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblValue;
-@property (strong,nonatomic)CLabel *lblPCount;
-@property (strong,nonatomic)CLabel *lblZCount;
+@property (strong,nonatomic)UIButton *lblPCount;
+@property (strong,nonatomic)UIButton *lblZCount;
 
-@property (strong,nonatomic)UIButton *player;
+@property (strong,nonatomic)PlayerVoiceButton *player;
 @end

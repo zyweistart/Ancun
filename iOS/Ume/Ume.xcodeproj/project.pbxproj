@@ -19,6 +19,7 @@
 		C91217991B02EFD200D9C57B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91217981B02EFD200D9C57B /* Foundation.framework */; };
 		C9282D8E1B3147A9001B0C57 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9282D8D1B3147A9001B0C57 /* VPImageCropperViewController.m */; };
 		C92CBCF61B27D288003DA9DF /* MyFlowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92CBCF51B27D288003DA9DF /* MyFlowersViewController.m */; };
+		C93E1F381B4CB6D400CCEDDE /* PlayerVoiceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E1F371B4CB6D400CCEDDE /* PlayerVoiceButton.m */; };
 		C947C1CF1B3A81280052B446 /* RegisterGetCheckCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947C1CE1B3A81280052B446 /* RegisterGetCheckCodeViewController.m */; };
 		C947C1D21B3A84C70052B446 /* ImageTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C947C1D11B3A84C70052B446 /* ImageTextField.m */; };
 		C947C1D51B3A929E0052B446 /* RegisterTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947C1D41B3A929E0052B446 /* RegisterTestViewController.m */; };
@@ -168,6 +169,8 @@
 		C9282D8D1B3147A9001B0C57 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		C92CBCF41B27D288003DA9DF /* MyFlowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFlowersViewController.h; sourceTree = "<group>"; };
 		C92CBCF51B27D288003DA9DF /* MyFlowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFlowersViewController.m; sourceTree = "<group>"; };
+		C93E1F361B4CB6D400CCEDDE /* PlayerVoiceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerVoiceButton.h; sourceTree = "<group>"; };
+		C93E1F371B4CB6D400CCEDDE /* PlayerVoiceButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerVoiceButton.m; sourceTree = "<group>"; };
 		C947C1CD1B3A81280052B446 /* RegisterGetCheckCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterGetCheckCodeViewController.h; sourceTree = "<group>"; };
 		C947C1CE1B3A81280052B446 /* RegisterGetCheckCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterGetCheckCodeViewController.m; sourceTree = "<group>"; };
 		C947C1D01B3A84C70052B446 /* ImageTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextField.h; sourceTree = "<group>"; };
@@ -784,6 +787,8 @@
 				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 				C904173F1B4B749F00F32A1B /* PlayerButton.h */,
 				C90417401B4B749F00F32A1B /* PlayerButton.m */,
+				C93E1F361B4CB6D400CCEDDE /* PlayerVoiceButton.h */,
+				C93E1F371B4CB6D400CCEDDE /* PlayerVoiceButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1145,6 +1150,7 @@
 				C970F5E81B02F5120045A353 /* MBProgressHUD.m in Sources */,
 				C9909FBC1B1E9FCF00A84594 /* MoodTrackViewController.m in Sources */,
 				C97524461B29213E00DE0709 /* NearbyViewController.m in Sources */,
+				C93E1F381B4CB6D400CCEDDE /* PlayerVoiceButton.m in Sources */,
 				C9FE7E2F1B26D69E0049AEC9 /* MessageSXCell.m in Sources */,
 				C970F5D91B02F5120045A353 /* ATMProgressLayer.m in Sources */,
 				C947C1D51B3A929E0052B446 /* RegisterTestViewController.m in Sources */,
