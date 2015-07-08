@@ -30,6 +30,7 @@
 		C94997561B0477BD0023107F /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997551B0477BD0023107F /* MessageViewController.m */; };
 		C94997591B0477DE0023107F /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94997581B0477DE0023107F /* DiscoverViewController.m */; };
 		C949975C1B0477EC0023107F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C949975B1B0477EC0023107F /* MyViewController.m */; };
+		C9519CBD1B4CC8D500E8FC61 /* WordsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9519CBC1B4CC8D500E8FC61 /* WordsDetailViewController.m */; };
 		C95647691B15A6A30003CF70 /* UploadCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C95647681B15A6A30003CF70 /* UploadCrypt.m */; };
 		C95713721B4A2E72001F6B2A /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C95713691B4A2E72001F6B2A /* AudioPlayer.m */; };
 		C95713731B4A2E72001F6B2A /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = C957136B1B4A2E72001F6B2A /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -191,6 +192,8 @@
 		C94997581B0477DE0023107F /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		C949975A1B0477EC0023107F /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		C949975B1B0477EC0023107F /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		C9519CBB1B4CC8D500E8FC61 /* WordsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsDetailViewController.h; sourceTree = "<group>"; };
+		C9519CBC1B4CC8D500E8FC61 /* WordsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsDetailViewController.m; sourceTree = "<group>"; };
 		C95647671B15A6A30003CF70 /* UploadCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCrypt.h; sourceTree = "<group>"; };
 		C95647681B15A6A30003CF70 /* UploadCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCrypt.m; sourceTree = "<group>"; };
 		C95713681B4A2E72001F6B2A /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
@@ -949,6 +952,8 @@
 			children = (
 				C9FE7E181B26B9790049AEC9 /* UYourDetailViewController.h */,
 				C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */,
+				C9519CBB1B4CC8D500E8FC61 /* WordsDetailViewController.h */,
+				C9519CBC1B4CC8D500E8FC61 /* WordsDetailViewController.m */,
 			);
 			name = "懂你";
 			sourceTree = "<group>";
@@ -1127,6 +1132,7 @@
 				C981F65B1B1717D100FA112C /* NSString+Base64.m in Sources */,
 				C96840551B282A69001D3952 /* UIImageButton.m in Sources */,
 				C9909F931B1E9C3F00A84594 /* MessageZDWDViewController.m in Sources */,
+				C9519CBD1B4CC8D500E8FC61 /* WordsDetailViewController.m in Sources */,
 				C9DBE1B01B1813ED002ECDE4 /* HMBannerView.m in Sources */,
 				C912171B1B02ED7C00D9C57B /* AppDelegate.m in Sources */,
 				C970F5D11B02F5120045A353 /* HttpRequest.m in Sources */,

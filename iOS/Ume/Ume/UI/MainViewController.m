@@ -153,6 +153,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
     UYourDetailViewController *yourDetailViewController=[[UYourDetailViewController alloc]initWithData:data];
 //    [yourDetailViewController setHidesBottomBarWhenPushed:YES];

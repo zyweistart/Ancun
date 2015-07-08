@@ -7,9 +7,11 @@
 //
 
 #import "UYourDetailViewController.h"
+#import "WordsDetailViewController.h"
 #import "PlayerVoiceButton.h"
 #import "ReplyMDCell.h"
 #import "CLabel.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface UYourDetailViewController ()
 
@@ -17,7 +19,14 @@
 
 @implementation UYourDetailViewController{
     UIImageView *sonic;
+    UIImageView *buttonPlayer;
     UIButton *currentPlayerButton;
+    
+    UIButton *startRecordingButton;
+    UIButton *playRecordingButton;
+    UIButton *recordDeleteButton;
+    CLabel *lblPressRecording;
+    NSInteger recordingStep;
 }
 
 - (id)initWithData:(NSDictionary*)data
@@ -95,7 +104,7 @@
         [titleHead setBackgroundColor:DEFAULTITLECOLOR(245)];
         [topView addSubview:titleHead];
         //总数
-        self.lblCount=[[CLabel alloc]initWithFrame:CGRectMake1(10, 0, 150, 40) Text:@"所有懂你(123)"];
+        self.lblCount=[[CLabel alloc]initWithFrame:CGRectMake1(10, 0, 150, 40) Text:@""];
         [self.lblCount setFont:[UIFont systemFontOfSize:14]];
         [self.lblCount setTextColor:DEFAULTITLECOLOR(100)];
         [titleHead addSubview:self.lblCount];
@@ -108,7 +117,7 @@
         //私信
         UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 159, height)];
         [button setTitle:@"私信" forState:UIControlStateNormal];
-        [button setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(50) forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"icon-home-私信"] forState:UIControlStateNormal];
         [button setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-10), 0, 0)];
         [button setBackgroundColor:COLOR2552160];
@@ -116,10 +125,11 @@
         //你最懂我
         button=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 160, height)];
         [button setTitle:@"你最懂我" forState:UIControlStateNormal];
-        [button setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"icon-home-懂你"] forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(50) forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"icon-dw-black"] forState:UIControlStateNormal];
         [button setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-10), 0, 0)];
         [button setBackgroundColor:COLOR2552160];
+        [button addTarget:self action:@selector(goDW:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:button];
         [self.tableView setTableHeaderView:headContent];
         
@@ -136,7 +146,97 @@
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];
         [self.lblValue setText:@"开心70%"];
+        [self.lblCount setText:@"所有懂你(12)"];
         [self.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
+        
+        height=220;
+        //评论
+        UIView *bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
+        [bgFrame setBackgroundColor:DEFAULTITLECOLORA(100,0.5)];
+        [bgFrame setUserInteractionEnabled:YES];
+        [self.view addSubview:bgFrame];
+        UIView *commentFrame=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(height), CGWidth(320), CGHeight(height))];
+        [commentFrame setBackgroundColor:DEFAULTITLECOLOR(250)];
+        [bgFrame addSubview:commentFrame];
+        //
+        button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 60, 35)];
+        [button setTitle:@"发语音" forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [button setTitleColor:COLOR2552160 forState:UIControlStateSelected];
+        [commentFrame addSubview:button];
+        [button setSelected:YES];
+        //
+        button=[[UIButton alloc]initWithFrame:CGRectMake1(60, 0, 60, 35)];
+        [button setTitle:@"发图片" forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [button setTitleColor:COLOR2552160 forState:UIControlStateSelected];
+        [commentFrame addSubview:button];
+        //
+        button=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 60, 35)];
+        [button setTitle:@"@某人" forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [button setTitleColor:COLOR2552160 forState:UIControlStateSelected];
+        [commentFrame addSubview:button];
+        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(10, 35, 300, 0.5)];
+        [line setBackgroundColor:DEFAULTITLECOLOR(230)];
+        [commentFrame addSubview:line];
+        
+        buttonPlayer=[[UIImageView alloc]initWithFrame:CGRectMake1(75, 40, 170, 170)];
+        [buttonPlayer setUserInteractionEnabled:YES];
+        buttonPlayer.animationImages = [NSArray arrayWithObjects:
+                                            [UIImage imageNamed:@"play-bg-1"],
+                                            [UIImage imageNamed:@"play-bg-2"],
+                                            [UIImage imageNamed:@"play-bg-3"],nil];
+        [buttonPlayer setAnimationDuration:1.0];
+        [buttonPlayer setAnimationRepeatCount:0];
+        [commentFrame addSubview:buttonPlayer];
+        
+        //录音
+        startRecordingButton=[[UIButton alloc]initWithFrame:CGRectMake1(45, 45, 80, 80)];
+        startRecordingButton.layer.cornerRadius=startRecordingButton.bounds.size.width/2;
+        startRecordingButton.layer.masksToBounds=YES;
+        [startRecordingButton setImage:[UIImage imageNamed:@"icon-luyin"] forState:UIControlStateNormal];
+        startRecordingButton.imageView.animationImages = [NSArray arrayWithObjects:
+                                                           [UIImage imageNamed:@"播放中-1"],
+                                                           [UIImage imageNamed:@"播放中-2"],
+                                                           [UIImage imageNamed:@"播放中-3"],
+                                                           [UIImage imageNamed:@"播放中-4"], nil];
+        [startRecordingButton.imageView setAnimationDuration:1.0];
+        [startRecordingButton.imageView setAnimationRepeatCount:0];
+        [startRecordingButton setBackgroundColor:COLOR2552160];
+        [startRecordingButton addTarget:self action:@selector(reocrdingUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [buttonPlayer addSubview:startRecordingButton];
+        //播放
+        playRecordingButton=[[UIButton alloc]initWithFrame:CGRectMake1(45, 45, 80, 80)];
+        playRecordingButton.layer.cornerRadius=playRecordingButton.bounds.size.width/2;
+        playRecordingButton.layer.masksToBounds=YES;
+        [playRecordingButton setImage:[UIImage imageNamed:@"icon-play-big"] forState:UIControlStateNormal];
+        [playRecordingButton setImage:[UIImage imageNamed:@"icon-stop-big"] forState:UIControlStateSelected];
+        [playRecordingButton setBackgroundColor:COLOR2552160];
+        [playRecordingButton addTarget:self action:@selector(playRecording:) forControlEvents:UIControlEventTouchUpInside];
+        [playRecordingButton setHidden:YES];
+        [buttonPlayer addSubview:playRecordingButton];
+        //按下录音文字
+        lblPressRecording=[[CLabel alloc]initWithFrame:CGRectMake1(45, 130, 80, 30) Text:@"按下录音"];
+        [lblPressRecording setFont:[UIFont systemFontOfSize:18]];
+        [lblPressRecording setTextAlignment:NSTextAlignmentCenter];
+        [buttonPlayer addSubview:lblPressRecording];
+        //删除
+        recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(130, 90, 30, 30)];
+        recordDeleteButton.layer.cornerRadius=recordDeleteButton.bounds.size.width/2;
+        recordDeleteButton.layer.masksToBounds = YES;
+        recordDeleteButton.layer.borderWidth=1;
+        recordDeleteButton.layer.borderColor=[[UIColor redColor]CGColor];
+        [recordDeleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        [recordDeleteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [recordDeleteButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [recordDeleteButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [recordDeleteButton addTarget:self action:@selector(recordingDel:) forControlEvents:UIControlEventTouchUpInside];
+        [recordDeleteButton setHidden:YES];
+        [buttonPlayer addSubview:recordDeleteButton];
+        
+        self.fileManager = [NSFileManager defaultManager];
+        
     }
     return self;
 }
@@ -246,6 +346,116 @@
     }
     [currentPlayerButton.imageView stopAnimating];
     currentPlayerButton=nil;
+}
+
+- (void)goDW:(id)sender
+{
+    
+}
+
+- (void)reocrdingUpInside:(UIButton*)sender
+{
+    if([startRecordingButton.imageView isAnimating]){
+        [playRecordingButton setHidden:NO];
+        [recordDeleteButton setHidden:NO];
+        [lblPressRecording setHidden:YES];
+        [buttonPlayer stopAnimating];
+        [startRecordingButton.imageView stopAnimating];
+    }else{
+        [recordDeleteButton setHidden:YES];
+        [lblPressRecording setHidden:YES];
+        [buttonPlayer startAnimating];
+        [startRecordingButton.imageView startAnimating];
+    }
+}
+
+- (void)playRecording:(UIButton*)sender
+{
+    [sender setSelected:!sender.selected];
+    if(sender.selected){
+        [buttonPlayer startAnimating];
+    }else{
+        [buttonPlayer stopAnimating];
+    }
+}
+
+- (void)recordingDel:(UIButton*)sender
+{
+    [playRecordingButton setHidden:YES];
+    [recordDeleteButton setHidden:YES];
+    [lblPressRecording setHidden:NO];
+    [buttonPlayer stopAnimating];
+}
+
+
+//删除录音
+- (void)deleteRecording:(id)sender
+{
+    //删除
+    if([self.fileManager removeItemAtPath:recordedFilePath error:NULL]){
+        //删除成功
+        [lblTimeCount setText:@"00"];
+        [self.recordButton setHidden:NO];
+        [self.recordDeleteButton setHidden:YES];
+    }
+}
+
+- (void)startStopRecording:(id)sender
+{
+    if(!self.isRecording){
+        if(recorder){
+            [self stopRecorder];
+        }
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
+        
+        //生成录音文件名
+        recordedFileName=[[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] md5];
+        //文件路径
+        recordedFilePath=[NSTemporaryDirectory() stringByAppendingString:recordedFileName];
+        recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:recordedFilePath] settings:nil error:nil];
+        if([recorder prepareToRecord]){
+            [recorder record];
+            self.isRecording = YES;
+            [self.recordButton setSelected:YES];
+            [lblTimeCount setText:@"00"];
+            //当前录音总时长
+            currentRecordLongTime=0;
+            //当前录音开始时间
+            timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        }
+        [self.recordDeleteButton setHidden:YES];
+    }else{
+        [self stopRecorder];
+    }
+}
+
+- (void)stopRecorder
+{
+    [self.recordDeleteButton setHidden:NO];
+    [lblTimeCount setText:@"00"];
+    self.isRecording = NO;
+    [self.recordButton setSelected:NO];
+    [timer invalidate];
+    [recorder stop];
+    recorder = nil;
+    //存储
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths objectAtIndex:0];
+    NSString *toMoveFilePath = [documents stringByAppendingPathComponent:recordedFileName];
+    if([self.fileManager moveItemAtPath:recordedFilePath toPath:toMoveFilePath error:nil]){
+        NSLog(@"录音保存成功:%@",toMoveFilePath);
+    }
+}
+
+- (void)timerFired:(id)sender
+{
+    currentRecordLongTime++;
+    if(currentRecordLongTime<10){
+        [lblTimeCount setText:[NSString stringWithFormat:@"0%ld",currentRecordLongTime]];
+    }else{
+        [lblTimeCount setText:[NSString stringWithFormat:@"%ld",currentRecordLongTime]];
+    }
 }
 
 @end
