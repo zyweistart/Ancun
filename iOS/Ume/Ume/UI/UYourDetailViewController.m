@@ -12,6 +12,7 @@
 #import "ReplyMDCell.h"
 #import "RecordingPlayerView.h"
 #import "SelectedImageView.h"
+#import "AtUserView.h"
 
 @interface UYourDetailViewController ()
 
@@ -19,9 +20,13 @@
 
 @implementation UYourDetailViewController{
     UIButton *currentPlayerButton;
-    RecordingPlayerView *mRecordingPlayerView;
-    SelectedImageView *mSelectedImageView;
+    
     UIButton *bSendVoice,*bSendImage,*bAtUser;
+    AtUserView *mAtUserView;
+    SelectedImageView *mSelectedImageView;
+    RecordingPlayerView *mRecordingPlayerView;
+    
+    UIView *bgFrame;
 }
 
 - (id)initWithData:(NSDictionary*)data
@@ -30,8 +35,8 @@
     if(self){
         self.data=data;
         [self cTitle:@"懂你详情"];
-        self.isFirstRefresh=NO;
-        [self.navigationController.navigationBar setHidden:YES];
+        self.isFirstRefresh=YES;
+//        [self.navigationController.navigationBar setHidden:YES];
         UIView *headContent=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 300)];
         [self.view addSubview:headContent];
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
@@ -113,7 +118,7 @@
         UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 159, height)];
         [button setTitle:@"私信" forState:UIControlStateNormal];
         [button setTitleColor:DEFAULTITLECOLOR(50) forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"icon-home-私信"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"icon-sx-black"] forState:UIControlStateNormal];
         [button setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-10), 0, 0)];
         [button setBackgroundColor:COLOR2552160];
         [bottomView addSubview:button];
@@ -146,10 +151,12 @@
         
         height=220;
         //评论
-        UIView *bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
+        bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [bgFrame setBackgroundColor:DEFAULTITLECOLORA(100,0.5)];
         [bgFrame setUserInteractionEnabled:YES];
+        [bgFrame addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgHidden:)]];
         [self.view addSubview:bgFrame];
+        [bgFrame setHidden:YES];
         UIView *commentFrame=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(height), CGWidth(320), CGHeight(height))];
         [commentFrame setBackgroundColor:DEFAULTITLECOLOR(250)];
         [bgFrame addSubview:commentFrame];
@@ -188,10 +195,20 @@
         [mSelectedImageView setCurrentController:self];
         [commentFrame addSubview:mSelectedImageView];
         
+        mAtUserView=[[AtUserView alloc]initWithFrame:CGRectMake1(10, 40, 300, 170)];
+        [mAtUserView setCurrentController:self];
+        [commentFrame addSubview:mAtUserView];
+        
         //设置默认值
         [self setSendFrame:bSendVoice];
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -247,7 +264,13 @@
 - (void)playAudio:(UIButton*)button
 {
     if(currentPlayerButton){
-        [self stopPlayerAnimating];
+        if(currentPlayerButton==button){
+            [self stopAudioPlayer];
+            [self stopPlayerAnimating];
+            return;
+        }else{
+            [self stopPlayerAnimating];
+        }
     }
     currentPlayerButton=button;
     if(self.bPlayer==button){
@@ -311,7 +334,12 @@
 
 - (void)goDW:(id)sender
 {
-    
+    [bgFrame setHidden:!bgFrame.isHidden];
+}
+
+- (void)bgHidden:(id)sender
+{
+    [bgFrame setHidden:YES];
 }
 
 - (void)setSendFrame:(UIButton*)sender
@@ -322,6 +350,7 @@
     [bAtUser setSelected:tag==3?YES:NO];
     [mRecordingPlayerView setHidden:!bSendVoice.isSelected];
     [mSelectedImageView setHidden:!bSendImage.isSelected];
+    [mAtUserView setHidden:!bAtUser.isSelected];
 }
 
 @end

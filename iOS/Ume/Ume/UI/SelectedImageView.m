@@ -10,13 +10,17 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "CameraUtility.h"
 #import "UIImage+Utils.h"
-
+#import "CLabel.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
 @implementation SelectedImageView{
     UIButton *mLocalImage;
     UIButton *mCameraImage;
+    UIView *photoFrame;
+    UIView *photoShowFrame;
+    UIImageView *showImageView;
+    UIButton *bClose;
 }
 
 
@@ -24,27 +28,56 @@
 {
     self=[super initWithFrame:frame];
     if(self){
+        photoFrame=[[UIView alloc]initWithFrame:self.bounds];
+        [self addSubview:photoFrame];
         //相册
-        mLocalImage=[[UIButton alloc]initWithFrame:CGRectMake1(40,45,80,80)];
+        mLocalImage=[[UIButton alloc]initWithFrame:CGRectMake1(40,35,80,80)];
         mLocalImage.layer.cornerRadius=mLocalImage.bounds.size.width/2;
         mLocalImage.layer.masksToBounds=YES;
         mLocalImage.layer.borderWidth=1;
         mLocalImage.layer.borderColor=COLOR2552160.CGColor;
         [mLocalImage setImage:[UIImage imageNamed:@"icon-相册"] forState:UIControlStateNormal];
         [mLocalImage addTarget:self action:@selector(goLocalImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:mLocalImage];
+        [photoFrame addSubview:mLocalImage];
+        //
+        CLabel *lblText=[[CLabel alloc]initWithFrame:CGRectMake1(40, 120, 80, 30) Text:@"本地相册"];
+        [lblText setFont:[UIFont systemFontOfSize:18]];
+        [lblText setTextAlignment:NSTextAlignmentCenter];
+        [photoFrame addSubview:lblText];
         //相机
-        mCameraImage=[[UIButton alloc]initWithFrame:CGRectMake1(180,45,80,80)];
+        mCameraImage=[[UIButton alloc]initWithFrame:CGRectMake1(180,35,80,80)];
         mCameraImage.layer.cornerRadius=mLocalImage.bounds.size.width/2;
         mCameraImage.layer.masksToBounds=YES;
         mCameraImage.layer.borderWidth=1;
         mCameraImage.layer.borderColor=COLOR2552160.CGColor;
         [mCameraImage setImage:[UIImage imageNamed:@"icon-相机"] forState:UIControlStateNormal];
         [mCameraImage addTarget:self action:@selector(goCamera:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:mCameraImage];
+        [photoFrame addSubview:mCameraImage];
+        photoShowFrame=[[UIView alloc]initWithFrame:self.bounds];
+        [self addSubview:photoShowFrame];
+        //
+        lblText=[[CLabel alloc]initWithFrame:CGRectMake1(180, 120, 80, 30) Text:@"相机"];
+        [lblText setFont:[UIFont systemFontOfSize:18]];
+        [lblText setTextAlignment:NSTextAlignmentCenter];
+        [photoFrame addSubview:lblText];
         
+        showImageView=[[UIImageView alloc]initWithFrame:CGRectMake1(85, 20, 130, 130)];
+        [photoShowFrame addSubview:showImageView];
+        bClose=[[UIButton alloc]initWithFrame:CGRectMake1(195, 0, 40, 40)];
+        [bClose setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        [bClose addTarget:self action:@selector(goClose:) forControlEvents:UIControlEventTouchUpInside];
+        [photoShowFrame addSubview:bClose];
+        
+        [photoFrame setHidden:NO];
+        [photoShowFrame setHidden:YES];
     }
     return self;
+}
+
+- (void)goClose:(id)sender
+{
+    [photoFrame setHidden:NO];
+    [photoShowFrame setHidden:YES];
 }
 
 - (void)goLocalImage:(id)sender
@@ -98,8 +131,9 @@
 
 #pragma mark VPImageCropperDelegate
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
-//    [iUserNameImage setImage:editedImage];
-    NSLog(@"设置图片了");
+    [showImageView setImage:editedImage];
+    [photoFrame setHidden:YES];
+    [photoShowFrame setHidden:NO];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
     }];
 }

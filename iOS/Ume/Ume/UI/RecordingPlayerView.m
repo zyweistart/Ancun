@@ -15,7 +15,7 @@
     UILabel *lblTimeCount;
     UIButton *startRecordingButton;
     UIButton *recordDeleteButton;
-    CLabel *lblPressRecording;
+    CLabel *lblTextTip;
     
     NSInteger recordingStep;
     NSString *recordedFileName;
@@ -59,16 +59,13 @@
         [startRecordingButton addTarget:self action:@selector(reocrdingUpInside:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:startRecordingButton];
         
-        recordingStep=1;
-        [self setStartRecordingButtonStatus];
-        
         //按下录音文字
-        lblPressRecording=[[CLabel alloc]initWithFrame:CGRectMake1(45, 130, 80, 30) Text:@"按下录音"];
-        [lblPressRecording setFont:[UIFont systemFontOfSize:18]];
-        [lblPressRecording setTextAlignment:NSTextAlignmentCenter];
-        [self addSubview:lblPressRecording];
+        lblTextTip=[[CLabel alloc]initWithFrame:CGRectMake1(45, 130, 80, 30) Text:@""];
+        [lblTextTip setFont:[UIFont systemFontOfSize:18]];
+        [lblTextTip setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:lblTextTip];
         //删除
-        recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(130, 90, 30, 30)];
+        recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(140, 90, 30, 30)];
         recordDeleteButton.layer.cornerRadius=recordDeleteButton.bounds.size.width/2;
         recordDeleteButton.layer.masksToBounds = YES;
         recordDeleteButton.layer.borderWidth=1;
@@ -82,6 +79,9 @@
         [self addSubview:recordDeleteButton];
         
         self.fileManager = [NSFileManager defaultManager];
+        
+        recordingStep=1;
+        [self setStartRecordingButtonStatus];
     }
     return self;
 }
@@ -89,11 +89,13 @@
 - (void)reocrdingUpInside:(UIButton*)sender
 {
     if(recordingStep==1){
+        [lblTextTip setText:@"点击停止"];
         recordingStep++;
         [self setStartRecordingButtonStatus];
         //开始录音
         [self startAVAudioRecorder];
     }else if(recordingStep==2){
+        [lblTextTip setText:@"点击播放"];
         [self stopAnimating];
         [startRecordingButton.imageView stopAnimating];
         recordingStep++;
@@ -101,11 +103,13 @@
         //停止录音
         [self stopAVAudioRecorder];
     }else if(recordingStep==3){
+        [lblTextTip setText:@"点击停止"];
         recordingStep++;
         [self setStartRecordingButtonStatus];
         //开始播放
         [self startAudioPlayer];
     }else if(recordingStep==4){
+        [lblTextTip setText:@"点击播放"];
         [self stopAnimating];
         recordingStep--;
         [self setStartRecordingButtonStatus];
@@ -131,31 +135,27 @@
 {
     if(recordingStep==1){
         //录音
+        [lblTextTip setText:@"点击说话"];
         [startRecordingButton setImage:[UIImage imageNamed:@"icon-luyin"] forState:UIControlStateNormal];
-        [lblTimeCount setText:@"00'"];
-        [lblTimeCount setHidden:NO];
-        [lblPressRecording setHidden:NO];
+        [lblTimeCount setHidden:YES];
         [recordDeleteButton setHidden:YES];
     }else if(recordingStep==2){
         //录音中
+        [lblTimeCount setText:@"00'"];
         [self startAnimating];
         [startRecordingButton.imageView startAnimating];
-        [lblTimeCount setText:@"00'"];
         [lblTimeCount setHidden:NO];
-        [lblPressRecording setHidden:YES];
         [recordDeleteButton setHidden:YES];
     }else if(recordingStep==3){
         //播放
         [startRecordingButton setImage:[UIImage imageNamed:@"icon-play-big"] forState:UIControlStateNormal];
         [lblTimeCount setHidden:NO];
-        [lblPressRecording setHidden:YES];
         [recordDeleteButton setHidden:NO];
     }else if(recordingStep==4){
         [self startAnimating];
         //暂停
         [startRecordingButton setImage:[UIImage imageNamed:@"icon-stop-big"] forState:UIControlStateNormal];
-        [lblTimeCount setHidden:YES];
-        [lblPressRecording setHidden:YES];
+        [lblTimeCount setHidden:NO];
         [recordDeleteButton setHidden:YES];
     }
 }

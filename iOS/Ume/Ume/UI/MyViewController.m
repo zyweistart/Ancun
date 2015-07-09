@@ -30,7 +30,6 @@
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
 
 static CGFloat kImageOriginHight = 220.f;
-#define ORIGINAL_MAX_WIDTH 640.0f
 
 @interface MyViewController ()
 

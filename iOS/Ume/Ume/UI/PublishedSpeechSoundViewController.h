@@ -7,12 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "VPImageCropperViewController.h"
 
-@interface PublishedSpeechSoundViewController : BaseViewController<UITextViewDelegate>
+@interface PublishedSpeechSoundViewController : BaseViewController<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,VPImageCropperDelegate>
 
-@property (nonatomic) BOOL isRecording;
-@property (strong,nonatomic)NSFileManager *fileManager;
 @property (strong, nonatomic) UIButton *recordButton;
-@property (strong, nonatomic) UIButton *recordDeleteButton;
 
 @end

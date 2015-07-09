@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C902ADD31B140762004EFD41 /* DataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C902ADD21B140762004EFD41 /* DataOutputStream.m */; };
 		C90417411B4B749F00F32A1B /* PlayerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C90417401B4B749F00F32A1B /* PlayerButton.m */; };
+		C909D6911B4E730D007CA6CC /* AtUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = C909D6901B4E730D007CA6CC /* AtUserView.m */; };
 		C91217181B02ED7C00D9C57B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C91217171B02ED7C00D9C57B /* main.m */; };
 		C912171B1B02ED7C00D9C57B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C912171A1B02ED7C00D9C57B /* AppDelegate.m */; };
 		C91217231B02ED7C00D9C57B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91217221B02ED7C00D9C57B /* Images.xcassets */; };
@@ -131,6 +132,7 @@
 		C9FC21CA1B4E5F82005A8284 /* SelectedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FC21C91B4E5F82005A8284 /* SelectedImageView.m */; };
 		C9FC21D01B4E65D1005A8284 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FC21CF1B4E65D1005A8284 /* UIImageView+Utils.m */; };
 		C9FC21D31B4E6760005A8284 /* CameraUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FC21D21B4E6760005A8284 /* CameraUtility.m */; };
+		C9FCF2291B4E8241005A1BCE /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FCF2281B4E8241005A1BCE /* ContactViewController.m */; };
 		C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */; };
 		C9FE7E1A1B26B9790049AEC9 /* UYourDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */; };
 		C9FE7E1D1B26BC450049AEC9 /* MessageZDWDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */; };
@@ -156,6 +158,8 @@
 		C902ADD21B140762004EFD41 /* DataOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOutputStream.m; sourceTree = "<group>"; };
 		C904173F1B4B749F00F32A1B /* PlayerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerButton.h; sourceTree = "<group>"; };
 		C90417401B4B749F00F32A1B /* PlayerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerButton.m; sourceTree = "<group>"; };
+		C909D68F1B4E730D007CA6CC /* AtUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtUserView.h; sourceTree = "<group>"; };
+		C909D6901B4E730D007CA6CC /* AtUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtUserView.m; sourceTree = "<group>"; };
 		C91217121B02ED7B00D9C57B /* Ume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91217161B02ED7C00D9C57B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C91217171B02ED7C00D9C57B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -394,6 +398,8 @@
 		C9FC21CF1B4E65D1005A8284 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
 		C9FC21D11B4E6760005A8284 /* CameraUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraUtility.h; sourceTree = "<group>"; };
 		C9FC21D21B4E6760005A8284 /* CameraUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraUtility.m; sourceTree = "<group>"; };
+		C9FCF2271B4E8241005A1BCE /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		C9FCF2281B4E8241005A1BCE /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		C9FE7E111B26B8730049AEC9 /* LoginMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMainViewController.h; sourceTree = "<group>"; };
 		C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMainViewController.m; sourceTree = "<group>"; };
 		C9FE7E181B26B9790049AEC9 /* UYourDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UYourDetailViewController.h; sourceTree = "<group>"; };
@@ -620,6 +626,8 @@
 		C95F64511B2AB22F00D27452 /* 公共 */ = {
 			isa = PBXGroup;
 			children = (
+				C9FCF2271B4E8241005A1BCE /* ContactViewController.h */,
+				C9FCF2281B4E8241005A1BCE /* ContactViewController.m */,
 			);
 			name = "公共";
 			sourceTree = "<group>";
@@ -812,6 +820,8 @@
 				C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */,
 				C9FC21C81B4E5F82005A8284 /* SelectedImageView.h */,
 				C9FC21C91B4E5F82005A8284 /* SelectedImageView.m */,
+				C909D68F1B4E730D007CA6CC /* AtUserView.h */,
+				C909D6901B4E730D007CA6CC /* AtUserView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1119,6 +1129,7 @@
 				C9DBE7221B183BD6002ECDE4 /* NSData+ImageContentType.m in Sources */,
 				C947C1CF1B3A81280052B446 /* RegisterGetCheckCodeViewController.m in Sources */,
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,
+				C9FCF2291B4E8241005A1BCE /* ContactViewController.m in Sources */,
 				C9FC21D01B4E65D1005A8284 /* UIImageView+Utils.m in Sources */,
 				C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */,
 				C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */,
@@ -1130,6 +1141,7 @@
 				C947C1D81B3A92C70052B446 /* RegisterDoneViewController.m in Sources */,
 				C9DBE72C1B183BD6002ECDE4 /* UIImageView+WebCache.m in Sources */,
 				C9282D8E1B3147A9001B0C57 /* VPImageCropperViewController.m in Sources */,
+				C909D6911B4E730D007CA6CC /* AtUserView.m in Sources */,
 				C970F5DD1B02F5120045A353 /* LoadMoreTableFooterView.m in Sources */,
 				C9480BF01B048CED0009344F /* MessageCell.m in Sources */,
 				C90417411B4B749F00F32A1B /* PlayerButton.m in Sources */,

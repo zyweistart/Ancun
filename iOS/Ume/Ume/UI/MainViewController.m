@@ -155,10 +155,8 @@
 {
     [self stopAudioPlayer];
     NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-    UYourDetailViewController *yourDetailViewController=[[UYourDetailViewController alloc]initWithData:data];
-//    [yourDetailViewController setHidesBottomBarWhenPushed:YES];
-//    [self.navigationController pushViewController:yourDetailViewController animated:YES];
-    [self presentViewController:yourDetailViewController animated:YES completion:nil];
+    UINavigationController *mUYourDetailViewController=[[UINavigationController alloc]initWithRootViewController:[[UYourDetailViewController alloc]initWithData:data]];
+    [self presentViewController:mUYourDetailViewController animated:YES completion:nil];
 }
 
 - (void)loadHttp
@@ -190,7 +188,11 @@
 
 - (void)playAudio:(UIButton *)button
 {
-    if(currentPlayerButton){
+    if(currentPlayerButton==button){
+        [self stopAudioPlayer];
+        [self stopPlayerAnimating];
+        return;
+    }else{
         [self stopPlayerAnimating];
     }
     currentPlayerButton=button;
