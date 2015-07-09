@@ -122,6 +122,7 @@
 		C9DBE72A1B183BD6002ECDE4 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A41B183BD6002ECDE4 /* UIImage+MultiFormat.m */; };
 		C9DBE72B1B183BD6002ECDE4 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A61B183BD6002ECDE4 /* UIImage+WebP.m */; };
 		C9DBE72C1B183BD6002ECDE4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */; };
+		C9E1E6371B4E4D9C005988B7 /* RecordingPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */; };
 		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
 		C9FB529E1B3BDB430005F85A /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB529D1B3BDB430005F85A /* NSString+DES.m */; };
 		C9FB52A71B3BDC820005F85A /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A11B3BDC820005F85A /* Base64Util.m */; };
@@ -371,6 +372,8 @@
 		C9DBE6A61B183BD6002ECDE4 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 		C9DBE6A71B183BD6002ECDE4 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		C9E1E6351B4E4D9C005988B7 /* RecordingPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingPlayerView.h; sourceTree = "<group>"; };
+		C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingPlayerView.m; sourceTree = "<group>"; };
 		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
 		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
 		C9FB529C1B3BDB430005F85A /* NSString+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DES.h"; sourceTree = "<group>"; };
@@ -792,6 +795,8 @@
 				C90417401B4B749F00F32A1B /* PlayerButton.m */,
 				C93E1F361B4CB6D400CCEDDE /* PlayerVoiceButton.h */,
 				C93E1F371B4CB6D400CCEDDE /* PlayerVoiceButton.m */,
+				C9E1E6351B4E4D9C005988B7 /* RecordingPlayerView.h */,
+				C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1169,6 +1174,7 @@
 				C970F5DB1B02F5120045A353 /* ATMTextLayer.m in Sources */,
 				C970F5D31B02F5120045A353 /* Response.m in Sources */,
 				C91217181B02ED7C00D9C57B /* main.m in Sources */,
+				C9E1E6371B4E4D9C005988B7 /* RecordingPlayerView.m in Sources */,
 				C9909FAD1B1E9F1E00A84594 /* MyHeartbeatViewController.m in Sources */,
 				C9DBE7231B183BD6002ECDE4 /* SDImageCache.m in Sources */,
 				C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */,

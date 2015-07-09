@@ -13,39 +13,15 @@
 #import <AVFoundation/AVFoundation.h>
 #import "NSString+Utils.h"
 #import "CLabel.h"
-
-enum
-{
-    ENC_AAC = 1,
-    ENC_ALAC = 2,
-    ENC_IMA4 = 3,
-    ENC_ILBC = 4,
-    ENC_ULAW = 5,
-    ENC_PCM = 6,
-} encodingTypes;
+#import "RecordingPlayerView.h"
 
 @interface UYourDetailViewController ()
 
 @end
 
 @implementation UYourDetailViewController{
-    UIImageView *sonic;
-    UIImageView *buttonPlayer;
     UIButton *currentPlayerButton;
-    
-    UIButton *startRecordingButton;
-    UIButton *playRecordingButton;
-    UIButton *recordDeleteButton;
-    CLabel *lblPressRecording;
-    NSInteger recordingStep;
-    
-    NSString *recordedFileName;
-    NSString *recordedFilePath;
-    long currentRecordLongTime;
-    
-    NSTimer *timer;
-    AVAudioRecorder *recorder;
-    UILabel *lblTimeCount;
+    RecordingPlayerView *mRecordingPlayerView;
 }
 
 - (id)initWithData:(NSDictionary*)data
@@ -200,62 +176,8 @@ enum
         [line setBackgroundColor:DEFAULTITLECOLOR(230)];
         [commentFrame addSubview:line];
         
-        buttonPlayer=[[UIImageView alloc]initWithFrame:CGRectMake1(75, 40, 170, 170)];
-        [buttonPlayer setUserInteractionEnabled:YES];
-        buttonPlayer.animationImages = [NSArray arrayWithObjects:
-                                            [UIImage imageNamed:@"play-bg-1"],
-                                            [UIImage imageNamed:@"play-bg-2"],
-                                            [UIImage imageNamed:@"play-bg-3"],nil];
-        [buttonPlayer setAnimationDuration:1.0];
-        [buttonPlayer setAnimationRepeatCount:0];
-        [commentFrame addSubview:buttonPlayer];
-        
-        //录音
-        startRecordingButton=[[UIButton alloc]initWithFrame:CGRectMake1(45, 45, 80, 80)];
-        startRecordingButton.layer.cornerRadius=startRecordingButton.bounds.size.width/2;
-        startRecordingButton.layer.masksToBounds=YES;
-        [startRecordingButton setImage:[UIImage imageNamed:@"icon-luyin"] forState:UIControlStateNormal];
-        startRecordingButton.imageView.animationImages = [NSArray arrayWithObjects:
-                                                           [UIImage imageNamed:@"播放中-1"],
-                                                           [UIImage imageNamed:@"播放中-2"],
-                                                           [UIImage imageNamed:@"播放中-3"],
-                                                           [UIImage imageNamed:@"播放中-4"], nil];
-        [startRecordingButton.imageView setAnimationDuration:1.0];
-        [startRecordingButton.imageView setAnimationRepeatCount:0];
-        [startRecordingButton setBackgroundColor:COLOR2552160];
-        [startRecordingButton addTarget:self action:@selector(reocrdingUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        [buttonPlayer addSubview:startRecordingButton];
-        //播放
-        playRecordingButton=[[UIButton alloc]initWithFrame:CGRectMake1(45, 45, 80, 80)];
-        playRecordingButton.layer.cornerRadius=playRecordingButton.bounds.size.width/2;
-        playRecordingButton.layer.masksToBounds=YES;
-        [playRecordingButton setImage:[UIImage imageNamed:@"icon-play-big"] forState:UIControlStateNormal];
-        [playRecordingButton setImage:[UIImage imageNamed:@"icon-stop-big"] forState:UIControlStateSelected];
-        [playRecordingButton setBackgroundColor:COLOR2552160];
-        [playRecordingButton addTarget:self action:@selector(playRecording:) forControlEvents:UIControlEventTouchUpInside];
-        [playRecordingButton setHidden:YES];
-        [buttonPlayer addSubview:playRecordingButton];
-        //按下录音文字
-        lblPressRecording=[[CLabel alloc]initWithFrame:CGRectMake1(45, 130, 80, 30) Text:@"按下录音"];
-        [lblPressRecording setFont:[UIFont systemFontOfSize:18]];
-        [lblPressRecording setTextAlignment:NSTextAlignmentCenter];
-        [buttonPlayer addSubview:lblPressRecording];
-        //删除
-        recordDeleteButton=[[UIButton alloc]initWithFrame:CGRectMake1(130, 90, 30, 30)];
-        recordDeleteButton.layer.cornerRadius=recordDeleteButton.bounds.size.width/2;
-        recordDeleteButton.layer.masksToBounds = YES;
-        recordDeleteButton.layer.borderWidth=1;
-        recordDeleteButton.layer.borderColor=[[UIColor redColor]CGColor];
-        [recordDeleteButton setTitle:@"删除" forState:UIControlStateNormal];
-        [recordDeleteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [recordDeleteButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-        [recordDeleteButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [recordDeleteButton addTarget:self action:@selector(recordingDel:) forControlEvents:UIControlEventTouchUpInside];
-        [recordDeleteButton setHidden:YES];
-        [buttonPlayer addSubview:recordDeleteButton];
-        
-        self.fileManager = [NSFileManager defaultManager];
-        
+        mRecordingPlayerView=[[RecordingPlayerView alloc]initWithFrame:CGRectMake1(75, 40, 170, 170)];
+        [commentFrame addSubview:mRecordingPlayerView];
     }
     return self;
 }
@@ -370,110 +292,6 @@ enum
 - (void)goDW:(id)sender
 {
     
-}
-
-- (void)reocrdingUpInside:(UIButton*)sender
-{
-    if([startRecordingButton.imageView isAnimating]){
-        [playRecordingButton setHidden:NO];
-        [recordDeleteButton setHidden:NO];
-        [lblPressRecording setHidden:YES];
-        [buttonPlayer stopAnimating];
-        [startRecordingButton.imageView stopAnimating];
-    }else{
-        [recordDeleteButton setHidden:YES];
-        [lblPressRecording setHidden:YES];
-        [buttonPlayer startAnimating];
-        [startRecordingButton.imageView startAnimating];
-    }
-}
-
-- (void)playRecording:(UIButton*)sender
-{
-    [sender setSelected:!sender.selected];
-    if(sender.selected){
-        [buttonPlayer startAnimating];
-    }else{
-        [buttonPlayer stopAnimating];
-    }
-}
-
-- (void)recordingDel:(UIButton*)sender
-{
-    [playRecordingButton setHidden:YES];
-    [recordDeleteButton setHidden:YES];
-    [lblPressRecording setHidden:NO];
-    [buttonPlayer stopAnimating];
-}
-
-//删除录音
-- (void)deleteRecording:(id)sender
-{
-    //删除
-    if([self.fileManager removeItemAtPath:recordedFilePath error:NULL]){
-        //删除成功
-        [lblTimeCount setText:@"00"];
-        [startRecordingButton setHidden:NO];
-        [recordDeleteButton setHidden:YES];
-    }
-}
-
-- (void)startStopRecording:(id)sender
-{
-    if(!self.isRecording){
-        if(recorder){
-            [self stopRecorder];
-        }
-        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-        [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
-        
-        //生成录音文件名
-        recordedFileName=[[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] md5];
-        //文件路径
-        recordedFilePath=[NSTemporaryDirectory() stringByAppendingString:recordedFileName];
-        recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:recordedFilePath] settings:nil error:nil];
-        if([recorder prepareToRecord]){
-            [recorder record];
-            self.isRecording = YES;
-            [playRecordingButton setSelected:YES];
-            [lblTimeCount setText:@"00"];
-            //当前录音总时长
-            currentRecordLongTime=0;
-            //当前录音开始时间
-            timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-        }
-        [recordDeleteButton setHidden:YES];
-    }else{
-        [self stopRecorder];
-    }
-}
-
-- (void)stopRecorder
-{
-    [recordDeleteButton setHidden:NO];
-    [lblTimeCount setText:@"00"];
-    self.isRecording = NO;
-    [startRecordingButton setSelected:NO];
-    [timer invalidate];
-    [recorder stop];
-    recorder = nil;
-    //存储
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documents = [paths objectAtIndex:0];
-    NSString *toMoveFilePath = [documents stringByAppendingPathComponent:recordedFileName];
-    if([self.fileManager moveItemAtPath:recordedFilePath toPath:toMoveFilePath error:nil]){
-        NSLog(@"录音保存成功:%@",toMoveFilePath);
-    }
-}
-
-- (void)timerFired:(id)sender
-{
-    currentRecordLongTime++;
-    if(currentRecordLongTime<10){
-        [lblTimeCount setText:[NSString stringWithFormat:@"0%ld",currentRecordLongTime]];
-    }else{
-        [lblTimeCount setText:[NSString stringWithFormat:@"%ld",currentRecordLongTime]];
-    }
 }
 
 @end
