@@ -10,10 +10,8 @@
 #import "WordsDetailViewController.h"
 #import "PlayerVoiceButton.h"
 #import "ReplyMDCell.h"
-#import <AVFoundation/AVFoundation.h>
-#import "NSString+Utils.h"
-#import "CLabel.h"
 #import "RecordingPlayerView.h"
+#import "SelectedImageView.h"
 
 @interface UYourDetailViewController ()
 
@@ -22,6 +20,8 @@
 @implementation UYourDetailViewController{
     UIButton *currentPlayerButton;
     RecordingPlayerView *mRecordingPlayerView;
+    SelectedImageView *mSelectedImageView;
+    UIButton *bSendVoice,*bSendImage,*bAtUser;
 }
 
 - (id)initWithData:(NSDictionary*)data
@@ -154,30 +154,42 @@
         [commentFrame setBackgroundColor:DEFAULTITLECOLOR(250)];
         [bgFrame addSubview:commentFrame];
         //
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 60, 35)];
-        [button setTitle:@"发语音" forState:UIControlStateNormal];
-        [button setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
-        [button setTitleColor:COLOR2552160 forState:UIControlStateSelected];
-        [commentFrame addSubview:button];
-        [button setSelected:YES];
+        bSendVoice=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 60, 35)];
+        [bSendVoice setTitle:@"发语音" forState:UIControlStateNormal];
+        [bSendVoice setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [bSendVoice setTitleColor:COLOR2552160 forState:UIControlStateSelected];
+        [bSendVoice setTag:1];
+        [bSendVoice addTarget:self action:@selector(setSendFrame:) forControlEvents:UIControlEventTouchUpInside];
+        [commentFrame addSubview:bSendVoice];
         //
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(60, 0, 60, 35)];
-        [button setTitle:@"发图片" forState:UIControlStateNormal];
-        [button setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
-        [button setTitleColor:COLOR2552160 forState:UIControlStateSelected];
-        [commentFrame addSubview:button];
+        bSendImage=[[UIButton alloc]initWithFrame:CGRectMake1(60, 0, 60, 35)];
+        [bSendImage setTitle:@"发图片" forState:UIControlStateNormal];
+        [bSendImage setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [bSendImage setTitleColor:COLOR2552160 forState:UIControlStateSelected];
+        [bSendImage setTag:2];
+        [bSendImage addTarget:self action:@selector(setSendFrame:) forControlEvents:UIControlEventTouchUpInside];
+        [commentFrame addSubview:bSendImage];
         //
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 60, 35)];
-        [button setTitle:@"@某人" forState:UIControlStateNormal];
-        [button setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
-        [button setTitleColor:COLOR2552160 forState:UIControlStateSelected];
-        [commentFrame addSubview:button];
+        bAtUser=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 60, 35)];
+        [bAtUser setTitle:@"@某人" forState:UIControlStateNormal];
+        [bAtUser setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        [bAtUser setTitleColor:COLOR2552160 forState:UIControlStateSelected];
+        [bAtUser setTag:3];
+        [bAtUser addTarget:self action:@selector(setSendFrame:) forControlEvents:UIControlEventTouchUpInside];
+        [commentFrame addSubview:bAtUser];
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(10, 35, 300, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(230)];
         [commentFrame addSubview:line];
         
         mRecordingPlayerView=[[RecordingPlayerView alloc]initWithFrame:CGRectMake1(75, 40, 170, 170)];
         [commentFrame addSubview:mRecordingPlayerView];
+        
+        mSelectedImageView=[[SelectedImageView alloc]initWithFrame:CGRectMake1(10, 40, 300, 170)];
+        [mSelectedImageView setCurrentController:self];
+        [commentFrame addSubview:mSelectedImageView];
+        
+        //设置默认值
+        [self setSendFrame:bSendVoice];
     }
     return self;
 }
@@ -256,16 +268,16 @@
 - (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path
 {
     //播放本地音乐
-    if(self.audioPlayer){
-        [self.audioPlayer stop];
-        self.audioPlayer=nil;
-    }
+    [self stopAudioPlayer];
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     NSURL *fileURL = [NSURL fileURLWithPath:path];
     self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
     [self.audioPlayer setDelegate:self];
     [self.audioPlayer setVolume:1.0];
-    [self.audioPlayer prepareToPlay];
-    [self.audioPlayer play];
+    if([self.audioPlayer prepareToPlay]){
+        [self.audioPlayer play];
+    }
 }
 
 //播放结束时执行的动作
@@ -274,8 +286,16 @@
     if(currentPlayerButton){
         [self stopPlayerAnimating];
     }
-    [self.audioPlayer stop];
-    self.audioPlayer=nil;
+    [self stopAudioPlayer];
+}
+
+- (void)stopAudioPlayer
+{
+    if(self.audioPlayer){
+        [self.audioPlayer stop];
+        self.audioPlayer=nil;
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    }
 }
 
 - (void)stopPlayerAnimating
@@ -292,6 +312,16 @@
 - (void)goDW:(id)sender
 {
     
+}
+
+- (void)setSendFrame:(UIButton*)sender
+{
+    NSInteger tag=sender.tag;
+    [bSendVoice setSelected:tag==1?YES:NO];
+    [bSendImage setSelected:tag==2?YES:NO];
+    [bAtUser setSelected:tag==3?YES:NO];
+    [mRecordingPlayerView setHidden:!bSendVoice.isSelected];
+    [mSelectedImageView setHidden:!bSendImage.isSelected];
 }
 
 @end

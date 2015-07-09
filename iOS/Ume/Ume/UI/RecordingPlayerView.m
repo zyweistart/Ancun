@@ -110,7 +110,7 @@
         recordingStep--;
         [self setStartRecordingButtonStatus];
         //停止播放
-        [self startAudioPlayer];
+        [self stopAudioPlayer];
     }
 }
 //删除录音
@@ -118,6 +118,8 @@
 {
     //删除文件
     if([self.fileManager removeItemAtPath:docRecordedFilePath error:NULL]){
+        //停止播放
+        [self stopAudioPlayer];
         //文件删除成功
         [self stopAnimating];
         recordingStep=1;
@@ -130,7 +132,7 @@
     if(recordingStep==1){
         //录音
         [startRecordingButton setImage:[UIImage imageNamed:@"icon-luyin"] forState:UIControlStateNormal];
-        [lblTimeCount setText:@"00"];
+        [lblTimeCount setText:@"00'"];
         [lblTimeCount setHidden:NO];
         [lblPressRecording setHidden:NO];
         [recordDeleteButton setHidden:YES];
@@ -138,7 +140,7 @@
         //录音中
         [self startAnimating];
         [startRecordingButton.imageView startAnimating];
-        [lblTimeCount setText:@"00"];
+        [lblTimeCount setText:@"00'"];
         [lblTimeCount setHidden:NO];
         [lblPressRecording setHidden:YES];
         [recordDeleteButton setHidden:YES];
@@ -154,7 +156,7 @@
         [startRecordingButton setImage:[UIImage imageNamed:@"icon-stop-big"] forState:UIControlStateNormal];
         [lblTimeCount setHidden:YES];
         [lblPressRecording setHidden:YES];
-        [recordDeleteButton setHidden:NO];
+        [recordDeleteButton setHidden:YES];
     }
 }
 //开始录音
@@ -165,7 +167,15 @@
     recordedFileName=[[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] md5];
     //文件路径
     tempRecordedFilePath=[NSTemporaryDirectory() stringByAppendingString:recordedFileName];
-    self.mAVAudioRecorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:tempRecordedFilePath] settings:nil error:nil];
+    NSURL *fileUrl=[NSURL fileURLWithPath:tempRecordedFilePath];
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryRecord error: nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    NSDictionary *recordSetting =[[NSDictionary alloc] initWithObjectsAndKeys:
+                                  [NSNumber numberWithFloat: 44100.0],AVSampleRateKey,
+                                  [NSNumber numberWithInt: kAudioFormatAppleLossless],AVFormatIDKey,
+                                  [NSNumber numberWithInt: 1],AVNumberOfChannelsKey,
+                                  [NSNumber numberWithInt: AVAudioQualityMax],AVEncoderAudioQualityKey,nil];
+    self.mAVAudioRecorder = [[AVAudioRecorder alloc] initWithURL:fileUrl settings:recordSetting error:nil];
     if([self.mAVAudioRecorder prepareToRecord]){
         [self.mAVAudioRecorder record];
         //当前录音总时长
@@ -181,6 +191,7 @@
         [timer invalidate];
         [self.mAVAudioRecorder stop];
         self.mAVAudioRecorder = nil;
+        [[AVAudioSession sharedInstance] setActive: NO error: nil];
         //存储
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documents = [paths objectAtIndex:0];
@@ -195,6 +206,8 @@
 {
     [self stopAudioPlayer];
     NSURL *fileURL = [NSURL fileURLWithPath:docRecordedFilePath];
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     self.mAudioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
     [self.mAudioPlayer setDelegate:self];
     [self.mAudioPlayer setVolume:1.0];
@@ -208,6 +221,7 @@
     if(self.mAudioPlayer){
         [self.mAudioPlayer stop];
         self.mAudioPlayer=nil;
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
     }
 }
 
@@ -215,18 +229,17 @@
 {
     currentRecordLongTime++;
     if(currentRecordLongTime<10){
-        [lblTimeCount setText:[NSString stringWithFormat:@"0%ld",currentRecordLongTime]];
+        [lblTimeCount setText:[NSString stringWithFormat:@"0%ld'",currentRecordLongTime]];
     }else{
-        [lblTimeCount setText:[NSString stringWithFormat:@"%ld",currentRecordLongTime]];
+        [lblTimeCount setText:[NSString stringWithFormat:@"%ld'",currentRecordLongTime]];
     }
 }
 
 //播放结束时执行的动作
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    NSLog(@"播放结束了");
     [self stopAnimating];
-    recordingStep--;
+    recordingStep=3;
     [self setStartRecordingButtonStatus];
     //停止播放
     [self stopAudioPlayer];

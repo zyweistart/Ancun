@@ -8,9 +8,9 @@
 
 #import "BaseEGOTableViewPullRefreshViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "HttpDownload.h"
 #import "CLabel.h"
 #import "PlayerButton.h"
-#import "HttpDownload.h"
 
 @interface UYourDetailViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,HttpDownloadDelegate>
 

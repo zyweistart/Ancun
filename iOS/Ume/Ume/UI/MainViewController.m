@@ -153,7 +153,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [self stopAudioPlayer];
     NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
     UYourDetailViewController *yourDetailViewController=[[UYourDetailViewController alloc]initWithData:data];
 //    [yourDetailViewController setHidesBottomBarWhenPushed:YES];
@@ -205,16 +205,16 @@
 - (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path
 {
     //播放本地音乐
-    if(self.audioPlayer){
-        [self.audioPlayer stop];
-        self.audioPlayer=nil;
-    }
+    [self stopAudioPlayer];
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     NSURL *fileURL = [NSURL fileURLWithPath:path];
     self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
     [self.audioPlayer setDelegate:self];
     [self.audioPlayer setVolume:1.0];
-    [self.audioPlayer prepareToPlay];
-    [self.audioPlayer play];
+    if([self.audioPlayer prepareToPlay]){
+        [self.audioPlayer play];
+    }
 }
 
 //播放结束时执行的动作
@@ -223,8 +223,16 @@
     if(currentPlayerButton){
         [self stopPlayerAnimating];
     }
-    [self.audioPlayer stop];
-    self.audioPlayer=nil;
+    [self stopAudioPlayer];
+}
+
+- (void)stopAudioPlayer
+{
+    if(self.audioPlayer){
+        [self.audioPlayer stop];
+        self.audioPlayer=nil;
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    }
 }
 
 - (void)stopPlayerAnimating

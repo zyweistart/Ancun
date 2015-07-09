@@ -128,6 +128,9 @@
 		C9FB52A71B3BDC820005F85A /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A11B3BDC820005F85A /* Base64Util.m */; };
 		C9FB52A81B3BDC820005F85A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A31B3BDC820005F85A /* GTMBase64.m */; };
 		C9FB52A91B3BDC820005F85A /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A61B3BDC820005F85A /* MD5Encryption.m */; };
+		C9FC21CA1B4E5F82005A8284 /* SelectedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FC21C91B4E5F82005A8284 /* SelectedImageView.m */; };
+		C9FC21D01B4E65D1005A8284 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FC21CF1B4E65D1005A8284 /* UIImageView+Utils.m */; };
+		C9FC21D31B4E6760005A8284 /* CameraUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FC21D21B4E6760005A8284 /* CameraUtility.m */; };
 		C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */; };
 		C9FE7E1A1B26B9790049AEC9 /* UYourDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */; };
 		C9FE7E1D1B26BC450049AEC9 /* MessageZDWDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */; };
@@ -385,6 +388,12 @@
 		C9FB52A41B3BDC820005F85A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		C9FB52A51B3BDC820005F85A /* MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encryption.h; sourceTree = "<group>"; };
 		C9FB52A61B3BDC820005F85A /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
+		C9FC21C81B4E5F82005A8284 /* SelectedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedImageView.h; sourceTree = "<group>"; };
+		C9FC21C91B4E5F82005A8284 /* SelectedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedImageView.m; sourceTree = "<group>"; };
+		C9FC21CE1B4E65D1005A8284 /* UIImageView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Utils.h"; sourceTree = "<group>"; };
+		C9FC21CF1B4E65D1005A8284 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
+		C9FC21D11B4E6760005A8284 /* CameraUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraUtility.h; sourceTree = "<group>"; };
+		C9FC21D21B4E6760005A8284 /* CameraUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraUtility.m; sourceTree = "<group>"; };
 		C9FE7E111B26B8730049AEC9 /* LoginMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMainViewController.h; sourceTree = "<group>"; };
 		C9FE7E121B26B8730049AEC9 /* LoginMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMainViewController.m; sourceTree = "<group>"; };
 		C9FE7E181B26B9790049AEC9 /* UYourDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UYourDetailViewController.h; sourceTree = "<group>"; };
@@ -655,6 +664,10 @@
 				C9FB529D1B3BDB430005F85A /* NSString+DES.m */,
 				C9BDA7211B43BE20006D6FDD /* HttpDownload.h */,
 				C9BDA7221B43BE20006D6FDD /* HttpDownload.m */,
+				C9FC21CE1B4E65D1005A8284 /* UIImageView+Utils.h */,
+				C9FC21CF1B4E65D1005A8284 /* UIImageView+Utils.m */,
+				C9FC21D11B4E6760005A8284 /* CameraUtility.h */,
+				C9FC21D21B4E6760005A8284 /* CameraUtility.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -797,6 +810,8 @@
 				C93E1F371B4CB6D400CCEDDE /* PlayerVoiceButton.m */,
 				C9E1E6351B4E4D9C005988B7 /* RecordingPlayerView.h */,
 				C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */,
+				C9FC21C81B4E5F82005A8284 /* SelectedImageView.h */,
+				C9FC21C91B4E5F82005A8284 /* SelectedImageView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1089,6 +1104,7 @@
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
 				C9909F991B1E9C6F00A84594 /* MessageZGViewController.m in Sources */,
 				C9FE7E1A1B26B9790049AEC9 /* UYourDetailViewController.m in Sources */,
+				C9FC21D31B4E6760005A8284 /* CameraUtility.m in Sources */,
 				C947C1D21B3A84C70052B446 /* ImageTextField.m in Sources */,
 				C9909FA21B1E9CB800A84594 /* MessageSXViewController.m in Sources */,
 				C949975C1B0477EC0023107F /* MyViewController.m in Sources */,
@@ -1103,6 +1119,7 @@
 				C9DBE7221B183BD6002ECDE4 /* NSData+ImageContentType.m in Sources */,
 				C947C1CF1B3A81280052B446 /* RegisterGetCheckCodeViewController.m in Sources */,
 				C970F5D01B02F5120045A353 /* Common.m in Sources */,
+				C9FC21D01B4E65D1005A8284 /* UIImageView+Utils.m in Sources */,
 				C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */,
 				C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */,
 				C9FE7E231B26D60C0049AEC9 /* MessageAWCell.m in Sources */,
@@ -1121,6 +1138,7 @@
 				C970F5DF1B02F5120045A353 /* PullTableView.m in Sources */,
 				C902ADD31B140762004EFD41 /* DataOutputStream.m in Sources */,
 				C94997591B0477DE0023107F /* DiscoverViewController.m in Sources */,
+				C9FC21CA1B4E5F82005A8284 /* SelectedImageView.m in Sources */,
 				C9C17C501B4525610026B189 /* ReplyMDCell.m in Sources */,
 				C95647691B15A6A30003CF70 /* UploadCrypt.m in Sources */,
 				C9DBE72B1B183BD6002ECDE4 /* UIImage+WebP.m in Sources */,

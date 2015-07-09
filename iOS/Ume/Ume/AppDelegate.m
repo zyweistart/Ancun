@@ -33,10 +33,6 @@
     [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
 //    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [audioSession setActive:YES error:nil];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     TabBarFrameViewController *tabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     self.window.rootViewController=tabBarFrameViewController;

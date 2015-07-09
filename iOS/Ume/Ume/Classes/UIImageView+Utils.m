@@ -1,44 +1,18 @@
 //
-//  UIImage+Utils.m
+//  UIImageView+Utils.m
 //  Ume
 //
-//  Created by Start on 15/6/15.
+//  Created by Start on 15/7/9.
 //  Copyright (c) 2015年 Ancun. All rights reserved.
 //
 
-#import "UIImage+Utils.h"
-#define ORIGINAL_MAX_WIDTH 640.0f
+#import "UIImageView+Utils.h"
 
-@implementation UIImage(Utils)
+@implementation UIImageView(Utils)
 
-- (UIImage *)scaleImagetoScale:(float)scaleSize
-{
-    UIGraphicsBeginImageContext(CGSizeMake(self.size.width*scaleSize,self.size.height*scaleSize));
-    [self drawInRect:CGRectMake(0, 0, self.size.width * scaleSize, self.size.height *scaleSize)];
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
-}
-
-- (UIImage *)imageByScalingToMaxSize {
-    if (self.size.width < ORIGINAL_MAX_WIDTH) return self;
-    CGFloat btWidth = 0.0f;
-    CGFloat btHeight = 0.0f;
-    if (self.size.width > self.size.height) {
-        btHeight = ORIGINAL_MAX_WIDTH;
-        btWidth = self.size.width * (ORIGINAL_MAX_WIDTH / self.size.height);
-    } else {
-        btWidth = ORIGINAL_MAX_WIDTH;
-        btHeight = self.size.height * (ORIGINAL_MAX_WIDTH / self.size.width);
-    }
-    CGSize targetSize = CGSizeMake(btWidth, btHeight);
-    
-    return [self imageByScalingAndCroppingForSourceImageTargetSize:targetSize];
-}
-
-- (UIImage *)imageByScalingAndCroppingForSourceImageTargetSize:(CGSize)targetSize {
+- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize {
     UIImage *newImage = nil;
-    CGSize imageSize = self.size;
+    CGSize imageSize = sourceImage.size;
     CGFloat width = imageSize.width;
     CGFloat height = imageSize.height;
     CGFloat targetWidth = targetSize.width;
@@ -73,7 +47,7 @@
     thumbnailRect.size.width  = scaledWidth;
     thumbnailRect.size.height = scaledHeight;
     
-    [self drawInRect:thumbnailRect];
+    [sourceImage drawInRect:thumbnailRect];
     
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     if(newImage == nil) NSLog(@"could not scale image");

@@ -11,5 +11,7 @@
 @interface UIImage(Utils)
 
 - (UIImage *)scaleImagetoScale:(float)scaleSize;
+- (UIImage *)imageByScalingToMaxSize;
+- (UIImage *)imageByScalingAndCroppingForSourceImageTargetSize:(CGSize)targetSize;
 
 @end

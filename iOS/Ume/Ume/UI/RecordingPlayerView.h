@@ -12,7 +12,7 @@
 @interface RecordingPlayerView : UIImageView<AVAudioPlayerDelegate>
 
 @property (strong,nonatomic)NSFileManager *fileManager;
-@property (strong,nonatomic)AVAudioRecorder *mAVAudioRecorder;
 @property (strong,nonatomic)AVAudioPlayer *mAudioPlayer;
+@property (strong,nonatomic)AVAudioRecorder *mAVAudioRecorder;
 
 @end
