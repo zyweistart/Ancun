@@ -104,6 +104,7 @@
 		C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CB1B0C69F200385809 /* ForgetPwdViewController.m */; };
 		C9ACE8CF1B0C6B9D00385809 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */; };
 		C9AD44E01B2EABBC00338AEE /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */; };
+		C9B513681B4FB02500F5EE63 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B513671B4FB02500F5EE63 /* CommentViewController.m */; };
 		C9BDA7231B43BE20006D6FDD /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BDA7221B43BE20006D6FDD /* HttpDownload.m */; };
 		C9C17C501B4525610026B189 /* ReplyMDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C17C4F1B4525610026B189 /* ReplyMDCell.m */; };
 		C9DBE1A91B180BA0002ECDE4 /* DiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE1A81B180BA0002ECDE4 /* DiscoverCell.m */; };
@@ -339,6 +340,8 @@
 		C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
 		C9AD44DE1B2EABBC00338AEE /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		C9AD44DF1B2EABBC00338AEE /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		C9B513661B4FB02500F5EE63 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		C9B513671B4FB02500F5EE63 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		C9BDA7211B43BE20006D6FDD /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
 		C9BDA7221B43BE20006D6FDD /* HttpDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDownload.m; sourceTree = "<group>"; };
 		C9C17C4E1B4525610026B189 /* ReplyMDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyMDCell.h; sourceTree = "<group>"; };
@@ -984,6 +987,8 @@
 				C9FE7E191B26B9790049AEC9 /* UYourDetailViewController.m */,
 				C9519CBB1B4CC8D500E8FC61 /* WordsDetailViewController.h */,
 				C9519CBC1B4CC8D500E8FC61 /* WordsDetailViewController.m */,
+				C9B513661B4FB02500F5EE63 /* CommentViewController.h */,
+				C9B513671B4FB02500F5EE63 /* CommentViewController.m */,
 			);
 			name = "懂你";
 			sourceTree = "<group>";
@@ -1100,6 +1105,7 @@
 			files = (
 				C9909FAA1B1E9EE300A84594 /* MyPublishListViewController.m in Sources */,
 				C970F5DC1B02F5120045A353 /* EGORefreshTableHeaderView.m in Sources */,
+				C9B513681B4FB02500F5EE63 /* CommentViewController.m in Sources */,
 				C9909FB61B1E9F9200A84594 /* MyImageViewController.m in Sources */,
 				C95D39671B281A49005408AB /* MeetXDViewController.m in Sources */,
 				C970F5EC1B02F5CF0045A353 /* LoginViewController.m in Sources */,

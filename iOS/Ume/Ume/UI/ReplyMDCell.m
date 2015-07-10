@@ -7,6 +7,7 @@
 //
 
 #import "ReplyMDCell.h"
+#import "CommentViewController.h"
 
 @implementation ReplyMDCell
 
@@ -69,7 +70,8 @@
 
 - (void)goComment:(id)sender
 {
-    NSLog(@"评论");
+    CommentViewController *mCommentViewController=[[CommentViewController alloc]initWithData:nil];
+    [self.currentViewController.navigationController pushViewController:mCommentViewController animated:YES];
 }
 
 - (void)goLove:(id)sender

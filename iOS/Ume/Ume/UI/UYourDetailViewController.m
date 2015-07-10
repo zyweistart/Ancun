@@ -14,6 +14,7 @@
 #import "RecordingPlayerView.h"
 #import "SelectedImageView.h"
 #import "AtUserView.h"
+#import "CButton.h"
 
 @interface UYourDetailViewController ()<ContactDelegate>
 
@@ -37,7 +38,6 @@
         self.data=data;
         [self cTitle:@"懂你详情"];
         self.isFirstRefresh=YES;
-//        [self.navigationController.navigationBar setHidden:YES];
         UIView *headContent=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 300)];
         [self.view addSubview:headContent];
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
@@ -68,6 +68,8 @@
         [self.lblContent setFont:[UIFont systemFontOfSize:15]];
         [self.lblContent setTextColor:[UIColor whiteColor]];
         [self.lblContent setNumberOfLines:2];
+        [self.lblContent setUserInteractionEnabled:YES];
+        [self.lblContent addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goWordsDetail:)]];
         [image addSubview:self.lblContent];
         
         UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 200, 320, 60)];
@@ -187,6 +189,11 @@
         [bAtUser setTag:3];
         [bAtUser addTarget:self action:@selector(setSendFrame:) forControlEvents:UIControlEventTouchUpInside];
         [commentFrame addSubview:bAtUser];
+        
+        CButton *bSubmit=[[CButton alloc]initWithFrame:CGRectMake1(260, 3, 50, 29) Name:@"提交" Type:2];
+        [bSubmit.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [commentFrame addSubview:bSubmit];
+        
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(10, 35, 300, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(230)];
         [commentFrame addSubview:line];
@@ -199,7 +206,6 @@
         [commentFrame addSubview:mSelectedImageView];
         
         mAtUserView=[[AtUserView alloc]initWithFrame:CGRectMake1(10, 40, 300, 170)];
-        [mAtUserView setCurrentController:self];
         [mAtUserView.mAddatUser addTarget:self action:@selector(goAddAtUser:) forControlEvents:UIControlEventTouchUpInside];
         [commentFrame addSubview:mAtUserView];
         
@@ -232,6 +238,7 @@
         if(!cell) {
             cell = [[ReplyMDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        [cell setCurrentViewController:self];
         NSInteger row=[indexPath row];
         //        NSDictionary *data=[[self dataItemArray]objectAtIndex:[indexPath row]];
         //        [cell setData:data];
@@ -367,6 +374,12 @@
 - (void)atContactFinisih:(NSArray*)friendsArray
 {
     [mAtUserView setAtUserLayout:friendsArray];
+}
+
+- (void)goWordsDetail:(id)sender
+{
+    WordsDetailViewController *mWordsDetailViewController=[[WordsDetailViewController alloc]initWithData:nil];
+    [self.navigationController pushViewController:mWordsDetailViewController animated:YES];
 }
 
 @end

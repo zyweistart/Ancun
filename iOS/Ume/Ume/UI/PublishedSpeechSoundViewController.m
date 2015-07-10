@@ -22,9 +22,10 @@
 @implementation PublishedSpeechSoundViewController{
     UIButton *atToMe,*saveTo;
     RecordingPlayerView *mRecordingPlayerView;
-    UIImageView *imageHeader;
+    UIImageView *mBackgroundImage;
     UITextView *textContent;
     NSArray *atFriendsArray;
+    NSString *backgroundID;
 }
 
 - (id)init{
@@ -46,17 +47,17 @@
         [bPublished addTarget:self action:@selector(goPublish:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
         
-        imageHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(5, 5, 310, 250)];
-        imageHeader.layer.masksToBounds=YES;
-        [imageHeader setUserInteractionEnabled:YES];
-        [imageHeader setImage:[UIImage imageNamed:@"personalbg"]];
-        [imageHeader setContentMode:UIViewContentModeScaleAspectFill];
-        [self.view addSubview:imageHeader];
+        mBackgroundImage=[[UIImageView alloc]initWithFrame:CGRectMake1(5, 5, 310, 250)];
+        mBackgroundImage.layer.masksToBounds=YES;
+        [mBackgroundImage setUserInteractionEnabled:YES];
+        [mBackgroundImage setImage:[UIImage imageNamed:@"personalbg"]];
+        [mBackgroundImage setContentMode:UIViewContentModeScaleAspectFill];
+        [self.view addSubview:mBackgroundImage];
         CButton *bGetServerImage=[[CButton alloc]initWithFrame:CGRectMake1(220, 10, 80, 30) Name:@"换一张" Type:5];
         [bGetServerImage.titleLabel setFont:[UIFont systemFontOfSize:15]];
         bGetServerImage.layer.cornerRadius=CGWidth(15);
         [bGetServerImage addTarget:self action:@selector(goGetServerImage:) forControlEvents:UIControlEventTouchUpInside];
-        [imageHeader addSubview:bGetServerImage];
+        [mBackgroundImage addSubview:bGetServerImage];
         
         textContent=[[UITextView alloc]initWithFrame:CGRectMake1(10, 60, 290, 120)];
         [textContent setText:@"每张脸诉说千种情绪,却很容易掩饰心情。\n最快乐的面具下,也许是一颗最痛的心。"];
@@ -66,7 +67,7 @@
         [textContent setBackgroundColor:[UIColor clearColor]];
         [textContent setDelegate:self];
         [textContent setTextAlignment:NSTextAlignmentCenter];
-        [imageHeader addSubview:textContent];
+        [mBackgroundImage addSubview:textContent];
         //换图片
         UIButton *switchToImage=[[UIButton alloc]initWithFrame:CGRectMake1(10, 255, 50, 30)];
         [switchToImage.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -115,6 +116,8 @@
 
 - (void)goPublish:(id)sender
 {
+    NSLog(@"%@",mBackgroundImage.image);
+    NSLog(@"%@",backgroundID);
     NSLog(@"内容:%@",[textContent text]);
     NSLog(@"保存到：%d",saveTo.isSelected);
     NSLog(@"@某人：%@",atFriendsArray);
@@ -194,7 +197,7 @@
 
 #pragma mark VPImageCropperDelegate
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
-    [imageHeader setImage:editedImage];
+    [mBackgroundImage setImage:editedImage];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
     }];
 }
