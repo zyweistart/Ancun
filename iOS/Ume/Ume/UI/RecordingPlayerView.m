@@ -20,7 +20,6 @@
     NSInteger recordingStep;
     NSString *recordedFileName;
     NSString *tempRecordedFilePath;
-    NSString *docRecordedFilePath;
     NSInteger currentRecordLongTime;
     
     NSTimer *timer;
@@ -121,7 +120,8 @@
 - (void)deleteRecording:(id)sender
 {
     //删除文件
-    if([self.fileManager removeItemAtPath:docRecordedFilePath error:NULL]){
+    if([self.fileManager removeItemAtPath:self.docRecordedFilePath error:NULL]){
+        self.docRecordedFilePath=nil;
         //停止播放
         [self stopAudioPlayer];
         //文件删除成功
@@ -195,8 +195,8 @@
         //存储
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documents = [paths objectAtIndex:0];
-        docRecordedFilePath = [documents stringByAppendingPathComponent:recordedFileName];
-        if([self.fileManager moveItemAtPath:tempRecordedFilePath toPath:docRecordedFilePath error:nil]){
+        self.docRecordedFilePath = [documents stringByAppendingPathComponent:recordedFileName];
+        if([self.fileManager moveItemAtPath:tempRecordedFilePath toPath:self.docRecordedFilePath error:nil]){
             //录音保存成功
         }
     }
@@ -205,7 +205,7 @@
 - (void)startAudioPlayer
 {
     [self stopAudioPlayer];
-    NSURL *fileURL = [NSURL fileURLWithPath:docRecordedFilePath];
+    NSURL *fileURL = [NSURL fileURLWithPath:self.docRecordedFilePath];
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     self.mAudioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];

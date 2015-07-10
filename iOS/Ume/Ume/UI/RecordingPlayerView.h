@@ -14,5 +14,6 @@
 @property (strong,nonatomic)NSFileManager *fileManager;
 @property (strong,nonatomic)AVAudioPlayer *mAudioPlayer;
 @property (strong,nonatomic)AVAudioRecorder *mAVAudioRecorder;
+@property (strong,nonatomic)NSString *docRecordedFilePath;
 
 @end

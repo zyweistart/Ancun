@@ -15,7 +15,7 @@
 #import "UIImage+Utils.h"
 #import "ContactViewController.h"
 
-@interface PublishedSpeechSoundViewController ()
+@interface PublishedSpeechSoundViewController ()<ContactDelegate>
 
 @end
 
@@ -24,6 +24,7 @@
     RecordingPlayerView *mRecordingPlayerView;
     UIImageView *imageHeader;
     UITextView *textContent;
+    NSArray *atFriendsArray;
 }
 
 - (id)init{
@@ -46,8 +47,10 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
         
         imageHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(5, 5, 310, 250)];
+        imageHeader.layer.masksToBounds=YES;
         [imageHeader setUserInteractionEnabled:YES];
         [imageHeader setImage:[UIImage imageNamed:@"personalbg"]];
+        [imageHeader setContentMode:UIViewContentModeScaleAspectFill];
         [self.view addSubview:imageHeader];
         CButton *bGetServerImage=[[CButton alloc]initWithFrame:CGRectMake1(220, 10, 80, 30) Name:@"换一张" Type:5];
         [bGetServerImage.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -67,7 +70,7 @@
         //换图片
         UIButton *switchToImage=[[UIButton alloc]initWithFrame:CGRectMake1(10, 255, 50, 30)];
         [switchToImage.titleLabel setFont:[UIFont systemFontOfSize:16]];
-        [switchToImage setTitle:@"照片" forState:UIControlStateNormal];
+        [switchToImage setTitle:@"换照片" forState:UIControlStateNormal];
         [switchToImage setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
         [switchToImage addTarget:self action:@selector(goSwitchToImage:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:switchToImage];
@@ -104,13 +107,18 @@
 
 - (void)atToMeb:(id)sender
 {
-    [self.navigationController pushViewController:[[ContactViewController alloc]init] animated:YES];
+    ContactViewController *mContactViewController=[[ContactViewController alloc]init];
+    [mContactViewController setDelegate:self];
+    [mContactViewController setSelectedUser:atFriendsArray];
+    [self.navigationController pushViewController:mContactViewController animated:YES];
 }
 
 - (void)goPublish:(id)sender
 {
     NSLog(@"内容:%@",[textContent text]);
     NSLog(@"保存到：%d",saveTo.isSelected);
+    NSLog(@"@某人：%@",atFriendsArray);
+    NSLog(@"录音地址:%@",mRecordingPlayerView.docRecordedFilePath);
 }
 
 - (void)saveTob:(id)sender
@@ -209,5 +217,9 @@
     
 }
 
+- (void)atContactFinisih:(NSArray*)friendsArray
+{
+    atFriendsArray=[NSArray arrayWithArray:friendsArray];
+}
 
 @end

@@ -49,10 +49,11 @@
         self.youHeader.layer.borderColor=[[UIColor grayColor]CGColor];
         [topView addSubview:self.youHeader];
         self.mBackground=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 60, 310, 140)];
-        
-        [self.mBackground setContentMode:UIViewContentModeScaleToFill];
+        self.mBackground.layer.masksToBounds=YES;
+        [self.mBackground setContentMode:UIViewContentModeScaleAspectFill];
         [self.mBackground setUserInteractionEnabled:YES];
         [self.mBackground setBackgroundColor:DEFAULTITLECOLOR(221)];
+        
         [contentView addSubview:self.mBackground];
         self.bPlayer=[[PlayerButton alloc]initWithFrame:CGRectMake1(140, 10, 40, 40)];
         [self.mBackground addSubview:self.bPlayer];

@@ -11,5 +11,9 @@
 @interface AtUserView : UIView
 
 @property (strong,nonatomic) UIViewController *currentController;
+@property (strong,nonatomic) UIButton *mAddatUser;
+
+
+- (void)setAtUserLayout:(NSArray*)datas;
 
 @end

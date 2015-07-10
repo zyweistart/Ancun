@@ -57,7 +57,8 @@
                     //把临时下载好的文件移动到主文档目录下
                     [fileManager moveItemAtPath:tmpPath toPath:path error:nil];
                     if(showImage){
-                        [showImage setImage:[[UIImage alloc] initWithContentsOfFile:path]];
+                        UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
+                        [showImage setImage:image];
                     }
                 }
             });
@@ -66,7 +67,8 @@
         
     }else{
         if(showImage){
-            [showImage setImage:[[UIImage alloc] initWithContentsOfFile:path]];
+            UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
+            [showImage setImage:image];
         }
     }
 }

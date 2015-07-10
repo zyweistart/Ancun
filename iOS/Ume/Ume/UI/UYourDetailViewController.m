@@ -8,13 +8,14 @@
 
 #import "UYourDetailViewController.h"
 #import "WordsDetailViewController.h"
+#import "ContactViewController.h"
 #import "PlayerVoiceButton.h"
 #import "ReplyMDCell.h"
 #import "RecordingPlayerView.h"
 #import "SelectedImageView.h"
 #import "AtUserView.h"
 
-@interface UYourDetailViewController ()
+@interface UYourDetailViewController ()<ContactDelegate>
 
 @end
 
@@ -40,6 +41,8 @@
         UIView *headContent=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 300)];
         [self.view addSubview:headContent];
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
+        image.layer.masksToBounds=YES;
+        [image setContentMode:UIViewContentModeScaleAspectFill];
         [image setBackgroundColor:DEFAULTITLECOLOR(221)];
         [image setUserInteractionEnabled:YES];
         [headContent addSubview:image];
@@ -197,6 +200,7 @@
         
         mAtUserView=[[AtUserView alloc]initWithFrame:CGRectMake1(10, 40, 300, 170)];
         [mAtUserView setCurrentController:self];
+        [mAtUserView.mAddatUser addTarget:self action:@selector(goAddAtUser:) forControlEvents:UIControlEventTouchUpInside];
         [commentFrame addSubview:mAtUserView];
         
         //设置默认值
@@ -351,6 +355,18 @@
     [mRecordingPlayerView setHidden:!bSendVoice.isSelected];
     [mSelectedImageView setHidden:!bSendImage.isSelected];
     [mAtUserView setHidden:!bAtUser.isSelected];
+}
+
+- (void)goAddAtUser:(id)sender
+{
+    ContactViewController *mContactViewController=[[ContactViewController alloc]init];
+    [mContactViewController setDelegate:self];
+    [self.navigationController pushViewController:mContactViewController animated:YES];
+}
+
+- (void)atContactFinisih:(NSArray*)friendsArray
+{
+    [mAtUserView setAtUserLayout:friendsArray];
 }
 
 @end

@@ -571,34 +571,34 @@
 		C9480BED1B048CDD0009344F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				C96840511B282A69001D3952 /* UIImageButton.h */,
-				C96840521B282A69001D3952 /* UIImageButton.m */,
-				C96840531B282A69001D3952 /* UITableGridViewCell.h */,
-				C96840541B282A69001D3952 /* UITableGridViewCell.m */,
-				C9480BEE1B048CED0009344F /* MessageCell.h */,
-				C9480BEF1B048CED0009344F /* MessageCell.m */,
 				C9ACE8CD1B0C6B9D00385809 /* ContentCell.h */,
 				C9ACE8CE1B0C6B9D00385809 /* ContentCell.m */,
 				C9DBE1A71B180BA0002ECDE4 /* DiscoverCell.h */,
 				C9DBE1A81B180BA0002ECDE4 /* DiscoverCell.m */,
-				C9FE7E1B1B26BC450049AEC9 /* MessageZDWDCell.h */,
-				C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */,
 				C9FE7E211B26D60C0049AEC9 /* MessageAWCell.h */,
 				C9FE7E221B26D60C0049AEC9 /* MessageAWCell.m */,
-				C9FE7E241B26D6190049AEC9 /* MessageZGCell.h */,
-				C9FE7E251B26D6190049AEC9 /* MessageZGCell.m */,
-				C9FE7E271B26D6250049AEC9 /* MessagePLCell.h */,
-				C9FE7E281B26D6250049AEC9 /* MessagePLCell.m */,
+				C9480BEE1B048CED0009344F /* MessageCell.h */,
+				C9480BEF1B048CED0009344F /* MessageCell.m */,
 				C9FE7E2A1B26D64B0049AEC9 /* MessageDWXDCell.h */,
 				C9FE7E2B1B26D64B0049AEC9 /* MessageDWXDCell.m */,
+				C9FE7E271B26D6250049AEC9 /* MessagePLCell.h */,
+				C9FE7E281B26D6250049AEC9 /* MessagePLCell.m */,
 				C9FE7E2D1B26D69E0049AEC9 /* MessageSXCell.h */,
 				C9FE7E2E1B26D69E0049AEC9 /* MessageSXCell.m */,
-				C975244A1B295EBF00DE0709 /* NearbyXQCell.h */,
-				C975244B1B295EBF00DE0709 /* NearbyXQCell.m */,
+				C9FE7E1B1B26BC450049AEC9 /* MessageZDWDCell.h */,
+				C9FE7E1C1B26BC450049AEC9 /* MessageZDWDCell.m */,
+				C9FE7E241B26D6190049AEC9 /* MessageZGCell.h */,
+				C9FE7E251B26D6190049AEC9 /* MessageZGCell.m */,
 				C95F64421B2A7FFF00D27452 /* MyImagesCell.h */,
 				C95F64431B2A7FFF00D27452 /* MyImagesCell.m */,
+				C975244A1B295EBF00DE0709 /* NearbyXQCell.h */,
+				C975244B1B295EBF00DE0709 /* NearbyXQCell.m */,
 				C9C17C4E1B4525610026B189 /* ReplyMDCell.h */,
 				C9C17C4F1B4525610026B189 /* ReplyMDCell.m */,
+				C96840511B282A69001D3952 /* UIImageButton.h */,
+				C96840521B282A69001D3952 /* UIImageButton.m */,
+				C96840531B282A69001D3952 /* UITableGridViewCell.h */,
+				C96840541B282A69001D3952 /* UITableGridViewCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -802,6 +802,8 @@
 		C970F5F31B03250E0045A353 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C909D68F1B4E730D007CA6CC /* AtUserView.h */,
+				C909D6901B4E730D007CA6CC /* AtUserView.m */,
 				C9ACE8BE1B0C621800385809 /* CButton.h */,
 				C9ACE8BF1B0C621800385809 /* CButton.m */,
 				C9ACE8C41B0C65EA00385809 /* CLabel.h */,
@@ -810,8 +812,6 @@
 				C9ACE8C21B0C645000385809 /* CTextField.m */,
 				C947C1D01B3A84C70052B446 /* ImageTextField.h */,
 				C947C1D11B3A84C70052B446 /* ImageTextField.m */,
-				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
-				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 				C904173F1B4B749F00F32A1B /* PlayerButton.h */,
 				C90417401B4B749F00F32A1B /* PlayerButton.m */,
 				C93E1F361B4CB6D400CCEDDE /* PlayerVoiceButton.h */,
@@ -820,8 +820,8 @@
 				C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */,
 				C9FC21C81B4E5F82005A8284 /* SelectedImageView.h */,
 				C9FC21C91B4E5F82005A8284 /* SelectedImageView.m */,
-				C909D68F1B4E730D007CA6CC /* AtUserView.h */,
-				C909D6901B4E730D007CA6CC /* AtUserView.m */,
+				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
+				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
