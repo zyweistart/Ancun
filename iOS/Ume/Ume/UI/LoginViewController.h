@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-@protocol LoginDelegate <NSURLConnectionDataDelegate>
+@protocol LoginDelegate
 
 @optional
 - (void)handleLogin:(NSDictionary*)data;

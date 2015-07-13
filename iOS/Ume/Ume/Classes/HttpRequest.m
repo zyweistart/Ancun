@@ -34,6 +34,57 @@
     }
 }
 
+
+- (void)loginHandle:(NSString*)action requestParams:(NSMutableDictionary*)params
+{
+    if ([HttpRequest isNetworkConnection]) {
+        NSMutableString *URL=[[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@?%@",HTTP_URL1,action]];
+        for(id p in params){
+            NSString *v=[params objectForKey:p];
+            [URL appendFormat:@"&%@=%@",p,v];
+        }
+        // 初始化一个请求
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
+        // 60秒请求超时
+        request.timeoutInterval = 120;
+        
+        if(self.uploadFileData){
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:self.uploadFileData];
+        }else{
+            [request setHTTPMethod:@"GET"];
+        }
+        // 初始化一个连接
+        NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
+        // 开始一个异步请求
+        [conn start];
+        if(_isFileDownload){
+            _atmHud=[[ATMHud alloc]init];
+            [self.controller.view addSubview:_atmHud.view];
+            [_atmHud setCaption:@"下载中..."];
+            [_atmHud setProgress:0.01];
+            [_atmHud show];
+        } else {
+            if(self.controller&&(self.message!=nil||self.isShowMessage)) {
+                _mbpHud = [[MBProgressHUD alloc] initWithView:self.controller.view];
+                [self.controller.view addSubview:_mbpHud];
+                if(self.message) {
+                    _mbpHud.labelText = _message;
+                }
+                _mbpHud.dimBackground = NO;
+                _mbpHud.square = YES;
+                [_mbpHud show:YES];
+            }
+        }
+    } else {
+        NSLog(@"网络连接出错，请检测网络设置");
+        if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
+            [_delegate requestFailed:self.requestCode];
+        }
+    }
+}
+
+
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params
 {
     if ([HttpRequest isNetworkConnection]) {
@@ -65,8 +116,10 @@
             }
         }
         [URL appendFormat:@"sign=%@",[aParamsString md5]];
+        
+        NSString* urlEncoding = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlEncoding]];
 //        NSLog(@"%@",URL);
         // 60秒请求超时
         request.timeoutInterval = 120;
@@ -176,7 +229,7 @@
     } else if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
         [_delegate requestFailed:self.requestCode];
     } else{
-        [Common alert:@"网络异常，请重试"];
+        [Common alert:[NSString stringWithFormat:@"网络异常，请重试%@",[error localizedDescription]]];
     }
     //隐藏下载进度条
     if(_atmHud) {

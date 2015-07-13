@@ -26,6 +26,9 @@ static User * instance = nil;
     [Common setCache:ACCOUNTUSERNAME data:u];
     [Common setCache:ACCOUNTPASSWORD data:p];
     [Common setCacheByBool:ISACCOUNTAUTOLOGIN data:YES];
+    self.uid=[d objectForKey:@"uid"];
+    self.enKey=[d objectForKey:@"enkey"];
+    self.sessionid=[d objectForKey:@"sessionid"];
     self.resultData=d;
 }
 

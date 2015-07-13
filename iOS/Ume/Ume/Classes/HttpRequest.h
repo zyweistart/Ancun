@@ -26,6 +26,7 @@
 @property (strong,nonatomic) NSData *uploadFileData;
 
 + (BOOL)isNetworkConnection;
+- (void)loginHandle:(NSString*)action requestParams:(NSMutableDictionary*)params;
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params;
 
 @end

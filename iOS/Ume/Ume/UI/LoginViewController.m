@@ -80,6 +80,9 @@
         UIButton *kWX=[[UIButton alloc]initWithFrame:CGRectMake1(202, 380, 24, 24)];
         [kWX setImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         [self.view addSubview:kWX];
+        
+        [tfUserName.textField setText:@"13750820211"];
+        [tfPassword.textField setText:@"123456"];
     }
     return self;
 }
@@ -132,7 +135,7 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:@"cmd=hello" requestParams:params];
+    [self.hRequest loginHandle:@"cmd=hello" requestParams:params];
 }
 //登陆
 - (void)handleGoLogin
@@ -155,7 +158,7 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:@"cmd=auth" requestParams:params];
+    [self.hRequest loginHandle:@"cmd=auth" requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
@@ -169,9 +172,8 @@
             [[User Instance]LoginSuccessWithUserName:tUserName Password:tPassWord Data:[response resultJSON]];
             if(self.delegate){
                 [self.delegate handleLogin:nil];
-            }else{
-                [self dismissViewControllerAnimated:YES completion:nil];
             }
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }else{
         if(reqCode==501){

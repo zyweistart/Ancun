@@ -4,7 +4,6 @@
 #import "PublishedSpeechSoundViewController.h"
 #import "DiscoverViewController.h"
 #import "MyViewController.h"
-#import "LoginViewController.h"
 #import "CButton.h"
 
 #define HTTP_REQUESTCODE_DOWNIMAGE 500
@@ -144,7 +143,9 @@
 
 - (void)goLogin:(id)sender
 {
-    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+    LoginViewController *mLoginViewController=[[LoginViewController alloc]init];
+    [mLoginViewController setDelegate:self];
+    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:mLoginViewController];
     [self presentViewController:frameViewControllerNav animated:YES completion:nil];
 }
 
@@ -152,6 +153,15 @@
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[PublishedSpeechSoundViewController alloc]init]];
     [self presentViewController:frameViewControllerNav animated:YES completion:nil];
+}
+
+- (void)handleLogin:(NSDictionary*)data
+{
+    BOOL flag=[[User Instance]isLogin];
+    [noLoginView setHidden:!flag];
+    if(flag){
+        //已经登陆
+    }
 }
 
 @end

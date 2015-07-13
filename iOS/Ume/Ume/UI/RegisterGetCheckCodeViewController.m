@@ -76,23 +76,21 @@
         [Common alert:@"请输入校验码"];
         return;
     }
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:code forKey:@"code"];
-//    [params setObject:@"APPSTORE" forKey:@"regfrom"];
-//    [params setObject:[[User Instance]nickName] forKey:@"nc"];
-//    [params setObject:[[User Instance]sex] forKey:@"gender"];
-//    [params setObject:[[User Instance]phone] forKey:@"mobile"];
-//    [params setObject:[[User Instance]pwd] forKey:@"pwd"];
-//    [params setObject:@"" forKey:@"imsi"];
-//    [params setObject:@"verify" forKey:@"act"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:501];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest setIsShowMessage:YES];
-//    [self.hRequest handle:nil requestParams:params];
-    
-    [self.navigationController pushViewController:[[RegisterTestViewController alloc]init] animated:YES];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:code forKey:@"code"];
+    [params setObject:@"APPSTORE" forKey:@"regfrom"];
+    [params setObject:[[User Instance]nickName] forKey:@"nc"];
+    [params setObject:[[User Instance]sex] forKey:@"gender"];
+    [params setObject:[[User Instance]phone] forKey:@"mobile"];
+    [params setObject:[[User Instance]pwd] forKey:@"pwd"];
+    [params setObject:@"" forKey:@"imsi"];
+    [params setObject:@"verify" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:nil requestParams:params];
 }
 
 - (void)get:(id)sender

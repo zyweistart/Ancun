@@ -21,10 +21,12 @@
 
 #ifdef TEST
 //测试环境定义的常量
+#define HTTP_URL1 @"http://211.155.232.135:8340/"
 #define HTTP_URL @"http://www.iguodong.net/api/knowyou.php"
 #else
 //正式环境定义的常量
-#define HTTP_URL @"http://211.155.232.138:8340/"
+#define HTTP_URL1 @"http://211.155.232.135:8340/"
+#define HTTP_URL @"http://www.iguodong.net/api/knowyou.php"
 #endif
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
