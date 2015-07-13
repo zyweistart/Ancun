@@ -82,13 +82,10 @@
     [_btn_player setEnabled:true];
     [_sider_player setEnabled:true];
     
-    if(_player){
-        [self stop];
-    }
+    [self stopPlayer];
     
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [audioSession setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
     _player=[[AVAudioPlayer alloc] initWithContentsOfURL:[[NSURL alloc] initFileURLWithPath:_path] error:nil];
     _player.delegate=self;
@@ -114,9 +111,15 @@
 //停止播放
 - (void)stop{
     [_btn_player setImage:[UIImage imageNamed:@"player_normal"] forState:UIControlStateNormal];
+    [self stopPlayer];
+}
+
+- (void)stopPlayer
+{
     if(_player){
         [_player stop];
         _player=nil;
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
     }
 }
 

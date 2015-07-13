@@ -168,9 +168,8 @@ enum
             [self stopRecorder];
         }
         [sonic startAnimating];
-        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-        [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
-        
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
         //生成录音文件名
         recordedFileName=[[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] md5];
         //文件路径
@@ -216,6 +215,7 @@ enum
     [recorder stop];
     recorder = nil;
     [self showAlert];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
 }
 
 - (void)timerFired:(id)sender
