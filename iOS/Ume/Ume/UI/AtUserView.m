@@ -7,7 +7,7 @@
 //
 
 #import "AtUserView.h"
-#import "CLabel.h"
+#import "CLabelClose.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
@@ -48,8 +48,7 @@
     for(int i=0;i<[datas count];i++){
         for(int j=0;j<4;j++){
             NSString *name=[datas objectAtIndex:i];
-            CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1((60*i), 10, 60, 30) Text:name];
-            [lbl setTextAlignment:NSTextAlignmentCenter];
+            CLabelClose *lbl=[[CLabelClose alloc]initWithFrame:CGRectMake1((60*i), 10, 60, 30) Text:name];
             [self addSubview:lbl];
             
         }

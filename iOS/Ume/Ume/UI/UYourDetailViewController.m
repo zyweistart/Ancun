@@ -252,6 +252,9 @@
         //        NSString *content=[data objectForKey:@"content"];
         //        [cell.lblContent setText:content];
         //        [cell.lblContent sizeToFit];
+        
+        [cell.lblPCount addTarget:self action:@selector(goComment:) forControlEvents:UIControlEventTouchUpInside];
+        
         cell.player.tag=row;
         [cell.player addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
@@ -350,7 +353,8 @@
 
 - (void)bgHidden:(id)sender
 {
-    [bgFrame setHidden:YES];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"您确定要放弃发布吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
 }
 
 - (void)setSendFrame:(UIButton*)sender
@@ -380,6 +384,27 @@
 {
     WordsDetailViewController *mWordsDetailViewController=[[WordsDetailViewController alloc]initWithData:nil];
     [self.navigationController pushViewController:mWordsDetailViewController animated:YES];
+}
+
+- (void)goComment:(id)sender
+{
+    CommentViewController *mCommentViewController=[[CommentViewController alloc]initWithData:nil];
+    [mCommentViewController setDelegate:self];
+    [self.navigationController pushViewController:mCommentViewController animated:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //退出评论确定
+    if(buttonIndex==1){
+        [bgFrame setHidden:YES];
+    }
+}
+
+- (void)CommentFinisih:(NSArray*)friendsArray
+{
+    //重置评论信息并显示
+    [bgFrame setHidden:NO];
 }
 
 @end

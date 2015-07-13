@@ -95,6 +95,8 @@
 		C9909FB61B1E9F9200A84594 /* MyImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9909FB51B1E9F9200A84594 /* MyImageViewController.m */; };
 		C9909FB91B1E9FA200A84594 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9909FB81B1E9FA200A84594 /* SettingViewController.m */; };
 		C9909FBC1B1E9FCF00A84594 /* MoodTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9909FBB1B1E9FCF00A84594 /* MoodTrackViewController.m */; };
+		C997A1D11B5395AE00EDB97F /* CLabelClose.m in Sources */ = {isa = PBXBuildFile; fileRef = C997A1D01B5395AE00EDB97F /* CLabelClose.m */; };
+		C997A1D41B539D6B00EDB97F /* MessageViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C997A1D31B539D6B00EDB97F /* MessageViewFrame.m */; };
 		C9A768E11B4FB49D00DB9ABA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A768E01B4FB49D00DB9ABA /* CommentCell.m */; };
 		C9ACE8B91B0C5D4300385809 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8B61B0C5D4300385809 /* EAIntroPage.m */; };
 		C9ACE8BA1B0C5D4300385809 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8B81B0C5D4300385809 /* EAIntroView.m */; };
@@ -323,6 +325,10 @@
 		C9909FB81B1E9FA200A84594 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C9909FBA1B1E9FCF00A84594 /* MoodTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodTrackViewController.h; sourceTree = "<group>"; };
 		C9909FBB1B1E9FCF00A84594 /* MoodTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodTrackViewController.m; sourceTree = "<group>"; };
+		C997A1CF1B5395AE00EDB97F /* CLabelClose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabelClose.h; sourceTree = "<group>"; };
+		C997A1D01B5395AE00EDB97F /* CLabelClose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLabelClose.m; sourceTree = "<group>"; };
+		C997A1D21B539D6B00EDB97F /* MessageViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewFrame.h; sourceTree = "<group>"; };
+		C997A1D31B539D6B00EDB97F /* MessageViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewFrame.m; sourceTree = "<group>"; };
 		C9A768DF1B4FB49D00DB9ABA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		C9A768E01B4FB49D00DB9ABA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C9ACE8B51B0C5D4300385809 /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
@@ -830,6 +836,10 @@
 				C9FC21C91B4E5F82005A8284 /* SelectedImageView.m */,
 				C9480BD11B047CD00009344F /* TabBarFrameViewController.h */,
 				C9480BD21B047CD00009344F /* TabBarFrameViewController.m */,
+				C997A1CF1B5395AE00EDB97F /* CLabelClose.h */,
+				C997A1D01B5395AE00EDB97F /* CLabelClose.m */,
+				C997A1D21B539D6B00EDB97F /* MessageViewFrame.h */,
+				C997A1D31B539D6B00EDB97F /* MessageViewFrame.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1189,6 +1199,7 @@
 				C9909FB31B1E9F4A00A84594 /* MyFansViewController.m in Sources */,
 				C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */,
 				C9ACE8BA1B0C5D4300385809 /* EAIntroView.m in Sources */,
+				C997A1D11B5395AE00EDB97F /* CLabelClose.m in Sources */,
 				C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */,
 				C981F65A1B1717D100FA112C /* NSData+CommonCrypto.m in Sources */,
 				C9FE7E1D1B26BC450049AEC9 /* MessageZDWDCell.m in Sources */,
@@ -1226,6 +1237,7 @@
 				C9FE7E2C1B26D64B0049AEC9 /* MessageDWXDCell.m in Sources */,
 				C9DBE7251B183BD6002ECDE4 /* SDWebImageDownloader.m in Sources */,
 				C9DBE7281B183BD6002ECDE4 /* UIButton+WebCache.m in Sources */,
+				C997A1D41B539D6B00EDB97F /* MessageViewFrame.m in Sources */,
 				C9DBE7271B183BD6002ECDE4 /* SDWebImagePrefetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

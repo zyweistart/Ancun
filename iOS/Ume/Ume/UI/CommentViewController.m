@@ -8,6 +8,7 @@
 
 #import "CommentViewController.h"
 #import "CommentCell.h"
+#import "MessageViewFrame.h"
 
 @interface CommentViewController ()
 
@@ -24,34 +25,36 @@
         self.data=data;
         [self cTitle:@"评论"];
         self.isFirstRefresh=YES;
-        UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 130)];
-        [contentView setUserInteractionEnabled:YES];
-        [self.view addSubview:contentView];
-        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
-        self.meHeader.layer.masksToBounds=YES;
-        self.meHeader.layer.borderWidth=1;
-        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
-        [contentView addSubview:self.meHeader];
-        self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 90, 20) Text:@""];
-        [self.lblName setFont:[UIFont systemFontOfSize:18]];
-        [self.lblName setTextColor:DEFAULTITLECOLORRGB(47, 160, 248)];
-        [contentView addSubview:self.lblName];
-        self.lblTime=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 40, 20) Text:@""];
-        [self.lblTime setFont:[UIFont systemFontOfSize:14]];
-        [self.lblTime setTextColor:DEFAULTITLECOLOR(150)];
-        [contentView addSubview:self.lblTime];
-        self.lblValue=[[CLabel alloc]initWithFrame:CGRectMake1(100, 30, 60, 20) Text:@""];
-        [self.lblValue setFont:[UIFont systemFontOfSize:14]];
-        [self.lblValue setTextColor:DEFAULTITLECOLOR(150)];
-        [contentView addSubview:self.lblValue];
-        //语音
-        CGFloat width=[PlayerVoiceButton getPlayerWidthToSecond:71];
-        self.player=[[PlayerVoiceButton alloc]initWithFrame:CGRectMake1(30, 60, width, 30)];
-        [contentView addSubview:self.player];
         
-        [self.tableView setTableHeaderView:contentView];
+        UIView *headFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 230)];
+        self.headContentView=[[MessageViewFrame alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
+        [headFrame addSubview:self.headContentView];
+        UIView *titleHead=[[UIView alloc]initWithFrame:CGRectMake1(0, 190, 320, 40)];
+        [titleHead setBackgroundColor:DEFAULTITLECOLOR(245)];
+        titleHead.layer.borderWidth=1;
+        titleHead.layer.borderColor=DEFAULTITLECOLOR(221).CGColor;
+        [headFrame addSubview:titleHead];
+        //总数
+        self.lblCount=[[CLabel alloc]initWithFrame:CGRectMake1(10, 0, 150, 40) Text:@""];
+        [self.lblCount setFont:[UIFont systemFontOfSize:14]];
+        [self.lblCount setTextColor:DEFAULTITLECOLOR(100)];
+        [self.lblCount setText:@"所有评论(15)"];
+        [titleHead addSubview:self.lblCount];
         
+        //底部
+        CGFloat height=40;
+        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(height+54), CGWidth(320), CGHeight(height))];
+        [bottomView setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview:bottomView];
+        //私信
+        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 320, height)];
+        [button setTitle:@"评论" forState:UIControlStateNormal];
+        [button setTitleColor:DEFAULTITLECOLOR(50) forState:UIControlStateNormal];
+        [button setBackgroundColor:COLOR2552160];
+        [button addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
+        [bottomView addSubview:button];
+        
+        [self.tableView setTableHeaderView:headFrame];
     }
     return self;
 }
@@ -65,7 +68,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        return CGHeight(130);
+        return CGHeight(190);
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -181,6 +184,12 @@
     }
     [currentPlayerButton.imageView stopAnimating];
     currentPlayerButton=nil;
+}
+
+- (void)comment:(id)sender
+{
+    [self.delegate CommentFinisih:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

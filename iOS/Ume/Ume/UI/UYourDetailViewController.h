@@ -11,8 +11,9 @@
 #import "HttpDownload.h"
 #import "CLabel.h"
 #import "PlayerButton.h"
+#import "CommentViewController.h"
 
-@interface UYourDetailViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,HttpDownloadDelegate>
+@interface UYourDetailViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,HttpDownloadDelegate,CommentDelegate,UIAlertViewDelegate>
 
 - (id)initWithData:(NSDictionary*)data;
 

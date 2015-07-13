@@ -1,20 +1,21 @@
 //
-//  ReplyMDCell.m
+//  MessageViewFrame.m
 //  Ume
 //
-//  Created by Start on 15/7/2.
+//  Created by Start on 15/7/13.
 //  Copyright (c) 2015年 Ancun. All rights reserved.
 //
 
-#import "ReplyMDCell.h"
-#import "CommentViewController.h"
+#import "MessageViewFrame.h"
+#import "SJAvatarBrowser.h"
 
-@implementation ReplyMDCell
+@implementation MessageViewFrame
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 130)];
+- (id)initWithFrame:(CGRect)rect
+{
+    self=[super initWithFrame:rect];
+    if(self){
+        UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
         [contentView setUserInteractionEnabled:YES];
         [self addSubview:contentView];
         self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
@@ -39,37 +40,29 @@
         CGFloat width=[PlayerVoiceButton getPlayerWidthToSecond:71];
         self.player=[[PlayerVoiceButton alloc]initWithFrame:CGRectMake1(30, 60, width, 30)];
         [contentView addSubview:self.player];
-        //线
-        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(20, 100, 280, 0.5)];
-        [line setBackgroundColor:DEFAULTITLECOLOR(240)];
-        [contentView addSubview:line];
-        //评论
-        self.lblPCount=[[UIButton alloc]initWithFrame:CGRectMake1(180,100, 60,30)];
-        [self.lblPCount.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [self.lblPCount setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
-        [contentView addSubview:self.lblPCount];
-        //赞
-        self.lblZCount=[[UIButton alloc]initWithFrame:CGRectMake1(240, 100, 60, 30)];
-        [self.lblZCount.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [self.lblZCount setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
-        [self.lblZCount addTarget:self action:@selector(goLove:) forControlEvents:UIControlEventTouchUpInside];
-        [contentView addSubview:self.lblZCount];
         
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        self.ivImage=[[UIImageView alloc]initWithFrame:CGRectMake1(40, 100, 80, 80)];
+        [self.ivImage setUserInteractionEnabled:YES];
+        [self.ivImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                            initWithTarget:self action:@selector(zoomImage:)]];
+        [contentView addSubview:self.ivImage];
+        
         
         [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];
         [self.lblValue setText:@"开心70%"];
-        [self.lblPCount setTitle:@"评论" forState:UIControlStateNormal];
-        [self.lblZCount setTitle:@"37123赞" forState:UIControlStateNormal];
+        [self.ivImage setImage:[UIImage imageNamed:@"personalbg"]];
+        
     }
     return self;
 }
 
-- (void)goLove:(id)sender
+
+- (void)zoomImage:(UITapGestureRecognizer*)sender
 {
-    NSLog(@"爱");
+    UIImageView *imageV=(UIImageView*)[sender view];
+    [SJAvatarBrowser showImage:imageV];
 }
 
 @end

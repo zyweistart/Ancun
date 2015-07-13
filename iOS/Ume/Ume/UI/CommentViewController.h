@@ -13,18 +13,24 @@
 #import "PlayerButton.h"
 #import "CLabel.h"
 #import "PlayerVoiceButton.h"
+#import "MessageViewFrame.h"
+
+@protocol CommentDelegate
+
+@optional
+- (void)CommentFinisih:(NSArray*)friendsArray;
+
+@end
 
 @interface CommentViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,HttpDownloadDelegate>
 
-@property (strong,nonatomic)UIImageView *meHeader;
-@property (strong,nonatomic)CLabel *lblName;
-@property (strong,nonatomic)CLabel *lblTime;
-@property (strong,nonatomic)CLabel *lblValue;
-
 @property (strong,nonatomic)PlayerButton *bPlayer;
 @property (strong,nonatomic)PlayerVoiceButton *player;
-
+@property (strong,nonatomic)CLabel *lblCount;
+@property (strong,nonatomic)MessageViewFrame *headContentView;
 @property (strong,nonatomic)AVAudioPlayer *audioPlayer;
 @property (strong,nonatomic)HttpDownload *httpDownload;
+
+@property (strong,nonatomic) NSObject<CommentDelegate> *delegate;
 
 @end
