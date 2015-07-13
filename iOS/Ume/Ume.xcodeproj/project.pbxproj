@@ -95,6 +95,7 @@
 		C9909FB61B1E9F9200A84594 /* MyImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9909FB51B1E9F9200A84594 /* MyImageViewController.m */; };
 		C9909FB91B1E9FA200A84594 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9909FB81B1E9FA200A84594 /* SettingViewController.m */; };
 		C9909FBC1B1E9FCF00A84594 /* MoodTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9909FBB1B1E9FCF00A84594 /* MoodTrackViewController.m */; };
+		C9A768E11B4FB49D00DB9ABA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A768E01B4FB49D00DB9ABA /* CommentCell.m */; };
 		C9ACE8B91B0C5D4300385809 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8B61B0C5D4300385809 /* EAIntroPage.m */; };
 		C9ACE8BA1B0C5D4300385809 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8B81B0C5D4300385809 /* EAIntroView.m */; };
 		C9ACE8C01B0C621800385809 /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ACE8BF1B0C621800385809 /* CButton.m */; };
@@ -322,6 +323,8 @@
 		C9909FB81B1E9FA200A84594 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C9909FBA1B1E9FCF00A84594 /* MoodTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodTrackViewController.h; sourceTree = "<group>"; };
 		C9909FBB1B1E9FCF00A84594 /* MoodTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodTrackViewController.m; sourceTree = "<group>"; };
+		C9A768DF1B4FB49D00DB9ABA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		C9A768E01B4FB49D00DB9ABA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C9ACE8B51B0C5D4300385809 /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
 		C9ACE8B61B0C5D4300385809 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
 		C9ACE8B71B0C5D4300385809 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 				C96840521B282A69001D3952 /* UIImageButton.m */,
 				C96840531B282A69001D3952 /* UITableGridViewCell.h */,
 				C96840541B282A69001D3952 /* UITableGridViewCell.m */,
+				C9A768DF1B4FB49D00DB9ABA /* CommentCell.h */,
+				C9A768E01B4FB49D00DB9ABA /* CommentCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				C947C1D51B3A929E0052B446 /* RegisterTestViewController.m in Sources */,
 				C9DBE7261B183BD6002ECDE4 /* SDWebImageManager.m in Sources */,
 				C970F5EF1B02F62B0045A353 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
+				C9A768E11B4FB49D00DB9ABA /* CommentCell.m in Sources */,
 				C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */,
 				C981F64C1B17076200FA112C /* NSData+AES256.m in Sources */,
 				C9909F9C1B1E9C7F00A84594 /* MessagePLViewController.m in Sources */,
