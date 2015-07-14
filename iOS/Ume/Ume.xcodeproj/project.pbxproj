@@ -128,6 +128,7 @@
 		C9DBE72B1B183BD6002ECDE4 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A61B183BD6002ECDE4 /* UIImage+WebP.m */; };
 		C9DBE72C1B183BD6002ECDE4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */; };
 		C9E1E6371B4E4D9C005988B7 /* RecordingPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */; };
+		C9E856B91B54F14100CA5CE4 /* ImageViewGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E856B81B54F14100CA5CE4 /* ImageViewGesture.m */; };
 		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
 		C9FB529E1B3BDB430005F85A /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB529D1B3BDB430005F85A /* NSString+DES.m */; };
 		C9FB52A71B3BDC820005F85A /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A11B3BDC820005F85A /* Base64Util.m */; };
@@ -393,6 +394,8 @@
 		C9DBE6A81B183BD6002ECDE4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		C9E1E6351B4E4D9C005988B7 /* RecordingPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingPlayerView.h; sourceTree = "<group>"; };
 		C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingPlayerView.m; sourceTree = "<group>"; };
+		C9E856B71B54F14100CA5CE4 /* ImageViewGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewGesture.h; sourceTree = "<group>"; };
+		C9E856B81B54F14100CA5CE4 /* ImageViewGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewGesture.m; sourceTree = "<group>"; };
 		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
 		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
 		C9FB529C1B3BDB430005F85A /* NSString+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DES.h"; sourceTree = "<group>"; };
@@ -840,6 +843,8 @@
 				C997A1D01B5395AE00EDB97F /* CLabelClose.m */,
 				C997A1D21B539D6B00EDB97F /* MessageViewFrame.h */,
 				C997A1D31B539D6B00EDB97F /* MessageViewFrame.m */,
+				C9E856B71B54F14100CA5CE4 /* ImageViewGesture.h */,
+				C9E856B81B54F14100CA5CE4 /* ImageViewGesture.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1208,6 +1213,7 @@
 				C95F64481B2AAB9E00D27452 /* SJAvatarBrowser.m in Sources */,
 				C975244C1B295EBF00DE0709 /* NearbyXQCell.m in Sources */,
 				C9FB52A81B3BDC820005F85A /* GTMBase64.m in Sources */,
+				C9E856B91B54F14100CA5CE4 /* ImageViewGesture.m in Sources */,
 				C9ACE8C91B0C69E900385809 /* RegisterViewController.m in Sources */,
 				C970F5D81B02F5120045A353 /* ATMHudView.m in Sources */,
 				C970F5E81B02F5120045A353 /* MBProgressHUD.m in Sources */,

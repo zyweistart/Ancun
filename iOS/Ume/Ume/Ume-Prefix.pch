@@ -19,6 +19,11 @@
 #import "AppDelegate.h"
 #import "BaseViewController.h"
 
+#import "CButton.h"
+#import "CLabel.h"
+#import "PlayerVoiceButton.h"
+#import "ImageViewGesture.h"
+
 #ifdef TEST
 //测试环境定义的常量
 #define HTTP_URL1 @"http://211.155.232.135:8340/"

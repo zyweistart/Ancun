@@ -18,7 +18,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"评论";
+        [self cTitle:@"评论"];
         self.isFirstRefresh=NO;
     }
     return self;

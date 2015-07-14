@@ -10,4 +10,12 @@
 
 @interface MessageZDWDCell : UITableViewCell
 
+@property (strong,nonatomic)CLabel *lblName;
+@property (strong,nonatomic)CLabel *lblTime;
+@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)UIImageView *mFelationship;
+@property (strong,nonatomic)CButton *bFelationShip;
+@property (strong,nonatomic)PlayerVoiceButton *player;
+@property (strong,nonatomic)ImageViewGesture *ivImage;
+
 @end

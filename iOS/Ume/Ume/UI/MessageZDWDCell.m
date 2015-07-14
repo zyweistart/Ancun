@@ -7,49 +7,69 @@
 //
 
 #import "MessageZDWDCell.h"
-#import "CButton.h"
-#import "CLabel.h"
 
 @implementation MessageZDWDCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
-        [self addSubview:mainView];
+        UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
+        [contentView setUserInteractionEnabled:YES];
+        [self addSubview:contentView];
+        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
+        self.meHeader.layer.masksToBounds=YES;
+        self.meHeader.layer.borderWidth=1;
+        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        [contentView addSubview:self.meHeader];
+        self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 90, 20) Text:@""];
+        [self.lblName setFont:[UIFont systemFontOfSize:18]];
+        [self.lblName setTextColor:DEFAULTITLECOLORRGB(242, 82, 159)];
+        [contentView addSubview:self.lblName];
+        self.lblTime=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 150, 20) Text:@""];
+        [self.lblTime setFont:[UIFont systemFontOfSize:14]];
+        [self.lblTime setTextColor:DEFAULTITLECOLOR(150)];
+        [contentView addSubview:self.lblTime];
         
-        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 30, 30)];
-        [image setBackgroundColor:[UIColor redColor]];
-        [mainView addSubview:image];
+        self.bFelationShip=[[CButton alloc]initWithFrame:CGRectMake1(230, 15, 80, 30) Name:@"已关注" Type:3];
+        [self.bFelationShip.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//        [self.bFelationShip setTitle:@"" forState:UIControlStateNormal];
+        [contentView addSubview:self.bFelationShip];
         
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 10, 100, 30)];
-        [lbl setText:@"lohas"];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [mainView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 30)];
-        [lbl setText:@"今天 09:14"];
+        //语音
+        CGFloat width=[PlayerVoiceButton getPlayerWidthToSecond:71];
+        self.player=[[PlayerVoiceButton alloc]initWithFrame:CGRectMake1(30, 60, width, 30)];
+        [contentView addSubview:self.player];
+        //
+        self.mFelationship=[[UIImageView alloc]initWithFrame:CGRectMake1(220, 60, 90, 40)];
+        [self.mFelationship setImage:[UIImage imageNamed:@"icon-match"]];
+        [contentView addSubview:self.mFelationship];
+        //图片
+        self.ivImage=[[ImageViewGesture alloc]initWithFrame:CGRectMake1(40, 100, 80, 80)];
+        [self.ivImage setImage:[UIImage imageNamed:@"personalbg"]];
+        [contentView addSubview:self.ivImage];
+        //文字
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(130, 100, 180, 80)];
         [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextAlignment:NSTextAlignmentRight];
-        [mainView addSubview:lbl];
-        
-        CButton *button=[[CButton alloc]initWithFrame:CGRectMake1(230, 50, 80, 30) Name:@"关注" Type:1];
-        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [mainView addSubview:button];
-        
-        image=[[UIImageView alloc]initWithFrame:CGRectMake1(30, 90, 100, 100)];
-        [image setBackgroundColor:[UIColor redColor]];
-        [mainView addSubview:image];
-        
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(140, 90, 170, 100)];
-        [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setText:@"这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述"];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setNumberOfLines:7];
+        [lbl setFont:[UIFont systemFontOfSize:16]];
+        [lbl setNumberOfLines:4];
         [lbl sizeToFit];
-        [mainView addSubview:lbl];
+        [contentView addSubview:lbl];
+        
+        
+        
+        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+        [self.lblName setText:@"天使之城"];
+        [self.lblTime setText:@"2015-04-10 15:24"];
+        
+        [lbl setText:@"这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述"];
+        
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        
+        
+        
+        
     }
     return self;
 }
