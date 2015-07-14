@@ -80,6 +80,7 @@ static CGFloat kImageOriginHight = 220.f;
         [iUserNameImage setUserInteractionEnabled:YES];
         [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(editPortrait:)]];
+        [iUserNameImage setImage:[UIImage imageNamed:@"img_boy"]];
         [bHead addSubview:iUserNameImage];
         lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70,80,20)];
         [lblUserName setFont:[UIFont systemFontOfSize:14]];

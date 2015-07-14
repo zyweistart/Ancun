@@ -168,4 +168,10 @@
     }
 }
 
+- (void)logout
+{
+    [[User Instance]clear];
+    [noLoginView setHidden:NO];
+}
+
 @end

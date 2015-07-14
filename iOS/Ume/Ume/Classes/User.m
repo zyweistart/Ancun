@@ -66,6 +66,9 @@ static User * instance = nil;
 
 - (void)clear
 {
+    self.uid=nil;
+    self.enKey=nil;
+    self.sessionid=nil;
     self.resultData=nil;
     [Common setCache:ACCOUNTUSERNAME data:@""];
     [Common setCache:ACCOUNTPASSWORD data:@""];

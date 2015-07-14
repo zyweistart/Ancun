@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "TabBarFrameViewController.h"
 #import "CButton.h"
 
 @interface SettingViewController ()
@@ -25,6 +26,7 @@
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 60)];
         CButton *buttonLogout=[[CButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"退出当前账号" Type:1];
+        [buttonLogout addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:buttonLogout];
         [self.tableView setTableFooterView:bottomView];
     }
@@ -73,6 +75,13 @@
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return cell;
+}
+
+- (void)logout:(id)sender
+{
+    [self.tabBarController setSelectedIndex:0];
+    TabBarFrameViewController *mTabBarFrameViewController=(TabBarFrameViewController*)self.tabBarController;
+    [mTabBarFrameViewController logout];
 }
 
 @end

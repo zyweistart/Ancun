@@ -7,5 +7,7 @@
 
 @property (strong,nonatomic) HttpRequest *hRequest;
 
+- (void)logout;
+
 @end
 
