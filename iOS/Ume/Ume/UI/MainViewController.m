@@ -27,7 +27,7 @@
     self=[super init];
     if(self){
         [self cTitle:@"懂你"];
-//        self.isFirstRefresh=YES;
+        self.isFirstRefresh=NO;
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         httpDownload=[[HttpDownload alloc]init];
         [httpDownload setDelegate:self];

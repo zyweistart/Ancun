@@ -16,6 +16,7 @@
 @implementation TabBarFrameViewController{
     UIView *noLoginView;
     BOOL isFirstAddView;
+    MainViewController *mMainViewController;
 }
 
 - (id)init
@@ -29,8 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    mMainViewController=[[MainViewController alloc]init];
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:@"懂你" image:@"icon-nav-heart" ViewController:[[MainViewController alloc]init]],
+                            [self viewControllerWithTabTitle:@"懂你" image:@"icon-nav-heart" ViewController:mMainViewController],
                             [self viewControllerWithTabTitle:@"消息" image:@"icon-nav-message" ViewController:[[MessageViewController alloc]init]],
                             [self viewControllerWithTabTitle:@"" image:nil ViewController:[[PublishedSpeechSoundViewController alloc]init]],
                             [self viewControllerWithTabTitle:@"发现" image:@"icon-nav-search" ViewController:[[DiscoverViewController alloc]init]],
@@ -160,7 +162,9 @@
     BOOL flag=[[User Instance]isLogin];
     [noLoginView setHidden:!flag];
     if(flag){
-        //已经登陆
+        //已经登陆刷新主界面
+        mMainViewController.tableView.pullTableIsRefreshing=YES;
+        [mMainViewController performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
     }
 }
 
