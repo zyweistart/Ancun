@@ -75,12 +75,11 @@ static CGFloat kImageOriginHight = 220.f;
         bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 20, 80, 90)];
         [personalFrame addSubview:bHead];
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
-        iUserNameImage.layer.cornerRadius=30;
+        iUserNameImage.layer.cornerRadius=iUserNameImage.bounds.size.width/2;
         iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setUserInteractionEnabled:YES];
         [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(editPortrait:)]];
-        [iUserNameImage setImage:[UIImage imageNamed:@"img_boy"]];
         [bHead addSubview:iUserNameImage];
         lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70,80,20)];
         [lblUserName setFont:[UIFont systemFontOfSize:14]];
@@ -258,7 +257,7 @@ static CGFloat kImageOriginHight = 220.f;
 - (void)showUser
 {
     [bHead setHidden:NO];
-    [iUserNameImage setImage:[UIImage imageNamed:@"camera_button_take"]];
+    [iUserNameImage setImage:[UIImage imageNamed:@"img_boy"]];
     [lblUserName setText:@"辰羽"];
 }
 
@@ -324,6 +323,10 @@ static CGFloat kImageOriginHight = 220.f;
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
     [iUserNameImage setImage:editedImage];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
+        
+        NSLog(@"FKDJSKF");
+        
+        
     }];
 }
 

@@ -154,9 +154,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self stopAudioPlayer];
-    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-    UINavigationController *mUYourDetailViewController=[[UINavigationController alloc]initWithRootViewController:[[UYourDetailViewController alloc]initWithData:data]];
-    [self presentViewController:mUYourDetailViewController animated:YES completion:nil];
+    if([[self dataItemArray] count]>0){
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        UINavigationController *mUYourDetailViewController=[[UINavigationController alloc]initWithRootViewController:[[UYourDetailViewController alloc]initWithData:data]];
+        [self presentViewController:mUYourDetailViewController animated:YES completion:nil];
+    }else{
+        return [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
 }
 
 - (void)loadHttp

@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"遇见心动";
+    [self cTitle:@"遇见心动"];
     
     //筛选
     UIButton *bPublished = [[UIButton alloc]init];
