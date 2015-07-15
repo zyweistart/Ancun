@@ -58,7 +58,9 @@
                     [fileManager moveItemAtPath:tmpPath toPath:path error:nil];
                     if(showImage){
                         UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
-                        [showImage setImage:image];
+                        if(image){
+                            [showImage setImage:image];
+                        }
                     }
                 }
             });
@@ -68,7 +70,9 @@
     }else{
         if(showImage){
             UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
-            [showImage setImage:image];
+            if(image){
+                [showImage setImage:image];
+            }
         }
     }
 }

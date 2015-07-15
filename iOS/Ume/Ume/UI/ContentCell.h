@@ -11,9 +11,9 @@
 @class PlayerButton;
 @interface ContentCell : UITableViewCell
 
-@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)ImageViewHeader *meHeader;
 @property (strong,nonatomic)UIImageView *mFelationship;
-@property (strong,nonatomic)UIImageView *youHeader;
+@property (strong,nonatomic)ImageViewHeader *youHeader;
 @property (strong,nonatomic)UIImageView *mBackground;
 @property (strong,nonatomic)PlayerButton *bPlayer;
 @property (strong,nonatomic)CLabel *lblName;

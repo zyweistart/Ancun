@@ -17,9 +17,9 @@
 
 - (id)initWithData:(NSDictionary*)data;
 
-@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)ImageViewHeader *meHeader;
 @property (strong,nonatomic)UIImageView *mFelationship;
-@property (strong,nonatomic)UIImageView *youHeader;
+@property (strong,nonatomic)ImageViewHeader *youHeader;
 @property (strong,nonatomic)PlayerButton *bPlayer;
 @property (strong,nonatomic)CLabel *lblContent;
 @property (strong,nonatomic)CLabel *lblName;

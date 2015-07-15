@@ -26,12 +26,10 @@
         [self addSubview:contentView];
         UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 310, 60)];
         [contentView addSubview:topView];
-        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
-        self.meHeader.layer.masksToBounds=YES;
-        self.meHeader.layer.borderWidth=1;
-        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        
+        self.meHeader=[[ImageViewHeader alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
         [topView addSubview:self.meHeader];
+        
         self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 90, 20) Text:@""];
         [self.lblName setFont:[UIFont systemFontOfSize:18]];
         [self.lblName setTextColor:DEFAULTITLECOLORRGB(47, 160, 248)];
@@ -42,11 +40,7 @@
         [topView addSubview:self.lblTime];
         self.mFelationship=[[UIImageView alloc]initWithFrame:CGRectMake1(160, 10, 90, 40)];
         [topView addSubview:self.mFelationship];
-        self.youHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(260, 10, 40, 40)];
-        self.youHeader.layer.cornerRadius=self.youHeader.bounds.size.width/2;
-        self.youHeader.layer.masksToBounds=YES;
-        self.youHeader.layer.borderWidth=1;
-        self.youHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        self.youHeader=[[ImageViewHeader alloc]initWithFrame:CGRectMake1(260, 10, 40, 40)];
         [topView addSubview:self.youHeader];
         self.mBackground=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 60, 310, 140)];
         self.mBackground.layer.masksToBounds=YES;

@@ -130,6 +130,8 @@
 		C9E1E6371B4E4D9C005988B7 /* RecordingPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1E6361B4E4D9C005988B7 /* RecordingPlayerView.m */; };
 		C9E856B91B54F14100CA5CE4 /* ImageViewGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E856B81B54F14100CA5CE4 /* ImageViewGesture.m */; };
 		C9EB1C0F1B0478EE00F5484E /* PublishedSpeechSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */; };
+		C9F59A791B55F73E003591B8 /* LabelScreening.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F59A781B55F73E003591B8 /* LabelScreening.m */; };
+		C9F59A7C1B562C7A003591B8 /* ImageViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F59A7B1B562C7A003591B8 /* ImageViewHeader.m */; };
 		C9FB529E1B3BDB430005F85A /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB529D1B3BDB430005F85A /* NSString+DES.m */; };
 		C9FB52A71B3BDC820005F85A /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A11B3BDC820005F85A /* Base64Util.m */; };
 		C9FB52A81B3BDC820005F85A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB52A31B3BDC820005F85A /* GTMBase64.m */; };
@@ -398,6 +400,10 @@
 		C9E856B81B54F14100CA5CE4 /* ImageViewGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewGesture.m; sourceTree = "<group>"; };
 		C9EB1C0D1B0478EE00F5484E /* PublishedSpeechSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedSpeechSoundViewController.h; sourceTree = "<group>"; };
 		C9EB1C0E1B0478EE00F5484E /* PublishedSpeechSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedSpeechSoundViewController.m; sourceTree = "<group>"; };
+		C9F59A771B55F73E003591B8 /* LabelScreening.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelScreening.h; sourceTree = "<group>"; };
+		C9F59A781B55F73E003591B8 /* LabelScreening.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelScreening.m; sourceTree = "<group>"; };
+		C9F59A7A1B562C7A003591B8 /* ImageViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewHeader.h; sourceTree = "<group>"; };
+		C9F59A7B1B562C7A003591B8 /* ImageViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewHeader.m; sourceTree = "<group>"; };
 		C9FB529C1B3BDB430005F85A /* NSString+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DES.h"; sourceTree = "<group>"; };
 		C9FB529D1B3BDB430005F85A /* NSString+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DES.m"; sourceTree = "<group>"; };
 		C9FB52A01B3BDC820005F85A /* Base64Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Util.h; sourceTree = "<group>"; };
@@ -845,6 +851,10 @@
 				C997A1D31B539D6B00EDB97F /* MessageViewFrame.m */,
 				C9E856B71B54F14100CA5CE4 /* ImageViewGesture.h */,
 				C9E856B81B54F14100CA5CE4 /* ImageViewGesture.m */,
+				C9F59A771B55F73E003591B8 /* LabelScreening.h */,
+				C9F59A781B55F73E003591B8 /* LabelScreening.m */,
+				C9F59A7A1B562C7A003591B8 /* ImageViewHeader.h */,
+				C9F59A7B1B562C7A003591B8 /* ImageViewHeader.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1148,6 +1158,7 @@
 				C9DBE7291B183BD6002ECDE4 /* UIImage+GIF.m in Sources */,
 				C9ACE8C31B0C645000385809 /* CTextField.m in Sources */,
 				C981F6461B17019200FA112C /* AES.m in Sources */,
+				C9F59A791B55F73E003591B8 /* LabelScreening.m in Sources */,
 				C9ACE8C01B0C621800385809 /* CButton.m in Sources */,
 				C970F5D41B02F5120045A353 /* User.m in Sources */,
 				C9DBE7201B183BD6002ECDE4 /* MKAnnotationView+WebCache.m in Sources */,
@@ -1181,6 +1192,7 @@
 				C95647691B15A6A30003CF70 /* UploadCrypt.m in Sources */,
 				C9DBE72B1B183BD6002ECDE4 /* UIImage+WebP.m in Sources */,
 				C9FE7E291B26D6250049AEC9 /* MessagePLCell.m in Sources */,
+				C9F59A7C1B562C7A003591B8 /* ImageViewHeader.m in Sources */,
 				C970F5DE1B02F5120045A353 /* MessageInterceptor.m in Sources */,
 				C981F6591B1717D100FA112C /* NSData+Base64.m in Sources */,
 				C9FE7E261B26D6190049AEC9 /* MessageZGCell.m in Sources */,

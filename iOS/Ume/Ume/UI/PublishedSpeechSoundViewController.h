@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "HttpDownload.h"
 #import "VPImageCropperViewController.h"
 
-@interface PublishedSpeechSoundViewController : BaseViewController<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,VPImageCropperDelegate>
+@interface PublishedSpeechSoundViewController : BaseViewController<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,VPImageCropperDelegate,HttpDownloadDelegate>
 
 @property (strong, nonatomic) UIButton *recordButton;
 

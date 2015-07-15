@@ -26,6 +26,9 @@
     UITextView *textContent;
     NSArray *atFriendsArray;
     NSString *backgroundID;
+    NSArray *randomBackgroundImage;
+    int randomIndex;
+    HttpDownload *httpDownload;
 }
 
 - (id)init{
@@ -50,7 +53,7 @@
         mBackgroundImage=[[UIImageView alloc]initWithFrame:CGRectMake1(5, 5, 310, 250)];
         mBackgroundImage.layer.masksToBounds=YES;
         [mBackgroundImage setUserInteractionEnabled:YES];
-        [mBackgroundImage setImage:[UIImage imageNamed:@"personalbg"]];
+        [mBackgroundImage setBackgroundColor:DEFAULTITLECOLOR(241)];
         [mBackgroundImage setContentMode:UIViewContentModeScaleAspectFill];
         [self.view addSubview:mBackgroundImage];
         CButton *bGetServerImage=[[CButton alloc]initWithFrame:CGRectMake1(220, 10, 80, 30) Name:@"换一张" Type:5];
@@ -59,14 +62,13 @@
         [bGetServerImage addTarget:self action:@selector(goGetServerImage:) forControlEvents:UIControlEventTouchUpInside];
         [mBackgroundImage addSubview:bGetServerImage];
         
-        textContent=[[UITextView alloc]initWithFrame:CGRectMake1(10, 60, 290, 120)];
-        [textContent setText:@"每张脸诉说千种情绪,却很容易掩饰心情。\n最快乐的面具下,也许是一颗最痛的心。"];
+        textContent=[[UITextView alloc]initWithFrame:CGRectMake1(10, 60, 290, 150)];
         [textContent setScrollEnabled:YES];
         [textContent setFont:[UIFont systemFontOfSize:18]];
         [textContent setTextColor:DEFAULTITLECOLOR(200)];
         [textContent setBackgroundColor:[UIColor clearColor]];
         [textContent setDelegate:self];
-        [textContent setTextAlignment:NSTextAlignmentCenter];
+        [textContent setTextAlignment:NSTextAlignmentLeft];
         [mBackgroundImage addSubview:textContent];
         //换图片
         UIButton *switchToImage=[[UIButton alloc]initWithFrame:CGRectMake1(10, 255, 50, 30)];
@@ -97,13 +99,41 @@
         
         mRecordingPlayerView=[[RecordingPlayerView alloc]initWithFrame:CGRectMake1(75, 320, 170, 170)];
         [self.view addSubview:mRecordingPlayerView];
+        
+        httpDownload=[[HttpDownload alloc]init];
+        [httpDownload setDelegate:self];
+        //获取默认图片
+        [self goGetServerImage:nil];
+        //获取心情文字
+        [self goGetXXL:nil];
     }
     return self;
 }
 
 - (void)goGetServerImage:(id)sender
 {
-    NSLog(@"获取服务端图片");
+    if([randomBackgroundImage count]>0){
+        [self randomImage];
+    }else{
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"getPublishBackUrl" forKey:@"act"];
+        self.hRequest=[[HttpRequest alloc]init];
+        [self.hRequest setRequestCode:500];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setController:self];
+        [self.hRequest handle:nil requestParams:params];
+    }
+}
+
+- (void)goGetXXL:(id)sender
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getGXXL" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:nil requestParams:params];
 }
 
 - (void)atToMeb:(id)sender
@@ -223,6 +253,30 @@
 - (void)atContactFinisih:(NSArray*)friendsArray
 {
     atFriendsArray=[NSArray arrayWithArray:friendsArray];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            randomBackgroundImage=[NSArray arrayWithArray:[[response resultJSON]objectForKey:@"data"]];
+            [self randomImage];
+        }else if(reqCode==501){
+            NSArray *array=[NSArray arrayWithArray:[[response resultJSON]objectForKey:@"data"]];
+            NSDictionary *data=[array objectAtIndex:0];
+            NSString *text=[data objectForKey:@"text"];
+            [textContent setText:text];
+        }
+    }
+}
+
+- (void)randomImage
+{
+    int r=randomIndex%[randomBackgroundImage count];
+    NSDictionary *data=[randomBackgroundImage objectAtIndex:r];
+    NSString *url=[data objectForKey:@"url"];
+    [httpDownload AsynchronousDownloadImageWithUrl:url ShowImageView:mBackgroundImage];
+    randomIndex++;
 }
 
 @end

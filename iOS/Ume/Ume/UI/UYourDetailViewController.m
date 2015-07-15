@@ -78,11 +78,7 @@
         topView.layer.borderWidth=1;
         topView.layer.borderColor=DEFAULTITLECOLOR(221).CGColor;
         [contentView addSubview:topView];
-        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
-        self.meHeader.layer.masksToBounds=YES;
-        self.meHeader.layer.borderWidth=1;
-        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        self.meHeader=[[ImageViewHeader alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
         [topView addSubview:self.meHeader];
         self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 90, 20) Text:@""];
         [self.lblName setFont:[UIFont systemFontOfSize:18]];
@@ -99,11 +95,7 @@
         self.mFelationship=[[UIImageView alloc]initWithFrame:CGRectMake1(160, 10, 90, 40)];
         [self.mFelationship setImage:[UIImage imageNamed:@"icon-match"]];
         [topView addSubview:self.mFelationship];
-        self.youHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(270, 10, 40, 40)];
-        self.youHeader.layer.cornerRadius=self.youHeader.bounds.size.width/2;
-        self.youHeader.layer.masksToBounds=YES;
-        self.youHeader.layer.borderWidth=1;
-        self.youHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        self.youHeader=[[ImageViewHeader alloc]initWithFrame:CGRectMake1(270, 10, 40, 40)];
         [topView addSubview:self.youHeader];
         UIView *titleHead=[[UIView alloc]initWithFrame:CGRectMake1(0, 60, 320, 40)];
         [titleHead setBackgroundColor:DEFAULTITLECOLOR(245)];
@@ -147,12 +139,12 @@
         NSString *content=[data objectForKey:@"content"];
         [self.lblContent setText:content];
         [self.lblContent sizeToFit];
-        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+//        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];
         [self.lblValue setText:@"开心70%"];
         [self.lblCount setText:@"所有懂你(12)"];
-        [self.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
+//        [self.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
         
         height=220;
         //评论

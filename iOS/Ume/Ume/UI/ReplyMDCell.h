@@ -12,7 +12,7 @@
 
 @interface ReplyMDCell : UITableViewCell
 
-@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)ImageViewHeader *meHeader;
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblValue;

@@ -11,6 +11,7 @@
 #import "ContentCell.h"
 #import "AudioPlayer.h"
 #import "NSString+Utils.h"
+#import "LabelScreening.h"
 
 @interface MainViewController ()
 
@@ -18,16 +19,17 @@
 
 @implementation MainViewController{
     UIView *bgView;
-    UIButton *mButton1,*mButton2,*mButton3,*mButton4;
+    LabelScreening *mButton1,*mButton2,*mButton3,*mButton4;
     HttpDownload *httpDownload;
     UIButton *currentPlayerButton;
+    NSInteger currentType;
 }
 
 - (id)init{
     self=[super init];
     if(self){
         [self cTitle:@"懂你"];
-        self.isFirstRefresh=NO;
+        self.isFirstRefresh=YES;
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         httpDownload=[[HttpDownload alloc]init];
         [httpDownload setDelegate:self];
@@ -57,23 +59,38 @@
         [downRefresh setBackgroundColor:[UIColor whiteColor]];
         [bgView addSubview:downRefresh];
         
-        mButton1=[self createButton:CGRectMake1(0, 0, 100, 30) Title:@"最新" Tag:1];
+        mButton1=[[LabelScreening alloc]initWithFrame:CGRectMake1(0, 0, 100, 30)];
+        [mButton1.lblTitle setText:@"最新"];
+        [mButton1 setTag:1];
+        [mButton1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hScreening:)]];
         [downRefresh addSubview:mButton1];
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(5, 30, 90, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(200)];
         [downRefresh addSubview:line];
-        mButton2=[self createButton:CGRectMake1(0, 30, 100, 30) Title:@"最热" Tag:2];
+        mButton2=[[LabelScreening alloc]initWithFrame:CGRectMake1(0, 30, 100, 30)];
+        [mButton2.lblTitle setText:@"最热"];
+        [mButton2 setTag:2];
+        [mButton2 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hScreening:)]];
         [downRefresh addSubview:mButton2];
         line=[[UIView alloc]initWithFrame:CGRectMake1(5, 60, 90, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(200)];
         [downRefresh addSubview:line];
-        mButton3=[self createButton:CGRectMake1(0, 60, 100, 30) Title:@"离我最近" Tag:3];
+        mButton3=[[LabelScreening alloc]initWithFrame:CGRectMake1(0, 60, 100, 30)];
+        [mButton3.lblTitle setText:@"离我最近"];
+        [mButton3 setTag:3];
+        [mButton3 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hScreening:)]];
         [downRefresh addSubview:mButton3];
         line=[[UIView alloc]initWithFrame:CGRectMake1(5, 90, 90, 0.5)];
         [line setBackgroundColor:DEFAULTITLECOLOR(200)];
         [downRefresh addSubview:line];
-        mButton4=[self createButton:CGRectMake1(0, 90, 100, 30)Title:@"只看异性" Tag:4];
+        mButton4=[[LabelScreening alloc]initWithFrame:CGRectMake1(0, 90, 100, 30)];
+        [mButton4.lblTitle setText:@"只看异性"];
+        [mButton4 setTag:4];
+        [mButton4 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hScreening:)]];
         [downRefresh addSubview:mButton4];
+        
+        [mButton1 setSelected:YES];
+        currentType=1;
     }
     return self;
 }
@@ -88,15 +105,20 @@
     [bgView setHidden:![bgView isHidden]];
 }
 
-- (void)hScreening:(UIButton*)sender
+- (void)hScreening:(UIGestureRecognizer*)sender
 {
+    LabelScreening *ls=((LabelScreening*)[sender view]);
     [mButton1 setSelected:NO];
     [mButton2 setSelected:NO];
     [mButton3 setSelected:NO];
     [mButton4 setSelected:NO];
     [self goScreening];
-    [sender setSelected:YES];
-    NSLog(@"筛选条件%ld",sender.tag);
+    [ls setSelected:YES];
+    currentType=ls.tag;
+    if(!self.tableView.pullTableIsRefreshing) {
+        self.tableView.pullTableIsRefreshing=YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,14 +140,25 @@
         }
         NSInteger row=[indexPath row];
         NSMutableDictionary *data=[[self dataItemArray]objectAtIndex:row];
-        [cell setData:data];
-        [cell.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
-        [cell.lblName setText:@"Jackywell"];
-        [cell.lblTime setText:@"15:22"];
-        [cell setFelationshipStat:1];
-        [cell.youHeader setImage:[UIImage imageNamed:@"img_girl"]];
-        NSString *pstatus=[data objectForKey:@"pstatus"];
         
+        NSString *headUrl=[Common getString:[data objectForKey:@"headUrl"] DefaultValue:@""];
+        NSString *bestDwHeadUrl=[Common getString:[data objectForKey:@"bestDwHeadUrl"] DefaultValue:@""];
+        NSString *name=[Common getString:[data objectForKey:@"name"] DefaultValue:@""];
+        NSString *time=[Common getString:[data objectForKey:@"time"] DefaultValue:@""];
+        NSString *backgroupUrl=[Common getString:[data objectForKey:@"backgroupUrl"] DefaultValue:@""];
+        NSString *content=[Common getString:[data objectForKey:@"content"] DefaultValue:@""];
+        NSString *commentCount=[Common getString:[data objectForKey:@"commentCount"] DefaultValue:@"0"];
+        [cell setData:data];
+        if(![@"" isEqualToString:headUrl]){
+            [httpDownload AsynchronousDownloadImageWithUrl:headUrl ShowImageView:cell.meHeader];
+        }
+        [cell.lblName setText:name];
+        [cell.lblTime setText:time];
+        [cell setFelationshipStat:2];
+        if([@"" isEqualToString:bestDwHeadUrl]){
+            [httpDownload AsynchronousDownloadImageWithUrl:bestDwHeadUrl ShowImageView:cell.youHeader];
+        }
+        NSString *pstatus=[data objectForKey:@"pstatus"];
         if([@"1" isEqualToString:pstatus]){
             if(currentPlayerButton!=nil&&currentPlayerButton.tag==row){
                 [cell.bPlayer.imageView startAnimating];
@@ -136,11 +169,8 @@
         }else{
             [cell.bPlayer.imageView stopAnimating];
         }
-        
-        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",@"21"] forState:UIControlStateNormal];
-        NSString *backgroupUrl=[data objectForKey:@"backgroupUrl"];
+        [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",commentCount] forState:UIControlStateNormal];
         [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
-        NSString *content=[data objectForKey:@"content"];
         [cell.lblContent setText:content];
         [cell.lblContent sizeToFit];
         cell.bPlayer.tag = row;
@@ -166,28 +196,13 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"type"];//筛选1最新 2最热 3离我最近 4只看美女
+    [params setObject:[NSString stringWithFormat:@"%ld",currentType] forKey:@"type"];//筛选1最新 2最热 3离我最近 4只看美女
     [params setObject:@"getPublish" forKey:@"act"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:nil requestParams:params];
-}
-
-//筛选按钮创建
-- (UIButton*)createButton:(CGRect)rect Title:(NSString *)title Tag:(NSInteger)tag
-{
-    UIButton *button1=[[UIButton alloc]initWithFrame:rect];
-    [button1 setTitle:title forState:UIControlStateNormal];
-    [button1.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [button1 setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
-    button1.tag=4;
-    [button1 addTarget:self action:@selector(hScreening:) forControlEvents:UIControlEventTouchUpInside];
-    [button1 setImage:[UIImage imageNamed:@"icon-select"] forState:UIControlStateSelected];
-    [button1 setTitleEdgeInsets:UIEdgeInsetsMake(0, -button1.imageView.bounds.size.width, 0, button1.imageView.bounds.size.width)];
-    [button1 setImageEdgeInsets:UIEdgeInsetsMake(0, button1.titleLabel.bounds.size.width, 0, -button1.titleLabel.bounds.size.width-CGWidth(15))];
-    return button1;
 }
 
 - (void)playAudio:(UIButton *)button

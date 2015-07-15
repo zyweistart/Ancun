@@ -23,6 +23,7 @@
 #import "CLabel.h"
 #import "PlayerVoiceButton.h"
 #import "ImageViewGesture.h"
+#import "ImageViewHeader.h"
 
 #ifdef TEST
 //测试环境定义的常量
