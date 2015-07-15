@@ -7,48 +7,47 @@
 //
 
 #import "MessageZGCell.h"
-#import "CButton.h"
-#import "CLabel.h"
 
 @implementation MessageZGCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
-        [self addSubview:mainView];
+        UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 170)];
+        [contentView setUserInteractionEnabled:YES];
+        [self addSubview:contentView];
+        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
+        self.meHeader.layer.masksToBounds=YES;
+        self.meHeader.layer.borderWidth=1;
+        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        [contentView addSubview:self.meHeader];
+        self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 90, 20) Text:@""];
+        [self.lblName setFont:[UIFont systemFontOfSize:18]];
+        [self.lblName setTextColor:DEFAULTITLECOLORRGB(242, 82, 159)];
+        [contentView addSubview:self.lblName];
+        self.lblTime=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 150, 20) Text:@""];
+        [self.lblTime setFont:[UIFont systemFontOfSize:14]];
+        [self.lblTime setTextColor:DEFAULTITLECOLOR(150)];
+        [contentView addSubview:self.lblTime];
+        self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(60, 50, 150, 20) Text:@""];
+        [self.lblContent setFont:[UIFont systemFontOfSize:18]];
+        [self.lblContent setTextColor:DEFAULTITLECOLOR(150)];
+        [contentView addSubview:self.lblContent];
+        //图片
+        self.ivImage=[[ImageViewGesture alloc]initWithFrame:CGRectMake1(40, 80, 80, 80)];
+        [self.ivImage setImage:[UIImage imageNamed:@"personalbg"]];
+        [contentView addSubview:self.ivImage];
+        //语音
+        CGFloat width=[PlayerVoiceButton getPlayerWidthToSecond:71];
+        self.player=[[PlayerVoiceButton alloc]initWithFrame:CGRectMake1(130, 80, width, 30)];
+        [contentView addSubview:self.player];
         
-        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 30, 30)];
-        [image setBackgroundColor:[UIColor redColor]];
-        [mainView addSubview:image];
+        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+        [self.lblContent setText:@"赞过我的语音"];
+        [self.lblName setText:@"天使之城"];
+        [self.lblTime setText:@"2015-04-10 15:24"];
         
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 10, 100, 30)];
-        [lbl setText:@"lohas"];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [mainView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 30)];
-        [lbl setText:@"今天 09:14"];
-        [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextAlignment:NSTextAlignmentRight];
-        [mainView addSubview:lbl];
-        
-        CButton *button=[[CButton alloc]initWithFrame:CGRectMake1(230, 50, 80, 30) Name:@"关注" Type:1];
-        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [mainView addSubview:button];
-        
-        image=[[UIImageView alloc]initWithFrame:CGRectMake1(30, 90, 100, 100)];
-        [image setBackgroundColor:[UIColor redColor]];
-        [mainView addSubview:image];
-        
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(140, 90, 170, 100)];
-        [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setText:@"这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述"];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setNumberOfLines:7];
-        [lbl sizeToFit];
-        [mainView addSubview:lbl];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;

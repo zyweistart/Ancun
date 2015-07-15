@@ -7,7 +7,6 @@
 //
 
 #import "MessageViewFrame.h"
-#import "SJAvatarBrowser.h"
 
 @implementation MessageViewFrame
 
@@ -41,12 +40,8 @@
         self.player=[[PlayerVoiceButton alloc]initWithFrame:CGRectMake1(30, 60, width, 30)];
         [contentView addSubview:self.player];
         
-        self.ivImage=[[UIImageView alloc]initWithFrame:CGRectMake1(40, 100, 80, 80)];
-        [self.ivImage setUserInteractionEnabled:YES];
-        [self.ivImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                            initWithTarget:self action:@selector(zoomImage:)]];
+        self.ivImage=[[ImageViewGesture alloc]initWithFrame:CGRectMake1(40, 100, 80, 80)];
         [contentView addSubview:self.ivImage];
-        
         
         [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
@@ -56,13 +51,6 @@
         
     }
     return self;
-}
-
-
-- (void)zoomImage:(UITapGestureRecognizer*)sender
-{
-    UIImageView *imageV=(UIImageView*)[sender view];
-    [SJAvatarBrowser showImage:imageV];
 }
 
 @end

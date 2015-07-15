@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MessageZDWDCell.h"
 
-@interface MessageAWCell : UITableViewCell
+@interface MessageAWCell : MessageZDWDCell
 
 @end

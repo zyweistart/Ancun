@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CLabel.h"
-#import "PlayerVoiceButton.h"
 
 @interface MessageViewFrame : UIView
 
@@ -16,7 +14,7 @@
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblValue;
-@property (strong,nonatomic)UIImageView *ivImage;
+@property (strong,nonatomic)ImageViewGesture *ivImage;
 @property (strong,nonatomic)PlayerVoiceButton *player;
 
 @end

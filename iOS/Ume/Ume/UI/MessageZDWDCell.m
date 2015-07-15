@@ -13,7 +13,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
+        UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
         [contentView setUserInteractionEnabled:YES];
         [self addSubview:contentView];
         self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
@@ -31,9 +31,22 @@
         [self.lblTime setTextColor:DEFAULTITLECOLOR(150)];
         [contentView addSubview:self.lblTime];
         
-        self.bFelationShip=[[CButton alloc]initWithFrame:CGRectMake1(230, 15, 80, 30) Name:@"已关注" Type:3];
+        self.bFelationShip=[[UIButton alloc]initWithFrame:CGRectMake1(250, 17.5, 60, 25)];
+        //
+        [self.bFelationShip setTitle:@"已关注" forState:UIControlStateNormal];
+        self.bFelationShip.layer.borderWidth=1;
+        self.bFelationShip.layer.borderColor=DEFAULTITLECOLOR(150).CGColor;
+        [self.bFelationShip setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
+        //
+//        [self.bFelationShip setTitle:@"加关注" forState:UIControlStateNormal];
+//        [self.bFelationShip setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [self.bFelationShip setBackgroundColor:COLOR2552160];
+        
+        self.bFelationShip.layer.cornerRadius = CGWidth(2);
+        self.bFelationShip.layer.masksToBounds = YES;
         [self.bFelationShip.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//        [self.bFelationShip setTitle:@"" forState:UIControlStateNormal];
+        [self.bFelationShip.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.bFelationShip addTarget:self action:@selector(felationship:) forControlEvents:UIControlEventTouchUpInside];
         [contentView addSubview:self.bFelationShip];
         
         //语音
@@ -49,29 +62,27 @@
         [self.ivImage setImage:[UIImage imageNamed:@"personalbg"]];
         [contentView addSubview:self.ivImage];
         //文字
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(130, 100, 180, 80)];
-        [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setFont:[UIFont systemFontOfSize:16]];
-        [lbl setNumberOfLines:4];
-        [lbl sizeToFit];
-        [contentView addSubview:lbl];
-        
-        
+        self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(130, 100, 180, 80)];
+        [self.lblContent setText:@"这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述"];
+        [self.lblContent setTextColor:DEFAUL1COLOR];
+        [self.lblContent setFont:[UIFont systemFontOfSize:16]];
+        [self.lblContent setNumberOfLines:5];
+        [self.lblContent sizeToFit];
+        [contentView addSubview:self.lblContent];
         
         [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"天使之城"];
         [self.lblTime setText:@"2015-04-10 15:24"];
         
-        [lbl setText:@"这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述这里为当前用户发表语音文字的描述"];
-        
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-        
-        
-        
-        
         
     }
     return self;
+}
+
+- (void)felationship:(id)sender
+{
+    
 }
 
 @end

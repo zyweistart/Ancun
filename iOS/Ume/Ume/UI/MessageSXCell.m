@@ -18,26 +18,31 @@
     if (self) {
         UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 60)];
         [self addSubview:mainView];
-        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-        [image setBackgroundColor:[UIColor redColor]];
-        [mainView addSubview:image];
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 150, 20)];
-        [lbl setText:@"果冻官方"];
-        [lbl setFont:[UIFont systemFontOfSize:18]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [mainView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 150, 20)];
-        [lbl setText:@"最近情绪为沮丧"];
-        [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [mainView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 30)];
-        [lbl setText:@"14-09-08"];
-        [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextAlignment:NSTextAlignmentRight];
-        [mainView addSubview:lbl];
+        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
+        self.meHeader.layer.masksToBounds=YES;
+        self.meHeader.layer.borderWidth=1;
+        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        [mainView addSubview:self.meHeader];
+        self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 150, 20)];
+        [self.lblName setFont:[UIFont systemFontOfSize:18]];
+        [self.lblName setTextAlignment:NSTextAlignmentLeft];
+        [mainView addSubview:self.lblName];
+        self.lblContent=[[CLabel alloc]initWithFrame:CGRectMake1(60, 30, 150, 20)];
+        [self.lblContent setTextColor:DEFAUL1COLOR];
+        [self.lblContent setFont:[UIFont systemFontOfSize:14]];
+        [self.lblContent setTextAlignment:NSTextAlignmentLeft];
+        [mainView addSubview:self.lblContent];
+        self.lblTime=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 30)];
+        [self.lblTime setTextColor:DEFAUL1COLOR];
+        [self.lblTime setFont:[UIFont systemFontOfSize:14]];
+        [self.lblTime setTextAlignment:NSTextAlignmentRight];
+        [mainView addSubview:self.lblTime];
+        
+        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
+        [self.lblName setText:@"果冻官方"];
+        [self.lblContent setText:@"最近情绪为沮丧"];
+        [self.lblTime setText:@"14-09-08"];
     }
     return self;
 }
