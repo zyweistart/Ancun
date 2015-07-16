@@ -9,7 +9,7 @@
 #endif
 
 #pragma mark 测试环境宏定义
-#define TEST网络请求出错
+#define TEST
 #pragma mark 越狱版宏定义
 //#define JAILBREAK
 
@@ -98,6 +98,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 //常量
 #define APPNAME @"安存语录"
 //配置常量
+#define FIRST_OPEN_APP @"FIRST_OPEN_APP"
 #define DEFAULTDATA_PHONE @"DEFAULTDATA_PHONE"
 #define DEFAULTDATA_PASSWORD @"DEFAULTDATA_PASSWORD"
 #define DEFAULTDATA_AUTOLOGIN @"DEFAULTDATA_AUTOLOGIN"

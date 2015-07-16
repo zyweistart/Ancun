@@ -13,5 +13,7 @@
 + (NSString *)getIDFA;
 
 + (NSString *) macaddressOfJOJOWang;
-
++ (NSString * )macString;
++ (NSString *)idfaString;
++ (NSString *)idfvString;
 @end

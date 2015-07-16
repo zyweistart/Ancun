@@ -11,6 +11,7 @@
 #import "NSString+Utils.h"
 #import "LoginTextField.h"
 #import "ACButton.h"
+#import "UUString.h"
 
 @interface ACLoginViewController ()
 
@@ -100,8 +101,19 @@
         [lblTipTxt setBackgroundColor:[UIColor clearColor]];
         [control addSubview:lblTipTxt];
         
+        BOOL first=[Common getCacheByBool:FIRST_OPEN_APP];
+        if(!first){
+            NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
+            [requestParams setObject:[UUString getIDFA] forKey:@"idfa"];
+            [requestParams setObject:[UUString macaddressOfJOJOWang] forKey:@"mac"];
+            self.hRequest=[[HttpRequest alloc]init];
+            [self.hRequest setDelegate:self];
+            [self.hRequest setController:self];
+            [self.hRequest setIsShowMessage:NO];
+            [self.hRequest setRequestCode:501];
+            [self.hRequest handle:@"versioninfoGet" signKey:nil requestParams:requestParams];
+        }
         [self autoLogin];
-        
     }
     return self;
 }
@@ -110,170 +122,176 @@
 #pragma mark Delegate Methods
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode{
-    if([response successFlag]){
-        NSString *phone=_txtUserName.text;
-        NSString *password=_txtPassword.text;
-        [[Config Instance] setUSERNAME:phone];
-        [[Config Instance] setPASSWORD:password];
-        [[Config Instance] setIsLogin:YES];
-        [[Config Instance] setIsCalculateTotal:YES];
-        [[Config Instance] setUserInfo:[[NSMutableDictionary alloc]initWithDictionary:[[response mainData] objectForKey:@"v4info"]]];
-        //企业版用户无法登录
-        if([@"2" isEqualToString:[[[Config Instance]userInfo]objectForKey:@"usertype"]]) {
-            [Common alert:@"您的号码属于政企用户，目前尚不能使用APP登录，如需通话录音可直接拨打95105856"];
-            return;
+    if(reqCode==501){
+        if([response successFlag]){
+            [Common setCacheByBool:FIRST_OPEN_APP data:YES];
         }
-        [[Config Instance] setCacheKey:[NSString stringWithFormat:@"cache_%@",[[Config Instance]USERNAME]]];
-        [Common setCache:DEFAULTDATA_PHONE data:[[Config Instance]USERNAME]];
-        if([Common getCacheByBool:DEFAULTDATA_AUTOLOGIN]){
-            [Common setCache:DEFAULTDATA_PASSWORD data:[[Config Instance]PASSWORD]];
-        }else{
-            [Common setCache:DEFAULTDATA_PASSWORD data:@""];
-        }
-        
-        //拔号盘
-        ACDialsViewController *dialViewController = [[ACDialsViewController alloc]init];
-        dialViewController.tabBarItem.title = @"拨号盘";
-        //IOS7
-//        [[dialViewController tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_dial_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_dial"]];
-        //IOS8
-        [[dialViewController tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_dial"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[dialViewController tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_dial_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[dialViewController tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                       dictionaryWithObjectsAndKeys: [UIColor whiteColor],
-                                                                       UITextAttributeTextColor, nil] forState:UIControlStateNormal];
-        [[dialViewController tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                       dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
-                                                                       UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-        //联系人
-//        UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACContactsViewController alloc]init]];
-//        contactViewControllerNav.tabBarItem.title = @"通讯录";
-        UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[LocalRecordsViewController alloc]init]];
-        contactViewControllerNav.tabBarItem.title = @"现场录音";
-        //IOS7
-//        [[contactViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_contact_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_contact"]];
-        //IOS8
-        [[contactViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_contact"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[contactViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_contact_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        
-        [[contactViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                       dictionaryWithObjectsAndKeys: [UIColor whiteColor],
-                                                                       UITextAttributeTextColor, nil] forState:UIControlStateNormal];
-        [[contactViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                       dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
-                                                                       UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-//        if(IOS7){
-//            
-//        }else{
-//            [contactViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-//        }
-        
-        [[contactViewControllerNav navigationBar]setBarTintColor:MAINBG];
-        [[contactViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-        
-        //我的账户
-        UINavigationController *accountViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAccountViewController alloc]init]];
-        accountViewControllerNav.tabBarItem.title = @"我的账户";
-        
-        //IOS7
-//        [[accountViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_account_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_account"]];
-        //IOS8
-        [[accountViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_account"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[accountViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_account_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        
-        
-        [[accountViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                 dictionaryWithObjectsAndKeys: [UIColor whiteColor],
-                                                                 UITextAttributeTextColor, nil] forState:UIControlStateNormal];
-        [[accountViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                 dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
-                                                                 UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-//        if(IOS7){
+    }else if(reqCode==500){
+        if([response successFlag]){
+            NSString *phone=_txtUserName.text;
+            NSString *password=_txtPassword.text;
+            [[Config Instance] setUSERNAME:phone];
+            [[Config Instance] setPASSWORD:password];
+            [[Config Instance] setIsLogin:YES];
+            [[Config Instance] setIsCalculateTotal:YES];
+            [[Config Instance] setUserInfo:[[NSMutableDictionary alloc]initWithDictionary:[[response mainData] objectForKey:@"v4info"]]];
+            //企业版用户无法登录
+            if([@"2" isEqualToString:[[[Config Instance]userInfo]objectForKey:@"usertype"]]) {
+                [Common alert:@"您的号码属于政企用户，目前尚不能使用APP登录，如需通话录音可直接拨打95105856"];
+                return;
+            }
+            [[Config Instance] setCacheKey:[NSString stringWithFormat:@"cache_%@",[[Config Instance]USERNAME]]];
+            [Common setCache:DEFAULTDATA_PHONE data:[[Config Instance]USERNAME]];
+            if([Common getCacheByBool:DEFAULTDATA_AUTOLOGIN]){
+                [Common setCache:DEFAULTDATA_PASSWORD data:[[Config Instance]PASSWORD]];
+            }else{
+                [Common setCache:DEFAULTDATA_PASSWORD data:@""];
+            }
+            
+            //拔号盘
+            ACDialsViewController *dialViewController = [[ACDialsViewController alloc]init];
+            dialViewController.tabBarItem.title = @"拨号盘";
+            //IOS7
+            //        [[dialViewController tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_dial_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_dial"]];
+            //IOS8
+            [[dialViewController tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_dial"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [[dialViewController tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_dial_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [[dialViewController tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                     dictionaryWithObjectsAndKeys: [UIColor whiteColor],
+                                                                     UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+            [[dialViewController tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                     dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
+                                                                     UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+            //联系人
+            //        UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACContactsViewController alloc]init]];
+            //        contactViewControllerNav.tabBarItem.title = @"通讯录";
+            UINavigationController *contactViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[LocalRecordsViewController alloc]init]];
+            contactViewControllerNav.tabBarItem.title = @"现场录音";
+            //IOS7
+            //        [[contactViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_contact_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_contact"]];
+            //IOS8
+            [[contactViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_contact"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [[contactViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_contact_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            
+            [[contactViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                           dictionaryWithObjectsAndKeys: [UIColor whiteColor],
+                                                                           UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+            [[contactViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                           dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
+                                                                           UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+            //        if(IOS7){
+            //
+            //        }else{
+            //            [contactViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+            //        }
+            
+            [[contactViewControllerNav navigationBar]setBarTintColor:MAINBG];
+            [[contactViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+            
+            //我的账户
+            UINavigationController *accountViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAccountViewController alloc]init]];
+            accountViewControllerNav.tabBarItem.title = @"我的账户";
+            
+            //IOS7
+            //        [[accountViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_account_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_account"]];
+            //IOS8
+            [[accountViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_account"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [[accountViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_account_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            
+            
+            [[accountViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                           dictionaryWithObjectsAndKeys: [UIColor whiteColor],
+                                                                           UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+            [[accountViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                           dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
+                                                                           UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+            //        if(IOS7){
             [[accountViewControllerNav navigationBar]setBarTintColor:MAINBG];
             [[accountViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-//        }else{
-//            [accountViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-//        }
-        
-        //录音管理
-        UINavigationController *recordingManagerViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACRecordingManagerViewController alloc]init]];
-        recordingManagerViewControllerNav.tabBarItem.title = @"我的录音";
-        //IOS7
-//        [[recordingManagerViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_recording_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_recording"]];
-        //IOS8
-        [[recordingManagerViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_recording"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[recordingManagerViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_recording_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        
-        
-        
-        [[recordingManagerViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                       dictionaryWithObjectsAndKeys: [UIColor whiteColor],
-                                                                       UITextAttributeTextColor, nil] forState:UIControlStateNormal];
-        [[recordingManagerViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                       dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
-                                                                       UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-//        if(IOS7){
+            //        }else{
+            //            [accountViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+            //        }
+            
+            //录音管理
+            UINavigationController *recordingManagerViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACRecordingManagerViewController alloc]init]];
+            recordingManagerViewControllerNav.tabBarItem.title = @"我的录音";
+            //IOS7
+            //        [[recordingManagerViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_recording_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_recording"]];
+            //IOS8
+            [[recordingManagerViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_recording"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [[recordingManagerViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_recording_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            
+            
+            
+            [[recordingManagerViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                                    dictionaryWithObjectsAndKeys: [UIColor whiteColor],
+                                                                                    UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+            [[recordingManagerViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                                    dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
+                                                                                    UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+            //        if(IOS7){
             [[recordingManagerViewControllerNav navigationBar]setBarTintColor:MAINBG];
             [[recordingManagerViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-//        }else{
-//            [recordingManagerViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-//        }
-        //更多
-        ACMoreViewController *moreViewController=[[ACMoreViewController alloc]init];
-        [moreViewController checkVersion:NO];
-        UINavigationController *moreViewControllerNav = [[UINavigationController alloc] initWithRootViewController:moreViewController];
-        moreViewControllerNav.tabBarItem.title = @"更多";
-        //IOS7
-//        [[moreViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_more_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_more"]];
-        //IOS8
-        [[moreViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_more"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[moreViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_more_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[moreViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                                dictionaryWithObjectsAndKeys: [UIColor whiteColor],
-                                                                                UITextAttributeTextColor, nil] forState:UIControlStateNormal];
-        [[moreViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                                dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
-                                                                                UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-//        if(IOS7){
+            //        }else{
+            //            [recordingManagerViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+            //        }
+            //更多
+            ACMoreViewController *moreViewController=[[ACMoreViewController alloc]init];
+            [moreViewController checkVersion:NO];
+            UINavigationController *moreViewControllerNav = [[UINavigationController alloc] initWithRootViewController:moreViewController];
+            moreViewControllerNav.tabBarItem.title = @"更多";
+            //IOS7
+            //        [[moreViewControllerNav tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"nav_icon_more_hover"] withFinishedUnselectedImage:[UIImage imageNamed:@"nav_icon_more"]];
+            //IOS8
+            [[moreViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"nav_icon_more"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [[moreViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"nav_icon_more_hover"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [[moreViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                        dictionaryWithObjectsAndKeys: [UIColor whiteColor],
+                                                                        UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+            [[moreViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
+                                                                        dictionaryWithObjectsAndKeys: TABNORMALBGCOLOR,
+                                                                        UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+            //        if(IOS7){
             [[moreViewControllerNav navigationBar]setBarTintColor:MAINBG];
             [[moreViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-//        }else{
-//            [moreViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
-//        }
-        //添加标签控制器
-        UITabBarController *_tabBarController = [[UITabBarController alloc] init];
-        [_tabBarController.view setBackgroundColor:MAINBG];
-        if([[[UIDevice currentDevice] systemVersion]floatValue]>=6){
-            [[_tabBarController tabBar] setShadowImage:[[UIImage alloc] init]];
-        }
-        [[_tabBarController tabBar] setBackgroundImage:[[UIImage alloc] init]];
-        _tabBarController.delegate = self;
-        _tabBarController.viewControllers = [NSArray arrayWithObjects:
-                                             dialViewController,
-                                             contactViewControllerNav,
-                                             accountViewControllerNav,
-                                             recordingManagerViewControllerNav,
-                                             moreViewControllerNav,
-                                             nil];
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [self presentViewController:_tabBarController animated:YES completion:^{
-            if(self.gotoAgainGesurePassword){
-                UINavigationController *againSetGesturePasswordViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAgainSetGesturePasswordViewController alloc]init]];
-                [[againSetGesturePasswordViewControllerNav navigationBar]setBarTintColor:MAINBG];
-                [[againSetGesturePasswordViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-                [_tabBarController presentViewController:againSetGesturePasswordViewControllerNav animated:YES completion:nil];
-                self.gotoAgainGesurePassword=NO;
+            //        }else{
+            //            [moreViewControllerNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbg"] forBarMetrics:UIBarMetricsDefault];
+            //        }
+            //添加标签控制器
+            UITabBarController *_tabBarController = [[UITabBarController alloc] init];
+            [_tabBarController.view setBackgroundColor:MAINBG];
+            if([[[UIDevice currentDevice] systemVersion]floatValue]>=6){
+                [[_tabBarController tabBar] setShadowImage:[[UIImage alloc] init]];
             }
-        }];
-        
-    }else if([[response code] isEqualToString:@"120020"]){
-        //用户不存在
-        [Common alert:@"用户名或密码不正确"];
-    }
-    if(![response successFlag]){
-        //执行失败则清空
-        [Common setCache:DEFAULTDATA_PHONE data:@""];
-        [Common setCache:DEFAULTDATA_PASSWORD data:@""];
+            [[_tabBarController tabBar] setBackgroundImage:[[UIImage alloc] init]];
+            _tabBarController.delegate = self;
+            _tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                                 dialViewController,
+                                                 contactViewControllerNav,
+                                                 accountViewControllerNav,
+                                                 recordingManagerViewControllerNav,
+                                                 moreViewControllerNav,
+                                                 nil];
+            [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+            [self presentViewController:_tabBarController animated:YES completion:^{
+                if(self.gotoAgainGesurePassword){
+                    UINavigationController *againSetGesturePasswordViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[ACAgainSetGesturePasswordViewController alloc]init]];
+                    [[againSetGesturePasswordViewControllerNav navigationBar]setBarTintColor:MAINBG];
+                    [[againSetGesturePasswordViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+                    [_tabBarController presentViewController:againSetGesturePasswordViewControllerNav animated:YES completion:nil];
+                    self.gotoAgainGesurePassword=NO;
+                }
+            }];
+            
+        }else if([[response code] isEqualToString:@"120020"]){
+            //用户不存在
+            [Common alert:@"用户名或密码不正确"];
+        }
+        if(![response successFlag]){
+            //执行失败则清空
+            [Common setCache:DEFAULTDATA_PHONE data:@""];
+            [Common setCache:DEFAULTDATA_PASSWORD data:@""];
+        }
     }
 }
 
@@ -379,6 +397,7 @@
         [self.hRequest setIsShowMessage:YES];
         [self.hRequest setDelegate:self];
         [self.hRequest setController:self];
+        [self.hRequest setRequestCode:500];
         [self.hRequest handle:@"v4Login" signKey:[_txtPassword.text md5] requestParams:requestParams];
     }
 }
