@@ -134,6 +134,8 @@
 		C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */; };
 		C9E9A9471AE0E1A700F87EF2 /* SceneRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E9A9461AE0E1A700F87EF2 /* SceneRecordViewController.m */; };
 		C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */; };
+		C9FAB3DA1B5749330074A477 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FAB3D91B5749330074A477 /* AdSupport.framework */; };
+		C9FAB3DD1B574A440074A477 /* UUString.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAB3DC1B574A440074A477 /* UUString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -442,6 +444,9 @@
 		C9ED952918FD042500934D96 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
 		C9ED952B18FD078C00934D96 /* UIWindow+PazLabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PazLabs.h"; sourceTree = "<group>"; };
 		C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+PazLabs.m"; sourceTree = "<group>"; };
+		C9FAB3D91B5749330074A477 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
+		C9FAB3DB1B574A440074A477 /* UUString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUString.h; sourceTree = "<group>"; };
+		C9FAB3DC1B574A440074A477 /* UUString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUString.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +454,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FAB3DA1B5749330074A477 /* AdSupport.framework in Frameworks */,
 				C90417481B4B7A0100F32A1B /* libz.dylib in Frameworks */,
 				C9E9A93D1AE09BFA00F87EF2 /* libsqlite3.0.dylib in Frameworks */,
 				C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */,
@@ -725,6 +731,7 @@
 		C9D97989179FA3500076ACF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9FAB3D91B5749330074A477 /* AdSupport.framework */,
 				C90417471B4B7A0100F32A1B /* libz.dylib */,
 				C9E9A93B1AE09BFA00F87EF2 /* libsqlite3.0.dylib */,
 				C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */,
@@ -813,6 +820,8 @@
 				C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */,
 				C9E9A9381AE0996E00F87EF2 /* RecordsSQL.h */,
 				C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */,
+				C9FAB3DB1B574A440074A477 /* UUString.h */,
+				C9FAB3DC1B574A440074A477 /* UUString.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1213,6 +1222,7 @@
 				C98519051AF20EFE003E0126 /* ATMTextLayer.m in Sources */,
 				C9D47D0018F390C200472625 /* ACFeedBacksViewController.m in Sources */,
 				C9E42CE91AF0CD8B00E3398C /* LoginTextField.m in Sources */,
+				C9FAB3DD1B574A440074A477 /* UUString.m in Sources */,
 				C9D97CC0179FA6650076ACF3 /* ybase64.c in Sources */,
 				C91D0BE718EE9F4A006B10A3 /* ACAccountPay2Cell.m in Sources */,
 				C98519031AF20EFE003E0126 /* ATMProgressLayer.m in Sources */,

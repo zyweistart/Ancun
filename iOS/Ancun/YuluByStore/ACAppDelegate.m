@@ -33,6 +33,7 @@
 #else
     #import "IAPHelper.h"
 #endif
+#import "UUString.h"
 
 @implementation ACAppDelegate
 
@@ -130,6 +131,9 @@
     //应用关闭的情况下接收到消息推送
 //    NSDictionary *aps = [[launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"] objectForKey:@"aps"];
 //    [self notication:aps];
+    
+    NSLog(@"%@",[UUString getIDFA]);
+    NSLog(@"%@",[UUString macaddressOfJOJOWang]);
     return YES;
 }
 
