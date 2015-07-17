@@ -131,29 +131,40 @@
         button.tag=-1;
         [currentPlayerButton.imageView startAnimating];
         NSString *urlStr = [self.data objectForKey:@"recordUrl"];
-        [self.httpDownload AsynchronousDownloadWithUrl:urlStr RequestCode:500];
+        [self.hDownload AsynchronousDownloadWithUrl:urlStr RequestCode:501 Object:nil];
     }else{
         NSInteger currentPlayerRow = currentPlayerButton.tag;
         NSMutableDictionary *item = [self.dataItemArray objectAtIndex:currentPlayerRow];
         [item setObject:@"1" forKey:@"pstatus"];
         [currentPlayerButton.imageView startAnimating];
         NSString *urlStr = [item objectForKey:@"recordUrl"];
-        [self.httpDownload AsynchronousDownloadWithUrl:urlStr RequestCode:500];
+        [self.hDownload AsynchronousDownloadWithUrl:urlStr RequestCode:501 Object:nil];
     }
 }
 
-- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path
+
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
 {
-    //播放本地音乐
-    [self stopAudioPlayer];
-    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    NSURL *fileURL = [NSURL fileURLWithPath:path];
-    self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
-    [self.audioPlayer setDelegate:self];
-    [self.audioPlayer setVolume:1.0];
-    if([self.audioPlayer prepareToPlay]){
-        [self.audioPlayer play];
+    if(reqCode==501){
+        //播放本地音乐
+        [self stopAudioPlayer];
+        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
+        self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
+        [self.audioPlayer setDelegate:self];
+        [self.audioPlayer setVolume:1.0];
+        if([self.audioPlayer prepareToPlay]){
+            [self.audioPlayer play];
+        }
+    }else if(reqCode==500){
+        UIImageView *imageView=(UIImageView*)sender;
+        if(imageView){
+            UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
+            if(image){
+                [imageView setImage:image];
+            }
+        }
     }
 }
 

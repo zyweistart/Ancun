@@ -8,16 +8,16 @@
 
 #import "MeetXDViewController.h"
 #import "UITableGridViewCell.h"
-#import "UIImageButton.h"
 #import "SJAvatarBrowser.h"
-#import "CButton.h"
-#import "CLabel.h"
+#import "UIImage+Utils.h"
+
 #define kImageWidth  CGWidth(100) //UITableViewCell里面图片的宽度
 #define kImageHeight  CGHeight(150) //UITableViewCell里面图片的高度
 @interface MeetXDViewController ()
 
-@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIImage *image;
+@property(nonatomic,strong)UITableView *tableView;
+
 @end
 
 @implementation MeetXDViewController
@@ -25,8 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self cTitle:@"遇见心动"];
     
+    [self cTitle:@"遇见心动"];
     //筛选
     UIButton *bPublished = [[UIButton alloc]init];
     [bPublished setFrame:CGRectMake1(0, 0, 80, 30)];
@@ -40,7 +40,7 @@
     negativeSpacerRight.width = -10;
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublished], nil];
     
-    self.image = [self cutCenterImage:[UIImage imageNamed:@"personalbg"]  size:CGSizeMake(kImageWidth, kImageHeight)];
+    self.image = [[UIImage imageNamed:@"personalbg"] cutCenterImageSize:CGSizeMake(kImageWidth, kImageHeight)];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -56,69 +56,64 @@
     [lbl setNumberOfLines:0];
     [bottomView addSubview:lbl];
     CButton *button=[[CButton alloc]initWithFrame:CGRectMake1(10, 70, 300, 40) Name:@"摇一摇，换一批" Type:1];
+    [button addTarget:self action:@selector(changeHorse:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:button];
+    
+    self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
+    
+    [self getBannerImages];
 }
 
-#pragma mark UITable datasource and delegate
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+//计算总的行数
+- (NSInteger)getTotalRow
+{
+    NSInteger count=[self.dataItemArray count];
+    return count/3+(count%3>0?1:0);
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self getTotalRow];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *identifier = @"Cell";
-    //自定义UITableGridViewCell，里面加了个NSArray用于放置里面的3个图片按钮
     UITableGridViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectedBackgroundView = [[UIView alloc] init];
-        NSMutableArray *array = [NSMutableArray array];
-        for (int i=0; i<3; i++) {
-            //自定义继续UIButton的UIImageButton 里面只是加了2个row和column属性
-            UIImageButton *button = [UIImageButton buttonWithType:UIButtonTypeCustom];
-            button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
-            button.center = CGPointMake((1 + i) * 5 + kImageWidth *( 0.5 + i) , 5 + kImageHeight * 0.5);
-            //button.column = i;
-            [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
-            [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
-            [button setBackgroundImage:self.image forState:UIControlStateNormal];
-            [cell addSubview:button];
-            [array addObject:button];
-        }
-        [cell setValue:array forKey:@"buttons"];
     }
-    
-    //获取到里面的cell里面的3个图片按钮引用
-    NSArray *imageButtons =cell.buttons;
-    //设置UIImageButton里面的row属性
-    [imageButtons setValue:[NSNumber numberWithInt:indexPath.row] forKey:@"row"];
+    NSInteger row=indexPath.row;
+    cell.selectedBackgroundView = [[UIView alloc] init];
+    int c=3;
+    //判断是否是最后一行
+    if((row+1)==[self getTotalRow]){
+        int tmp=[self.dataItemArray count]%3;
+        if(tmp>0){
+            c=tmp;
+        }
+    }
+    for (int i=0; i<c; i++) {
+        NSInteger index=row*3+i;
+        NSDictionary *data=[self.dataItemArray objectAtIndex:index];
+        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kImageWidth, kImageHeight)];
+        [image setCenter:CGPointMake((1 + i) * 5 + kImageWidth *( 0.5 + i) , 5 + kImageHeight * 0.5)];
+        [image setBackgroundColor:[UIColor redColor]];
+        [image setUserInteractionEnabled:YES];
+        NSString *url=[data objectForKey:@"url"];
+        [self.hDownload AsynchronousDownloadWithUrl:url RequestCode:500 Object:image];
+        [cell addSubview:image];
+    }
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kImageHeight + 5;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //不让tableviewcell有选中效果
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)imageItemClick:(UIImageButton *)button{
-//    NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                    message:msg
-//                                                   delegate:nil
-//                                          cancelButtonTitle:@"好的，知道了"
-//                                          otherButtonTitles:nil, nil];
-//    [alert show];
-    UIImageView *image=[[UIImageView alloc]init];
-    [image setImage:self.image];
-    [SJAvatarBrowser showImage:image];
 }
 
 - (void)goPublished:(id)sender
@@ -126,36 +121,55 @@
     NSLog(@"发布形象");
 }
 
-#pragma mark 根据size截取图片中间矩形区域的图片 这里的size是正方形
-- (UIImage *)cutCenterImage:(UIImage *)image size:(CGSize)size{
-    CGSize imageSize = image.size;
-    CGRect rect;
-    //根据图片的大小计算出图片中间矩形区域的位置与大小
-    if (imageSize.width > imageSize.height) {
-        float leftMargin = (imageSize.width - imageSize.height) * 0.5;
-        rect = CGRectMake(leftMargin, 0, imageSize.height, imageSize.height);
-    }else{
-        float topMargin = (imageSize.height - imageSize.width) * 0.5;
-        rect = CGRectMake(0, topMargin, imageSize.width, imageSize.width);
+- (void)changeHorse:(id)sender
+{
+    [self getBannerImages];
+}
+
+- (void)getBannerImages
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getMetBeckoning" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:nil requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            self.dataItemArray=[[NSMutableArray alloc]initWithArray:[[response resultJSON]objectForKey:@"data"]];
+            [self.tableView reloadData];
+        }
     }
-    
-    CGImageRef imageRef = image.CGImage;
-    //截取中间区域矩形图片
-    CGImageRef imageRefRect = CGImageCreateWithImageInRect(imageRef, rect);
-    
-    UIImage *tmp = [[UIImage alloc] initWithCGImage:imageRefRect];
-    CGImageRelease(imageRefRect);
-    
-    UIGraphicsBeginImageContext(size);
-    CGRect rectDraw = CGRectMake(0, 0, size.width, size.height);
-    [tmp drawInRect:rectDraw];
-    // 从当前context中创建一个改变大小后的图片
-    tmp = UIGraphicsGetImageFromCurrentImageContext();
-    
-    // 使当前的context出堆栈
-    UIGraphicsEndImageContext();
-    
-    return tmp;
+}
+
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
+{
+    if(reqCode==500){
+        UIImageView *imageView=(UIImageView*)sender;
+        if(imageView){
+            UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
+            if(image){
+                [imageView setImage:image];
+                //添加放大事件
+                [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zoomImage:)]];
+            }
+        }
+    }
+}
+
+//放大
+- (void)zoomImage:(UITapGestureRecognizer*)sender
+{
+    UIImageView *imageV=(UIImageView*)[sender view];
+    if(imageV.image){
+        [SJAvatarBrowser showImage:imageV];
+    }
 }
 
 @end

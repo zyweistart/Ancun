@@ -27,10 +27,10 @@
     if(self){
         [self cTitle:@"发现"];
         [self buildTableViewWithView:self.view];
-        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"img_boy",IMAGED,@"遇见心动",TITLED,@"我的心声你懂吗", DESCRIPTIOND,nil]];
-        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"img_boy",IMAGED,@"心情诊断室",TITLED,@"我的心声说给你听", DESCRIPTIOND,nil]];
+        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"icon-xd",IMAGED,@"遇见心动",TITLED,@"我的心声你懂吗", DESCRIPTIOND,nil]];
+        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"icon-xqzds",IMAGED,@"心情诊断室",TITLED,@"我的心声说给你听", DESCRIPTIOND,nil]];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"img_boy",IMAGED,@"附近心情",TITLED,@"周围他/她们心情如何", DESCRIPTIOND,nil]];
-        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"img_boy",IMAGED,@"本周热门",TITLED,@"我关注的最新动态", DESCRIPTIOND,nil]];
+        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"icon-hot",IMAGED,@"本周热门",TITLED,@"我关注的最新动态", DESCRIPTIOND,nil]];
         
         NSMutableArray *dataArray1 = [[NSMutableArray alloc]init];
         NSDictionary *bannerDic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"http://pic05.babytreeimg.com/foto3/photos/2014/0124/88/2/4170109a13aca59db86761_b.png", IMAGEURL, nil];
@@ -40,14 +40,16 @@
         bannerDic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"http://pic05.babytreeimg.com/foto3/photos/2014/0124/88/2/4170109a13aca59db86761_b.png", IMAGEURL, nil];
         [dataArray1 addObject:bannerDic1];
         
-        HMBannerView *bannerView = [[HMBannerView alloc] initWithFrame:CGRectMake1(0, 200, 320, 100) scrollDirection:ScrollDirectionLandscape images:dataArray1];
-        [bannerView setRollingDelayTime:2.0];
-        [bannerView setDelegate:self];
-        [bannerView setSquare:0];
-        [bannerView setPageControlStyle:PageStyle_Left];
+        self.bannerView = [[HMBannerView alloc] initWithFrame:CGRectMake1(0, 200, 320, 100) scrollDirection:ScrollDirectionLandscape images:dataArray1];
+        [self.bannerView setRollingDelayTime:2.0];
+        [self.bannerView setDelegate:self];
+        [self.bannerView setSquare:0];
+        [self.bannerView setPageControlStyle:PageStyle_Left];
 //        [bannerView showClose:YES];
-        [bannerView startDownloadImage];
-        [self.tableView setTableHeaderView:bannerView];
+        [self.bannerView startDownloadImage];
+        [self.tableView setTableHeaderView:self.bannerView];
+        
+        [self getBannerImages];
     }
     return self;
 }
@@ -105,6 +107,39 @@
 - (void)bannerView:(HMBannerView *)bannerView didSelectImageView:(NSInteger)index withData:(NSDictionary *)bannerData
 {
     NSLog(@"%@",bannerData);
+}
+
+- (void)getBannerImages
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"banner" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:nil requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            NSMutableArray *bannerArray = [[NSMutableArray alloc]init];
+            NSString *url1=[[response resultJSON]objectForKey:@"url1"];
+            if(url1){
+                [bannerArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:url1, IMAGEURL, nil]];
+            }
+            NSString *url2=[[response resultJSON]objectForKey:@"url2"];
+            if(url2){
+                [bannerArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:url2, IMAGEURL, nil]];
+            }
+            NSString *url3=[[response resultJSON]objectForKey:@"url3"];
+            if(url3){
+                [bannerArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:url3, IMAGEURL, nil]];
+            }
+            [self.bannerView setImagesArray:bannerArray];
+        }
+    }
 }
 
 @end

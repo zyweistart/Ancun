@@ -8,12 +8,9 @@
 
 #import "BaseEGOTableViewPullRefreshViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "HttpDownload.h"
-#import "CLabel.h"
-#import "PlayerButton.h"
-#import "CLabel.h"
 #import "PlayerVoiceButton.h"
 #import "MessageViewFrame.h"
+#import "PlayerButton.h"
 
 @protocol CommentDelegate
 
@@ -22,14 +19,13 @@
 
 @end
 
-@interface CommentViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,HttpDownloadDelegate>
+@interface CommentViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate>
 
 @property (strong,nonatomic)PlayerButton *bPlayer;
 @property (strong,nonatomic)PlayerVoiceButton *player;
 @property (strong,nonatomic)CLabel *lblCount;
 @property (strong,nonatomic)MessageViewFrame *headContentView;
 @property (strong,nonatomic)AVAudioPlayer *audioPlayer;
-@property (strong,nonatomic)HttpDownload *httpDownload;
 
 @property (strong,nonatomic) NSObject<CommentDelegate> *delegate;
 

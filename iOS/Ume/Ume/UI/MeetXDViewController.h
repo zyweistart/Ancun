@@ -10,4 +10,6 @@
 
 @interface MeetXDViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (strong,nonatomic)NSMutableArray *dataItemArray;
+
 @end

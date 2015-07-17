@@ -275,12 +275,25 @@
     }
 }
 
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
+{
+    if(reqCode==500){
+        UIImageView *imageView=(UIImageView*)sender;
+        if(imageView){
+            UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
+            if(image){
+                [imageView setImage:image];
+            }
+        }
+    }
+}
+
 - (void)randomImage
 {
     int r=randomIndex%[randomBackgroundImage count];
     NSDictionary *data=[randomBackgroundImage objectAtIndex:r];
     NSString *url=[data objectForKey:@"url"];
-    [httpDownload AsynchronousDownloadImageWithUrl:url ShowImageView:mBackgroundImage];
+    [self.hDownload AsynchronousDownloadWithUrl:url RequestCode:500 Object:mBackgroundImage];
     randomIndex++;
 }
 

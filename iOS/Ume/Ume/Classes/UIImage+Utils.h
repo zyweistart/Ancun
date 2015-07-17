@@ -13,5 +13,6 @@
 - (UIImage *)scaleImagetoScale:(float)scaleSize;
 - (UIImage *)imageByScalingToMaxSize;
 - (UIImage *)imageByScalingAndCroppingForSourceImageTargetSize:(CGSize)targetSize;
+- (UIImage *)cutCenterImageSize:(CGSize)size;
 
 @end

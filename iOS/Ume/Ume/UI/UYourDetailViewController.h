@@ -8,12 +8,9 @@
 
 #import "BaseEGOTableViewPullRefreshViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "HttpDownload.h"
-#import "CLabel.h"
-#import "PlayerButton.h"
 #import "CommentViewController.h"
 
-@interface UYourDetailViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,HttpDownloadDelegate,CommentDelegate,UIAlertViewDelegate>
+@interface UYourDetailViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate,CommentDelegate,UIAlertViewDelegate>
 
 - (id)initWithData:(NSDictionary*)data;
 

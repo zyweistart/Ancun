@@ -20,7 +20,6 @@
 @implementation MainViewController{
     UIView *bgView;
     LabelScreening *mButton1,*mButton2,*mButton3,*mButton4;
-    HttpDownload *httpDownload;
     UIButton *currentPlayerButton;
     NSInteger currentType;
 }
@@ -31,8 +30,7 @@
         [self cTitle:@"懂你"];
         self.isFirstRefresh=YES;
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-        httpDownload=[[HttpDownload alloc]init];
-        [httpDownload setDelegate:self];
+        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
         //筛选
         UIButton *bScreening = [[UIButton alloc]init];
         [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
@@ -150,13 +148,13 @@
         NSString *commentCount=[Common getString:[data objectForKey:@"commentCount"] DefaultValue:@"0"];
         [cell setData:data];
         if(![@"" isEqualToString:headUrl]){
-            [httpDownload AsynchronousDownloadImageWithUrl:headUrl ShowImageView:cell.meHeader];
+            [self.hDownload AsynchronousDownloadWithUrl:headUrl RequestCode:500 Object:cell.meHeader];
         }
         [cell.lblName setText:name];
         [cell.lblTime setText:time];
         [cell setFelationshipStat:2];
         if([@"" isEqualToString:bestDwHeadUrl]){
-            [httpDownload AsynchronousDownloadImageWithUrl:bestDwHeadUrl ShowImageView:cell.youHeader];
+            [self.hDownload AsynchronousDownloadWithUrl:bestDwHeadUrl RequestCode:500 Object:cell.youHeader];
         }
         NSString *pstatus=[data objectForKey:@"pstatus"];
         if([@"1" isEqualToString:pstatus]){
@@ -170,7 +168,7 @@
             [cell.bPlayer.imageView stopAnimating];
         }
         [cell.bDM setTitle:[NSString stringWithFormat:@"%@懂我",commentCount] forState:UIControlStateNormal];
-        [httpDownload AsynchronousDownloadImageWithUrl:backgroupUrl ShowImageView:cell.mBackground];
+        [self.hDownload AsynchronousDownloadWithUrl:backgroupUrl RequestCode:500 Object:cell.mBackground];
         [cell.lblContent setText:content];
         [cell.lblContent sizeToFit];
         cell.bPlayer.tag = row;
@@ -220,21 +218,31 @@
     [item setObject:@"1" forKey:@"pstatus"];
     [currentPlayerButton.imageView startAnimating];
     NSString *urlStr = [item objectForKey:@"recordUrl"];
-    [httpDownload AsynchronousDownloadWithUrl:urlStr RequestCode:500];
+    [self.hDownload AsynchronousDownloadWithUrl:urlStr RequestCode:501 Object:nil];
 }
 
-- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
 {
-    //播放本地音乐
-    [self stopAudioPlayer];
-    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    NSURL *fileURL = [NSURL fileURLWithPath:path];
-    self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
-    [self.audioPlayer setDelegate:self];
-    [self.audioPlayer setVolume:1.0];
-    if([self.audioPlayer prepareToPlay]){
-        [self.audioPlayer play];
+    if(reqCode==501){
+        //播放本地音乐
+        [self stopAudioPlayer];
+        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
+        self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
+        [self.audioPlayer setDelegate:self];
+        [self.audioPlayer setVolume:1.0];
+        if([self.audioPlayer prepareToPlay]){
+            [self.audioPlayer play];
+        }
+    }else if(reqCode==500){
+        UIImageView *imageView=(UIImageView*)sender;
+        if(imageView){
+            UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
+            if(image){
+                [imageView setImage:image];
+            }
+        }
     }
 }
 
