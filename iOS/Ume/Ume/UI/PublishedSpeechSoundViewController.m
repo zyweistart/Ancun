@@ -146,12 +146,17 @@
 
 - (void)goPublish:(id)sender
 {
-    NSLog(@"%@",mBackgroundImage.image);
-    NSLog(@"%@",backgroundID);
-    NSLog(@"内容:%@",[textContent text]);
-    NSLog(@"保存到：%d",saveTo.isSelected);
-    NSLog(@"@某人：%@",atFriendsArray);
-    NSLog(@"录音地址:%@",mRecordingPlayerView.docRecordedFilePath);
+//    NSLog(@"%@",mBackgroundImage.image);
+//    NSLog(@"%@",backgroundID);
+//    NSLog(@"内容:%@",[textContent text]);
+//    NSLog(@"保存到：%d",saveTo.isSelected);
+//    NSLog(@"@某人：%@",atFriendsArray);
+//    NSLog(@"录音地址:%@",mRecordingPlayerView.docRecordedFilePath);
+    if(mRecordingPlayerView.docRecordedFilePath){
+        NSData *audioData = [NSData dataWithContentsOfFile:mRecordingPlayerView.docRecordedFilePath];
+        
+        NSLog(@"%@",audioData);
+    }
 }
 
 - (void)saveTob:(id)sender
