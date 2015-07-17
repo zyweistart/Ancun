@@ -41,7 +41,6 @@
 		C95F64481B2AAB9E00D27452 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C95F64471B2AAB9E00D27452 /* SJAvatarBrowser.m */; };
 		C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */; };
 		C96840551B282A69001D3952 /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C96840521B282A69001D3952 /* UIImageButton.m */; };
-		C96840561B282A69001D3952 /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96840541B282A69001D3952 /* UITableGridViewCell.m */; };
 		C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5981B02F5120045A353 /* BaseTableViewController.m */; };
 		C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59A1B02F5120045A353 /* BaseViewController.m */; };
 		C970F5D01B02F5120045A353 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59C1B02F5120045A353 /* Common.m */; };
@@ -226,8 +225,6 @@
 		C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarViewController.m; sourceTree = "<group>"; };
 		C96840511B282A69001D3952 /* UIImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageButton.h; sourceTree = "<group>"; };
 		C96840521B282A69001D3952 /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageButton.m; sourceTree = "<group>"; };
-		C96840531B282A69001D3952 /* UITableGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableGridViewCell.h; sourceTree = "<group>"; };
-		C96840541B282A69001D3952 /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableGridViewCell.m; sourceTree = "<group>"; };
 		C970F5971B02F5120045A353 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C970F5981B02F5120045A353 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C970F5991B02F5120045A353 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -618,8 +615,6 @@
 				C9C17C4F1B4525610026B189 /* ReplyMDCell.m */,
 				C96840511B282A69001D3952 /* UIImageButton.h */,
 				C96840521B282A69001D3952 /* UIImageButton.m */,
-				C96840531B282A69001D3952 /* UITableGridViewCell.h */,
-				C96840541B282A69001D3952 /* UITableGridViewCell.m */,
 				C9A768DF1B4FB49D00DB9ABA /* CommentCell.h */,
 				C9A768E01B4FB49D00DB9ABA /* CommentCell.m */,
 			);
@@ -1241,7 +1236,6 @@
 				C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */,
 				C981F64C1B17076200FA112C /* NSData+AES256.m in Sources */,
 				C9909F9C1B1E9C7F00A84594 /* MessagePLViewController.m in Sources */,
-				C96840561B282A69001D3952 /* UITableGridViewCell.m in Sources */,
 				C970F5DB1B02F5120045A353 /* ATMTextLayer.m in Sources */,
 				C970F5D31B02F5120045A353 /* Response.m in Sources */,
 				C91217181B02ED7C00D9C57B /* main.m in Sources */,

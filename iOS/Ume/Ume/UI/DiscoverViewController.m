@@ -83,7 +83,8 @@
 {
     NSInteger row=[indexPath row];
     if(row==0){
-        [self.navigationController pushViewController:[[MeetXDViewController alloc]init] animated:YES];
+        UINavigationController *mMeetXDViewController=[[UINavigationController alloc]initWithRootViewController:[[MeetXDViewController alloc]init]];
+        [self presentViewController:mMeetXDViewController animated:YES completion:nil];
     }else if(row==2){
         [self.navigationController pushViewController:[[NearbyViewController alloc]init] animated:YES];
     }

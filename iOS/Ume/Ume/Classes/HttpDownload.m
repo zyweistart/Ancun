@@ -33,6 +33,9 @@
 
 - (void)AsynchronousDownloadWithUrl:(NSString *)url RequestCode:(NSInteger)reqCode Object:(id)sender
 {
+    if(url==nil){
+        return;
+    }
     //生成唯一文件夹名
     NSString *fName=[NSString stringWithFormat:@"%@",[url md5]];
     NSString *path = [docDir stringByAppendingPathComponent:fName];

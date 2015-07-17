@@ -7,61 +7,88 @@
 //
 
 #import "MeetXDViewController.h"
-#import "UITableGridViewCell.h"
 #import "SJAvatarBrowser.h"
 #import "UIImage+Utils.h"
 
-#define kImageWidth  CGWidth(100) //UITableViewCell里面图片的宽度
-#define kImageHeight  CGHeight(150) //UITableViewCell里面图片的高度
+#define kImageWidth  CGWidth(106) //UITableViewCell里面图片的宽度
+#define kImageHeight  CGHeight(106) //UITableViewCell里面图片的高度
+
 @interface MeetXDViewController ()
 
-@property(nonatomic,strong)UIImage *image;
 @property(nonatomic,strong)UITableView *tableView;
 
 @end
 
 @implementation MeetXDViewController
 
-- (void)viewDidLoad
+- (id)init
 {
-    [super viewDidLoad];
-    
-    [self cTitle:@"遇见心动"];
-    //筛选
-    UIButton *bPublished = [[UIButton alloc]init];
-    [bPublished setFrame:CGRectMake1(0, 0, 80, 30)];
-    [bPublished setTitle:@"发布形象" forState:UIControlStateNormal];
-    [bPublished.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [bPublished setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [bPublished addTarget:self action:@selector(goPublished:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-                                            initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                            target:nil action:nil];
-    negativeSpacerRight.width = -10;
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublished], nil];
-    
-    self.image = [[UIImage imageNamed:@"personalbg"] cutCenterImageSize:CGSizeMake(kImageWidth, kImageHeight)];
-    
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
-    [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-    [self.view addSubview:_tableView];
-    self.tableView.dataSource = self;
-    self.tableView.separatorColor = [UIColor clearColor];
-    self.tableView.delegate = self;
-    self.tableView.backgroundColor = [UIColor clearColor];
-    
-    UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 115)];
-    [self.tableView setTableFooterView:bottomView];
-    CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 60) Text:@"摇一摇寻觅心动，点图像，唱一首歌或说一句话表达此时此刻心情吧！她会是你初见心动的那位吗？"];
-    [lbl setNumberOfLines:0];
-    [bottomView addSubview:lbl];
-    CButton *button=[[CButton alloc]initWithFrame:CGRectMake1(10, 70, 300, 40) Name:@"摇一摇，换一批" Type:1];
-    [button addTarget:self action:@selector(changeHorse:) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview:button];
-    
-    self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
-    
-    [self getBannerImages];
+    self=[super init];
+    if(self){
+        [self cTitle:@"遇见心动"];
+        //关闭
+        UIButton *bClose = [[UIButton alloc]init];
+        [bClose setFrame:CGRectMake1(5, 20, 30, 30)];
+        [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateHighlighted];
+        [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *negativeSpacerLeft = [[UIBarButtonItem alloc]
+                                               initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                               target:nil action:nil];
+        negativeSpacerLeft.width = -10;
+        self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacerLeft, [[UIBarButtonItem alloc] initWithCustomView:bClose], nil];
+        //筛选
+        UIButton *bPublished = [[UIButton alloc]init];
+        [bPublished setFrame:CGRectMake1(0, 0, 80, 30)];
+        [bPublished setTitle:@"发布形象" forState:UIControlStateNormal];
+        [bPublished.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bPublished setTitleColor:COLOR2552160 forState:UIControlStateNormal];
+        [bPublished addTarget:self action:@selector(goPublished:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -10;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublished], nil];
+        
+        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.view addSubview:_tableView];
+        self.tableView.dataSource = self;
+        self.tableView.separatorColor = [UIColor clearColor];
+        self.tableView.delegate = self;
+        self.tableView.backgroundColor = [UIColor clearColor];
+        
+        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 140)];
+        [self.tableView setTableFooterView:bottomView];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 20) Text:@"她会是你心动的那位吗？"];
+        [lbl setTextColor: DEFAULTITLECOLORRGB(209, 65, 173)];
+        [lbl setFont:[UIFont systemFontOfSize:15]];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [bottomView addSubview:lbl];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 20) Text:@"点头像，唱首歌或说句话，去表达你遇见她的心情吧!"];
+        [lbl setTextColor:DEFAULTITLECOLOR(150)];
+        [lbl setFont:[UIFont systemFontOfSize:15]];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [bottomView addSubview:lbl];
+        UIImageView *icon=[[UIImageView alloc]initWithFrame:CGRectMake1(135, 70, 50, 50)];
+        [icon setImage:[UIImage imageNamed:@"icon-xqzds"]];
+        [bottomView addSubview:icon];
+        //底部
+        CGFloat height=40;
+        //摇一摇，换一批
+        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(height+54), CGWidth(320), CGHeight(height))];
+        [button setTitle:@"摇一摇，换一批" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [button setTitleColor:DEFAULTITLECOLOR(50) forState:UIControlStateNormal];
+        [button setBackgroundColor:COLOR2552160];
+        [button addTarget:self action:@selector(changeHorse:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:button];
+        
+        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
+        
+        [self getBannerImages];
+    }
+    return self;
 }
 
 //计算总的行数
@@ -76,12 +103,16 @@
     return [self getTotalRow];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return kImageHeight;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"Cell";
-    UITableGridViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     NSInteger row=indexPath.row;
     cell.selectedBackgroundView = [[UIView alloc] init];
@@ -96,19 +127,13 @@
     for (int i=0; i<c; i++) {
         NSInteger index=row*3+i;
         NSDictionary *data=[self.dataItemArray objectAtIndex:index];
-        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kImageWidth, kImageHeight)];
-        [image setCenter:CGPointMake((1 + i) * 5 + kImageWidth *( 0.5 + i) , 5 + kImageHeight * 0.5)];
-        [image setBackgroundColor:[UIColor redColor]];
+        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(kImageWidth*i+1*i, 0, kImageWidth, kImageHeight)];
         [image setUserInteractionEnabled:YES];
         NSString *url=[data objectForKey:@"url"];
         [self.hDownload AsynchronousDownloadWithUrl:url RequestCode:500 Object:image];
         [cell addSubview:image];
     }
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return kImageHeight + 5;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -142,7 +167,11 @@
 {
     if([response successFlag]){
         if(reqCode==500){
-            self.dataItemArray=[[NSMutableArray alloc]initWithArray:[[response resultJSON]objectForKey:@"data"]];
+            NSArray *array=[[response resultJSON]objectForKey:@"data"];
+            self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
+            
+            [self.dataItemArray addObjectsFromArray:array];
+            [self.dataItemArray addObjectsFromArray:array];
             [self.tableView reloadData];
         }
     }
@@ -155,7 +184,7 @@
         if(imageView){
             UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
             if(image){
-                [imageView setImage:image];
+                [imageView setImage:[image cutCenterImageSize:CGSizeMake(kImageWidth, kImageHeight)]];
                 //添加放大事件
                 [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zoomImage:)]];
             }
