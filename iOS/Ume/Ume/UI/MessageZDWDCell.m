@@ -16,11 +16,7 @@
         UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
         [contentView setUserInteractionEnabled:YES];
         [self addSubview:contentView];
-        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
-        self.meHeader.layer.masksToBounds=YES;
-        self.meHeader.layer.borderWidth=1;
-        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        self.meHeader=[[ImageViewHeader alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
         [contentView addSubview:self.meHeader];
         self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 90, 20) Text:@""];
         [self.lblName setFont:[UIFont systemFontOfSize:18]];
@@ -70,7 +66,6 @@
         [self.lblContent sizeToFit];
         [contentView addSubview:self.lblContent];
         
-        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"天使之城"];
         [self.lblTime setText:@"2015-04-10 15:24"];
         

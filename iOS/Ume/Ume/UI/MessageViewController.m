@@ -26,7 +26,7 @@
 @end
 
 @implementation MessageViewController{
-    UIImageView *mMessageHead;
+    ImageViewHeader *mMessageHead;
     CLabel *lblMessageName,*lblMessageContent,*lblMessageTime;
 }
 
@@ -60,12 +60,8 @@
         [topLine setBackgroundColor:DEFAUL3COLOR];
         [bottomView addSubview:topLine];
         //头像
-        mMessageHead=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+        mMessageHead=[[ImageViewHeader alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
         [mMessageHead setImage:[UIImage imageNamed:@"img_boy"]];
-        mMessageHead.layer.cornerRadius=mMessageHead.bounds.size.width/2;
-        mMessageHead.layer.masksToBounds=YES;
-        mMessageHead.layer.borderWidth=1;
-        mMessageHead.layer.borderColor=DEFAULTITLECOLOR(221).CGColor;
         [bottomView addSubview:mMessageHead];
         //姓名
         lblMessageName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 5, 80, 25) Text:@"小秘书"];

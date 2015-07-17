@@ -53,7 +53,6 @@
         
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
-        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];
         [self.lblValue setText:@"开心70%"];

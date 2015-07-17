@@ -13,7 +13,7 @@
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblContent;
-@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)ImageViewHeader *meHeader;
 @property (strong,nonatomic)UIImageView *mFelationship;
 @property (strong,nonatomic)ImageViewGesture *ivImage;
 @property (strong,nonatomic)PlayerVoiceButton *player;
