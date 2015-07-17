@@ -10,6 +10,9 @@
 static CGRect oldframe;
 @implementation SJAvatarBrowser
 +(void)showImage:(UIImageView *)avatarImageView{
+    if(avatarImageView.image==nil){
+        return;
+    }
     UIImage *image=avatarImageView.image;
     UIWindow *window=[UIApplication sharedApplication].keyWindow;
     UIView *backgroundView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];

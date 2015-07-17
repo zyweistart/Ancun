@@ -9,10 +9,6 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetPwdViewController.h"
-#import "CLabel.h"
-#import "ImageTextField.h"
-#import "CButton.h"
-#import "NSString+Utils.h"
 
 @interface LoginViewController ()
 

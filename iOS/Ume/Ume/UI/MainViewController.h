@@ -7,7 +7,6 @@
 //
 
 #import "BaseEGOTableViewPullRefreshViewController.h"
-#import "PlayerButton.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface MainViewController : BaseEGOTableViewPullRefreshViewController<AVAudioPlayerDelegate>

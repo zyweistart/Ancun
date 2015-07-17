@@ -16,7 +16,6 @@
 #import "MessageListViewController.h"
 #import "LoginViewController.h"
 #import "MessageCell.h"
-#import "CLabel.h"
 
 #define DISNAME @"DISNAME"
 #define DISVALUE @"DISVALUE"
