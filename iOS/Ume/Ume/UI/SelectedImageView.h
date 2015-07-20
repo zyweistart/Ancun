@@ -11,6 +11,7 @@
 
 @interface SelectedImageView : UIView<VPImageCropperDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
+@property (strong,nonatomic) UIImageView *showImageView;
 @property (strong,nonatomic) UIViewController *currentController;
 
 - (void)clear;

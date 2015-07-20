@@ -49,6 +49,9 @@
     }else if(type==6){
         [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORA(240,0.8)] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLOR(255)] forState:UIControlStateHighlighted];
+    }else if(type==7){
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORRGB(254, 112, 26)] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORRGB(238, 190, 161)] forState:UIControlStateHighlighted];
     }else{
         [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateHighlighted];

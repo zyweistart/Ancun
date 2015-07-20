@@ -25,7 +25,7 @@
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"清除缓存", nil]];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 60)];
-        CButton *buttonLogout=[[CButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"退出当前账号" Type:1];
+        CButton *buttonLogout=[[CButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"退出当前账号" Type:7];
         [buttonLogout addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:buttonLogout];
         [self.tableView setTableFooterView:bottomView];

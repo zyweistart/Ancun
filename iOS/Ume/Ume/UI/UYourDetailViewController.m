@@ -181,6 +181,7 @@
         
         CButton *bSubmit=[[CButton alloc]initWithFrame:CGRectMake1(260, 3, 50, 29) Name:@"提交" Type:2];
         [bSubmit.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bSubmit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
         [commentFrame addSubview:bSubmit];
         
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(10, 35, 300, 0.5)];
@@ -407,6 +408,12 @@
 {
     //重置评论信息并显示
     [bgFrame setHidden:NO];
+}
+
+- (void)submit:(id)sender
+{
+    NSLog(@"文件:%@",mRecordingPlayerView.docRecordedFilePath);
+    NSLog(@"图片:%@",mSelectedImageView.showImageView.image);
 }
 
 @end

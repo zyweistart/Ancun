@@ -19,7 +19,6 @@
     UIButton *mCameraImage;
     UIView *photoFrame;
     UIView *photoShowFrame;
-    UIImageView *showImageView;
     UIButton *bClose;
 }
 
@@ -61,8 +60,8 @@
         [lblText setTextAlignment:NSTextAlignmentCenter];
         [photoFrame addSubview:lblText];
         
-        showImageView=[[UIImageView alloc]initWithFrame:CGRectMake1(85, 20, 130, 130)];
-        [photoShowFrame addSubview:showImageView];
+        self.showImageView=[[UIImageView alloc]initWithFrame:CGRectMake1(85, 20, 130, 130)];
+        [photoShowFrame addSubview:self.showImageView];
         bClose=[[UIButton alloc]initWithFrame:CGRectMake1(195, 0, 40, 40)];
         [bClose setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
         [bClose addTarget:self action:@selector(goClose:) forControlEvents:UIControlEventTouchUpInside];
@@ -76,6 +75,7 @@
 
 - (void)goClose:(id)sender
 {
+    [self.showImageView setImage:nil];
     [photoFrame setHidden:NO];
     [photoShowFrame setHidden:YES];
 }
@@ -131,7 +131,7 @@
 
 #pragma mark VPImageCropperDelegate
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
-    [showImageView setImage:editedImage];
+    [self.showImageView setImage:editedImage];
     [photoFrame setHidden:YES];
     [photoShowFrame setHidden:NO];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
@@ -158,9 +158,7 @@
 
 - (void)clear
 {
-    [photoFrame setHidden:NO];
-    [photoShowFrame setHidden:YES];
-    [showImageView setImage:nil];
+    [self goClose:nil];
 }
 
 @end
