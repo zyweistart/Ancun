@@ -245,4 +245,17 @@
     [self stopAudioPlayer];
 }
 
+- (void)clear
+{
+    [self stopAVAudioRecorder];
+    [self stopAudioPlayer];
+    //文件删除成功
+    [self stopAnimating];
+    [startRecordingButton.imageView stopAnimating];
+    tempRecordedFilePath=nil;
+    self.docRecordedFilePath=nil;
+    recordingStep=1;
+    [self setStartRecordingButtonStatus];
+}
+
 @end

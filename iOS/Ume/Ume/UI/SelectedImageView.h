@@ -13,4 +13,6 @@
 
 @property (strong,nonatomic) UIViewController *currentController;
 
+- (void)clear;
+
 @end

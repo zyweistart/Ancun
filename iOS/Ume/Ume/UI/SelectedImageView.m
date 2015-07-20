@@ -156,4 +156,11 @@
     
 }
 
+- (void)clear
+{
+    [photoFrame setHidden:NO];
+    [photoShowFrame setHidden:YES];
+    [showImageView setImage:nil];
+}
+
 @end

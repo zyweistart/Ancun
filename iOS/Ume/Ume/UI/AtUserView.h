@@ -12,7 +12,8 @@
 
 @property (strong,nonatomic) UIButton *mAddatUser;
 
-
 - (void)setAtUserLayout:(NSArray*)datas;
+
+- (void)clear;
 
 @end

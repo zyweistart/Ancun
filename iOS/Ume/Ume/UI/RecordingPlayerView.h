@@ -16,4 +16,6 @@
 @property (strong,nonatomic)AVAudioRecorder *mAVAudioRecorder;
 @property (strong,nonatomic)NSString *docRecordedFilePath;
 
+- (void)clear;
+
 @end

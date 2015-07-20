@@ -396,6 +396,9 @@
 {
     //退出评论确定
     if(buttonIndex==1){
+        [mRecordingPlayerView clear];
+        [mSelectedImageView clear];
+        [mAtUserView clear];
         [bgFrame setHidden:YES];
     }
 }

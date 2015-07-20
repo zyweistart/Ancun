@@ -55,4 +55,9 @@
     }
 }
 
+- (void)clear
+{
+    [self removeFromSuperview];
+}
+
 @end
