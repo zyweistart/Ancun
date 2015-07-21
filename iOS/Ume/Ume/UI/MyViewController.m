@@ -62,45 +62,50 @@ static CGFloat kImageOriginHight = 220.f;
         CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 20, 60, 30) Text:@"当前心情"];
         [lbl setTextColor:[UIColor whiteColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
-        [self.expandZoomImageView addSubview:lbl];
+//        [self.expandZoomImageView addSubview:lbl];
         
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(210, 20, 100, 30)Text:@"杭州市 摩羯座"];
         [lbl setTextColor:[UIColor whiteColor]];
         [lbl setTextAlignment:NSTextAlignmentRight];
-        [self.expandZoomImageView addSubview:lbl];
+//        [self.expandZoomImageView addSubview:lbl];
         
-        personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-170, 320, 160)];
+        personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-200, 320, 200)];
         [self.expandZoomImageView addSubview:personalFrame];
-        //头像
-        bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 20, 80, 90)];
+        
+        bHead=[[UIView alloc]initWithFrame:CGRectMake1(0, 30, 320, 90)];
         [personalFrame addSubview:bHead];
-        iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
+        //头像
+        iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(130, 0, 60, 60)];
         iUserNameImage.layer.cornerRadius=iUserNameImage.bounds.size.width/2;
         iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setUserInteractionEnabled:YES];
         [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(editPortrait:)]];
         [bHead addSubview:iUserNameImage];
-        lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70,80,20)];
-        [lblUserName setFont:[UIFont systemFontOfSize:14]];
+        //昵称
+        lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(130, 60,60,30)];
+        [lblUserName setFont:[UIFont systemFontOfSize:18]];
         [lblUserName setTextColor:[UIColor whiteColor]];
         [lblUserName setTextAlignment:NSTextAlignmentCenter];
         [lblUserName setUserInteractionEnabled:YES];
         [bHead addSubview:lblUserName];
+        //播放
+        self.bPlayer=[[PlayerRecordButton alloc]initWithFrame:CGRectMake1(210, 60, 30, 30)];
+        [bHead addSubview:self.bPlayer];
         //鲜花
-        UIButton *bFlowers=[[UIButton alloc]initWithFrame:CGRectMake1(240, 35, 80, 30)];
+        UIButton *bFlowers=[[UIButton alloc]initWithFrame:CGRectMake1(240, 15, 80, 30)];
         [bFlowers setTitle:@"135朵鲜花" forState:UIControlStateNormal];
         [bFlowers setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
         [bFlowers setBackgroundColor:DEFAULTITLECOLORA(200,0.5)];
-        [bFlowers.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [bFlowers.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [bFlowers addTarget:self action:@selector(goFlowers:) forControlEvents:UIControlEventTouchUpInside];
-        [personalFrame addSubview:bFlowers];
+        [bHead addSubview:bFlowers];
         //底部功能
-        UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(40, 140, 240, 20)];
+        UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(40, 130, 240, 20)];
         [personalFrame addSubview:bottomFrame];
         UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 20)];
         [button setTitle:@"5关注" forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(goFollow:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:button];
@@ -110,7 +115,7 @@ static CGFloat kImageOriginHight = 220.f;
         [bottomFrame addSubview:line1];
         button=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 79, 20)];
         [button setTitle:@"25粉丝" forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(goFans:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:button];
@@ -120,10 +125,14 @@ static CGFloat kImageOriginHight = 220.f;
         [bottomFrame addSubview:line2];
         button=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 80, 20)];
         [button setTitle:@"63心动" forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(goMood:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:button];
+        
+        CButton *editPersonalInfo=[[CButton alloc]initWithFrame:CGRectMake1(0, 160, 320, 40) Name:@"编辑资料" Type:9];
+        [personalFrame addSubview:editPersonalInfo];
+        
         [self showUser];
     }
     return self;
@@ -142,7 +151,7 @@ static CGFloat kImageOriginHight = 220.f;
         f.origin.y = yOffset;
         f.size.height =  -yOffset;
         self.expandZoomImageView.frame = f;
-        [personalFrame setFrame:CGRectMake(0, f.size.height-CGHeight(170), CGWidth(320), CGHeight(160))];
+        [personalFrame setFrame:CGRectMake(0, f.size.height-CGHeight(200), CGWidth(320), CGHeight(200))];
     }
 }
 

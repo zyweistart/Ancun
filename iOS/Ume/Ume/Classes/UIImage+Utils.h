@@ -14,5 +14,6 @@
 - (UIImage *)imageByScalingToMaxSize;
 - (UIImage *)imageByScalingAndCroppingForSourceImageTargetSize:(CGSize)targetSize;
 - (UIImage *)cutCenterImageSize:(CGSize)size;
+- (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height;
 
 @end

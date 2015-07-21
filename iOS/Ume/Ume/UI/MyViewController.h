@@ -11,6 +11,7 @@
 
 @interface MyViewController : BaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,VPImageCropperDelegate>
 
+@property (strong,nonatomic) PlayerRecordButton *bPlayer;
 @property (strong, nonatomic) UIImageView *expandZoomImageView;
 
 @end

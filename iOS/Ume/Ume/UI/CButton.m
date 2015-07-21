@@ -61,6 +61,15 @@
         [self setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLOR(255)] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORA(240,0.8)] forState:UIControlStateHighlighted];
+    }else if(type==9){
+        self.layer.cornerRadius=0;
+        self.layer.shadowOffset = CGSizeMake(4,4);
+        [self.layer setShadowOpacity:0.8];
+        self.layer.shadowRadius = 4;
+        [self.layer setShadowColor:[UIColor blackColor].CGColor];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORA(255,0.2)] forState:UIControlStateNormal];
+        [self setBackgroundImage:[Common createImageWithColor:DEFAULTITLECOLORA(240,0.8)] forState:UIControlStateHighlighted];
     }else{
         [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         [self setBackgroundImage:[Common createImageWithColor:[UIColor clearColor]] forState:UIControlStateHighlighted];

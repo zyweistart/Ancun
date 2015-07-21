@@ -47,6 +47,7 @@
 		C96C84861B5E403400A59F3D /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84851B5E403400A59F3D /* AboutUsViewController.m */; };
 		C96C84891B5E410400A59F3D /* AccountBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84881B5E410400A59F3D /* AccountBindViewController.m */; };
 		C96C848C1B5E414600A59F3D /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C848B1B5E414600A59F3D /* ButtonCell.m */; };
+		C96C84901B5E4F4B00A59F3D /* PlayerRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C848F1B5E4F4B00A59F3D /* PlayerRecordButton.m */; };
 		C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5981B02F5120045A353 /* BaseTableViewController.m */; };
 		C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59A1B02F5120045A353 /* BaseViewController.m */; };
 		C970F5D01B02F5120045A353 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59C1B02F5120045A353 /* Common.m */; };
@@ -243,6 +244,8 @@
 		C96C84881B5E410400A59F3D /* AccountBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBindViewController.m; sourceTree = "<group>"; };
 		C96C848A1B5E414600A59F3D /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		C96C848B1B5E414600A59F3D /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
+		C96C848E1B5E4F4B00A59F3D /* PlayerRecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerRecordButton.h; sourceTree = "<group>"; };
+		C96C848F1B5E4F4B00A59F3D /* PlayerRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerRecordButton.m; sourceTree = "<group>"; };
 		C970F5971B02F5120045A353 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C970F5981B02F5120045A353 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C970F5991B02F5120045A353 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -895,6 +898,8 @@
 				C9F59A781B55F73E003591B8 /* LabelScreening.m */,
 				C9F59A7A1B562C7A003591B8 /* ImageViewHeader.h */,
 				C9F59A7B1B562C7A003591B8 /* ImageViewHeader.m */,
+				C96C848E1B5E4F4B00A59F3D /* PlayerRecordButton.h */,
+				C96C848F1B5E4F4B00A59F3D /* PlayerRecordButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1187,6 +1192,7 @@
 				C970F5DA1B02F5120045A353 /* ATMSoundFX.m in Sources */,
 				C9FB529E1B3BDB430005F85A /* NSString+DES.m in Sources */,
 				C92CBCF61B27D288003DA9DF /* MyFlowersViewController.m in Sources */,
+				C96C84901B5E4F4B00A59F3D /* PlayerRecordButton.m in Sources */,
 				C94997531B0475470023107F /* MainViewController.m in Sources */,
 				C970F5D71B02F5120045A353 /* ATMHudQueueItem.m in Sources */,
 				C9909F991B1E9C6F00A84594 /* MessageZGViewController.m in Sources */,

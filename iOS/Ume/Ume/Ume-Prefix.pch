@@ -22,6 +22,7 @@
 #import "CLabel.h"
 #import "CButton.h"
 #import "PlayerButton.h"
+#import "PlayerRecordButton.h"
 #import "ImageViewHeader.h"
 #import "ImageViewGesture.h"
 #import "PlayerVoiceButton.h"
