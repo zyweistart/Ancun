@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Ancun. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface MessageNoticeViewController : BaseViewController
+@interface MessageNoticeViewController : BaseTableViewController
 
 @end

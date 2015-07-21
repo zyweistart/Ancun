@@ -17,7 +17,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"登录";
+        [self cTitle:@"登录"];
     }
     return self;
 }

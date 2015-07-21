@@ -27,7 +27,7 @@
 {
     self=[super init];
     if(self){
-        self.title = @"遇见心动";
+        [self cTitle:@"遇见心动"];
         self.isFirstRefresh=NO;
         type=1;
         UIView *headerView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 200, 40)];

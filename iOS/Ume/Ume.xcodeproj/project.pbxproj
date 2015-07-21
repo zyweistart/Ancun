@@ -42,6 +42,7 @@
 		C95F64481B2AAB9E00D27452 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C95F64471B2AAB9E00D27452 /* SJAvatarBrowser.m */; };
 		C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */; };
 		C96840551B282A69001D3952 /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C96840521B282A69001D3952 /* UIImageButton.m */; };
+		C96C84801B5E319F00A59F3D /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C847F1B5E319F00A59F3D /* SwitchCell.m */; };
 		C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5981B02F5120045A353 /* BaseTableViewController.m */; };
 		C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59A1B02F5120045A353 /* BaseViewController.m */; };
 		C970F5D01B02F5120045A353 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59C1B02F5120045A353 /* Common.m */; };
@@ -228,6 +229,8 @@
 		C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarViewController.m; sourceTree = "<group>"; };
 		C96840511B282A69001D3952 /* UIImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageButton.h; sourceTree = "<group>"; };
 		C96840521B282A69001D3952 /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageButton.m; sourceTree = "<group>"; };
+		C96C847E1B5E319F00A59F3D /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		C96C847F1B5E319F00A59F3D /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		C970F5971B02F5120045A353 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C970F5981B02F5120045A353 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C970F5991B02F5120045A353 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -629,6 +632,8 @@
 				C96840521B282A69001D3952 /* UIImageButton.m */,
 				C9A768DF1B4FB49D00DB9ABA /* CommentCell.h */,
 				C9A768E01B4FB49D00DB9ABA /* CommentCell.m */,
+				C96C847E1B5E319F00A59F3D /* SwitchCell.h */,
+				C96C847F1B5E319F00A59F3D /* SwitchCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1255,6 +1260,7 @@
 				C91217181B02ED7C00D9C57B /* main.m in Sources */,
 				C9E1E6371B4E4D9C005988B7 /* RecordingPlayerView.m in Sources */,
 				C9909FAD1B1E9F1E00A84594 /* MyHeartbeatViewController.m in Sources */,
+				C96C84801B5E319F00A59F3D /* SwitchCell.m in Sources */,
 				C9DBE7231B183BD6002ECDE4 /* SDImageCache.m in Sources */,
 				C9ACE8CC1B0C69F200385809 /* ForgetPwdViewController.m in Sources */,
 				C970F5D61B02F5120045A353 /* ATMHud.m in Sources */,

@@ -85,13 +85,13 @@
 {
     [super viewDidAppear:animated];
     //自动登陆
-//    if([[User Instance]isAutoLogin]){
-//        [tfUserName.textField setText:[[User Instance]getUserName]];
-//        tUserName=[tfUserName.textField text];
-//        [tfPassword.textField setText:[[User Instance]getPassword]];
-//        tPassWord=[tfPassword.textField text];
-//        [self handleGetInit];
-//    }
+    if([[User Instance]isAutoLogin]){
+        [tfUserName.textField setText:[[User Instance]getUserName]];
+        tUserName=[tfUserName.textField text];
+        [tfPassword.textField setText:[[User Instance]getPassword]];
+        tPassWord=[tfPassword.textField text];
+        [self handleGetInit];
+    }
 }
 
 - (void)goRegister:(id)sender

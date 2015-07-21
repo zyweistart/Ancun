@@ -19,7 +19,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"我的鲜花墙";
+        [self cTitle:@"我的鲜花墙"];
         self.isFirstRefresh=NO;
         UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 20) Text:@"今天获得鲜花数23朵，总数1895朵"];

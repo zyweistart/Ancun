@@ -8,7 +8,8 @@
 
 #import "SettingViewController.h"
 #import "TabBarFrameViewController.h"
-#import "CButton.h"
+#import "SwitchCell.h"
+#import "MessageNoticeViewController.h"
 
 @interface SettingViewController ()
 
@@ -19,7 +20,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        self.title=@"设置";
+        [self cTitle:@"设置"];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"消息通知",@"使用应用锁",@"上传设置",@"账号绑定", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"检查新版本",@"关于懂我",@"用户反馈(或加官方群号:57182347)", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"清除缓存", nil]];
@@ -56,25 +57,48 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"SAMPLECell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-    }
     NSInteger section=[indexPath section];
     NSInteger row=[indexPath row];
     NSString *content=[[self.dataItemArray objectAtIndex:section]objectAtIndex:row];
-    [cell.textLabel setText:content];
-    if(section==1&&row==0){
-        //检查新版本
-        [cell.detailTextLabel setText:@"v1.2"];
-    }else if(section==2&&row==0){
-        //清除缓存
-        [cell.detailTextLabel setText:@"18.9M"];
+    if(section==0&&row==1){
+        static NSString *cellIdentifier = @"SWITCHCELL";
+        SwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[SwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        }
+        [cell.textLabel setText:content];
+        return cell;
     }else{
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        static NSString *cellIdentifier = @"SAMPLECell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        }
+        
+        [cell.textLabel setText:content];
+        if(section==1&&row==0){
+            //检查新版本
+            [cell.detailTextLabel setText:@"v1.2"];
+        }else if(section==2&&row==0){
+            //清除缓存
+            [cell.detailTextLabel setText:@"18.9M"];
+        }else{
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        }
+        return cell;
     }
-    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger section=[indexPath section];
+    NSInteger row=[indexPath row];
+    if(section==0){
+        if(row==0){
+            //消息通知
+            [self.navigationController pushViewController:[[MessageNoticeViewController alloc]init] animated:YES];
+        }
+    }
 }
 
 - (void)logout:(id)sender

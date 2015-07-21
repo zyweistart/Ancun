@@ -7,6 +7,7 @@
 //
 
 #import "MessageNoticeViewController.h"
+#import "SwitchCell.h"
 
 @interface MessageNoticeViewController ()
 
@@ -14,24 +15,46 @@
 
 @implementation MessageNoticeViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (id)init{
+    self=[super init];
+    if(self){
+        [self cTitle:@"消息通知"];
+        [self.dataItemArray addObject:@"最懂我的"];
+        [self.dataItemArray addObject:@"@我的"];
+        [self.dataItemArray addObject:@"赞过"];
+        [self.dataItemArray addObject:@"评论"];
+        [self.dataItemArray addObject:@"私信"];
+        [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
+    }
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.dataItemArray count];
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGHeight(45);
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row=[indexPath row];
+    static NSString *cellIdentifier = @"SWITCHCELL";
+    SwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell) {
+        cell = [[SwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    NSString *content=[self.dataItemArray objectAtIndex:row];
+    [cell.textLabel setText:content];
+    return cell;
+}
 
 @end
