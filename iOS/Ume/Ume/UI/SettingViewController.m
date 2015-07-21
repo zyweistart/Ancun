@@ -10,6 +10,9 @@
 #import "TabBarFrameViewController.h"
 #import "SwitchCell.h"
 #import "MessageNoticeViewController.h"
+#import "UploadSettingViewController.h"
+#import "AccountBindViewController.h"
+#import "AboutUsViewController.h"
 
 @interface SettingViewController ()
 
@@ -97,6 +100,23 @@
         if(row==0){
             //消息通知
             [self.navigationController pushViewController:[[MessageNoticeViewController alloc]init] animated:YES];
+        }else if(row==2){
+            //上传设置
+            [self.navigationController pushViewController:[[UploadSettingViewController alloc]init] animated:YES];
+        }else if(row==3){
+            //账号绑定
+            [self.navigationController pushViewController:[[AccountBindViewController alloc]init] animated:YES];
+        }
+    }else if(section==1){
+        if(row==1){
+            //关于我们
+            [self.navigationController pushViewController:[[AboutUsViewController alloc]init] animated:YES];
+        }
+    }else if(section==2){
+        if(row==0){
+            //清除缓存
+            UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:@"确定清除缓存?" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"清除缓存",nil];
+            [choiceSheet showInView:self.view];
         }
     }
 }
@@ -106,6 +126,13 @@
     [self.tabBarController setSelectedIndex:0];
     TabBarFrameViewController *mTabBarFrameViewController=(TabBarFrameViewController*)self.tabBarController;
     [mTabBarFrameViewController logout];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0){
+        //清除缓存
+    }
 }
 
 @end

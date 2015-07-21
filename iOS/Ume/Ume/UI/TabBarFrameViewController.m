@@ -41,7 +41,7 @@
     
     noLoginView=[[UIView alloc]initWithFrame:CGRectMake1(0, HEIGHT-66, 320, 66)];
     [noLoginView setBackgroundColor:DEFAULTITLECOLOR(50)];
-    [self.view addSubview:noLoginView];
+//    [self.view addSubview:noLoginView];
     CButton *cLogin=[[CButton alloc]initWithFrame:CGRectMake1(10, 13, 300, 40) Name:@"登录懂我，发现不一样的自己" Type:2];
     [cLogin addTarget:self action:@selector(goLogin:) forControlEvents:UIControlEventTouchUpInside];
     [noLoginView addSubview:cLogin];

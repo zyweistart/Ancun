@@ -43,6 +43,10 @@
 		C9637BEF1B058750005323E3 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9637BEE1B058750005323E3 /* BaseTabBarViewController.m */; };
 		C96840551B282A69001D3952 /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C96840521B282A69001D3952 /* UIImageButton.m */; };
 		C96C84801B5E319F00A59F3D /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C847F1B5E319F00A59F3D /* SwitchCell.m */; };
+		C96C84831B5E3FDD00A59F3D /* UploadSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84821B5E3FDD00A59F3D /* UploadSettingViewController.m */; };
+		C96C84861B5E403400A59F3D /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84851B5E403400A59F3D /* AboutUsViewController.m */; };
+		C96C84891B5E410400A59F3D /* AccountBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84881B5E410400A59F3D /* AccountBindViewController.m */; };
+		C96C848C1B5E414600A59F3D /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C848B1B5E414600A59F3D /* ButtonCell.m */; };
 		C970F5CE1B02F5120045A353 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F5981B02F5120045A353 /* BaseTableViewController.m */; };
 		C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59A1B02F5120045A353 /* BaseViewController.m */; };
 		C970F5D01B02F5120045A353 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C970F59C1B02F5120045A353 /* Common.m */; };
@@ -231,6 +235,14 @@
 		C96840521B282A69001D3952 /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageButton.m; sourceTree = "<group>"; };
 		C96C847E1B5E319F00A59F3D /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
 		C96C847F1B5E319F00A59F3D /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
+		C96C84811B5E3FDD00A59F3D /* UploadSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadSettingViewController.h; sourceTree = "<group>"; };
+		C96C84821B5E3FDD00A59F3D /* UploadSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadSettingViewController.m; sourceTree = "<group>"; };
+		C96C84841B5E403400A59F3D /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		C96C84851B5E403400A59F3D /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		C96C84871B5E410400A59F3D /* AccountBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBindViewController.h; sourceTree = "<group>"; };
+		C96C84881B5E410400A59F3D /* AccountBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBindViewController.m; sourceTree = "<group>"; };
+		C96C848A1B5E414600A59F3D /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
+		C96C848B1B5E414600A59F3D /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		C970F5971B02F5120045A353 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C970F5981B02F5120045A353 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C970F5991B02F5120045A353 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -566,8 +578,15 @@
 		C92A8AF31B5CD1CB003D3754 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
+				C96C848D1B5E449800A59F3D /* 手机绑定 */,
 				C92A8AF41B5CD2AD003D3754 /* MessageNoticeViewController.h */,
 				C92A8AF51B5CD2AD003D3754 /* MessageNoticeViewController.m */,
+				C96C84811B5E3FDD00A59F3D /* UploadSettingViewController.h */,
+				C96C84821B5E3FDD00A59F3D /* UploadSettingViewController.m */,
+				C96C84841B5E403400A59F3D /* AboutUsViewController.h */,
+				C96C84851B5E403400A59F3D /* AboutUsViewController.m */,
+				C96C84871B5E410400A59F3D /* AccountBindViewController.h */,
+				C96C84881B5E410400A59F3D /* AccountBindViewController.m */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -634,6 +653,8 @@
 				C9A768E01B4FB49D00DB9ABA /* CommentCell.m */,
 				C96C847E1B5E319F00A59F3D /* SwitchCell.h */,
 				C96C847F1B5E319F00A59F3D /* SwitchCell.m */,
+				C96C848A1B5E414600A59F3D /* ButtonCell.h */,
+				C96C848B1B5E414600A59F3D /* ButtonCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -665,6 +686,13 @@
 				C9FCF2281B4E8241005A1BCE /* ContactViewController.m */,
 			);
 			name = "公共";
+			sourceTree = "<group>";
+		};
+		C96C848D1B5E449800A59F3D /* 手机绑定 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "手机绑定";
 			sourceTree = "<group>";
 		};
 		C970F5961B02F5120045A353 /* Classes */ = {
@@ -1209,6 +1237,7 @@
 				C970F5DE1B02F5120045A353 /* MessageInterceptor.m in Sources */,
 				C981F6591B1717D100FA112C /* NSData+Base64.m in Sources */,
 				C9FE7E261B26D6190049AEC9 /* MessageZGCell.m in Sources */,
+				C96C84891B5E410400A59F3D /* AccountBindViewController.m in Sources */,
 				C970F5D51B02F5120045A353 /* Reachability.m in Sources */,
 				C95713721B4A2E72001F6B2A /* AudioPlayer.m in Sources */,
 				C9DBE7211B183BD6002ECDE4 /* NSData+GIF.m in Sources */,
@@ -1216,6 +1245,7 @@
 				C970F5CF1B02F5120045A353 /* BaseViewController.m in Sources */,
 				C9DBE7241B183BD6002ECDE4 /* SDWebImageDecoder.m in Sources */,
 				C981F65B1B1717D100FA112C /* NSString+Base64.m in Sources */,
+				C96C84831B5E3FDD00A59F3D /* UploadSettingViewController.m in Sources */,
 				C96840551B282A69001D3952 /* UIImageButton.m in Sources */,
 				C9909F931B1E9C3F00A84594 /* MessageZDWDViewController.m in Sources */,
 				C9519CBD1B4CC8D500E8FC61 /* WordsDetailViewController.m in Sources */,
@@ -1226,6 +1256,7 @@
 				C9AD44E01B2EABBC00338AEE /* UIImage+Utils.m in Sources */,
 				C92A8AF61B5CD2AD003D3754 /* MessageNoticeViewController.m in Sources */,
 				C95713731B4A2E72001F6B2A /* AudioStreamer.m in Sources */,
+				C96C848C1B5E414600A59F3D /* ButtonCell.m in Sources */,
 				C95F64441B2A7FFF00D27452 /* MyImagesCell.m in Sources */,
 				C9909FB31B1E9F4A00A84594 /* MyFansViewController.m in Sources */,
 				C9FE7E131B26B8730049AEC9 /* LoginMainViewController.m in Sources */,
@@ -1268,6 +1299,7 @@
 				C97524491B29383800DE0709 /* CustomAnnotation.m in Sources */,
 				C9FE7E2C1B26D64B0049AEC9 /* MessageDWXDCell.m in Sources */,
 				C9DBE7251B183BD6002ECDE4 /* SDWebImageDownloader.m in Sources */,
+				C96C84861B5E403400A59F3D /* AboutUsViewController.m in Sources */,
 				C9DBE7281B183BD6002ECDE4 /* UIButton+WebCache.m in Sources */,
 				C997A1D41B539D6B00EDB97F /* MessageViewFrame.m in Sources */,
 				C9DBE7271B183BD6002ECDE4 /* SDWebImagePrefetcher.m in Sources */,
