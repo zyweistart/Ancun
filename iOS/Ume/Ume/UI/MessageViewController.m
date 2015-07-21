@@ -35,17 +35,7 @@
         [self cTitle:@"消息"];
         [self buildTableViewWithView:self.view];
         //
-        UIButton *bScreening = [[UIButton alloc]init];
-        [bScreening setFrame:CGRectMake1(0, 0, 80, 30)];
-        [bScreening setTitle:@"我关注的" forState:UIControlStateNormal];
-        [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bScreening setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//        [bScreening addTarget:self action:@selector(goScreening) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                target:nil action:nil];
-        negativeSpacerRight.width = -10;
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bScreening], nil];
+        [self cNavigationRightItemType:2 Title:@"我关注的" action:nil];
         
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"最懂我的",DISNAME,@"0",DISVALUE, nil]];
         [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"对我心动的",DISNAME,@"0",DISVALUE, nil]];

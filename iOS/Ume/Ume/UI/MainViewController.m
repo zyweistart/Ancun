@@ -31,17 +31,7 @@
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
         self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
         //筛选
-        UIButton *bScreening = [[UIButton alloc]init];
-        [bScreening setFrame:CGRectMake1(0, 0, 30, 30)];
-        [bScreening setTitle:@"筛选" forState:UIControlStateNormal];
-        [bScreening.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bScreening setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [bScreening addTarget:self action:@selector(goScreening) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                target:nil action:nil];
-        negativeSpacerRight.width = -10;
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bScreening], nil];
+        [self cNavigationRightItemType:2 Title:@"筛选" action:@selector(goScreening)];
         
         bgView=[[UIView alloc]initWithFrame:self.view.bounds];
         [bgView setBackgroundColor:DEFAULTITLECOLORA(100,0.5)];

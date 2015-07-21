@@ -28,13 +28,8 @@
     self=[super init];
     if(self){
         [self cTitle:@"注册"];
-        UIButton *rButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rButton setFrame:CGRectMake1(0, 0, 30, 30)];
-        [rButton setTitle:@"完成" forState:UIControlStateNormal];
-        [rButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [rButton setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [rButton addTarget:self action:@selector(goDone:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:rButton];
+        //
+        [self cNavigationRightItemType:2 Title:@"完成" action:@selector(goDone:)];
         
         CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 40) Text:@"验证码已发送到"];
         [lbl setFont:[UIFont systemFontOfSize:16]];

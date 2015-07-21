@@ -35,20 +35,9 @@
     self=[super init];
     if(self){
         //
-        UIButton *bClose = [[UIButton alloc]init];
-        [bClose setFrame:CGRectMake1(0, 0, 30, 30)];
-        [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
-        [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateHighlighted];
-        [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bClose];
+        [self cNavigationRightItemType:3 Title:nil action:@selector(goBack:)];
         //
-        UIButton *bPublished = [[UIButton alloc]init];
-        [bPublished setFrame:CGRectMake1(0, 0, 50, 30)];
-        [bPublished setTitle:@"发布" forState:UIControlStateNormal];
-        [bPublished.titleLabel setFont:[UIFont systemFontOfSize:18]];
-        [bPublished setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [bPublished addTarget:self action:@selector(goPublish:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
+        [self cNavigationRightItemType:2 Title:@"发布" action:@selector(goPublish:)];
         
         mBackgroundImage=[[UIImageView alloc]initWithFrame:CGRectMake1(5, 5, 310, 250)];
         mBackgroundImage.layer.masksToBounds=YES;

@@ -33,13 +33,7 @@
         [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bClose];
         //
-        UIButton *bRegister = [UIButton buttonWithType:UIButtonTypeCustom];
-        [bRegister setFrame:CGRectMake1(0, 0, 30, 30)];
-        [bRegister setTitle:@"注册" forState:UIControlStateNormal];
-        [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bRegister setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bRegister];
+        [self cNavigationRightItemType:2 Title:@"注册" action:@selector(goRegister:)];
         //
         tfUserName=[[ImageTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Image:@"icon_phone" Placeholder:@"请输入账户"];
         [tfUserName.textField setDelegate:self];
@@ -50,13 +44,17 @@
         [tfPassword.textField setDelegate:self];
         [self.view addSubview:tfPassword];
         //
-        UIButton *bForgetPwd=[[UIButton alloc]initWithFrame:CGRectMake1(220, 110, 80, 30)];
-        [bForgetPwd setTitle:@"忘记密码?" forState:UIControlStateNormal];
-        [bForgetPwd setTitleColor:DEFAULTITLECOLOR(190) forState:UIControlStateNormal];
-        [bForgetPwd.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bForgetPwd addTarget:self action:@selector(goForgetPwd:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:bForgetPwd];
-        [self.view addSubview:bForgetPwd];
+        UILabel *lblForgetPwd=[[UILabel alloc]initWithFrame:CGRectMake1(220, 110, 80, 30)];
+        [lblForgetPwd setTextColor:DEFAULTITLECOLOR(190)];
+        [lblForgetPwd setFont:[UIFont systemFontOfSize:15]];
+        [lblForgetPwd setTextAlignment:NSTextAlignmentRight];
+        NSMutableAttributedString *content = [[NSMutableAttributedString alloc] initWithString:@"忘记密码?"];
+        NSRange contentRange = {0, [content length]};
+        [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
+        lblForgetPwd.attributedText = content;
+        [lblForgetPwd setUserInteractionEnabled:YES];
+        [lblForgetPwd addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goForgetPwd:)]];
+        [self.view addSubview:lblForgetPwd];
         //
         cLogin=[[CButton alloc]initWithFrame:CGRectMake1(20, 150, 280, 40) Name:@"登录" Type:4];
         [cLogin setTitleColor:DEFAULTITLECOLOR(120) forState:UIControlStateNormal];
@@ -87,13 +85,13 @@
 {
     [super viewDidAppear:animated];
     //自动登陆
-    if([[User Instance]isAutoLogin]){
-        [tfUserName.textField setText:[[User Instance]getUserName]];
-        tUserName=[tfUserName.textField text];
-        [tfPassword.textField setText:[[User Instance]getPassword]];
-        tPassWord=[tfPassword.textField text];
-        [self handleGetInit];
-    }
+//    if([[User Instance]isAutoLogin]){
+//        [tfUserName.textField setText:[[User Instance]getUserName]];
+//        tUserName=[tfUserName.textField text];
+//        [tfPassword.textField setText:[[User Instance]getPassword]];
+//        tPassWord=[tfPassword.textField text];
+//        [self handleGetInit];
+//    }
 }
 
 - (void)goRegister:(id)sender

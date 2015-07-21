@@ -18,5 +18,5 @@
 
 - (void)goBack:(id)sender;
 - (void)cTitle:(NSString*)title;
-
+- (UIButton*)cNavigationRightItemType:(NSInteger)type Title:(NSString*)title action:(SEL)action;
 @end

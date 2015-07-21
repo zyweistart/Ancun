@@ -26,29 +26,10 @@
     self=[super init];
     if(self){
         [self cTitle:@"遇见心动"];
-        //关闭
-        UIButton *bClose = [[UIButton alloc]init];
-        [bClose setFrame:CGRectMake1(5, 20, 30, 30)];
-        [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
-        [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateHighlighted];
-        [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *negativeSpacerLeft = [[UIBarButtonItem alloc]
-                                               initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                               target:nil action:nil];
-        negativeSpacerLeft.width = -10;
-        self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacerLeft, [[UIBarButtonItem alloc] initWithCustomView:bClose], nil];
-        //筛选
-        UIButton *bPublished = [[UIButton alloc]init];
-        [bPublished setFrame:CGRectMake1(0, 0, 80, 30)];
-        [bPublished setTitle:@"发布形象" forState:UIControlStateNormal];
-        [bPublished.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bPublished setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [bPublished addTarget:self action:@selector(goPublished:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                target:nil action:nil];
-        negativeSpacerRight.width = -10;
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublished], nil];
+        //
+        [self cNavigationRightItemType:3 Title:nil action:@selector(goBack:)];
+        //
+        [self cNavigationRightItemType:2 Title:@"发布形象" action:@selector(goPublished:)];
         
         self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -71,7 +52,7 @@
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [bottomView addSubview:lbl];
         UIImageView *icon=[[UIImageView alloc]initWithFrame:CGRectMake1(135, 70, 50, 50)];
-        [icon setImage:[UIImage imageNamed:@"icon-xqzds"]];
+        [icon setImage:[UIImage imageNamed:@"icon-yyy"]];
         [bottomView addSubview:icon];
         //底部
         CGFloat height=40;
@@ -184,7 +165,7 @@
         if(imageView){
             UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
             if(image){
-                [imageView setImage:[image cutCenterImageSize:CGSizeMake(kImageWidth, kImageHeight)]];
+                [imageView setImage:image];
                 //添加放大事件
                 [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zoomImage:)]];
             }

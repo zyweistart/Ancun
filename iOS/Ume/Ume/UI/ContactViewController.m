@@ -20,13 +20,7 @@
     if(self){
         [self cTitle:@"联系人"];
         //
-        UIButton *bPublished = [[UIButton alloc]init];
-        [bPublished setFrame:CGRectMake1(0, 0, 50, 30)];
-        [bPublished setTitle:@"确定" forState:UIControlStateNormal];
-        [bPublished.titleLabel setFont:[UIFont systemFontOfSize:18]];
-        [bPublished setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [bPublished addTarget:self action:@selector(goDone:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublished];
+        [self cNavigationRightItemType:2 Title:@"确定" action:@selector(goDone:)];
     }
     return self;
 }

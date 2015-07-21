@@ -8,10 +8,6 @@
 
 #import "ForgetPwdViewController.h"
 #import "CTextField.h"
-#import "CButton.h"
-
-#define  __SCREEN_WIDTH 320
-#define  __SCREEN_HEIGHT 290
 
 @interface ForgetPwdViewController ()
 
@@ -19,58 +15,25 @@
 
 @implementation ForgetPwdViewController{
     CTextField *tfUserName;
-    CTextField *tfVerifyCode;
-    CTextField *tfPassword;
-    CTextField *tfRePassword;
 }
 
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"忘记密码"];
-        UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-        [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [scrollFrame setContentSize:CGSizeMake1(__SCREEN_WIDTH, __SCREEN_HEIGHT)];
-        [self.view addSubview:scrollFrame];
+        [self cTitle:@"找回密码"];
         //
-        tfUserName=[[CTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Placeholder:@"请输入账户"];
-        [tfUserName setWidth:__SCREEN_WIDTH];
-        [tfUserName setHeight:__SCREEN_HEIGHT];
-        [tfUserName setScrollFrame:scrollFrame];
-        [scrollFrame addSubview:tfUserName];
+        [self cNavigationRightItemType:2 Title:@"下一步" action:@selector(goNext:)];
         //
-        tfVerifyCode=[[CTextField alloc]initWithFrame:CGRectMake1(20, 70, 280, 40) Placeholder:@"请输入校验码"];
-        [tfVerifyCode setWidth:__SCREEN_WIDTH];
-        [tfVerifyCode setHeight:__SCREEN_HEIGHT];
-        [tfVerifyCode setScrollFrame:scrollFrame];
-        [scrollFrame addSubview:tfVerifyCode];
-        //
-        CButton *button=[[CButton alloc]initWithFrame:CGRectMake1(40, 120, 240, 40) Name:@"获取校验码"];
-        [button addTarget:self action:@selector(goModify:) forControlEvents:UIControlEventTouchUpInside];
-        [scrollFrame addSubview:button];
-        //
-        tfPassword=[[CTextField alloc]initWithFrame:CGRectMake1(20, 170, 280, 40) Placeholder:@"请输入密码"];
-        [tfPassword setWidth:__SCREEN_WIDTH];
-        [tfPassword setHeight:__SCREEN_HEIGHT];
-        [tfPassword setScrollFrame:scrollFrame];
-        [tfPassword setSecureTextEntry:YES];
-        [scrollFrame addSubview:tfPassword];
-        //
-        tfRePassword=[[CTextField alloc]initWithFrame:CGRectMake1(20, 220, 280, 40) Placeholder:@"请输入密码"];
-        [tfRePassword setWidth:__SCREEN_WIDTH];
-        [tfRePassword setHeight:__SCREEN_HEIGHT];
-        [tfRePassword setScrollFrame:scrollFrame];
-        [tfRePassword setSecureTextEntry:YES];
-        [scrollFrame addSubview:tfRePassword];
-        //
-        button=[[CButton alloc]initWithFrame:CGRectMake1(40, 270, 240, 40) Name:@"确定"];
-        [button addTarget:self action:@selector(goModify:) forControlEvents:UIControlEventTouchUpInside];
-        [scrollFrame addSubview:button];
+        tfUserName=[[CTextField alloc]initWithFrame:CGRectMake1(20, 20, 280, 40) Placeholder:@"请输入注册手机号"];
+        [self.view addSubview:tfUserName];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(25, 60, 280, 40) Text:@"验证码信息将发送到您的手机号"];
+        [lbl setFont:[UIFont systemFontOfSize:16]];
+        [self.view addSubview:lbl];
     }
     return self;
 }
 
-- (void)goModify:(id)sender
+- (void)goNext:(id)sender
 {
     
 }

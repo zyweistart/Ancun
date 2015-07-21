@@ -22,13 +22,8 @@
     self=[super init];
     if(self){
         [self cTitle:@"测试心情"];
-        UIButton *rButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rButton setFrame:CGRectMake1(0, 0, 30, 30)];
-        [rButton setTitle:@"跳过" forState:UIControlStateNormal];
-        [rButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [rButton setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [rButton addTarget:self action:@selector(goDone:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:rButton];
+        //
+        [self cNavigationRightItemType:2 Title:@"跳过" action:@selector(goDone:)];
         
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(130, 60, 60, 60)];
         [image setImage:[UIImage imageNamed:@"qx-tianmi"]];

@@ -32,13 +32,8 @@
     self=[super init];
     if(self){
         [self cTitle:@"注册"];
-        UIButton *bNextSteup = [UIButton buttonWithType:UIButtonTypeCustom];
-        [bNextSteup setFrame:CGRectMake1(0, 0, 50, 30)];
-        [bNextSteup setTitle:@"下一步" forState:UIControlStateNormal];
-        [bNextSteup.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bNextSteup setTitleColor:COLOR2552160 forState:UIControlStateNormal];
-        [bNextSteup addTarget:self action:@selector(goNextSteup:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bNextSteup];
+        //
+        [self cNavigationRightItemType:2 Title:@"下一步" action:@selector(goNextSteup:)];
         
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(100, 20, 60, 60)];
         [iUserNameImage setImage:[UIImage imageNamed:@"img_boy"]];
