@@ -25,6 +25,7 @@
 @property BOOL isFileDownload;
 //是否显示提示信息
 @property BOOL isShowMessage;
+@property BOOL isResponseMessage;
 //请求时的提示信息
 @property (strong,nonatomic) NSString *message;
 //属性

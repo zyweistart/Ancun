@@ -110,8 +110,9 @@
             [self.hRequest setDelegate:self];
             [self.hRequest setController:self];
             [self.hRequest setIsShowMessage:NO];
+            [self.hRequest setIsResponseMessage:NO];
             [self.hRequest setRequestCode:501];
-            [self.hRequest handle:@"versioninfoGet" signKey:nil requestParams:requestParams];
+            [self.hRequest handle:@"dyValidateDownloadRecord" signKey:nil requestParams:requestParams];
         }
         [self autoLogin];
     }

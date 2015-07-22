@@ -28,6 +28,16 @@
     
 }
 
+
+- (id)init
+{
+    self=[super init];
+    if(self){
+        [self setIsResponseMessage:YES];
+    }
+    return self;
+}
+
 //是否已连接网络
 + (BOOL)isNetworkConnection {
     Reachability *reach = [Reachability reachabilityForInternetConnection];
@@ -215,7 +225,9 @@
                     }
                     [response setSuccessFlag:YES];
                     if(self.controller){
-                        [Common alert:[response msg]];
+                        if([self isResponseMessage]){
+                            [Common alert:[response msg]];
+                        }
                     }
                 } else if([[response code] isEqualToString:@"110026"]) {
                     //通行证编号错误或未登录
@@ -232,10 +244,12 @@
                     //录音时长不足
                     [Common alert:@"录音时长不足，充值相关套餐后才能通话录音"];
                 } else {
-                    if([response msg]){
-                        [Common alert:[response msg]];
-                    }else{
-                        [Common alert:@"未知异常"];
+                    if([self isResponseMessage]){
+                        if([response msg]){
+                            [Common alert:[response msg]];
+                        }else{
+                            [Common alert:@"未知异常"];
+                        }
                     }
                 }
             }

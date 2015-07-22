@@ -20,6 +20,7 @@
 
 @implementation UYourDetailViewController{
     UIButton *currentPlayerButton;
+    UIView *wordViewFrame;
     
     UIButton *bSendVoice,*bSendImage,*bAtUser;
     AtUserView *mAtUserView;
@@ -104,6 +105,35 @@
         [self.lblCount setTextColor:DEFAULTITLECOLOR(100)];
         [titleHead addSubview:self.lblCount];
         
+        wordViewFrame=[[UIView alloc]initWithFrame:self.view.bounds];
+        [wordViewFrame setBackgroundColor:DEFAULTITLECOLOR(200)];
+        [wordViewFrame setHidden:YES];
+        [self.view addSubview:wordViewFrame];
+        //关闭
+        bClose = [[UIButton alloc]init];
+        [bClose setFrame:CGRectMake1(5, 20, 30, 30)];
+        [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateNormal];
+        [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateHighlighted];
+        [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        [wordViewFrame addSubview:bClose];
+        //分享
+        bShare = [[UIButton alloc]init];
+        [bShare setFrame:CGRectMake1(285, 20, 30, 30)];
+        [bShare setImage:[UIImage imageNamed:@"icon-top-share"] forState:UIControlStateNormal];
+        [bShare addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        [wordViewFrame addSubview:bShare];
+        //播放
+        self.bBGPlayer=[[PlayerButton alloc]initWithFrame:CGRectMake1(140, 60, 40, 40)];
+        [self.bBGPlayer addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];
+        [wordViewFrame addSubview:self.bBGPlayer];
+        //内容
+        self.lblBGContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 130, 300, 40)];
+        [self.lblBGContent setFont:[UIFont systemFontOfSize:15]];
+        [self.lblBGContent setTextColor:[UIColor whiteColor]];
+        [self.lblBGContent setNumberOfLines:2];
+        [self.lblBGContent setUserInteractionEnabled:YES];
+        [self.lblBGContent addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goWordsDetail:)]];
+        [wordViewFrame addSubview:self.lblBGContent];
         //底部
         CGFloat height=40;
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(height), CGWidth(320), CGHeight(height))];
@@ -382,8 +412,9 @@
 
 - (void)goWordsDetail:(id)sender
 {
-    WordsDetailViewController *mWordsDetailViewController=[[WordsDetailViewController alloc]initWithData:nil];
-    [self.navigationController pushViewController:mWordsDetailViewController animated:YES];
+//    WordsDetailViewController *mWordsDetailViewController=[[WordsDetailViewController alloc]initWithData:nil];
+//    [self.navigationController pushViewController:mWordsDetailViewController animated:YES];
+    [wordViewFrame setHidden:NO];
 }
 
 - (void)goComment:(id)sender

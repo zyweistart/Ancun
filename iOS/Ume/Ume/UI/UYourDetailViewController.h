@@ -18,7 +18,9 @@
 @property (strong,nonatomic)UIImageView *mFelationship;
 @property (strong,nonatomic)ImageViewHeader *youHeader;
 @property (strong,nonatomic)PlayerButton *bPlayer;
+@property (strong,nonatomic)PlayerButton *bBGPlayer;
 @property (strong,nonatomic)CLabel *lblContent;
+@property (strong,nonatomic)CLabel *lblBGContent;
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblTime;
 @property (strong,nonatomic)CLabel *lblValue;
