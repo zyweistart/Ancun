@@ -25,6 +25,7 @@
         self.data=data;
         [self cTitle:@"评论"];
         self.isFirstRefresh=YES;
+        [self cNavigationRightItemType:2 Title:@"赞" action:@selector(zambia:)];
         
         UIView *headFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 230)];
         self.headContentView=[[MessageViewFrame alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
@@ -201,6 +202,11 @@
 {
     [self.delegate CommentFinisih:nil];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)zambia:(id)sender
+{
+    NSLog(@"赞");
 }
 
 @end

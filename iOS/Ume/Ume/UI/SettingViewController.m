@@ -116,6 +116,7 @@
         if(row==0){
             //清除缓存
             UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:@"确定清除缓存?" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"清除缓存",nil];
+            [choiceSheet setTag:1];
             [choiceSheet showInView:self.view];
         }
     }
@@ -123,15 +124,24 @@
 
 - (void)logout:(id)sender
 {
-    [self.tabBarController setSelectedIndex:0];
-    TabBarFrameViewController *mTabBarFrameViewController=(TabBarFrameViewController*)self.tabBarController;
-    [mTabBarFrameViewController logout];
+    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:@"确定要退出登录吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"退出登录",nil];
+    [choiceSheet setTag:2];
+    [choiceSheet showInView:self.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex==0){
-        //清除缓存
+    if(actionSheet.tag==1){
+        if(buttonIndex==0){
+            //清除缓存
+        }
+    }else if(actionSheet.tag==2){
+        if(buttonIndex==0){
+            //退出登录
+            [self.tabBarController setSelectedIndex:0];
+            TabBarFrameViewController *mTabBarFrameViewController=(TabBarFrameViewController*)self.tabBarController;
+            [mTabBarFrameViewController logout];
+        }
     }
 }
 

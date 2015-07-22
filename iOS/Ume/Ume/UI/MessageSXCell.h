@@ -10,7 +10,7 @@
 
 @interface MessageSXCell : UITableViewCell
 
-@property (strong,nonatomic)UIImageView *meHeader;
+@property (strong,nonatomic)ImageViewHeader *meHeader;
 @property (strong,nonatomic)CLabel *lblName;
 @property (strong,nonatomic)CLabel *lblContent;
 @property (strong,nonatomic)CLabel *lblTime;

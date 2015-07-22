@@ -18,11 +18,7 @@
     if (self) {
         UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 60)];
         [self addSubview:mainView];
-        self.meHeader=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-        self.meHeader.layer.cornerRadius=self.meHeader.bounds.size.width/2;
-        self.meHeader.layer.masksToBounds=YES;
-        self.meHeader.layer.borderWidth=1;
-        self.meHeader.layer.borderColor=[[UIColor grayColor]CGColor];
+        self.meHeader=[[ImageViewHeader alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
         [mainView addSubview:self.meHeader];
         self.lblName=[[CLabel alloc]initWithFrame:CGRectMake1(60, 10, 150, 20)];
         [self.lblName setFont:[UIFont systemFontOfSize:18]];
@@ -33,7 +29,7 @@
         [self.lblContent setFont:[UIFont systemFontOfSize:14]];
         [self.lblContent setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.lblContent];
-        self.lblTime=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 30)];
+        self.lblTime=[[CLabel alloc]initWithFrame:CGRectMake1(210, 10, 100, 20)];
         [self.lblTime setTextColor:DEFAUL1COLOR];
         [self.lblTime setFont:[UIFont systemFontOfSize:14]];
         [self.lblTime setTextAlignment:NSTextAlignmentRight];

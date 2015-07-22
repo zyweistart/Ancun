@@ -20,6 +20,7 @@
     if(self){
         [self cTitle:@"私信"];
         self.isFirstRefresh=NO;
+        [self cNavigationRightItemType:2 Title:@"写私信" action:@selector(writesx:)];
     }
     return self;
 }
@@ -35,6 +36,11 @@
         cell = [[MessageSXCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     return cell;
+}
+
+- (void)writesx:(id)sender
+{
+    
 }
 
 @end

@@ -41,6 +41,20 @@
     return CGHeight(45);
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return CGHeight(40);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
+    CLabel *lblTitle=[[CLabel alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Text:@"我的心情轨迹同步到云"];
+    [lblTitle setFont:[UIFont systemFontOfSize:16]];
+    [headFrame addSubview:lblTitle];
+    return headFrame;
+}
+
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row=[indexPath row];
