@@ -107,6 +107,7 @@
         
         wordViewFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [wordViewFrame setBackgroundColor:DEFAULTITLECOLOR(200)];
+        [wordViewFrame setUserInteractionEnabled:YES];
         [wordViewFrame setHidden:YES];
         [self.view addSubview:wordViewFrame];
         //关闭
@@ -114,7 +115,7 @@
         [bClose setFrame:CGRectMake1(5, 20, 30, 30)];
         [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateNormal];
         [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateHighlighted];
-        [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        [bClose addTarget:self action:@selector(goWordsDetail:) forControlEvents:UIControlEventTouchUpInside];
         [wordViewFrame addSubview:bClose];
         //分享
         bShare = [[UIButton alloc]init];
@@ -127,10 +128,10 @@
         [self.bBGPlayer addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];
         [wordViewFrame addSubview:self.bBGPlayer];
         //内容
-        self.lblBGContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 130, 300, 40)];
+        self.lblBGContent=[[CLabel alloc]initWithFrame:CGRectMake1(10, 130, 300, 100)];
         [self.lblBGContent setFont:[UIFont systemFontOfSize:15]];
         [self.lblBGContent setTextColor:[UIColor whiteColor]];
-        [self.lblBGContent setNumberOfLines:2];
+        [self.lblBGContent setNumberOfLines:0];
         [self.lblBGContent setUserInteractionEnabled:YES];
         [self.lblBGContent addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goWordsDetail:)]];
         [wordViewFrame addSubview:self.lblBGContent];
@@ -166,6 +167,8 @@
         NSString *content=[data objectForKey:@"content"];
         [self.lblContent setText:content];
         [self.lblContent sizeToFit];
+        [self.lblBGContent setText:content];
+        [self.lblBGContent sizeToFit];
 //        [self.meHeader setImage:[UIImage imageNamed:@"img_boy"]];
         [self.lblName setText:@"Jackywell"];
         [self.lblTime setText:@"15:22"];
@@ -414,7 +417,7 @@
 {
 //    WordsDetailViewController *mWordsDetailViewController=[[WordsDetailViewController alloc]initWithData:nil];
 //    [self.navigationController pushViewController:mWordsDetailViewController animated:YES];
-    [wordViewFrame setHidden:NO];
+    [wordViewFrame setHidden:!wordViewFrame.isHidden];
 }
 
 - (void)goComment:(id)sender
