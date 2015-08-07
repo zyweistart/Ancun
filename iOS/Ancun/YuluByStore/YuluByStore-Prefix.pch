@@ -134,8 +134,8 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     #define PHONENUMBER @"057156559570"
 //    #define ANCUN_HTTP_URL @"http://192.168.0.254:8080/rest/RestService"
 //    #define ANCUN_HTTP_URL @"http://192.168.0.172:9080/accore/http/HttpService"
-//    #define ANCUN_HTTP_URL @"http://192.168.0.221:8080/accore/http/HttpService"
-    #define ANCUN_HTTP_URL @"http://115.236.89.210:8888/accore/http/HttpService"
+    #define ANCUN_HTTP_URL @"http://192.168.0.221:8080/accore/http/HttpService"
+//    #define ANCUN_HTTP_URL @"http://115.236.89.210:8888/accore/http/HttpService"
     #define ACCESSID @"b99810e661d546f14763f15a9270c28d"
     #define ACCESSKEY @"aRxzVdMiopnzpJco3fPJOmXSDZL7rGiL3UgbqQA9YeJ="
 #else
