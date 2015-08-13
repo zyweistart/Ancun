@@ -131,7 +131,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define RESULTCODE_ACExtractionDetailViewController_back 2
 #ifdef TEST
     //测试环境定义的常量
-    #define PHONENUMBER @"057156559570"
+    #define PHONENUMBER @"057156559580"
 //    #define ANCUN_HTTP_URL @"http://192.168.0.254:8080/rest/RestService"
 //    #define ANCUN_HTTP_URL @"http://192.168.0.172:9080/accore/http/HttpService"
     #define ANCUN_HTTP_URL @"http://192.168.0.221:8080/accore/http/HttpService"
