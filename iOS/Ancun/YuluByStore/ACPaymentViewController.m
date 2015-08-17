@@ -258,8 +258,7 @@
     //支付宝
     if(reqCode==ALIPAYREQUESTCODE) {
         if([response successFlag]) {
-            [[Config Instance]setCurrentViewController:self];
-            
+            [[Config Instance] setMPaymentViewController:self];
             NSString *orderString=[[[response mainData] objectForKey:@"alipayinfo"] objectForKey:@"reqcontent"];
             
             orderString=[orderString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];

@@ -20,8 +20,9 @@
 #import "MobClick.h"
 #endif
 #ifdef JAILBREAK
-    #import "AlixPay.h"
-    #import "AlixPayResult.h"
+    #import <AlipaySDK/AlipaySDK.h>
+//    #import "AlixPay.h"
+//    #import "AlixPayResult.h"
     #import "ACPaymentViewController.h"
 #else
     #import "IAPHelper.h"
@@ -157,61 +158,53 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-#ifdef JAILBREAK
-    AlixPay *alixpay = [AlixPay shared];
-	AlixPayResult *result = [alixpay handleOpenURL:url];
-	if (result) {
-		//9000表示已经支付成功
-		if (9000 == result.statusCode) {
-            //服务端签名验证可开启以下代码
-//            NSMutableString *verifyString=[[NSMutableString alloc]init];
-//            [verifyString appendFormat:@"resultStatus={%d};",result.statusCode];
-//            [verifyString appendFormat:@"memo={%@};",result.statusMessage];
-//            [verifyString appendString:@"result={"];
-//            [verifyString appendString:result.resultString];
-//            [verifyString appendString:@"&"];
-//            [verifyString appendFormat:@"sign_type=\"%@\"",result.signType];
-//            [verifyString appendString:@"&"];
-//            [verifyString appendFormat:@"sign=\"%@\"",result.signString];
-//            [verifyString appendString:@"}"];
-//            NSLog(@"%@",verifyString);
-//            NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
-//            [requestParams setObject:ACCESSID forKey:@"accessid"];
-//            [requestParams setObject:@"3"  forKey:@"payproduct"];
-//            [requestParams setObject:verifyString  forKey:@"rescontent"];
-//            _loadHttp=[[HttpRequest alloc]init];
-//            [_loadHttp setDelegate:self];
-//            [_loadHttp setController:[application.keyWindow rootViewController]];
-//            [_loadHttp handle:@"v4ealipayRes" signKey:ACCESSKEY headParams:nil requestParams:requestParams];
-            //显示成功页面
-            UIViewController *controller=[[Config Instance]currentViewController];
-            if(controller) {
-                if([controller isKindOfClass:[ACPaymentViewController class]]) {
-                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
-                    [viewController successStep];
-                }
-            }
-		} else {
-            //充值失败
-            if(result.statusCode==6001) {
-                //用户中途取消
-            }
-            //使引导箭头标为第二步
-            UIViewController *controller=[[Config Instance]currentViewController];
-            if(controller) {
-                if([controller isKindOfClass:[ACPaymentViewController class]]) {
-                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
-                    [viewController paynmentedStep];
-                }
-            }
-            [Common alert:result.statusMessage];
-		}
-	}
-#endif
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+//    //跳转支付宝钱包进行支付，处理支付结果
+//    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+//        NSLog(@"result = %@",resultDic);
+//    }];
+    
     return YES;
 }
+
+
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+//{
+//#ifdef JAILBREAK
+//    AlixPay *alixpay = [AlixPay shared];
+//	AlixPayResult *result = [alixpay handleOpenURL:url];
+//	if (result) {
+//		//9000表示已经支付成功
+//		if (9000 == result.statusCode) {
+//            //显示成功页面
+//            UIViewController *controller=[[Config Instance]mPaymentViewController];
+//            if(controller) {
+//                if([controller isKindOfClass:[ACPaymentViewController class]]) {
+//                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
+//                    [viewController successStep];
+//                }
+//            }
+//		} else {
+//            //充值失败
+//            if(result.statusCode==6001) {
+//                //用户中途取消
+//            }
+//            //使引导箭头标为第二步
+//            UIViewController *controller=[[Config Instance]mPaymentViewController];
+//            if(controller) {
+//                if([controller isKindOfClass:[ACPaymentViewController class]]) {
+//                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
+//                    [viewController paynmentedStep];
+//                }
+//            }
+//            [Common alert:result.statusMessage];
+//		}
+//	}
+//#endif
+//    return YES;
+//}
 
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 //{

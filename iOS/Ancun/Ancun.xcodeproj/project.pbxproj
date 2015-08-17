@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C90417461B4B797F00F32A1B /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C90417431B4B797F00F32A1B /* libMobClickLibrary.a */; };
 		C90417481B4B7A0100F32A1B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C90417471B4B7A0100F32A1B /* libz.dylib */; };
+		C907741F1B81B3A3009320C6 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C907741E1B81B3A3009320C6 /* AlipaySDK.framework */; };
 		C90A351A17B9D81C00BECE31 /* ACRechargeNav.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A351917B9D81C00BECE31 /* ACRechargeNav.m */; };
 		C90A351D17BA054F00BECE31 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A351C17BA054F00BECE31 /* BaseViewController.m */; };
 		C90BCF7A17D037B700813641 /* ACNavigationWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BCF7917D037B300813641 /* ACNavigationWebPageViewController.m */; };
@@ -143,6 +144,7 @@
 		C90417441B4B797F00F32A1B /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		C90417451B4B797F00F32A1B /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		C90417471B4B7A0100F32A1B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		C907741E1B81B3A3009320C6 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		C90A351817B9D81C00BECE31 /* ACRechargeNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRechargeNav.h; sourceTree = "<group>"; };
 		C90A351917B9D81C00BECE31 /* ACRechargeNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRechargeNav.m; sourceTree = "<group>"; };
 		C90A351B17BA054F00BECE31 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				C97889AC18E16B4400157577 /* AudioToolbox.framework in Frameworks */,
 				C97889AD18E16B4400157577 /* AVFoundation.framework in Frameworks */,
 				C97889AE18E16B4400157577 /* CFNetwork.framework in Frameworks */,
+				C907741F1B81B3A3009320C6 /* AlipaySDK.framework in Frameworks */,
 				C97889AF18E16B4400157577 /* CoreGraphics.framework in Frameworks */,
 				C97889B018E16B4400157577 /* CoreLocation.framework in Frameworks */,
 				C97889B118E16B4400157577 /* CoreTelephony.framework in Frameworks */,
@@ -496,6 +499,19 @@
 				C90417451B4B797F00F32A1B /* MobClickSocialAnalytics.h */,
 			);
 			path = UMAnalytics_Sdk_3.5.8;
+			sourceTree = "<group>";
+		};
+		C907741D1B81B388009320C6 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				C9D97ACC179FA6640076ACF3 /* AlixPay.h */,
+				C9D97ACD179FA6640076ACF3 /* AlixPayOrder.h */,
+				C9D97ACE179FA6640076ACF3 /* AlixPayResult.h */,
+				C9D97ACF179FA6640076ACF3 /* libalixpay.a */,
+				C9D97AD0179FA6640076ACF3 /* libcrypto.a */,
+				C9D97AD1179FA6640076ACF3 /* libssl.a */,
+			);
+			name = old;
 			sourceTree = "<group>";
 		};
 		C914503D18FBAC0300B00B89 /* Gesture */ = {
@@ -851,12 +867,8 @@
 		C9D97ACA179FA6640076ACF3 /* alipay */ = {
 			isa = PBXGroup;
 			children = (
-				C9D97ACC179FA6640076ACF3 /* AlixPay.h */,
-				C9D97ACD179FA6640076ACF3 /* AlixPayOrder.h */,
-				C9D97ACE179FA6640076ACF3 /* AlixPayResult.h */,
-				C9D97ACF179FA6640076ACF3 /* libalixpay.a */,
-				C9D97AD0179FA6640076ACF3 /* libcrypto.a */,
-				C9D97AD1179FA6640076ACF3 /* libssl.a */,
+				C907741E1B81B3A3009320C6 /* AlipaySDK.framework */,
+				C907741D1B81B388009320C6 /* old */,
 				C9D97AD2179FA6640076ACF3 /* openssl */,
 			);
 			path = alipay;
@@ -1309,6 +1321,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"$(PROJECT_DIR)/YuluByStore/Librarys/alipay",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1361,6 +1374,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"$(PROJECT_DIR)/YuluByStore/Librarys/alipay",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
