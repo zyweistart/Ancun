@@ -78,13 +78,15 @@
 - (void)fourthStep {
     [_lblTip1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_lblTip1 setBackgroundColor:NAVTOPCOLOR];
-    
     [_lblTip2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_lblTip2 setBackgroundColor:NAVTOPCOLOR];
+    [_lblTip2 setBackgroundImage:nil forState:UIControlStateNormal];
     [_lblTip3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_lblTip3 setBackgroundColor:NAVTOPCOLOR];
+    [_lblTip3 setBackgroundImage:nil forState:UIControlStateNormal];
     [_lblTip4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_lblTip4 setBackgroundColor:NAVTOPCOLOR];
+    [_lblTip4 setBackgroundImage:nil forState:UIControlStateNormal];
 }
 
 - (UIImage*)createImageWithColor:(UIColor*)color
