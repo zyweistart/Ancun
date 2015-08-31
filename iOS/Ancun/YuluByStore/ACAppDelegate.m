@@ -171,7 +171,7 @@
             }
         }else{
             NSString *memo=[resultDic objectForKey:@"memo"];
-            [Common alert:[NSString stringWithFormat:@"错误编号:%@,%@",resultStatus,memo]];
+            [Common alert:[NSString stringWithFormat:@"错误编号:%@ %@",resultStatus,memo]];
         }
     }];
     return YES;

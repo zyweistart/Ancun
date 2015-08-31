@@ -267,7 +267,7 @@
                     [self successStep];
                 }else{
                     NSString *memo=[resultDic objectForKey:@"memo"];
-                    [Common alert:[NSString stringWithFormat:@"错误编号:%@,%@",resultStatus,memo]];
+                    [Common alert:[NSString stringWithFormat:@"错误编号:%@ %@",resultStatus,memo]];
                 }
             }];
         }
@@ -290,21 +290,6 @@
             //充值成功
             [self successStep];
         } else {
-            [self paynmentedStep];
-        }
-    }
-#endif
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-#ifdef JAILBREAK
-    //安装支付宝快捷支付插件
-    if (actionSheet.tag == ALERTVIEWALIPAYTAG) {
-        if(buttonIndex==0) {
-            //跳转到App Store下载支付宝插件
-            NSString * URLString = @"http://itunes.apple.com/cn/app/id535715926?mt=8";
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString]];
-        } else if(buttonIndex==1) {
             [self paynmentedStep];
         }
     }

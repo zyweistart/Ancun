@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface ACPaymentViewController : BaseViewController <HttpViewDelegate,UIActionSheetDelegate>
+@interface ACPaymentViewController : BaseViewController <HttpViewDelegate>
 
 - (id)initWithData:(NSDictionary *)data;
 
