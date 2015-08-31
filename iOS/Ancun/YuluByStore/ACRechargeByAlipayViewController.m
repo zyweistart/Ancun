@@ -11,10 +11,9 @@
 #import "ACAccountPay1Cell.h"
 #import "DataSingleton.h"
 #import "NSString+Utils.h"
-#import "IAPHelper.h"
 
 #ifdef  TEST
-#define PRODUCTRECORDNO_STRING @"8f13597db224df927b4a02658326ca39"
+#define PRODUCTRECORDNO_STRING @"d7025d331c315d856dfdee440f3f9c34"
 #else
 #define PRODUCTRECORDNO_STRING @"2cec276a043223d9ff47859082cd99bc"
 #endif
@@ -25,9 +24,7 @@
 
 @implementation ACRechargeByAlipayViewController {
     
-    BOOL isTimeout;
     ACRechargeNav *_rechargeNav;
-    SKProductsRequest *_productsRequest;
     
 }
 
@@ -53,19 +50,6 @@
 #pragma mark -
 #pragma mark Delegate Methods
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    int count=[[[IAPHelper sharedHelper]products]count];
-    if(count>0){
-        if(PAGESIZE>count){
-            return count;
-        }else{
-            return count+1;
-        }
-    }else{
-        return 1;
-    }
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if([self.dataItemArray count]>[indexPath row]){
         return CGHeight(60);
@@ -84,9 +68,15 @@
         if(!cell) {
             cell = [[ACAccountPay1Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:accountPayCell1];
         }
-        [cell.lblTimeLong setText:[NSString stringWithFormat:@"有效期%@天",[dictionary objectForKey:@"valid"]]];
-        [cell.lblTime setText:[NSString stringWithFormat:@"%@分钟",[dictionary objectForKey:@"duration"]]];
-        [cell.lblStorage setText:[NSString stringWithFormat:@"%@MB",[dictionary objectForKey:@"storage"]]];
+        NSString *valid=[dictionary objectForKey:@"valid"];
+        NSString *duration=[dictionary objectForKey:@"duration"];
+        NSString *storage=[dictionary objectForKey:@"storage"];
+        [cell.lblTimeLong setHidden:[valid intValue]==0];
+        [cell.lblTimeLong setText:[NSString stringWithFormat:@"有效期%@天",valid]];
+        [cell.lblTime setHidden:[duration intValue]==0];
+        [cell.lblTime setText:[NSString stringWithFormat:@"%@分钟",duration]];
+        [cell.lblStorage setHidden:[storage intValue]==0];
+        [cell.lblStorage setText:[NSString stringWithFormat:@"%@MB",storage]];
         [cell.lblName setText:[dictionary objectForKey:@"name"]];
         [cell setData:dictionary];
         [cell setControler:self];
@@ -98,7 +88,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if([[[IAPHelper sharedHelper]products]count]>[indexPath row]) {
+    if([self.dataItemArray count]>[indexPath row]) {
         //不处理单击事件
     } else {
         //加载更多
