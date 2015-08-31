@@ -11,7 +11,7 @@
 #pragma mark 测试环境宏定义
 //#define TEST
 #pragma mark 越狱版宏定义
-//#define JAILBREAK
+#define JAILBREAK
 
 #ifdef TEST
 #warning 当前版本为测试版本上线需要注释该宏定义
