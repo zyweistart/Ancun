@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
 #ifdef JAILBREAK
-#import "AlixPay.h"
+#import <AlipaySDK/AlipaySDK.h>
 #else
 #import "IAPHelper.h"
 #endif
@@ -260,15 +260,16 @@
         if([response successFlag]) {
             [[Config Instance] setMPaymentViewController:self];
             NSString *orderString=[[[response mainData] objectForKey:@"alipayinfo"] objectForKey:@"reqcontent"];
-            
             orderString=[orderString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-            
-            AlixPay * alixpay = [AlixPay shared];
-            int ret = [alixpay pay:orderString applicationScheme:@"ANCUNYULU"];
-            
-            if (ret == kSPErrorAlipayClientNotInstalled) {
-                [Common actionSheet:self message:@"您还没有安装支付宝快捷支付，请先安装。" tag:ALERTVIEWALIPAYTAG];
-            }
+            [[AlipaySDK defaultService] payOrder:orderString fromScheme:@"ANCUNYULU" callback:^(NSDictionary *resultDic) {
+                NSString *resultStatus=[resultDic objectForKey:@"resultStatus"];
+                if([@"9000" isEqualToString:resultStatus]){
+                    [self successStep];
+                }else{
+                    NSString *memo=[resultDic objectForKey:@"memo"];
+                    [Common alert:[NSString stringWithFormat:@"错误编号:%@,%@",resultStatus,memo]];
+                }
+            }];
         }
     }
 #else

@@ -16,7 +16,7 @@
 #ifdef  TEST
 #define PRODUCTRECORDNO_STRING @"8f13597db224df927b4a02658326ca39"
 #else
-#define PRODUCTRECORDNO_STRING @"ac9d9d16706af24455b5834eec56d2d5"
+#define PRODUCTRECORDNO_STRING @"2cec276a043223d9ff47859082cd99bc"
 #endif
 
 @interface ACRechargeByAlipayViewController ()
@@ -32,35 +32,14 @@
 }
 
 - (id)init {
-    
+    self=[super init];
     if (self) {
         
         self.navigationItem.title=@"账户充值";
-        
-        UIView *container=[[UIView alloc]initWithFrame:CGRectMake1(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-        [self.view addSubview:container];
-        
         _rechargeNav=[[ACRechargeNav alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [_rechargeNav firstStep];
-        [container addSubview:_rechargeNav];
-        
-        self.tableView=[[UITableView alloc]initWithFrame:
-                        CGRectMake1(0, 40,
-                                   self.view.frame.size.width,
-                                   self.view.frame.size.height-40)];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        [container addSubview:self.tableView];
-        if(_refreshHeaderView==nil){
-            EGORefreshTableHeaderView *view=[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake1(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.frame.size.width, self.tableView.bounds.size.height)];
-            view.delegate = self;
-            [self.tableView addSubview:view];
-            _refreshHeaderView = view;
-        }
-        [_refreshHeaderView refreshLastUpdatedDate];
+        [self.tableView setTableHeaderView:_rechargeNav];
     }
-    self = [super init];
     
     return self;
 }

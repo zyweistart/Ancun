@@ -21,8 +21,6 @@
 #endif
 #ifdef JAILBREAK
     #import <AlipaySDK/AlipaySDK.h>
-//    #import "AlixPay.h"
-//    #import "AlixPayResult.h"
     #import "ACPaymentViewController.h"
 #else
     #import "IAPHelper.h"
@@ -157,90 +155,27 @@
         }
     }
 }
-
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
-//    //跳转支付宝钱包进行支付，处理支付结果
-//    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-//        NSLog(@"result = %@",resultDic);
-//    }];
-    
+#ifdef JAILBREAK
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //跳转支付宝钱包进行支付，处理支付结果
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        NSString *resultStatus=[resultDic objectForKey:@"resultStatus"];
+        if([@"9000" isEqualToString:resultStatus]){
+            UIViewController *controller=[[Config Instance]mPaymentViewController];
+            if(controller) {
+                if([controller isKindOfClass:[ACPaymentViewController class]]) {
+                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
+                    [viewController successStep];
+                }
+            }
+        }else{
+            NSString *memo=[resultDic objectForKey:@"memo"];
+            [Common alert:[NSString stringWithFormat:@"错误编号:%@,%@",resultStatus,memo]];
+        }
+    }];
     return YES;
 }
-
-
-//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-//{
-//#ifdef JAILBREAK
-//    AlixPay *alixpay = [AlixPay shared];
-//	AlixPayResult *result = [alixpay handleOpenURL:url];
-//	if (result) {
-//		//9000表示已经支付成功
-//		if (9000 == result.statusCode) {
-//            //显示成功页面
-//            UIViewController *controller=[[Config Instance]mPaymentViewController];
-//            if(controller) {
-//                if([controller isKindOfClass:[ACPaymentViewController class]]) {
-//                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
-//                    [viewController successStep];
-//                }
-//            }
-//		} else {
-//            //充值失败
-//            if(result.statusCode==6001) {
-//                //用户中途取消
-//            }
-//            //使引导箭头标为第二步
-//            UIViewController *controller=[[Config Instance]mPaymentViewController];
-//            if(controller) {
-//                if([controller isKindOfClass:[ACPaymentViewController class]]) {
-//                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
-//                    [viewController paynmentedStep];
-//                }
-//            }
-//            [Common alert:result.statusMessage];
-//		}
-//	}
-//#endif
-//    return YES;
-//}
-
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-//{
-//    //应用在后台或前台开启的状态下接收到消息推送
-//    [self notication:[userInfo objectForKey:@"aps"]];
-//}
-//
-//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-//{
-//    //如果注册的时候失败，ios会调用这个方法
-//    NSLog(@"Error:%@", error);
-//}
-//
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//    //获取deviceToken需上传至服务端
-//    NSString *dt=[[deviceToken description] stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    if([dt length]>2){
-//        NSString *token=[dt substringWithRange:NSMakeRange(1,[dt length]-2)];
-//        [Common setCache:DEFAULTDATA_DEVICETOKEN data:token];
-//    }
-//}
-//
-//- (void)notication:(NSDictionary*)aps
-//{
-//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-//    if(aps!=nil){
-////        NSString *type=[aps objectForKey:@"type"];
-//        UIAlertView *alert = [[UIAlertView alloc]
-//                              initWithTitle:@"消息"
-//                              message:[aps objectForKey:@"alert"]
-//                              delegate:nil
-//                              cancelButtonTitle:@"确定"
-//                              otherButtonTitles:nil, nil];
-//        [alert show];
-//    }
-//}
-
+#endif
 
 @end
