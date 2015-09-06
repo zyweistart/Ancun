@@ -21,7 +21,7 @@
 //
 @property Boolean lock;
 //支付页面
-@property UIViewController *mPaymentViewController;
+@property (strong,nonatomic)UIViewController *mPaymentViewController;
 
 //唯一缓存键名称
 @property (strong,nonatomic) NSString *cacheKey;

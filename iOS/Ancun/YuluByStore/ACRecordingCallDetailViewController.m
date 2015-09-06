@@ -8,7 +8,11 @@
 
 #import "ACRecordingCallDetailViewController.h"
 #import "ACExtractionCodeDetailViewController.h"
+#ifdef JAILBREAK
+#import "ACRechargeByAlipayViewController.h"
+#else
 #import "ACRechargeByAppStoreViewController.h"
+#endif
 
 #define NOUSECOLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
 
@@ -273,9 +277,15 @@
         }
     }else if(actionSheet.tag==4){
         if(buttonIndex==0){
+#ifdef JAILBREAK
+            ACRechargeByAlipayViewController *rechargeByAlipayViewController=[[ACRechargeByAlipayViewController alloc] init];
+            rechargeByAlipayViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:rechargeByAlipayViewController animated:YES];
+#else
             ACRechargeByAppStoreViewController *rechargeByAppStoreViewController=[[ACRechargeByAppStoreViewController alloc] init];
             rechargeByAppStoreViewController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:rechargeByAppStoreViewController animated:YES];
+#endif
         }
     }
 }
