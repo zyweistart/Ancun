@@ -63,7 +63,7 @@
 #pragma mark Delegate Methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    int row=[indexPath row];
+    NSInteger row=[indexPath row];
     if([self.dataItemArray count]>row) {
         NSMutableDictionary *dictionary=[self.dataItemArray objectAtIndex:row];
         NSString *oppno=[dictionary objectForKey:@"oppno"];

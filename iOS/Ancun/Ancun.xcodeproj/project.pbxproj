@@ -954,7 +954,7 @@
 		C9D9797D179FA3430076ACF3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					C9D97986179FA3500076ACF3 = {
 						DevelopmentTeam = XLA7UCY3KD;
@@ -1117,8 +1117,10 @@
 		C9D97981179FA3430076ACF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1126,6 +1128,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1146,6 +1149,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -1170,11 +1174,11 @@
 					"$(inherited)",
 					YuluByStore/Librarys/alipay,
 					YuluByStore/Librarys/baidumtj,
-					YuluByStore/Librarys/WeixinActivity/Resources,
 					"$(PROJECT_DIR)/YuluByStore/Librarys/UMAnalytics_Sdk_3.5.8",
 					"$(PROJECT_DIR)/YuluByStore/Librarys/alipay",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ancun.luyin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1200,6 +1204,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -1217,12 +1222,12 @@
 					"$(inherited)",
 					YuluByStore/Librarys/alipay,
 					YuluByStore/Librarys/baidumtj,
-					YuluByStore/Librarys/WeixinActivity/Resources,
 					"$(PROJECT_DIR)/YuluByStore/Librarys/UMAnalytics_Sdk_3.5.8",
 					"$(PROJECT_DIR)/YuluByStore/Librarys/alipay",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ancun.luyin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;

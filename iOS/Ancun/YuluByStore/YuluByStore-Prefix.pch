@@ -9,15 +9,12 @@
 #endif
 
 #pragma mark 测试环境宏定义
-//#define TEST
+#define TEST
 #pragma mark 越狱版宏定义
 #define JAILBREAK
 
 #ifdef TEST
 #warning 当前版本为测试版本上线需要注释该宏定义
-#endif
-#ifdef JAILBREAK
-#warning 当前版本为越狱版本如提交App Store审核需注释该JAILBREAK宏定义
 #endif
 
 #ifdef __OBJC__

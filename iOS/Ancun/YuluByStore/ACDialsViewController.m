@@ -257,7 +257,7 @@
             [self backDel];
             break;
         default:
-            [_dialString appendString:[mapping objectForKey:[NSString stringWithFormat:@"%d",tag]]];
+            [_dialString appendString:[mapping objectForKey:[NSString stringWithFormat:@"%ld",tag]]];
             [self showDialText];
             break;
     }
@@ -284,7 +284,7 @@
 //显示拨号盘号码
 - (void)showDialText{
     [self.searchBar resignFirstResponder];
-    int len=[_dialString length];
+    NSInteger len=[_dialString length];
     
     if(len>0){
         currentType=2;
@@ -310,7 +310,7 @@
                 if(array_length-1==18){
                     lblDisplayPhone.font = font;
                     if(len>21){
-                        int mocount=len-21;
+                        NSInteger mocount=len-21;
                         NSMutableString *tmpString=[[NSMutableString alloc]initWithString:@"..."];
                         [tmpString appendString:[_dialString substringWithRange:NSMakeRange(mocount,21)]];
                         lblDisplayPhone.text = tmpString;
@@ -618,7 +618,7 @@
     static NSString *SectionsTableIdentifier3 = @"SectionsTableIdentifier3";
     
     if ([_searchKeys count] == 0) {
-        int row=[indexPath row];
+        NSInteger row=[indexPath row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                                  SectionsTableIdentifier3];
         if (cell == nil) {
@@ -647,7 +647,7 @@
                         reuseIdentifier:SectionsTableIdentifier1];
             }
             NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
-            int nLength=[phone length];
+            NSInteger nLength=[phone length];
             [cell.lblPhone setText:phone];
             [cell.lblPhone setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
             [cell.lblPhone setColor:[UIColor blackColor] fromIndex:0 length:nLength];
@@ -674,12 +674,12 @@
             //姓名
             NSString *name=[namePhones objectAtIndex:0];
             cell.lblName.text=name;
-            int nLength=[name length];
+            NSInteger nLength=[name length];
             [cell.lblName setFont:[UIFont systemFontOfSize:19] fromIndex:0 length:nLength];
             [cell.lblName setColor:[UIColor blackColor] fromIndex:0 length:nLength];
             //电话
             NSString *phone=[Common formatPhone:[namePhones objectAtIndex:1]];
-            int pLength=[phone length];
+            NSInteger pLength=[phone length];
             cell.lblPhone.text=phone;
             [cell.lblPhone setFont:[UIFont systemFontOfSize:15] fromIndex:0 length:pLength];
             [cell.lblPhone setColor:FONTCOLOR2 fromIndex:0 length:pLength];
@@ -711,7 +711,7 @@
     if ([_searchKeys count] == 0) {
         //添加到联系人
         if([_dialString length]>0){
-            int row=[indexPath row];
+            NSInteger row=[indexPath row];
             if(row==0){
                 [Common actionSheet:self message:nil ok:@"添加联系人" tag:1];
             }else if(row==1){

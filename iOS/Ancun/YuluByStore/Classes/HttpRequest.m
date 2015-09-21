@@ -120,7 +120,7 @@
     [_head setObject:@"JSON" forKey:@"format"];
     
     //请求长度
-    [_head setObject:[NSString stringWithFormat:@"%d",[[requestBodyContent dataUsingEncoding:NSUTF8StringEncoding] length]] forKey:@"reqlength"];
+    [_head setObject:[NSString stringWithFormat:@"%ld",[[requestBodyContent dataUsingEncoding:NSUTF8StringEncoding] length]] forKey:@"reqlength"];
     
     // 初始化一个请求
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:ANCUN_HTTP_URL]];
