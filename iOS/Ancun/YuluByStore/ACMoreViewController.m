@@ -6,6 +6,7 @@
 #import "ACNavGesturePasswordViewController.h"
 #import "FileUtils.h"
 #import "NSString+Utils.h"
+#import "ACMessageNotificationViewController.h"
 
 @interface ACMoreViewController () <UIActionSheetDelegate>
 
@@ -16,6 +17,7 @@
     long long cachesize;
     NSString *url;
     BOOL _checkFlag;
+    SQLiteOperate *db;
 }
 
 - (id)init{
@@ -24,14 +26,14 @@
         self.title=@"更多";
         UIScrollView *container=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [container setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        int length=7;
+        int length=8;
         [container setContentSize:CGSizeMake1(WIDTH, 10+length*69.5+1*(length-1)+10)];
         [container setScrollEnabled:YES];
 //        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"morebg"]]];
         [self.view addSubview:container];
         
-        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"正在计算数据大小",@"重新登录",@"检测新版本",@"应用分享", nil];
-        NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"4",@"6",@"9", nil];
+        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"正在计算数据大小",@"重新登录",@"消息通知",@"检测新版本",@"应用分享", nil];
+        NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"4",@"6",@"9",@"9", nil];
         
         for(int i=0;i<length;i++){
             UIButton *btnBg=[[UIButton alloc]initWithFrame:CGRectMake1(15.75, 10+i*70+1*i,289,70)];
@@ -58,7 +60,6 @@
             
             [container addSubview:btnBg];
         }
-        
     }
     return self;
 }
@@ -67,6 +68,15 @@
     [super viewWillAppear:animated];
     if([[Config Instance]isCalculateTotal]){
         [NSThread detachNewThreadSelector:@selector(calculateTotal) toTarget:self withObject:nil];
+    }
+    
+    db=[[SQLiteOperate alloc]init];
+    if([db openDB]){
+        if([db createTableMessageNotification]){
+            NSInteger count=[db getNoReadMessageNotificationCount];
+            //未读消息提示数
+            [[self.tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+        }
     }
 }
 
@@ -131,41 +141,13 @@
             }
         }
     }else if(sender.tag==6){
-//        if(IOS6){
-//            //应用分享
-//            NSArray *activity=nil;
-//            //判断微信是否已经安装
-//            if([WXApi isWXAppInstalled]){
-//                activity = @[[[WeixinSessionActivity alloc] init],[[WeixinTimelineActivity alloc] init]];
-//            }
-//            UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:@[@"安存语录,促使通话录音,严格满足证据的真实性、合法性要求,以公证的法定证明力为依托,是真正可成为被司法机关认可的呈堂证供的通话录音",[NSURL URLWithString:@"https://itunes.apple.com/cn/app/an-cun-yu-lu-ge-ren-ban/id638597148?mt=8"]] applicationActivities:activity];
-//            
-//            if(IOS7){
-//                activityView.excludedActivityTypes = @[UIActivityTypePostToFacebook,
-//                                                       UIActivityTypePostToTwitter,
-//                                                       UIActivityTypePrint,
-//                                                       UIActivityTypeCopyToPasteboard,
-//                                                       UIActivityTypeAssignToContact,
-//                                                       UIActivityTypeSaveToCameraRoll,
-//                                                       UIActivityTypeAddToReadingList,
-//                                                       UIActivityTypePostToFlickr,
-//                                                       UIActivityTypePostToVimeo,
-//                                                       UIActivityTypeAirDrop];
-//            }else if(IOS6){
-//                activityView.excludedActivityTypes = @[UIActivityTypePostToFacebook,
-//                                                       UIActivityTypePostToTwitter,
-//                                                       UIActivityTypePrint,
-//                                                       UIActivityTypeCopyToPasteboard,
-//                                                       UIActivityTypeAssignToContact,
-//                                                       UIActivityTypeSaveToCameraRoll];
-//            }
-//            [self presentViewController:activityView animated:YES completion:nil];
-//        }else{
-//            [Common alert:@"当前系统不支持应用分享，请升级系统"];
-//        }
-//    }else if(sender.tag==8){
         //重新登录
         [Common actionSheet:self message:@"确定要重新登录吗？" tag:1];
+    }else if(sender.tag==7){
+        //消息通知
+        ACMessageNotificationViewController *mMessageNotificationViewController=[[ACMessageNotificationViewController alloc]init];
+        mMessageNotificationViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:mMessageNotificationViewController animated:YES];
     }
 }
 

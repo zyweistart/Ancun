@@ -135,6 +135,12 @@
 		C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */; };
 		C9E9A9471AE0E1A700F87EF2 /* SceneRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E9A9461AE0E1A700F87EF2 /* SceneRecordViewController.m */; };
 		C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */; };
+		C9EEBD991BAFDC5A007AA604 /* ACMessageNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD981BAFDC5A007AA604 /* ACMessageNotificationViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C9EEBD9D1BAFDE8E007AA604 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD9C1BAFDE8E007AA604 /* Message.m */; settings = {ASSET_TAGS = (); }; };
+		C9EEBDA01BAFDF0A007AA604 /* ACMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD9F1BAFDF0A007AA604 /* ACMessageCell.m */; settings = {ASSET_TAGS = (); }; };
+		C9EEBDA31BAFE457007AA604 /* MessageNotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBDA21BAFE457007AA604 /* MessageNotificationDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C9EEBDA61BAFE861007AA604 /* SQLiteOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBDA51BAFE861007AA604 /* SQLiteOperate.m */; settings = {ASSET_TAGS = (); }; };
+		C9FA3D261BB12A1B0072712D /* libGeTuiSdk-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FA3D251BB12A1B0072712D /* libGeTuiSdk-1.2.1.a */; settings = {ASSET_TAGS = (); }; };
 		C9FAB3DA1B5749330074A477 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FAB3D91B5749330074A477 /* AdSupport.framework */; };
 		C9FAB3DD1B574A440074A477 /* UUString.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAB3DC1B574A440074A477 /* UUString.m */; };
 /* End PBXBuildFile section */
@@ -368,6 +374,19 @@
 		C9ED952918FD042500934D96 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
 		C9ED952B18FD078C00934D96 /* UIWindow+PazLabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PazLabs.h"; sourceTree = "<group>"; };
 		C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+PazLabs.m"; sourceTree = "<group>"; };
+		C9EEBD971BAFDC5A007AA604 /* ACMessageNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMessageNotificationViewController.h; sourceTree = "<group>"; };
+		C9EEBD981BAFDC5A007AA604 /* ACMessageNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMessageNotificationViewController.m; sourceTree = "<group>"; };
+		C9EEBD9B1BAFDE8E007AA604 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		C9EEBD9C1BAFDE8E007AA604 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		C9EEBD9E1BAFDF0A007AA604 /* ACMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMessageCell.h; sourceTree = "<group>"; };
+		C9EEBD9F1BAFDF0A007AA604 /* ACMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMessageCell.m; sourceTree = "<group>"; };
+		C9EEBDA11BAFE457007AA604 /* MessageNotificationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNotificationDetailViewController.h; sourceTree = "<group>"; };
+		C9EEBDA21BAFE457007AA604 /* MessageNotificationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageNotificationDetailViewController.m; sourceTree = "<group>"; };
+		C9EEBDA41BAFE861007AA604 /* SQLiteOperate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteOperate.h; sourceTree = "<group>"; };
+		C9EEBDA51BAFE861007AA604 /* SQLiteOperate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteOperate.m; sourceTree = "<group>"; };
+		C9FA3D231BB12A1B0072712D /* GeTuiSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeTuiSdk.h; sourceTree = "<group>"; };
+		C9FA3D241BB12A1B0072712D /* GeTuiSdkError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeTuiSdkError.h; sourceTree = "<group>"; };
+		C9FA3D251BB12A1B0072712D /* libGeTuiSdk-1.2.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGeTuiSdk-1.2.1.a"; sourceTree = "<group>"; };
 		C9FAB3D91B5749330074A477 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
 		C9FAB3DB1B574A440074A477 /* UUString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUString.h; sourceTree = "<group>"; };
 		C9FAB3DC1B574A440074A477 /* UUString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUString.m; sourceTree = "<group>"; };
@@ -383,6 +402,7 @@
 				C9E9A93D1AE09BFA00F87EF2 /* libsqlite3.0.dylib in Frameworks */,
 				C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */,
 				C97889BF18E16B9900157577 /* StoreKit.framework in Frameworks */,
+				C9FA3D261BB12A1B0072712D /* libGeTuiSdk-1.2.1.a in Frameworks */,
 				C97889BD18E16B4F00157577 /* Security.framework in Frameworks */,
 				C97889AA18E16B4400157577 /* AddressBook.framework in Frameworks */,
 				C97889AB18E16B4400157577 /* AddressBookUI.framework in Frameworks */,
@@ -465,6 +485,10 @@
 				C9D97A3D179FA6510076ACF3 /* ACMoreViewController.m */,
 				C90BCF7817D037B200813641 /* ACNavigationWebPageViewController.h */,
 				C90BCF7917D037B300813641 /* ACNavigationWebPageViewController.m */,
+				C9EEBD971BAFDC5A007AA604 /* ACMessageNotificationViewController.h */,
+				C9EEBD981BAFDC5A007AA604 /* ACMessageNotificationViewController.m */,
+				C9EEBDA11BAFE457007AA604 /* MessageNotificationDetailViewController.h */,
+				C9EEBDA21BAFE457007AA604 /* MessageNotificationDetailViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -748,13 +772,15 @@
 				C9D97A67179FA6520076ACF3 /* NSDictionary+MutableDeepCopy.m */,
 				C9D97D7F179FB3730076ACF3 /* NSString+Utils.h */,
 				C9D97D80179FB3730076ACF3 /* NSString+Utils.m */,
+				C9E9A9381AE0996E00F87EF2 /* RecordsSQL.h */,
+				C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */,
 				C9D97AC4179FA6640076ACF3 /* Response.h */,
 				C9D97AC5179FA6640076ACF3 /* Response.m */,
 				C9D97AC6179FA6640076ACF3 /* ResultDelegate.h */,
+				C9EEBDA41BAFE861007AA604 /* SQLiteOperate.h */,
+				C9EEBDA51BAFE861007AA604 /* SQLiteOperate.m */,
 				C9ED952B18FD078C00934D96 /* UIWindow+PazLabs.h */,
 				C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */,
-				C9E9A9381AE0996E00F87EF2 /* RecordsSQL.h */,
-				C9E9A9391AE0996E00F87EF2 /* RecordsSQL.m */,
 				C9FAB3DB1B574A440074A477 /* UUString.h */,
 				C9FAB3DC1B574A440074A477 /* UUString.m */,
 			);
@@ -764,6 +790,7 @@
 		C9D97AC9179FA6640076ACF3 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9FA3D211BB12A1B0072712D /* LibGeTuiSDK */,
 				C9CEB1581B943EF3008E3674 /* alipay */,
 				C90417421B4B797F00F32A1B /* UMAnalytics_Sdk_3.5.8 */,
 				C9D97B1E179FA6640076ACF3 /* ASIHTTP */,
@@ -851,6 +878,7 @@
 		C9D97D79179FA72C0076ACF3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C9EEBD9A1BAFDE80007AA604 /* Model */,
 				C9F80CFA17B1D58E00E15885 /* Cell */,
 				C9D97D7B179FAB770076ACF3 /* Controller */,
 				C9F80CFB17B1D5E200E15885 /* View */,
@@ -882,6 +910,15 @@
 			name = XIB;
 			sourceTree = "<group>";
 		};
+		C9EEBD9A1BAFDE80007AA604 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C9EEBD9B1BAFDE8E007AA604 /* Message.h */,
+				C9EEBD9C1BAFDE8E007AA604 /* Message.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C9F80CFA17B1D58E00E15885 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,6 +946,8 @@
 				C9D97AC0179FA6640076ACF3 /* LoadingCell.m */,
 				C90EC3AB1AE77ADB000F7700 /* ACContactSingleCell.h */,
 				C90EC3AC1AE77ADB000F7700 /* ACContactSingleCell.m */,
+				C9EEBD9E1BAFDF0A007AA604 /* ACMessageCell.h */,
+				C9EEBD9F1BAFDF0A007AA604 /* ACMessageCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -926,6 +965,24 @@
 				C9E42CEB1AF0CEDE00E3398C /* ACButton.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		C9FA3D211BB12A1B0072712D /* LibGeTuiSDK */ = {
+			isa = PBXGroup;
+			children = (
+				C9FA3D221BB12A1B0072712D /* include */,
+				C9FA3D251BB12A1B0072712D /* libGeTuiSdk-1.2.1.a */,
+			);
+			path = LibGeTuiSDK;
+			sourceTree = "<group>";
+		};
+		C9FA3D221BB12A1B0072712D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C9FA3D231BB12A1B0072712D /* GeTuiSdk.h */,
+				C9FA3D241BB12A1B0072712D /* GeTuiSdkError.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -958,6 +1015,11 @@
 				TargetAttributes = {
 					C9D97986179FA3500076ACF3 = {
 						DevelopmentTeam = XLA7UCY3KD;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1015,6 +1077,7 @@
 				C9D97A72179FA6520076ACF3 /* ACAppDelegate.m in Sources */,
 				C9D97A74179FA6520076ACF3 /* ACContactCell.m in Sources */,
 				C990FA9C18F39CF500C85ED9 /* ACExtractionCodeDetailViewController.m in Sources */,
+				C9EEBD9D1BAFDE8E007AA604 /* Message.m in Sources */,
 				C9D97A85179FA6520076ACF3 /* ACLoginViewController.m in Sources */,
 				C96FB4AB18ED45D70004958C /* ACRecordingCallDetailViewController.m in Sources */,
 				C9D97A8F179FA6520076ACF3 /* ACMoreViewController.m in Sources */,
@@ -1029,6 +1092,7 @@
 				C98519021AF20EFE003E0126 /* ATMHudView.m in Sources */,
 				C9D47CFD18F387F300472625 /* ACModifyPasswordViewController.m in Sources */,
 				C9D97AAA179FA6520076ACF3 /* NSDictionary+MutableDeepCopy.m in Sources */,
+				C9EEBDA61BAFE861007AA604 /* SQLiteOperate.m in Sources */,
 				C9D97C7B179FA6640076ACF3 /* BaseRefreshTableViewController.m in Sources */,
 				C9D97C7C179FA6640076ACF3 /* BaseTableViewController.m in Sources */,
 				C9D97C83179FA6640076ACF3 /* IAPHelper.m in Sources */,
@@ -1039,6 +1103,7 @@
 				C9D97C80179FA6640076ACF3 /* DataSingleton.m in Sources */,
 				C9D97C81179FA6640076ACF3 /* FileUtils.m in Sources */,
 				C9D97C82179FA6640076ACF3 /* HttpRequest.m in Sources */,
+				C9EEBDA01BAFDF0A007AA604 /* ACMessageCell.m in Sources */,
 				C9D97C84179FA6640076ACF3 /* LoadingCell.m in Sources */,
 				C98519001AF20EFE003E0126 /* ATMHud.m in Sources */,
 				C997106118F631A200E56D22 /* ACSetGesturePasswordViewController.m in Sources */,
@@ -1065,6 +1130,7 @@
 				C9FAB3DD1B574A440074A477 /* UUString.m in Sources */,
 				C9D97CC0179FA6650076ACF3 /* ybase64.c in Sources */,
 				C91D0BE718EE9F4A006B10A3 /* ACAccountPay2Cell.m in Sources */,
+				C9EEBD991BAFDC5A007AA604 /* ACMessageNotificationViewController.m in Sources */,
 				C98519031AF20EFE003E0126 /* ATMProgressLayer.m in Sources */,
 				C9D97CC1179FA6650076ACF3 /* MBProgressHUD.m in Sources */,
 				C99BC2E618ED2ACE00650DF5 /* ACForgetPasswordViewController.m in Sources */,
@@ -1095,6 +1161,7 @@
 				C9D4D19117E2B8EE0013D03E /* CJSONScanner.m in Sources */,
 				C9D4D19217E2B8EE0013D03E /* CJSONSerializer.m in Sources */,
 				C997105B18F62EF100E56D22 /* KKGestureLockView.m in Sources */,
+				C9EEBDA31BAFE457007AA604 /* MessageNotificationDetailViewController.m in Sources */,
 				C98519041AF20EFE003E0126 /* ATMSoundFX.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1176,6 +1243,7 @@
 					YuluByStore/Librarys/baidumtj,
 					"$(PROJECT_DIR)/YuluByStore/Librarys/UMAnalytics_Sdk_3.5.8",
 					"$(PROJECT_DIR)/YuluByStore/Librarys/alipay",
+					"$(PROJECT_DIR)/YuluByStore/Librarys/LibGeTuiSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ancun.luyin;
@@ -1224,6 +1292,7 @@
 					YuluByStore/Librarys/baidumtj,
 					"$(PROJECT_DIR)/YuluByStore/Librarys/UMAnalytics_Sdk_3.5.8",
 					"$(PROJECT_DIR)/YuluByStore/Librarys/alipay",
+					"$(PROJECT_DIR)/YuluByStore/Librarys/LibGeTuiSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

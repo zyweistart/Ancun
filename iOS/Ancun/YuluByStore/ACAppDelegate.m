@@ -26,6 +26,12 @@
     #import "IAPHelper.h"
 #endif
 
+
+#define NotifyActionKey "NotifyAction"
+NSString* const NotificationCategoryIdent  = @"ACTIONABLE";
+NSString* const NotificationActionOneIdent = @"ACTION_ONE";
+NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
+
 @implementation ACAppDelegate
 
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
@@ -115,13 +121,18 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-//    if(!application.enabledRemoteNotificationTypes){
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-//    }
-    
-    //应用关闭的情况下接收到消息推送
-//    NSDictionary *aps = [[launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"] objectForKey:@"aps"];
-//    [self notication:aps];
+    // [1]:使用APPID/APPKEY/APPSECRENT创建个推实例
+    [self startSdkWith:kAppId appKey:kAppKey appSecret:kAppSecret];
+    // [2]:注册APNS
+    [self registerRemoteNotification];
+    // [2-EXT]: 获取启动时收到的APN数据
+    NSDictionary*message=[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (message) {
+        NSString*payloadMsg = [message objectForKey:@"payload"];
+        NSString*record = [NSString stringWithFormat:@"[APN]%@,%@",[NSDate date],payloadMsg];
+//        [_viewController logMsg:record];
+        NSLog(@"================%@",message);
+    }
     return YES;
 }
 
@@ -136,6 +147,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    // [EXT] APP进入后台时，通知个推SDK进入后台
+    [GeTuiSdk enterBackground];
     if([[Config Instance]isLogin]) {
         NSString *GESTUREPWD=[Common getCache:DEFAULTDATA_GESTUREPWD];
         NSString *PHONE=[Common getCache:DEFAULTDATA_PHONE];
@@ -155,6 +168,7 @@
         }
     }
 }
+
 #ifdef JAILBREAK
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
@@ -177,5 +191,105 @@
     return YES;
 }
 #endif
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSString *token = [[deviceToken description]
+                       stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    
+    self.deviceToken = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    NSLog(@"deviceToken:%@",self.deviceToken);
+    // [3]:向个推服务器注册deviceToken
+    [GeTuiSdk registerDeviceToken:self.deviceToken];
+}
+
+
+-(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    // [3-EXT]:如果APNS注册失败，通知个推服务器
+    [GeTuiSdk registerDeviceToken:@""];
+}
+
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [GeTuiSdk resume];
+    // 恢复个推SDK运行
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userinfo {
+    // [4-EXT]:处理APN
+    NSString *payloadMsg = [userinfo objectForKey:@"payload"];
+    if (payloadMsg) {
+//        NSString *record = [NSString stringWithFormat:@"[APN]%@, %@", [NSDate date], payloadMsg];
+    }
+}
+
+- (void)startSdkWith:(NSString *)appID appKey:(NSString*)appKey appSecret:(NSString *)appSecret
+
+{
+    NSError *err =nil;
+    //[1-1]:通过 AppId、appKey 、appSecret 启动SDK
+    [GeTuiSdk startSdkWithAppId:appID appKey:appKey appSecret:appSecret delegate:self error:&err];
+    //[1-2]:设置是否后台运行开关
+    [GeTuiSdk runBackgroundEnable:YES];
+    //[1-3]:设置地理围栏功能，开启LBS定位服务和是否允许SDK 弹出用户定位请求，请求NSLocationAlwaysUsageDescription权限,如果UserVerify设置为NO，需第三方负责提示用户定位授权。
+    [GeTuiSdk lbsLocationEnable:YES andUserVerify:YES];
+    if (err) {
+        //        [_viewController logMsg:[NSString stringWithFormat:@"%@", [err localizedDescription]]];
+        NSLog(@"%@",[NSString stringWithFormat:@"%@", [err localizedDescription]]);
+    }
+}
+
+- (void)registerRemoteNotification
+{
+#ifdef __IPHONE_8_0
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        //IOS8 新的通知机制category注册
+        UIMutableUserNotificationAction *action1;
+        action1 = [[UIMutableUserNotificationAction alloc] init];
+        [action1 setActivationMode:UIUserNotificationActivationModeBackground];
+        [action1 setTitle:@"取消"];
+        [action1 setIdentifier:NotificationActionOneIdent];
+        [action1 setDestructive:NO];
+        [action1 setAuthenticationRequired:NO];
+        
+        UIMutableUserNotificationAction *action2;
+        action2 = [[UIMutableUserNotificationAction alloc] init];
+        [action2 setActivationMode:UIUserNotificationActivationModeBackground];
+        [action2 setTitle:@"回复"];
+        [action2 setIdentifier:NotificationActionTwoIdent];
+        [action2 setDestructive:NO];
+        [action2 setAuthenticationRequired:NO];
+        
+        UIMutableUserNotificationCategory *actionCategory;
+        actionCategory = [[UIMutableUserNotificationCategory alloc] init];
+        [actionCategory setIdentifier:NotificationCategoryIdent];
+        [actionCategory setActions:@[action1, action2]
+                        forContext:UIUserNotificationActionContextDefault];
+        
+        NSSet *categories = [NSSet setWithObject:actionCategory];
+        UIUserNotificationType types = (UIUserNotificationTypeAlert|
+                                        UIUserNotificationTypeSound|
+                                        UIUserNotificationTypeBadge);
+        
+        UIUserNotificationSettings *settings;
+        settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        
+    } else {
+        UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert|
+                                                                       UIRemoteNotificationTypeSound|
+                                                                       UIRemoteNotificationTypeBadge);
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
+    }
+#else
+    UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert|
+                                                                   UIRemoteNotificationTypeSound|
+                                                                   UIRemoteNotificationTypeBadge);
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
+#endif
+}
 
 @end

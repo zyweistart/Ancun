@@ -28,6 +28,7 @@
     #import "HttpRequest.h"
     #import "BaseViewController.h"
     #import "ACAppDelegate.h"
+    #import "SQLiteOperate.h"
 
 CG_INLINE CGFloat
 CGWidth(CGFloat width)
@@ -126,6 +127,12 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define RESULTCODE_ACLoginViewController_3 3
 #define RESULTCODE_ACRecordingDetailViewController_back 222
 #define RESULTCODE_ACExtractionDetailViewController_back 2
+
+#define kAppId           @"LZap3LqL569GewL1ZpToj3"
+#define kAppKey          @"9S95r8PbJ18bXZYRi4ltA9"
+#define kAppSecret       @"HXRFkppPOG8aNADLY3I6m"
+//#define kMasterSecret    @"Sdd3KaLieH6HUMZl6wZRi"
+
 #ifdef TEST
     //测试环境定义的常量
     #define PHONENUMBER @"057156559580"

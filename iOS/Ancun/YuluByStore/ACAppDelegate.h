@@ -6,11 +6,15 @@
 //  Copyright (c) 2012年 ancun. All rights reserved.
 //
 
-@interface ACAppDelegate : UIResponder <UIApplicationDelegate>
+
+#import "GeTuiSdk.h"
+
+@interface ACAppDelegate : UIResponder <UIApplicationDelegate,GeTuiSdkDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property float autoSizeScaleX;
-@property float autoSizeScaleY;
+@property (assign,nonatomic)float autoSizeScaleX;
+@property (assign,nonatomic)float autoSizeScaleY;
+@property (strong,nonatomic)NSString *deviceToken;
 
 @end

@@ -96,51 +96,51 @@
 //把秒转换成12时12分12秒中文形式
 + (NSString*)secondConvertFormatTimerByCn:(NSString *)second{
     NSInteger sec=[second intValue];
-    int day=sec/(60*60*24);
-    int h=(sec%(60*60*24))/(60*60);
-    int m=((sec%(60*60*24))%(60*60))/60;
-    int s=(((sec%(60*60*24))%(60*60))%60)%60;
+    NSInteger day=sec/(60*60*24);
+    NSInteger h=(sec%(60*60*24))/(60*60);
+    NSInteger m=((sec%(60*60*24))%(60*60))/60;
+    NSInteger s=(((sec%(60*60*24))%(60*60))%60)%60;
     if(day>0){
-        return [NSString stringWithFormat:@"%d天%d时%d分%d秒",day,h,m,s];
+        return [NSString stringWithFormat:@"%ld天%ld时%ld分%ld秒",day,h,m,s];
     }else if(h>0){
-        return [NSString stringWithFormat:@"%d时%d分%d秒",h,m,s];
+        return [NSString stringWithFormat:@"%ld时%ld分%ld秒",h,m,s];
     }else if(m>0){
-        return [NSString stringWithFormat:@"%d分%d秒",m,s];
+        return [NSString stringWithFormat:@"%ld分%ld秒",m,s];
     }else{
-        return [NSString stringWithFormat:@"%d秒",s];
+        return [NSString stringWithFormat:@"%ld秒",s];
     }
 }
 
 //把秒转换成12:12:12英文形式
 + (NSString*)secondConvertFormatTimerByEn:(NSString *)second{
     NSInteger sec=[second intValue];
-    int day=sec/(60*60*24);
-    int h=(sec%(60*60*24))/(60*60);
-    int m=((sec%(60*60*24))%(60*60))/60;
-    int s=(((sec%(60*60*24))%(60*60))%60)%60;
+    NSInteger day=sec/(60*60*24);
+    NSInteger h=(sec%(60*60*24))/(60*60);
+    NSInteger m=((sec%(60*60*24))%(60*60))/60;
+    NSInteger s=(((sec%(60*60*24))%(60*60))%60)%60;
     NSString *days=nil;
     NSString *hs=nil;
     NSString *ms=nil;
     NSString *ss=nil;
     if(day>=10){
-        days=[NSString stringWithFormat:@"%d",day];
+        days=[NSString stringWithFormat:@"%ld",day];
     }else{
-        days=[NSString stringWithFormat:@"0%d",day];
+        days=[NSString stringWithFormat:@"0%ld",day];
     }
     if(h>=10){
-        hs=[NSString stringWithFormat:@"%d",h];
+        hs=[NSString stringWithFormat:@"%ld",h];
     }else{
-        hs=[NSString stringWithFormat:@"0%d",h];
+        hs=[NSString stringWithFormat:@"0%ld",h];
     }
     if(m>=10){
-        ms=[NSString stringWithFormat:@"%d",m];
+        ms=[NSString stringWithFormat:@"%ld",m];
     }else{
-        ms=[NSString stringWithFormat:@"0%d",m];
+        ms=[NSString stringWithFormat:@"0%ld",m];
     }
     if(s>=10){
-        ss=[NSString stringWithFormat:@"%d",s];
+        ss=[NSString stringWithFormat:@"%ld",s];
     }else{
-        ss=[NSString stringWithFormat:@"0%d",s];
+        ss=[NSString stringWithFormat:@"0%ld",s];
     }
     if(day>0){
         return [NSString stringWithFormat:@"%@:%@:%@:%@",days,hs,ms,ss];

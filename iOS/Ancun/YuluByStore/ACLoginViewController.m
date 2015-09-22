@@ -27,6 +27,8 @@
     BOOL rememberPassword;
     
     UIButton *btnRememberPwdImg;
+    
+    SQLiteOperate *db;
 }
 
 - (id)init {
@@ -273,6 +275,15 @@
                                                  recordingManagerViewControllerNav,
                                                  moreViewControllerNav,
                                                  nil];
+            db=[[SQLiteOperate alloc]init];
+            if([db openDB]){
+                if([db createTableMessageNotification]){
+                    NSInteger count=[db getNoReadMessageNotificationCount];
+                    //未读消息提示数
+                    [[_tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+                }
+            }
+            
             [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
             [self presentViewController:_tabBarController animated:YES completion:^{
                 if(self.gotoAgainGesurePassword){
