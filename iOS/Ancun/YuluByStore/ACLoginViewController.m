@@ -262,6 +262,8 @@
             //        }
             //添加标签控制器
             UITabBarController *_tabBarController = [[UITabBarController alloc] init];
+            ACAppDelegate *myDelegate = (ACAppDelegate*)[[UIApplication sharedApplication] delegate];
+            [myDelegate setMTabBarController:_tabBarController];
             [_tabBarController.view setBackgroundColor:MAINBG];
             if([[[UIDevice currentDevice] systemVersion]floatValue]>=6){
                 [[_tabBarController tabBar] setShadowImage:[[UIImage alloc] init]];
@@ -280,7 +282,11 @@
                 if([db createTableMessageNotification]){
                     NSInteger count=[db getNoReadMessageNotificationCount];
                     //未读消息提示数
-                    [[_tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+                    if(count>0){
+                        [[_tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+                    }else{
+                        [[_tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:nil];
+                    }
                 }
             }
             

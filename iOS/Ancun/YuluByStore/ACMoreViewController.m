@@ -75,7 +75,11 @@
         if([db createTableMessageNotification]){
             NSInteger count=[db getNoReadMessageNotificationCount];
             //未读消息提示数
-            [[self.tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+            if(count>0){
+                [[self.tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+            }else{
+                [[self.tabBarController.tabBar.items objectAtIndex:4] setBadgeValue:nil];
+            }
         }
     }
 }

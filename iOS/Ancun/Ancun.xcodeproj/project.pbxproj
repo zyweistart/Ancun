@@ -45,6 +45,7 @@
 		C97889BB18E16B4400157577 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889A918E16B4400157577 /* UIKit.framework */; };
 		C97889BD18E16B4F00157577 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889BC18E16B4F00157577 /* Security.framework */; };
 		C97889BF18E16B9900157577 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889BE18E16B9900157577 /* StoreKit.framework */; };
+		C981A7721BB29D3400743CFC /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C981A7711BB29D3300743CFC /* HttpDownload.m */; settings = {ASSET_TAGS = (); }; };
 		C98519001AF20EFE003E0126 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F41AF20EFE003E0126 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C98519011AF20EFE003E0126 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F71AF20EFE003E0126 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C98519021AF20EFE003E0126 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F91AF20EFE003E0126 /* ATMHudView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -203,6 +204,8 @@
 		C97889BC18E16B4F00157577 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		C97889BE18E16B9900157577 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		C97DA4D717A9EFF7000D9B31 /* ydefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ydefines.h; sourceTree = "<group>"; };
+		C981A7701BB29D3300743CFC /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
+		C981A7711BB29D3300743CFC /* HttpDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDownload.m; sourceTree = "<group>"; };
 		C98518F31AF20EFE003E0126 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		C98518F41AF20EFE003E0126 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
 		C98518F51AF20EFE003E0126 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
@@ -762,6 +765,8 @@
 				C9D97AB8179FA6640076ACF3 /* DataSingleton.m */,
 				C9D97AB9179FA6640076ACF3 /* FileUtils.h */,
 				C9D97ABA179FA6640076ACF3 /* FileUtils.m */,
+				C981A7701BB29D3300743CFC /* HttpDownload.h */,
+				C981A7711BB29D3300743CFC /* HttpDownload.m */,
 				C9D97ABB179FA6640076ACF3 /* HttpRequest.h */,
 				C9D97ABC179FA6640076ACF3 /* HttpRequest.m */,
 				C9D97ABD179FA6640076ACF3 /* IAPHelper.h */,
@@ -1093,6 +1098,7 @@
 				C9D47CFD18F387F300472625 /* ACModifyPasswordViewController.m in Sources */,
 				C9D97AAA179FA6520076ACF3 /* NSDictionary+MutableDeepCopy.m in Sources */,
 				C9EEBDA61BAFE861007AA604 /* SQLiteOperate.m in Sources */,
+				C981A7721BB29D3400743CFC /* HttpDownload.m in Sources */,
 				C9D97C7B179FA6640076ACF3 /* BaseRefreshTableViewController.m in Sources */,
 				C9D97C7C179FA6640076ACF3 /* BaseTableViewController.m in Sources */,
 				C9D97C83179FA6640076ACF3 /* IAPHelper.m in Sources */,

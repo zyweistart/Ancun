@@ -128,15 +128,21 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
     // [2-EXT]: 获取启动时收到的APN数据
     NSDictionary*message=[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (message) {
-        NSString*payloadMsg = [message objectForKey:@"payload"];
-        NSString*record = [NSString stringWithFormat:@"[APN]%@,%@",[NSDate date],payloadMsg];
+//        NSString*payloadMsg = [message objectForKey:@"payload"];
+//        NSString*record = [NSString stringWithFormat:@"[APN]%@,%@",[NSDate date],payloadMsg];
 //        [_viewController logMsg:record];
         NSLog(@"================%@",message);
     }
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     return YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    // [EXT] 重新上线
+    [self startSdkWith:kAppId appKey:kAppKey appSecret:kAppSecret];
     if([[Config Instance]isLogin]) {
 #ifdef JAILBREAK
         //重新返回到应用的时候刷新用户信息
@@ -196,18 +202,63 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
 {
     NSString *token = [[deviceToken description]
                        stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    
     self.deviceToken = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
 //    NSLog(@"deviceToken:%@",self.deviceToken);
-    // [3]:向个推服务器注册deviceToken
+//    [3]:向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:self.deviceToken];
 }
-
 
 -(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     // [3-EXT]:如果APNS注册失败，通知个推服务器
     [GeTuiSdk registerDeviceToken:@""];
+}
+
+-(void)GeTuiSdkDidReceivePayload:(NSString*)payloadId andTaskId:(NSString*)taskId andMessageId:(NSString *)aMsgId fromApplication:(NSString *)appId
+
+{
+    // [4]: 收到个推消息
+    NSData *payload = [GeTuiSdk retrivePayloadById:payloadId]; //根据payloadId取回Payload
+    NSString *payloadMsg = nil;
+    if (payload) {
+        payloadMsg = [[NSString alloc] initWithBytes:payload.bytes
+                                              length:payload.length
+                                            encoding:NSUTF8StringEncoding];
+        NSDictionary *data=@{@"title":@"这是标题",@"content":@"这是内容",@"oper":@"1",@"url":@"3",@"type":@"0",};
+        [self insertMessage:data];
+    }
+    NSLog(@"这是消息主体payLoadMsg:%@",payloadMsg);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userinfo {
+    // [4-EXT]:处理APN
+    NSString *payloadMsg = [userinfo objectForKey:@"payload"];
+    if (payloadMsg) {
+//        NSString *record = [NSString stringWithFormat:@"[APN]%@, %@", [NSDate date], payloadMsg];
+    }
+    NSLog(@"===========%@",userinfo);
+}
+
+- (void)GeTuiSdkDidRegisterClient:(NSString *)clientId  // SDK 返回clientid
+{
+    // [4-EXT-1]: 个推SDK已注册，返回clientId
+    if (_deviceToken) {
+        [GeTuiSdk registerDeviceToken:_deviceToken];
+    }
+}
+
+- (void)GeTuiSdkDidSendMessage:(NSString *)messageId result:(int)result
+{
+    // [4-EXT]:发送上行消息结果反馈
+    NSString *record = [NSString stringWithFormat:@"Received sendmessage:%@ result:%d", messageId, result];
+    NSLog(@"%@",record);
+}
+
+- (void)GeTuiSdkDidOccurError:(NSError *)error
+{
+    // [EXT]:个推错误报告，集成步骤发生的任何错误都在这里通知，如果集成后，无法正常收到消息，查看这里的通知。
+    NSLog(@"%@",[NSString
+                 stringWithFormat:@">>>[GexinSdk error]:%@", [error localizedDescription]]);
 }
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -217,16 +268,7 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userinfo {
-    // [4-EXT]:处理APN
-    NSString *payloadMsg = [userinfo objectForKey:@"payload"];
-    if (payloadMsg) {
-//        NSString *record = [NSString stringWithFormat:@"[APN]%@, %@", [NSDate date], payloadMsg];
-    }
-}
-
 - (void)startSdkWith:(NSString *)appID appKey:(NSString*)appKey appSecret:(NSString *)appSecret
-
 {
     NSError *err =nil;
     //[1-1]:通过 AppId、appKey 、appSecret 启动SDK
@@ -290,6 +332,44 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
                                                                    UIRemoteNotificationTypeBadge);
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
 #endif
+}
+
+static void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+}
+
+- (void)insertMessage:(NSDictionary*)userInfo
+{
+    if(userInfo==nil){
+        return;
+    }
+    SQLiteOperate *so=[[SQLiteOperate alloc]init];
+    if([so openDB]){
+        if([so createTableMessageNotification]){
+            Message *message=[[Message alloc]init];
+//            format:@{@"title":@"",@"content":@"",@"oper":@"",@"url":@"",@"type":@"0",}
+            [message setTitle:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"title"]]];
+            [message setContent:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"content"]]];
+            [message setOper:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"oper"]]];
+            [message setUrl:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"url"]]];
+            [message setType:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"type"]]];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+            [message setDate:currentDateStr];
+            [message setRead:@"0"];
+            [so insertMessageNotification:message];
+            
+            NSInteger count=[so getNoReadMessageNotificationCount];
+            //未读消息提示数
+            if(count>0){
+                [[self.mTabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+            }else{
+                [[self.mTabBarController.tabBar.items objectAtIndex:4] setBadgeValue:nil];
+            }
+        }
+    }
 }
 
 @end

@@ -23,6 +23,7 @@
 - (NSMutableArray*)getAllMessageNotification;
 - (BOOL)insertMessageNotification:(Message*)message;
 - (BOOL)updateMessageNotification:(Message*)message;
+- (BOOL)deleteMessageNotification:(Message*)message;
 - (NSInteger)getNoReadMessageNotificationCount;
 
 @end

@@ -89,7 +89,7 @@
 
 - (NSMutableArray*)getAllMessageNotification
 {
-    NSString *SQL=@"SELECT * FROM MESSAGENOTIFICATION";
+    NSString *SQL=@"SELECT * FROM MESSAGENOTIFICATION ORDER BY DATE DESC";
     NSMutableArray *lists=[self queryWithColumns:@[@"ID",@"TITLE",@"CONTEXT",@"OPERATOR",@"URL",@"TYPE",@"DATE",@"READ"] WithSQL:SQL];
     NSMutableArray *arrays=[[NSMutableArray alloc]init];
     for(NSDictionary *d in lists){
@@ -116,6 +116,12 @@
 - (BOOL)updateMessageNotification:(Message*)message
 {
     NSString *SQL=[NSString stringWithFormat:@"UPDATE MESSAGENOTIFICATION SET READ = '1' WHERE ID = %@",message.key];
+    return [self execSql:SQL];
+}
+
+- (BOOL)deleteMessageNotification:(Message*)message
+{
+    NSString *SQL=[NSString stringWithFormat:@"DELETE FROM MESSAGENOTIFICATION WHERE ID = %@",message.key];
     return [self execSql:SQL];
 }
 

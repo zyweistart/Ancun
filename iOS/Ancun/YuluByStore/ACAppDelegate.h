@@ -12,6 +12,7 @@
 @interface ACAppDelegate : UIResponder <UIApplicationDelegate,GeTuiSdkDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UITabBarController *mTabBarController;
 
 @property (assign,nonatomic)float autoSizeScaleX;
 @property (assign,nonatomic)float autoSizeScaleY;

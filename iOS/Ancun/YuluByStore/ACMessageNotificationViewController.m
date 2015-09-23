@@ -78,4 +78,34 @@
     }
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  @"删除";
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Message *message=[self.dataItemArray objectAtIndex:[indexPath row]];
+        if([db openDB]){
+            if([db createTableMessageNotification]){
+                if([db deleteMessageNotification:message]){
+                    [self.dataItemArray removeObject:message];
+                    [self.tableView reloadData];
+                }
+            }
+        }
+    }
+}
+
 @end
