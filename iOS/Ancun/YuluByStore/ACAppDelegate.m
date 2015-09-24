@@ -338,7 +338,7 @@ static void uncaughtExceptionHandler(NSException *exception) {
         return;
     }
     NSArray *list=[message componentsSeparatedByString:@"|"];
-    if([list count]!=5){
+    if([list count]!=6){
         return;
     }
     SQLiteOperate *so=[[SQLiteOperate alloc]init];
