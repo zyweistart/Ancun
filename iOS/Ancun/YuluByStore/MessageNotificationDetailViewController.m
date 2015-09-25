@@ -52,7 +52,7 @@
             //图片
             NSArray *list=[self.message.url componentsSeparatedByString:@"@"];
             if([list count]==2){
-                self.imImage=[[UIImageView alloc]initWithFrame:CGRectMake(CGWidth(10), topHeight, CGWidth(300), CGHeight(100))];
+                self.imImage=[[UIImageView alloc]initWithFrame:CGRectMake(CGWidth(10), topHeight, CGWidth(300), CGHeight(80))];
                 [self.imImage setBackgroundColor:[UIColor clearColor]];
                 [self.imImage setUserInteractionEnabled:YES];
                 [self.imImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goOpenLink)]];
