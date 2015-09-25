@@ -119,7 +119,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    int count=[[[IAPHelper sharedHelper]products]count];
+    NSInteger count=[[[IAPHelper sharedHelper]products]count];
     if(count>0){
         if(PAGESIZE>count){
             return count;
@@ -141,7 +141,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row=[indexPath row];
-    int count=[[[IAPHelper sharedHelper]products]count];
+    NSInteger count=[[[IAPHelper sharedHelper]products]count];
     if(count>row) {
         static NSString *cellReuseIdentifier = @"ACPaymentCell";
         ACAccountPay2Cell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier];
@@ -210,7 +210,7 @@
         [requestParams setObject:@"3"  forKey:@"type"];
         [requestParams setObject:@"1"  forKey:@"status"];
         [requestParams setObject:[NSString stringWithFormat: @"%d",PAGESIZE]  forKey:@"pagesize"];
-        [requestParams setObject:[NSString stringWithFormat: @"%d",_currentPage] forKey:@"currentpage"];
+        [requestParams setObject:[NSString stringWithFormat: @"%ld",(long)_currentPage] forKey:@"currentpage"];
         self.hRequest=[[HttpRequest alloc]init];
         [self.hRequest setDelegate:self];
         [self.hRequest setController:self];

@@ -359,7 +359,7 @@ static void uncaughtExceptionHandler(NSException *exception) {
             NSInteger count=[so getNoReadMessageNotificationCount];
             //未读消息提示数
             if(count>0){
-                [[self.mTabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+                [[self.mTabBarController.tabBar.items objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%ld",(long)count]];
             }else{
                 [[self.mTabBarController.tabBar.items objectAtIndex:4] setBadgeValue:nil];
             }

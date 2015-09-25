@@ -114,7 +114,7 @@
         [requestParams setObject:PRODUCTRECORDNO_STRING  forKey:@"productrecordno"];
         [requestParams setObject:@"1"  forKey:@"status"];
         [requestParams setObject:[NSString stringWithFormat: @"%d",PAGESIZE]  forKey:@"pagesize"];
-        [requestParams setObject:[NSString stringWithFormat: @"%d",_currentPage] forKey:@"currentpage"];
+        [requestParams setObject:[NSString stringWithFormat: @"%ld",_currentPage] forKey:@"currentpage"];
         self.hRequest=[[HttpRequest alloc]init];
         [self.hRequest setDelegate:self];
         [self.hRequest setController:self];

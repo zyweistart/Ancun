@@ -5,7 +5,7 @@
 
 @interface BaseRefreshTableViewController:BaseTableViewController<EGORefreshTableHeaderDelegate,ResultDelegate,HttpViewDelegate>{
     //当前页数
-    int _currentPage;
+    NSInteger _currentPage;
     //是否处于加载中
 	BOOL _reloading;
     //是否加载完毕

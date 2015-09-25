@@ -98,7 +98,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    int row=[indexPath row];
+    NSInteger row=[indexPath row];
     if([self.dataItemArray count]==row){
         if(row>=PAGESIZE) {
             if(!_loadOver&&!_reloading) {

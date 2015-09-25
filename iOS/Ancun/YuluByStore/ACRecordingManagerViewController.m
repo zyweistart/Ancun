@@ -175,7 +175,7 @@ static NSString *cell2ReuseIdentifier=@"ACRecording2CellIdentifier";
         [requestParams setObject:@"" forKey:@"endtime"];
         [requestParams setObject:@"desc" forKey:@"ordersort"];
         [requestParams setObject:[NSString stringWithFormat: @"%d",PAGESIZE]  forKey:@"pagesize"];
-        [requestParams setObject:[NSString stringWithFormat: @"%d",_currentPage] forKey:@"currentpage"];
+        [requestParams setObject:[NSString stringWithFormat: @"%ld",_currentPage] forKey:@"currentpage"];
         self.hRequest=[[HttpRequest alloc]init];
         [self.hRequest setDelegate:self];
         [self.hRequest setController:self];
