@@ -9,7 +9,7 @@
 #endif
 
 #pragma mark 测试环境宏定义
-#define TEST
+//#define TEST
 #pragma mark 越狱版宏定义
 #define JAILBREAK
 
@@ -128,10 +128,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define RESULTCODE_ACRecordingDetailViewController_back 222
 #define RESULTCODE_ACExtractionDetailViewController_back 2
 
-#define kAppId           @"LZap3LqL569GewL1ZpToj3"
-#define kAppKey          @"9S95r8PbJ18bXZYRi4ltA9"
-#define kAppSecret       @"HXRFkppPOG8aNADLY3I6m"
-//#define kMasterSecret    @"Sdd3KaLieH6HUMZl6wZRi"
 
 #ifdef TEST
     //测试环境定义的常量
@@ -142,12 +138,22 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 //    #define ANCUN_HTTP_URL @"http://115.236.89.210:8888/accore/http/HttpService"
     #define ACCESSID @"b99810e661d546f14763f15a9270c28d"
     #define ACCESSKEY @"aRxzVdMiopnzpJco3fPJOmXSDZL7rGiL3UgbqQA9YeJ="
+
+    #define kAppId           @"LZap3LqL569GewL1ZpToj3"
+    #define kAppKey          @"9S95r8PbJ18bXZYRi4ltA9"
+    #define kAppSecret       @"HXRFkppPOG8aNADLY3I6m"
+    #define kMasterSecret    @"Sdd3KaLieH6HUMZl6wZRi"
 #else
     //正式环境定义的常量
     #define PHONENUMBER @"95105856"
     #define ANCUN_HTTP_URL @"http://server.ancun.com:3391/rest/RestService"
     #define ACCESSID @"e4e60d050f5513e086b47c4fdca35646"
     #define ACCESSKEY @"fUETGmOIiMujnipQnFm6rJIyO2wJDZSftsK4dwmmoSZ="
+
+    #define kAppId           @"WnYafbuVyg8QUMAhIZeit4"
+    #define kAppKey          @"MvqSSribspACfN7a1aoFx5"
+    #define kAppSecret       @"uGrlac6vkw5hBoy8BlLvv7"
+    #define kMasterSecret    @"Sdd3KaLieH6HUMZl6wZRi"
 #endif
 
 
