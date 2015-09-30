@@ -32,8 +32,8 @@
 //        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"morebg"]]];
         [self.view addSubview:container];
         
-        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"正在计算数据大小",@"重新登录",@"消息通知",@"检测新版本",@"应用分享", nil];
-        NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"4",@"6",@"9",@"9", nil];
+        NSArray *names=[[NSArray alloc]initWithObjects:@"小贴士",@"意见反馈",@"关于我们",@"修改密码",@"手势密码",@"正在计算数据大小",@"消息通知",@"重新登录",@"检测新版本",@"应用分享", nil];
+        NSArray *bgs=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"5",@"8",@"7",@"6",@"6",@"9",@"9", nil];
         
         for(int i=0;i<length;i++){
             UIButton *btnBg=[[UIButton alloc]initWithFrame:CGRectMake1(15.75, 10+i*70+1*i,289,70)];
@@ -145,13 +145,13 @@
             }
         }
     }else if(sender.tag==6){
-        //重新登录
-        [Common actionSheet:self message:@"确定要重新登录吗？" tag:1];
-    }else if(sender.tag==7){
         //消息通知
         ACMessageNotificationViewController *mMessageNotificationViewController=[[ACMessageNotificationViewController alloc]init];
         mMessageNotificationViewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:mMessageNotificationViewController animated:YES];
+    }else if(sender.tag==7){
+        //重新登录
+        [Common actionSheet:self message:@"确定要重新登录吗？" tag:1];
     }
 }
 
