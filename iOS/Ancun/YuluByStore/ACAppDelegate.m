@@ -99,15 +99,15 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
 #endif
     
     //获取最后保存的版本号不存在则为0
-    float lastVersionNo=[[Common getCache:DEFAULTDATA_LASTVERSIONNO] floatValue];
-    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
+//    float lastVersionNo=[[Common getCache:DEFAULTDATA_LASTVERSIONNO] floatValue];
+//    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
     //获取当前使用的版本号
-    NSString *currentVersionNo=[infoDict objectForKey:@"CFBundleVersion"];
+//    NSString *currentVersionNo=[infoDict objectForKey:@"CFBundleVersion"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    if([currentVersionNo floatValue]>lastVersionNo){
-        //新安装或升级则使用引导页
-        self.window.rootViewController=[[ACGuideViewController alloc]init];
-    }else{
+//    if([currentVersionNo floatValue]>lastVersionNo){
+//        //新安装或升级则使用引导页
+//        self.window.rootViewController=[[ACGuideViewController alloc]init];
+//    }else{
         NSString *GESTUREPWD=[Common getCache:DEFAULTDATA_GESTUREPWD];
         NSString *PHONE=[Common getCache:DEFAULTDATA_PHONE];
         NSString *PASSWORD=[Common getCache:DEFAULTDATA_PASSWORD];
@@ -117,7 +117,7 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
         }else{
             self.window.rootViewController=[[ACLoginViewController alloc]init];
         }
-    }
+//    }
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
