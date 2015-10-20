@@ -33,7 +33,8 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self createButtonWithFrame:CGRectMake1(100, 100, 120, 120) title:@"事故处理" titleFont:GLOBAL_FONTSIZE(16)  imagedName:@"player_s" borderColor:RGBCOLOR(102, 208, 208) titleColor:RGBCOLOR(109, 180, 176) action:@selector(goAccident)];
     [self createButtonWithFrame:CGRectMake1(15, 140, 70, 70) title:@"去电录音" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"player_s" borderColor:RGBCOLOR(198, 178, 205) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goCall)];
@@ -96,33 +97,31 @@
     [self.navigationController pushViewController:[[RecordViewController alloc]init] animated:YES];
 }
 
-- (void)goVideo
-{
-    if ([CameraUtility isCameraAvailable]){
-        if([CameraUtility doesCameraSupportTakingPhotos]){
-            UIImagePickerController *imagePickerNC = [[UIImagePickerController alloc] init];
-            imagePickerNC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-            imagePickerNC.sourceType = UIImagePickerControllerSourceTypeCamera;
-            NSArray *sourceTypes = [UIImagePickerController availableMediaTypesForSourceType:imagePickerNC.sourceType];
-            if ([sourceTypes containsObject:(NSString *)kUTTypeMovie ]){
-                imagePickerNC.mediaTypes= [NSArray arrayWithObjects:(NSString *)kUTTypeMovie,(NSString *)kUTTypeImage,nil];
-            }
-            imagePickerNC.delegate = self;
-            [self presentViewController:imagePickerNC animated:YES completion:nil];
-        }
-    }
-}
-
 - (void)goPhotograph
 {
     if ([CameraUtility isCameraAvailable]) {
         if([CameraUtility doesCameraSupportTakingPhotos]){
             UIImagePickerController *imagePickerNC = [[UIImagePickerController alloc] init];
-            imagePickerNC.sourceType = UIImagePickerControllerSourceTypeCamera;
-            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
-            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
-            imagePickerNC.mediaTypes = mediaTypes;
-            imagePickerNC.delegate = self;
+            [imagePickerNC setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imagePickerNC setMediaTypes:@[(NSString *)kUTTypeImage]];
+            [imagePickerNC setDelegate:self];
+            [self presentViewController:imagePickerNC animated:YES completion:nil];
+        }
+    }
+}
+
+- (void)goVideo
+{
+    if ([CameraUtility isCameraAvailable]){
+        if([CameraUtility doesCameraSupportTakingPhotos]){
+            UIImagePickerController *imagePickerNC = [[UIImagePickerController alloc] init];
+            [imagePickerNC setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imagePickerNC setMediaTypes:@[(NSString *)kUTTypeMovie]];
+            [imagePickerNC setDelegate:self];
+            //设置最长录制5分钟
+//            [imagePickerNC setVideoMaximumDuration:300.0f];
+            //视频质量设置
+//            [imagePickerNC setVideoQuality:UIImagePickerControllerQualityTypeIFrame960x540];
             [self presentViewController:imagePickerNC animated:YES completion:nil];
         }
     }
@@ -146,7 +145,30 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self.navigationController pushViewController:[[UploadViewController alloc]init] animated:YES];
+    NSString *mediaType=[info objectForKey:UIImagePickerControllerMediaType];
+    NSLog(@"%@",info);
+    if([@"public.image" isEqualToString:mediaType]){
+        //照片
+        UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];
+        if(image){
+            
+        }
+    }else if([@"public.movie" isEqualToString:mediaType]){
+        //视频
+        //获取视频地址
+        NSArray *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        if(videoURL){
+            
+        }
+    }
+    
+    
+//    NSString *appDocumentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSURL *uploadURL = [NSURL fileURLWithPath:[[appDocumentPath stringByAppendingPathComponent:@"1234"] stringByAppendingString:@".mp4"]];
+//    NSLog(@"%@",uploadURL);
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -161,6 +183,19 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     }
+}
+//保存图片
+- (void)saveImage:(UIImage *)ci withName:(NSString *)imageName
+{
+    NSData *imageData = UIImagePNGRepresentation(ci);
+    // 获取沙盒目录
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    // 将图片写入文件
+    [imageData writeToFile:fullPath atomically:NO];
+}
+//保存视频
+- (void)saveVideo:(UIImage *)ci withName:(NSString *)videoName
+{
 }
 
 @end

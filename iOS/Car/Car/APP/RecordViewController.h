@@ -10,4 +10,8 @@
 
 @interface RecordViewController : BaseViewController
 
+@property (nonatomic) BOOL isRecording;
+@property (strong,nonatomic) NSString *recordedFileName;
+@property (strong,nonatomic) NSString *recordedFilePath;
+
 @end
