@@ -15,7 +15,7 @@
 #ifdef  TEST
 #define PRODUCTRECORDNO_STRING @"d7025d331c315d856dfdee440f3f9c34"
 #else
-#define PRODUCTRECORDNO_STRING @"2cec276a043223d9ff47859082cd99bc"
+#define PRODUCTRECORDNO_STRING @"ac9d9d16706af24455b5834eec56d2d5"
 #endif
 
 @interface ACRechargeByAlipayViewController ()
