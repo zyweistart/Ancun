@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE6E1BD640760050A926 /* CallListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE711BD6408A0050A926 /* PhotographListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C979AE751BD640940050A926 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE741BD640940050A926 /* RecordListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C979AE781BD641260050A926 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE771BD641260050A926 /* VideoListViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C98A8C9E1BCDEA5D0096C69B /* BaseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8C9D1BCDEA5D0096C69B /* BaseItem.m */; settings = {ASSET_TAGS = (); }; };
 		C98A8CA11BCDEA740096C69B /* VideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CA01BCDEA740096C69B /* VideoItem.m */; settings = {ASSET_TAGS = (); }; };
 		C98A8CA41BCDEA870096C69B /* RecordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CA31BCDEA870096C69B /* RecordItem.m */; settings = {ASSET_TAGS = (); }; };
@@ -87,6 +91,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C979AE6D1BD640760050A926 /* CallListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallListViewController.h; sourceTree = "<group>"; };
+		C979AE6E1BD640760050A926 /* CallListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallListViewController.m; sourceTree = "<group>"; };
+		C979AE701BD6408A0050A926 /* PhotographListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographListViewController.h; sourceTree = "<group>"; };
+		C979AE711BD6408A0050A926 /* PhotographListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotographListViewController.m; sourceTree = "<group>"; };
+		C979AE731BD640940050A926 /* RecordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordListViewController.h; sourceTree = "<group>"; };
+		C979AE741BD640940050A926 /* RecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListViewController.m; sourceTree = "<group>"; };
+		C979AE761BD641260050A926 /* VideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
+		C979AE771BD641260050A926 /* VideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListViewController.m; sourceTree = "<group>"; };
 		C98A8C9C1BCDEA5D0096C69B /* BaseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseItem.h; sourceTree = "<group>"; };
 		C98A8C9D1BCDEA5D0096C69B /* BaseItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseItem.m; sourceTree = "<group>"; };
 		C98A8C9F1BCDEA740096C69B /* VideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItem.h; sourceTree = "<group>"; };
@@ -482,6 +494,8 @@
 			children = (
 				C9F31E421BCCD56300E598E6 /* CallViewController.h */,
 				C9F31E431BCCD56300E598E6 /* CallViewController.m */,
+				C979AE6D1BD640760050A926 /* CallListViewController.h */,
+				C979AE6E1BD640760050A926 /* CallListViewController.m */,
 			);
 			name = "去电录音";
 			sourceTree = "<group>";
@@ -491,6 +505,8 @@
 			children = (
 				C9F31E4A1BCCD5D500E598E6 /* RecordViewController.h */,
 				C9F31E4B1BCCD5D500E598E6 /* RecordViewController.m */,
+				C979AE731BD640940050A926 /* RecordListViewController.h */,
+				C979AE741BD640940050A926 /* RecordListViewController.m */,
 			);
 			name = "录音笔";
 			sourceTree = "<group>";
@@ -500,6 +516,8 @@
 			children = (
 				C9F31E4D1BCCD5EF00E598E6 /* PhotographViewController.h */,
 				C9F31E4E1BCCD5EF00E598E6 /* PhotographViewController.m */,
+				C979AE701BD6408A0050A926 /* PhotographListViewController.h */,
+				C979AE711BD6408A0050A926 /* PhotographListViewController.m */,
 			);
 			name = "随手拍";
 			sourceTree = "<group>";
@@ -509,6 +527,8 @@
 			children = (
 				C9F31E501BCCD61C00E598E6 /* VideoViewController.h */,
 				C9F31E511BCCD61C00E598E6 /* VideoViewController.m */,
+				C979AE761BD641260050A926 /* VideoListViewController.h */,
+				C979AE771BD641260050A926 /* VideoListViewController.m */,
 			);
 			name = "录像";
 			sourceTree = "<group>";
@@ -740,12 +760,14 @@
 				C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */,
 				C9F31E381BCCB6CC00E598E6 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9CF7AD11BCF838600DBBCDA /* AboutViewController.m in Sources */,
+				C979AE781BD641260050A926 /* VideoListViewController.m in Sources */,
 				C98A8CB01BCDEEA10096C69B /* CameraUtility.m in Sources */,
 				C9F31E4F1BCCD5EF00E598E6 /* PhotographViewController.m in Sources */,
 				C9F31E191BCCB3E300E598E6 /* NSString+Utils.m in Sources */,
 				C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */,
 				C98A8CA71BCDEAA50096C69B /* PhotographItem.m in Sources */,
 				C98A8CA11BCDEA740096C69B /* VideoItem.m in Sources */,
+				C979AE751BD640940050A926 /* RecordListViewController.m in Sources */,
 				C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */,
 				C9F31E271BCCB59A00E598E6 /* SQLiteOperate.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.m in Sources */,
@@ -753,6 +775,8 @@
 				C9C937871BCC9B6A0055B52D /* main.m in Sources */,
 				C9F31DF01BCCA9B400E598E6 /* LoadMoreTableFooterView.m in Sources */,
 				C9F31E211BCCB4C100E598E6 /* RegisterViewController.m in Sources */,
+				C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */,
+				C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */,
 				C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,
