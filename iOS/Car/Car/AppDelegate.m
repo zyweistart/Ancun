@@ -17,18 +17,21 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     [self p_adaptorForScreen];
-    
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setBarTintColor:BGCOLOR];
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
+    [self windowRootViewController];
+    return YES;
+}
+
+- (void)windowRootViewController
+{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UINavigationController *mMainViewController=[[UINavigationController alloc]initWithRootViewController:[[MainViewController alloc]init]];
     self.window.rootViewController=mMainViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    return YES;
 }
 
 @end

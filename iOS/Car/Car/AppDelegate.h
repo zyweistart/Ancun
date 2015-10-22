@@ -15,4 +15,6 @@
 @property (assign,nonatomic) CGFloat autoSizeScaleX;
 @property (assign,nonatomic) CGFloat autoSizeScaleY;
 
+- (void)windowRootViewController;
+
 @end

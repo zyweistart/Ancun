@@ -7,12 +7,17 @@
 //
 
 #import "BaseViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface RecordViewController : BaseViewController
+@interface RecordViewController : BaseViewController<AVAudioPlayerDelegate>
 
-@property (assign,nonatomic) BOOL isRecording;
+@property (assign,nonatomic) NSInteger playingStep;
+@property (assign,nonatomic) NSInteger recordingStep;
 @property (strong,nonatomic) NSString *recordedFileName;
 @property (strong,nonatomic) NSString *recordedFilePath;
 @property (strong,nonatomic) XLButton *recordButton;
+@property (strong,nonatomic) XLLabel *lblTimer;
+@property (strong,nonatomic) XLButton *bPlayer;
+@property (strong,nonatomic) XLButton *bDelete;
 
 @end

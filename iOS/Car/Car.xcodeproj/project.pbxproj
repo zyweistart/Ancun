@@ -29,6 +29,13 @@
 		C9C937AB1BCC9B6A0055B52D /* CarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937AA1BCC9B6A0055B52D /* CarUITests.m */; };
 		C9C937C21BCCA0880055B52D /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937BF1BCCA0880055B52D /* EAIntroPage.m */; settings = {ASSET_TAGS = (); }; };
 		C9C937C31BCCA0880055B52D /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937C11BCCA0880055B52D /* EAIntroView.m */; settings = {ASSET_TAGS = (); }; };
+		C9CBCB611BD76D7B005A5CF1 /* ACContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CBCB5E1BD76D7B005A5CF1 /* ACContactCell.m */; settings = {ASSET_TAGS = (); }; };
+		C9CBCB621BD76D7B005A5CF1 /* ACContactSingleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CBCB601BD76D7B005A5CF1 /* ACContactSingleCell.m */; settings = {ASSET_TAGS = (); }; };
+		C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CBCB651BD76D8B005A5CF1 /* ChineseToPinyin.m */; settings = {ASSET_TAGS = (); }; };
+		C9CBCB691BD76D8B005A5CF1 /* LongPressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CBCB671BD76D8B005A5CF1 /* LongPressButton.m */; settings = {ASSET_TAGS = (); }; };
+		C9CBCB6C1BD76DB3005A5CF1 /* AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CBCB6B1BD76DB3005A5CF1 /* AttributedLabel.m */; settings = {ASSET_TAGS = (); }; };
+		C9CBCB6E1BD76E67005A5CF1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CBCB6D1BD76E67005A5CF1 /* AddressBook.framework */; };
+		C9CBCB701BD76E71005A5CF1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CBCB6F1BD76E71005A5CF1 /* AddressBookUI.framework */; };
 		C9CF7ACA1BCF806100DBBCDA /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7AC91BCF806100DBBCDA /* SettingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C9CF7ACD1BCF837200DBBCDA /* ModifyPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7ACC1BCF837200DBBCDA /* ModifyPwdViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C9CF7AD11BCF838600DBBCDA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7AD01BCF838600DBBCDA /* AboutViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -139,6 +146,18 @@
 		C9C937BF1BCCA0880055B52D /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
 		C9C937C01BCCA0880055B52D /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
 		C9C937C11BCCA0880055B52D /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
+		C9CBCB5D1BD76D7B005A5CF1 /* ACContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACContactCell.h; sourceTree = "<group>"; };
+		C9CBCB5E1BD76D7B005A5CF1 /* ACContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACContactCell.m; sourceTree = "<group>"; };
+		C9CBCB5F1BD76D7B005A5CF1 /* ACContactSingleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACContactSingleCell.h; sourceTree = "<group>"; };
+		C9CBCB601BD76D7B005A5CF1 /* ACContactSingleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACContactSingleCell.m; sourceTree = "<group>"; };
+		C9CBCB641BD76D8B005A5CF1 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
+		C9CBCB651BD76D8B005A5CF1 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
+		C9CBCB661BD76D8B005A5CF1 /* LongPressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongPressButton.h; sourceTree = "<group>"; };
+		C9CBCB671BD76D8B005A5CF1 /* LongPressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongPressButton.m; sourceTree = "<group>"; };
+		C9CBCB6A1BD76DB3005A5CF1 /* AttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedLabel.h; sourceTree = "<group>"; };
+		C9CBCB6B1BD76DB3005A5CF1 /* AttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedLabel.m; sourceTree = "<group>"; };
+		C9CBCB6D1BD76E67005A5CF1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		C9CBCB6F1BD76E71005A5CF1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		C9CF7AC81BCF806100DBBCDA /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		C9CF7AC91BCF806100DBBCDA /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C9CF7ACB1BCF837200DBBCDA /* ModifyPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdViewController.h; sourceTree = "<group>"; };
@@ -222,6 +241,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9CBCB701BD76E71005A5CF1 /* AddressBookUI.framework in Frameworks */,
+				C9CBCB6E1BD76E67005A5CF1 /* AddressBook.framework in Frameworks */,
 				C9F31E2F1BCCB69200E598E6 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,8 +363,11 @@
 		C9C937B81BCC9C2F0055B52D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				C9CBCB6A1BD76DB3005A5CF1 /* AttributedLabel.h */,
+				C9CBCB6B1BD76DB3005A5CF1 /* AttributedLabel.m */,
 				C9F31E311BCCB6CC00E598E6 /* Base */,
 				C9F31E111BCCB3E300E598E6 /* Category */,
+				C9CBCB631BD76D8B005A5CF1 /* ChineseToPinyin */,
 				C9F31DC61BCCA5D200E598E6 /* Common.h */,
 				C9F31DC71BCCA5D200E598E6 /* Common.m */,
 				C9C937BB1BCC9D590055B52D /* GlobalDefine.h */,
@@ -351,6 +375,8 @@
 				C9F31DCA1BCCA76800E598E6 /* HttpDownload.m */,
 				C9F31DFB1BCCAB3600E598E6 /* HttpRequest.h */,
 				C9F31DFC1BCCAB3600E598E6 /* HttpRequest.m */,
+				C9CBCB661BD76D8B005A5CF1 /* LongPressButton.h */,
+				C9CBCB671BD76D8B005A5CF1 /* LongPressButton.m */,
 				C9F31DFD1BCCAB3600E598E6 /* Response.h */,
 				C9F31DFE1BCCAB3600E598E6 /* Response.m */,
 				C9F31DD11BCCA76800E598E6 /* ResultDelegate.h */,
@@ -363,6 +389,7 @@
 		C9C937B91BCC9C2F0055B52D /* APP */ = {
 			isa = PBXGroup;
 			children = (
+				C9CBCB5C1BD76D67005A5CF1 /* Cell */,
 				C9F31E281BCCB61500E598E6 /* Model */,
 				C98A8CB61BCE53540096C69B /* UI */,
 				C9F31E0D1BCCB10800E598E6 /* 事故处理 */,
@@ -398,6 +425,26 @@
 				C9C937C11BCCA0880055B52D /* EAIntroView.m */,
 			);
 			path = EAIntroView;
+			sourceTree = "<group>";
+		};
+		C9CBCB5C1BD76D67005A5CF1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C9CBCB5D1BD76D7B005A5CF1 /* ACContactCell.h */,
+				C9CBCB5E1BD76D7B005A5CF1 /* ACContactCell.m */,
+				C9CBCB5F1BD76D7B005A5CF1 /* ACContactSingleCell.h */,
+				C9CBCB601BD76D7B005A5CF1 /* ACContactSingleCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		C9CBCB631BD76D8B005A5CF1 /* ChineseToPinyin */ = {
+			isa = PBXGroup;
+			children = (
+				C9CBCB641BD76D8B005A5CF1 /* ChineseToPinyin.h */,
+				C9CBCB651BD76D8B005A5CF1 /* ChineseToPinyin.m */,
+			);
+			path = ChineseToPinyin;
 			sourceTree = "<group>";
 		};
 		C9CF7ACE1BCF837D00DBBCDA /* 设置 */ = {
@@ -573,6 +620,8 @@
 		C9F31E301BCCB69C00E598E6 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				C9CBCB6F1BD76E71005A5CF1 /* AddressBookUI.framework */,
+				C9CBCB6D1BD76E67005A5CF1 /* AddressBook.framework */,
 				C9F31E2E1BCCB69200E598E6 /* libsqlite3.tbd */,
 			);
 			name = Framework;
@@ -671,6 +720,7 @@
 				TargetAttributes = {
 					C9C937811BCC9B6A0055B52D = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = CWP72Z6TY9;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -750,6 +800,8 @@
 				C9F31E441BCCD56300E598E6 /* CallViewController.m in Sources */,
 				C9F31E551BCCD63E00E598E6 /* AccidentViewController.m in Sources */,
 				C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */,
+				C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */,
+				C9CBCB6C1BD76DB3005A5CF1 /* AttributedLabel.m in Sources */,
 				C98A8C9E1BCDEA5D0096C69B /* BaseItem.m in Sources */,
 				C98A8CBC1BCE53A10096C69B /* XLLabel.m in Sources */,
 				C9F31E3A1BCCB6CC00E598E6 /* BaseViewController.m in Sources */,
@@ -761,6 +813,7 @@
 				C9F31E381BCCB6CC00E598E6 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9CF7AD11BCF838600DBBCDA /* AboutViewController.m in Sources */,
 				C979AE781BD641260050A926 /* VideoListViewController.m in Sources */,
+				C9CBCB611BD76D7B005A5CF1 /* ACContactCell.m in Sources */,
 				C98A8CB01BCDEEA10096C69B /* CameraUtility.m in Sources */,
 				C9F31E4F1BCCD5EF00E598E6 /* PhotographViewController.m in Sources */,
 				C9F31E191BCCB3E300E598E6 /* NSString+Utils.m in Sources */,
@@ -768,6 +821,7 @@
 				C98A8CA71BCDEAA50096C69B /* PhotographItem.m in Sources */,
 				C98A8CA11BCDEA740096C69B /* VideoItem.m in Sources */,
 				C979AE751BD640940050A926 /* RecordListViewController.m in Sources */,
+				C9CBCB691BD76D8B005A5CF1 /* LongPressButton.m in Sources */,
 				C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */,
 				C9F31E271BCCB59A00E598E6 /* SQLiteOperate.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.m in Sources */,
@@ -777,6 +831,7 @@
 				C9F31E211BCCB4C100E598E6 /* RegisterViewController.m in Sources */,
 				C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */,
 				C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */,
+				C9CBCB621BD76D7B005A5CF1 /* ACContactSingleCell.m in Sources */,
 				C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,
@@ -930,6 +985,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -944,6 +1000,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
