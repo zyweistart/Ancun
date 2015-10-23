@@ -57,6 +57,8 @@
     self.recordButton=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-CGHeight(45), CGWidth(300), CGHeight(40)) Name:@"点击开始录音"];
     [self.recordButton addTarget:self action:@selector(startStopRecording) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.recordButton];
+    //
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"保存到本地" style:UIBarButtonItemStylePlain target:self action:@selector(saveTo)];
 }
 
 //播放结束时执行的动作
@@ -76,6 +78,11 @@
         //存储
         [self saveRecorder:@"备注111"];
     }
+}
+
+- (void)saveTo
+{
+    
 }
 
 //开始停止播放

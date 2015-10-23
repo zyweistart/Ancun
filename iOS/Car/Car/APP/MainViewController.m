@@ -162,13 +162,12 @@
         }
     }
     
-    
 //    NSString *appDocumentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 //    NSURL *uploadURL = [NSURL fileURLWithPath:[[appDocumentPath stringByAppendingPathComponent:@"1234"] stringByAppendingString:@".mp4"]];
 //    NSLog(@"%@",uploadURL);
     
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController pushViewController:[[UploadViewController alloc]init] animated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
