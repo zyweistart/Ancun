@@ -10,4 +10,6 @@
 
 @interface Common : NSObject
 
++ (NSString*)formatPhone:(NSString*)phone;
+
 @end

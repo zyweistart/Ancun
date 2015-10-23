@@ -10,7 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface CallViewController : BaseTableViewController
+@interface CallViewController : BaseTableViewController<UISearchBarDelegate>
 
 @property (strong,nonatomic) NSMutableArray *dataKeys;
 @property (strong,nonatomic) NSMutableDictionary *dataResults;
@@ -20,8 +20,6 @@
 
 @property (strong,nonatomic) UIView *message;
 @property (strong,nonatomic) UISearchBar *searchBar;
-@property (strong,nonatomic) UITableView *tableViewData;
-
-- (void)loadContact;
+@property (strong,nonatomic) UIView *callViewFrame;
 
 @end
