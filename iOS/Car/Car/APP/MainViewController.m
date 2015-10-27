@@ -134,7 +134,7 @@
 
 - (void)goDynamic
 {
-    
+    [self.navigationController pushViewController:[[UploadViewController alloc]init] animated:YES];
 }
 
 - (void)goUserCenter
@@ -145,32 +145,38 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    UploadViewController *mUploadViewController=[[UploadViewController alloc]init];
     NSString *mediaType=[info objectForKey:UIImagePickerControllerMediaType];
-    NSLog(@"%@",info);
     if([@"public.image" isEqualToString:mediaType]){
         //照片
         UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];
         if(image){
-            
+            [[mUploadViewController uploadFile]setImage:[self cutImage:image]];
+            [self.navigationController pushViewController:mUploadViewController animated:YES];
         }
     }else if([@"public.movie" isEqualToString:mediaType]){
         //视频
-        //获取视频地址
-        NSArray *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         if(videoURL){
-            
+            AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+            AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+            gen.appliesPreferredTrackTransform = YES;
+            CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+            NSError *error = nil;
+            CMTime actualTime;
+            CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+            UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+            CGImageRelease(image);
+            [[mUploadViewController uploadFile]setImage:[self cutImage:thumb]];
+            [mUploadViewController setMovFileUrl:videoURL];
+            [self.navigationController pushViewController:mUploadViewController animated:YES];
         }
     }
-    
-//    NSString *appDocumentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSURL *uploadURL = [NSURL fileURLWithPath:[[appDocumentPath stringByAppendingPathComponent:@"1234"] stringByAppendingString:@".mp4"]];
-//    NSLog(@"%@",uploadURL);
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController pushViewController:[[UploadViewController alloc]init] animated:YES];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -183,6 +189,7 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     }
 }
+
 //保存图片
 - (void)saveImage:(UIImage *)ci withName:(NSString *)imageName
 {
@@ -192,9 +199,35 @@
     // 将图片写入文件
     [imageData writeToFile:fullPath atomically:NO];
 }
-//保存视频
-- (void)saveVideo:(UIImage *)ci withName:(NSString *)videoName
+
+//保存
+- (NSString*)saveFile:(NSURL*)url withName:(NSString *)name
 {
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    //获取沙盒目录
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
+    //写入文件
+    [data writeToFile:fullPath atomically:NO];
+    return fullPath;
+}
+
+//裁剪图片
+- (UIImage *)cutImage:(UIImage*)image
+{
+    CGSize newSize;
+    CGImageRef imageRef = nil;
+    CGFloat width=CGWidth(260.0);
+    CGFloat height=CGHeight(150.0);
+    if ((image.size.width / image.size.height) < (width / height)) {
+        newSize.width = image.size.width;
+        newSize.height = image.size.width * height / width;
+        imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, fabs(image.size.height - newSize.height) / 2, newSize.width, newSize.height));
+    } else {
+        newSize.height = image.size.height;
+        newSize.width = image.size.height * width / height;
+        imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(fabs(image.size.width - newSize.width) / 2, 0, newSize.width, newSize.height));
+    }
+    return [UIImage imageWithCGImage:imageRef];
 }
 
 @end

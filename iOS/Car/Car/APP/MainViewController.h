@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MainViewController : BaseViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+
+@property (strong,nonatomic) MPMoviePlayerController *moviePlayer;
 
 @end

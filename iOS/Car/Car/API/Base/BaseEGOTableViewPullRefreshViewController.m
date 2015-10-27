@@ -147,6 +147,24 @@
     }
 }
 
+
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  @"删除";
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    return  UITableViewCellEditingStyleDelete;
+}
+
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){

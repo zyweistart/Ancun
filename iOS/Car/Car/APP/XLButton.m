@@ -36,6 +36,14 @@
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self setBackgroundImage:[RGBCOLOR(120, 150, 250) TransformationWithImage] forState:UIControlStateNormal];
         [self setBackgroundImage:[RGBCOLOR(120, 150, 250) TransformationWithImage] forState:UIControlStateHighlighted];
+    }else if(type==2){
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setBackgroundImage:[BCOLOR(153) TransformationWithImage] forState:UIControlStateNormal];
+        [self setBackgroundImage:[BCOLOR(204) TransformationWithImage] forState:UIControlStateHighlighted];
+    }else if(type==3){
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setBackgroundImage:[RGBCOLOR(51, 155, 154) TransformationWithImage] forState:UIControlStateNormal];
+        [self setBackgroundImage:[RGBCOLOR(149, 207, 206) TransformationWithImage] forState:UIControlStateHighlighted];
     }else{
         [self setBackgroundImage:[[UIColor clearColor] TransformationWithImage] forState:UIControlStateNormal];
         [self setBackgroundImage:[[UIColor clearColor] TransformationWithImage] forState:UIControlStateHighlighted];
