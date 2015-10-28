@@ -11,28 +11,31 @@
 @implementation FileUtils
 
 //保存图片
-+ (void)saveImage:(UIImage *)ci withName:(NSString *)imageName
++ (BOOL)saveImage:(UIImage *)ci withName:(NSString *)imageName
 {
     NSData *imageData = UIImagePNGRepresentation(ci);
     // 获取沙盒目录
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
     // 将图片写入文件
-    [imageData writeToFile:fullPath atomically:NO];
+    return [imageData writeToFile:fullPath atomically:NO];
 }
 
 //保存文件
 + (NSString*)saveFile:(NSURL*)url withName:(NSString *)name
 {
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    //获取沙盒目录
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
-    //写入文件
-    if([data writeToFile:fullPath atomically:NO]){
-        NSLog(@"写入成功");
+    //获取Documents主目录
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    //得到相应的Documents的路径
+    NSString *docDir = [paths objectAtIndex:0];
+    //完整路径
+    NSString *fullPath = [docDir stringByAppendingPathComponent:name];
+    NSError *error;
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if([fileManager moveItemAtPath:[url path] toPath:fullPath error:&error]){
+        return fullPath;
     }else{
-        NSLog(@"写入失败");
+        return nil;
     }
-    return fullPath;
 }
 
 + (long long)fileSizeAtPath:(NSString*)filePath

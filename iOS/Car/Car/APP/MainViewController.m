@@ -18,6 +18,8 @@
 #import "CameraUtility.h"
 #import "FileUtils.h"
 #import "VideoUtils.h"
+#import "TimeUtils.h"
+#import "NSString+Utils.h"
 
 @interface MainViewController ()
 
@@ -147,6 +149,7 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [picker dismissViewControllerAnimated:YES completion:nil];
     UploadViewController *mUploadViewController=[[UploadViewController alloc]init];
     NSString *mediaType=[info objectForKey:UIImagePickerControllerMediaType];
     if([@"public.image" isEqualToString:mediaType]){
@@ -162,15 +165,19 @@
         //视频
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         if(videoURL){
-            //获取视频的缩略图
-            UIImage *thumb = [VideoUtils getVideoThumb:videoURL];
-            [mUploadViewController setSaveType:2];
-            [mUploadViewController setMovFileUrl:videoURL];
-            [[mUploadViewController thumImage]setImage:[thumb cutCenterImageSize:CGSizeMake1(260, 150)]];
-            [self.navigationController pushViewController:mUploadViewController animated:YES];
+            NSString *fullName=[NSString stringWithFormat:@"%@.mov",[[TimeUtils getTimeFormatter:FORMAT_yyyyMMddHHmmss_1] md5]];
+            NSString *path=[FileUtils saveFile:videoURL withName:fullName];
+            videoURL=[NSURL URLWithString:path];
+            if(videoURL){
+                //获取视频的缩略图
+                UIImage *thumb = [VideoUtils getVideoThumb:videoURL];
+                [mUploadViewController setSaveType:2];
+                [mUploadViewController setMovFileUrl:videoURL];
+                [[mUploadViewController thumImage]setImage:[thumb cutCenterImageSize:CGSizeMake1(260, 150)]];
+                [self.navigationController pushViewController:mUploadViewController animated:YES];
+            }
         }
     }
-    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

@@ -122,7 +122,7 @@
     if(self.moviePlayer==nil){
         self.moviePlayer=[[MPMoviePlayerController alloc]initWithContentURL:self.movFileUrl];
         [self.moviePlayer.view setFrame:self.view.bounds];
-        self.moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.moviePlayer.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.moviePlayer setShouldAutoplay:YES];
         [self.moviePlayer setFullscreen:YES animated:YES];
         [self.moviePlayer setRepeatMode:MPMovieRepeatModeNone];
@@ -131,7 +131,6 @@
         [self.navigationController.view addSubview:_moviePlayer.view];
     }
     [self.moviePlayer play];
-    
     [self addMovieNotification];
 }
 
@@ -174,6 +173,5 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 @end

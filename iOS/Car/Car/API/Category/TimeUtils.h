@@ -6,6 +6,9 @@
 //  Copyright © 2015 Ancun. All rights reserved.
 //
 
+#define  FORMAT_yyyyMMddHHmmss @"yyyy-MM-dd HH:mm:ss"
+#define  FORMAT_yyyyMMddHHmmss_1 @"yyyyMMddHHmmss"
+
 #import <Foundation/Foundation.h>
 
 @interface TimeUtils : NSObject

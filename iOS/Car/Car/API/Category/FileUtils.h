@@ -10,7 +10,7 @@
 
 @interface FileUtils : NSObject
 
-+ (void)saveImage:(UIImage *)ci withName:(NSString *)imageName;
++ (BOOL)saveImage:(UIImage *)ci withName:(NSString *)imageName;
 + (NSString*)saveFile:(NSURL*)url withName:(NSString *)name;
 + (long long)fileSizeAtPath:(NSString*)filePath;
 + (NSString*)getFileSize:(long long)fileSizeKB;
