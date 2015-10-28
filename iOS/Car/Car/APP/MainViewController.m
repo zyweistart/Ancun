@@ -149,7 +149,6 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [picker dismissViewControllerAnimated:YES completion:nil];
     UploadViewController *mUploadViewController=[[UploadViewController alloc]init];
     NSString *mediaType=[info objectForKey:UIImagePickerControllerMediaType];
     if([@"public.image" isEqualToString:mediaType]){
@@ -165,9 +164,9 @@
         //视频
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         if(videoURL){
-            NSString *fullName=[NSString stringWithFormat:@"%@.mov",[[TimeUtils getTimeFormatter:FORMAT_yyyyMMddHHmmss_1] md5]];
+            NSString *fullName=[NSString stringWithFormat:@"%@.mp4",[[TimeUtils getTimeFormatter:FORMAT_yyyyMMddHHmmss_1] md5]];
             NSString *path=[FileUtils saveFile:videoURL withName:fullName];
-            videoURL=[NSURL URLWithString:path];
+            videoURL=[NSURL fileURLWithPath:path];
             if(videoURL){
                 //获取视频的缩略图
                 UIImage *thumb = [VideoUtils getVideoThumb:videoURL];
@@ -178,6 +177,7 @@
             }
         }
     }
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

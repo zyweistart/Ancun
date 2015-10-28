@@ -127,9 +127,9 @@
         [self.moviePlayer setFullscreen:YES animated:YES];
         [self.moviePlayer setRepeatMode:MPMovieRepeatModeNone];
         [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
-        [self.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
-        [self.navigationController.view addSubview:_moviePlayer.view];
+        [self.moviePlayer setControlStyle:MPMovieControlStyleNone];
     }
+    [self.navigationController.view addSubview:_moviePlayer.view];
     [self.moviePlayer play];
     [self addMovieNotification];
 }
