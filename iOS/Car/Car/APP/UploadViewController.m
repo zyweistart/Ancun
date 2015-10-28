@@ -7,6 +7,8 @@
 //
 
 #import "UploadViewController.h"
+#import "FileUtils.h"
+#import "TimeUtils.h"
 
 @interface UploadViewController ()
 
@@ -26,11 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.uploadFile=[[UIImageView alloc]initWithFrame:CGRectMake1(30, 70, 260, 150)];
-    [self.uploadFile setBackgroundColor:[UIColor blackColor]];
-    [self.uploadFile setUserInteractionEnabled:YES];
-    [self.uploadFile addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goPlay)]];
-    [self.view addSubview:self.uploadFile];
+    self.thumImage=[[UIImageView alloc]initWithFrame:CGRectMake1(30, 70, 260, 150)];
+    [self.thumImage setBackgroundColor:[UIColor blackColor]];
+    [self.thumImage setUserInteractionEnabled:YES];
+    [self.thumImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goPlay)]];
+    [self.view addSubview:self.thumImage];
     CGFloat f=self.view.bounds.size.height-CGHeight(70+150+20);
     UIView *operatorView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-f, CGWidth(320), f)];
     operatorView.layer.borderWidth=2;
@@ -66,25 +68,39 @@
     [self.bYunFile addTarget:self action:@selector(saveTypeSelected:) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:self.bYunFile];
     //文件大小
-    self.lblFileSize=[[XLLabel alloc]initWithFrame:CGRectMake1(90, 40, 100, 30) Text:@"520KB"];
+    self.lblFileSize=[[XLLabel alloc]initWithFrame:CGRectMake1(90, 40, 200, 30)];
     [operatorView addSubview:self.lblFileSize];
     //文件类型
-    self.lblFileType=[[XLLabel alloc]initWithFrame:CGRectMake1(90, 70, 100, 30) Text:@"图片存证"];
+    self.lblFileType=[[XLLabel alloc]initWithFrame:CGRectMake1(90, 70, 200, 30)];
     [operatorView addSubview:self.lblFileType];
     //存证时间
-    self.lblSaveTime=[[XLLabel alloc]initWithFrame:CGRectMake1(90, 100, 100, 30) Text:@"2015-10-15"];
+    self.lblSaveTime=[[XLLabel alloc]initWithFrame:CGRectMake1(90, 100, 200, 30)];
     [operatorView addSubview:self.lblSaveTime];
     //按钮
     CGFloat bTop=operatorView.bounds.size.height-CGHeight(50);
     XLButton *bCancel=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(20), bTop, CGWidth(130), CGHeight(40)) Name:@"取消" Type:2];
+    [bCancel addTarget:self action:@selector(goCancel) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:bCancel];
     XLButton *bSave=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(170), bTop, CGWidth(130), CGHeight(40)) Name:@"保存" Type:3];
+    [bSave addTarget:self action:@selector(goSave) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:bSave];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(self.saveType==1){
+        NSData * imageData = UIImageJPEGRepresentation(self.originalImage,1);
+        self.fileSize = [imageData length];
+        [self.lblFileSize setText:[FileUtils getFileSize:self.fileSize]];
+        [self.lblFileType setText:@"图片存证"];
+    }else if(self.saveType==2){
+        self.fileSize=[FileUtils fileSizeAtPath:[self.movFileUrl path]];
+        [self.lblFileSize setText:[FileUtils getFileSize:self.fileSize]];
+        [self.lblFileType setText:@"录像存证"];
+    }
+    self.saveTime = [TimeUtils getTimeFormatter:@"yyyy-MM-dd HH:mm:ss"];
+    [self.lblSaveTime setText:self.saveTime];
 }
 
 - (void)saveTypeSelected:(UIButton*)button
@@ -103,15 +119,17 @@
     if(!self.movFileUrl){
         return;
     }
-    self.moviePlayer=[[MPMoviePlayerController alloc]initWithContentURL:self.movFileUrl];
-    [self.moviePlayer.view setFrame:self.view.bounds];
-    self.moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [self.moviePlayer setShouldAutoplay:YES];
-    [self.moviePlayer setFullscreen:YES animated:YES];
-    [self.moviePlayer setRepeatMode:MPMovieRepeatModeNone];
-    [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
-    [self.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
-    [self.navigationController.view addSubview:_moviePlayer.view];
+    if(self.moviePlayer==nil){
+        self.moviePlayer=[[MPMoviePlayerController alloc]initWithContentURL:self.movFileUrl];
+        [self.moviePlayer.view setFrame:self.view.bounds];
+        self.moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.moviePlayer setShouldAutoplay:YES];
+        [self.moviePlayer setFullscreen:YES animated:YES];
+        [self.moviePlayer setRepeatMode:MPMovieRepeatModeNone];
+        [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
+        [self.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+        [self.navigationController.view addSubview:_moviePlayer.view];
+    }
     [self.moviePlayer play];
     
     [self addMovieNotification];
@@ -138,5 +156,24 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)goCancel
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)goSave
+{
+    NSLog(@"文件大小:%lld",self.fileSize);
+    NSLog(@"保存时间:%@",self.saveTime);
+    NSLog(@"保存类型:%ld",self.saveType);
+    if(self.saveType==1){
+        [FileUtils saveImage:self.originalImage withName:@"1234"];
+    }else if(self.saveType==2){
+        
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

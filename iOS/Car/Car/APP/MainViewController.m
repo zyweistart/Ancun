@@ -16,6 +16,8 @@
 #import "UIButton+Utils.h"
 #import "UIImage+Utils.h"
 #import "CameraUtility.h"
+#import "FileUtils.h"
+#import "VideoUtils.h"
 
 @interface MainViewController ()
 
@@ -151,24 +153,20 @@
         //照片
         UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];
         if(image){
-            [[mUploadViewController uploadFile]setImage:[self cutImage:image]];
+            [mUploadViewController setSaveType:1];
+            [mUploadViewController setOriginalImage:image];
+            [[mUploadViewController thumImage]setImage:[image cutCenterImageSize:CGSizeMake1(260, 150)]];
             [self.navigationController pushViewController:mUploadViewController animated:YES];
         }
     }else if([@"public.movie" isEqualToString:mediaType]){
         //视频
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         if(videoURL){
-            AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
-            AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-            gen.appliesPreferredTrackTransform = YES;
-            CMTime time = CMTimeMakeWithSeconds(0.0, 600);
-            NSError *error = nil;
-            CMTime actualTime;
-            CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-            UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
-            CGImageRelease(image);
-            [[mUploadViewController uploadFile]setImage:[self cutImage:thumb]];
+            //获取视频的缩略图
+            UIImage *thumb = [VideoUtils getVideoThumb:videoURL];
+            [mUploadViewController setSaveType:2];
             [mUploadViewController setMovFileUrl:videoURL];
+            [[mUploadViewController thumImage]setImage:[thumb cutCenterImageSize:CGSizeMake1(260, 150)]];
             [self.navigationController pushViewController:mUploadViewController animated:YES];
         }
     }
@@ -188,46 +186,6 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     }
-}
-
-//保存图片
-- (void)saveImage:(UIImage *)ci withName:(NSString *)imageName
-{
-    NSData *imageData = UIImagePNGRepresentation(ci);
-    // 获取沙盒目录
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
-    // 将图片写入文件
-    [imageData writeToFile:fullPath atomically:NO];
-}
-
-//保存
-- (NSString*)saveFile:(NSURL*)url withName:(NSString *)name
-{
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    //获取沙盒目录
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
-    //写入文件
-    [data writeToFile:fullPath atomically:NO];
-    return fullPath;
-}
-
-//裁剪图片
-- (UIImage *)cutImage:(UIImage*)image
-{
-    CGSize newSize;
-    CGImageRef imageRef = nil;
-    CGFloat width=CGWidth(260.0);
-    CGFloat height=CGHeight(150.0);
-    if ((image.size.width / image.size.height) < (width / height)) {
-        newSize.width = image.size.width;
-        newSize.height = image.size.width * height / width;
-        imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, fabs(image.size.height - newSize.height) / 2, newSize.width, newSize.height));
-    } else {
-        newSize.height = image.size.height;
-        newSize.width = image.size.height * width / height;
-        imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(fabs(image.size.width - newSize.width) / 2, 0, newSize.width, newSize.height));
-    }
-    return [UIImage imageWithCGImage:imageRef];
 }
 
 @end

@@ -24,6 +24,10 @@
 		C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CB81BCE53A10096C69B /* XLButton.m */; };
 		C98A8CBC1BCE53A10096C69B /* XLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CBA1BCE53A10096C69B /* XLLabel.m */; };
 		C98A8CBF1BCE53D40096C69B /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CBE1BCE53D40096C69B /* UIColor+Utils.m */; };
+		C9A036271BE09EB100A8E387 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A036261BE09EB100A8E387 /* FileUtils.m */; };
+		C9A0362A1BE0A5D300A8E387 /* VideoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A036291BE0A5D300A8E387 /* VideoUtils.m */; };
+		C9A0362C1BE0A79100A8E387 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A0362B1BE0A79100A8E387 /* AVFoundation.framework */; };
+		C9A0362F1BE0AC6100A8E387 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A0362E1BE0AC6100A8E387 /* TimeUtils.m */; };
 		C9C937871BCC9B6A0055B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937861BCC9B6A0055B52D /* main.m */; };
 		C9C9378A1BCC9B6A0055B52D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937891BCC9B6A0055B52D /* AppDelegate.m */; };
 		C9C937921BCC9B6A0055B52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C937911BCC9B6A0055B52D /* Assets.xcassets */; };
@@ -134,6 +138,13 @@
 		C98A8CBA1BCE53A10096C69B /* XLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLLabel.m; sourceTree = "<group>"; };
 		C98A8CBD1BCE53D40096C69B /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
 		C98A8CBE1BCE53D40096C69B /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
+		C9A036251BE09EB100A8E387 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
+		C9A036261BE09EB100A8E387 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
+		C9A036281BE0A5D300A8E387 /* VideoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoUtils.h; sourceTree = "<group>"; };
+		C9A036291BE0A5D300A8E387 /* VideoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoUtils.m; sourceTree = "<group>"; };
+		C9A0362B1BE0A79100A8E387 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C9A0362D1BE0AC6100A8E387 /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		C9A0362E1BE0AC6100A8E387 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
 		C9C937821BCC9B6A0055B52D /* Car.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Car.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C937861BCC9B6A0055B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9C937881BCC9B6A0055B52D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -247,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A0362C1BE0A79100A8E387 /* AVFoundation.framework in Frameworks */,
 				C9CBCB701BD76E71005A5CF1 /* AddressBookUI.framework in Frameworks */,
 				C9CBCB6E1BD76E67005A5CF1 /* AddressBook.framework in Frameworks */,
 				C9F31E2F1BCCB69200E598E6 /* libsqlite3.tbd in Frameworks */,
@@ -305,6 +317,7 @@
 		C9C937791BCC9B6A0055B52D = {
 			isa = PBXGroup;
 			children = (
+				C9A0362B1BE0A79100A8E387 /* AVFoundation.framework */,
 				C9C937841BCC9B6A0055B52D /* Car */,
 				C9C9379E1BCC9B6A0055B52D /* CarTests */,
 				C9C937A91BCC9B6A0055B52D /* CarUITests */,
@@ -610,6 +623,12 @@
 				C9F31E171BCCB3E300E598E6 /* UIButton+Utils.m */,
 				C98A8CBD1BCE53D40096C69B /* UIColor+Utils.h */,
 				C98A8CBE1BCE53D40096C69B /* UIColor+Utils.m */,
+				C9A036251BE09EB100A8E387 /* FileUtils.h */,
+				C9A036261BE09EB100A8E387 /* FileUtils.m */,
+				C9A036281BE0A5D300A8E387 /* VideoUtils.h */,
+				C9A036291BE0A5D300A8E387 /* VideoUtils.m */,
+				C9A0362D1BE0AC6100A8E387 /* TimeUtils.h */,
+				C9A0362E1BE0AC6100A8E387 /* TimeUtils.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -825,6 +844,7 @@
 				C979AE781BD641260050A926 /* VideoListViewController.m in Sources */,
 				C9CBCB611BD76D7B005A5CF1 /* ACContactCell.m in Sources */,
 				C98A8CB01BCDEEA10096C69B /* CameraUtility.m in Sources */,
+				C9A036271BE09EB100A8E387 /* FileUtils.m in Sources */,
 				C9F31E4F1BCCD5EF00E598E6 /* PhotographViewController.m in Sources */,
 				C9F31E191BCCB3E300E598E6 /* NSString+Utils.m in Sources */,
 				C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */,
@@ -853,6 +873,7 @@
 				C9CF7ADE1BCF90BF00DBBCDA /* BidViewController.m in Sources */,
 				C9F31E1D1BCCB4B500E598E6 /* LoginViewController.m in Sources */,
 				C9C937C21BCCA0880055B52D /* EAIntroPage.m in Sources */,
+				C9A0362F1BE0AC6100A8E387 /* TimeUtils.m in Sources */,
 				C98A8CB11BCDEEA10096C69B /* UIImage+Utils.m in Sources */,
 				C9F31E481BCCD58100E598E6 /* MainViewController.m in Sources */,
 				C9F31E1A1BCCB3E300E598E6 /* UIButton+Utils.m in Sources */,
@@ -865,6 +886,7 @@
 				C9F31DF21BCCA9B400E598E6 /* PullTableView.m in Sources */,
 				C9F31E041BCCAB8E00E598E6 /* Reachability.m in Sources */,
 				C9F31DF11BCCA9B400E598E6 /* MessageInterceptor.m in Sources */,
+				C9A0362A1BE0A5D300A8E387 /* VideoUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

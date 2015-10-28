@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface MainViewController : BaseViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
