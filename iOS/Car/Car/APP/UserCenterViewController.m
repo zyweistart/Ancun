@@ -24,7 +24,7 @@
     self=[super init];
     if(self){
         [self setTitle:@"我的"];
-        self.dataItemArray=[NSMutableArray arrayWithArray:@[@"去电录音",@"录音笔",@"随手拍",@"录像存证",@"设置"]];
+        self.dataItemArray=[NSMutableArray arrayWithArray:@[@"去电录音",@"录音笔",@"随手拍",@"录像",@"设置"]];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         UIView *headView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 100)];
         [headView setBackgroundColor:[UIColor redColor]];
@@ -39,8 +39,9 @@
     if(!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell.imageView setImage:[UIImage imageNamed:@"player_s"]];
-    cell.textLabel.text = [self.dataItemArray objectAtIndex:indexPath.row];
+    NSString *content=[self.dataItemArray objectAtIndex:indexPath.row];
+    [cell.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_s",content]]];
+    cell.textLabel.text = content;
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }

@@ -9,6 +9,7 @@
 #import "UploadViewController.h"
 #import "FileUtils.h"
 #import "TimeUtils.h"
+#import "SJAvatarBrowser.h"
 
 @interface UploadViewController ()
 
@@ -29,6 +30,7 @@
 {
     [super viewDidLoad];
     self.thumImage=[[UIImageView alloc]initWithFrame:CGRectMake1(30, 70, 260, 150)];
+    [self.thumImage setImage:[UIImage imageNamed:@"局部照"]];
     [self.thumImage setBackgroundColor:[UIColor blackColor]];
     [self.thumImage setUserInteractionEnabled:YES];
     [self.thumImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goPlay)]];
@@ -49,21 +51,22 @@
     lbl=[[XLLabel alloc]initWithFrame:CGRectMake1(15, 100,70, 30) Text:@"存证时间:"];
     [operatorView addSubview:lbl];
     //保存类型
-    self.bLocalFile=[[UIButton alloc]initWithFrame:CGRectMake1(90, 10, 110, 30)];
+    self.bLocalFile=[[UIButton alloc]initWithFrame:CGRectMake1(90, 10, 90, 30)];
     [self.bLocalFile setTitle:@"存证到云端" forState:UIControlStateNormal];
     [self.bLocalFile setTitleColor:BGCOLOR forState:UIControlStateNormal];
     [self.bLocalFile.titleLabel setFont:GLOBAL_FONTSIZE(13)];
-    [self.bLocalFile setImage:[UIImage imageNamed:@"player_s"] forState:UIControlStateNormal];
-    [self.bLocalFile setImage:[UIImage imageNamed:@"player"] forState:UIControlStateSelected];
+    [self.bLocalFile setImage:[UIImage imageNamed:@"单勾未选"] forState:UIControlStateNormal];
+    [self.bLocalFile setImage:[UIImage imageNamed:@"单勾选中"] forState:UIControlStateSelected];
     [self.bLocalFile setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-5), 0, 0)];
     [self.bLocalFile addTarget:self action:@selector(saveTypeSelected:) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:self.bLocalFile];
-    self.bYunFile=[[UIButton alloc]initWithFrame:CGRectMake1(200, 10, 110, 30)];
+    [self.bLocalFile setSelected:YES];
+    self.bYunFile=[[UIButton alloc]initWithFrame:CGRectMake1(180, 10, 110, 30)];
     [self.bYunFile setTitle:@"存证到本地" forState:UIControlStateNormal];
     [self.bYunFile setTitleColor:BGCOLOR forState:UIControlStateNormal];
     [self.bYunFile.titleLabel setFont:GLOBAL_FONTSIZE(13)];
-    [self.bYunFile setImage:[UIImage imageNamed:@"player_s"] forState:UIControlStateNormal];
-    [self.bYunFile setImage:[UIImage imageNamed:@"player"] forState:UIControlStateSelected];
+    [self.bYunFile setImage:[UIImage imageNamed:@"单勾未选"] forState:UIControlStateNormal];
+    [self.bYunFile setImage:[UIImage imageNamed:@"单勾选中"] forState:UIControlStateSelected];
     [self.bYunFile setImageEdgeInsets:UIEdgeInsetsMake(0, CGWidth(-5), 0, 0)];
     [self.bYunFile addTarget:self action:@selector(saveTypeSelected:) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:self.bYunFile];
@@ -116,22 +119,27 @@
 
 - (void)goPlay
 {
-    if(!self.movFileUrl){
-        return;
+    if(self.saveType==1){
+        [SJAvatarBrowser showImage:self.thumImage];
+    }else if(self.saveType==2){
+        
+        if(!self.movFileUrl){
+            return;
+        }
+        if(self.moviePlayer==nil){
+            self.moviePlayer=[[MPMoviePlayerController alloc]initWithContentURL:self.movFileUrl];
+            [self.moviePlayer.view setFrame:self.view.bounds];
+            [self.moviePlayer.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+            [self.moviePlayer setShouldAutoplay:YES];
+            [self.moviePlayer setFullscreen:YES animated:YES];
+            [self.moviePlayer setRepeatMode:MPMovieRepeatModeNone];
+            [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
+            [self.moviePlayer setControlStyle:MPMovieControlStyleNone];
+        }
+        [self.navigationController.view addSubview:_moviePlayer.view];
+        [self.moviePlayer play];
+        [self addMovieNotification];
     }
-    if(self.moviePlayer==nil){
-        self.moviePlayer=[[MPMoviePlayerController alloc]initWithContentURL:self.movFileUrl];
-        [self.moviePlayer.view setFrame:self.view.bounds];
-        [self.moviePlayer.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.moviePlayer setShouldAutoplay:YES];
-        [self.moviePlayer setFullscreen:YES animated:YES];
-        [self.moviePlayer setRepeatMode:MPMovieRepeatModeNone];
-        [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
-        [self.moviePlayer setControlStyle:MPMovieControlStyleNone];
-    }
-    [self.navigationController.view addSubview:_moviePlayer.view];
-    [self.moviePlayer play];
-    [self addMovieNotification];
 }
 
 //添加通知监控媒体播放控制器状态

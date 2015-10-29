@@ -45,7 +45,7 @@
 		C97889BB18E16B4400157577 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889A918E16B4400157577 /* UIKit.framework */; };
 		C97889BD18E16B4F00157577 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889BC18E16B4F00157577 /* Security.framework */; };
 		C97889BF18E16B9900157577 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97889BE18E16B9900157577 /* StoreKit.framework */; };
-		C981A7721BB29D3400743CFC /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C981A7711BB29D3300743CFC /* HttpDownload.m */; settings = {ASSET_TAGS = (); }; };
+		C981A7721BB29D3400743CFC /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C981A7711BB29D3300743CFC /* HttpDownload.m */; };
 		C98519001AF20EFE003E0126 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F41AF20EFE003E0126 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C98519011AF20EFE003E0126 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F71AF20EFE003E0126 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C98519021AF20EFE003E0126 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98518F91AF20EFE003E0126 /* ATMHudView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -136,12 +136,12 @@
 		C9E9A93E1AE09BFA00F87EF2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9A93C1AE09BFA00F87EF2 /* libsqlite3.dylib */; };
 		C9E9A9471AE0E1A700F87EF2 /* SceneRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E9A9461AE0E1A700F87EF2 /* SceneRecordViewController.m */; };
 		C9ED952D18FD078C00934D96 /* UIWindow+PazLabs.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ED952C18FD078C00934D96 /* UIWindow+PazLabs.m */; };
-		C9EEBD991BAFDC5A007AA604 /* ACMessageNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD981BAFDC5A007AA604 /* ACMessageNotificationViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C9EEBD9D1BAFDE8E007AA604 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD9C1BAFDE8E007AA604 /* Message.m */; settings = {ASSET_TAGS = (); }; };
-		C9EEBDA01BAFDF0A007AA604 /* ACMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD9F1BAFDF0A007AA604 /* ACMessageCell.m */; settings = {ASSET_TAGS = (); }; };
-		C9EEBDA31BAFE457007AA604 /* MessageNotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBDA21BAFE457007AA604 /* MessageNotificationDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C9EEBDA61BAFE861007AA604 /* SQLiteOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBDA51BAFE861007AA604 /* SQLiteOperate.m */; settings = {ASSET_TAGS = (); }; };
-		C9FA3D261BB12A1B0072712D /* libGeTuiSdk-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FA3D251BB12A1B0072712D /* libGeTuiSdk-1.2.1.a */; settings = {ASSET_TAGS = (); }; };
+		C9EEBD991BAFDC5A007AA604 /* ACMessageNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD981BAFDC5A007AA604 /* ACMessageNotificationViewController.m */; };
+		C9EEBD9D1BAFDE8E007AA604 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD9C1BAFDE8E007AA604 /* Message.m */; };
+		C9EEBDA01BAFDF0A007AA604 /* ACMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBD9F1BAFDF0A007AA604 /* ACMessageCell.m */; };
+		C9EEBDA31BAFE457007AA604 /* MessageNotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBDA21BAFE457007AA604 /* MessageNotificationDetailViewController.m */; };
+		C9EEBDA61BAFE861007AA604 /* SQLiteOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEBDA51BAFE861007AA604 /* SQLiteOperate.m */; };
+		C9FA3D261BB12A1B0072712D /* libGeTuiSdk-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FA3D251BB12A1B0072712D /* libGeTuiSdk-1.2.1.a */; };
 		C9FAB3DA1B5749330074A477 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FAB3D91B5749330074A477 /* AdSupport.framework */; };
 		C9FAB3DD1B574A440074A477 /* UUString.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAB3DC1B574A440074A477 /* UUString.m */; };
 /* End PBXBuildFile section */

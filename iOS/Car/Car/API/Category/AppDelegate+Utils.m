@@ -10,7 +10,7 @@
 
 @implementation AppDelegate(Utils)
 
-//计算自动约束比例
+//计算自动屏幕约束比例
 - (void)p_adaptorForScreen
 {
 //    AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];

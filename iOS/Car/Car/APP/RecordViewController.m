@@ -20,6 +20,7 @@
     UIView *operatorView;
     long currentPlayLongTime;
     long currentRecordLongTime;
+    UIImageView *sonic;
 }
 
 - (id)init
@@ -37,24 +38,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIView *recordView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, CGWidth(320), self.view.bounds.size.height-CGHeight(50))];
-    [recordView setBackgroundColor:[UIColor redColor]];
+    [recordView setBackgroundColor:BCOLOR(243)];
     [self.view addSubview:recordView];
     
-    self.lblTimer=[[XLLabel alloc]initWithFrame:CGRectMake1(50, 60, 200, 40) Text:@"00:00:00"];
-    [self.lblTimer setFont:GLOBAL_FONTSIZE(20)];
-    [self.lblTimer setTextColor:[UIColor whiteColor]];
+    sonic=[[UIImageView alloc]initWithFrame:CGRectMake1(75, 125, 165, 165)];
+    [sonic setImage:[UIImage imageNamed:@"IOS动画1"]];
+    sonic.animationImages = [NSArray arrayWithObjects:
+                             [UIImage imageNamed:@"IOS动画1"],
+                             [UIImage imageNamed:@"IOS动画2"],
+                             [UIImage imageNamed:@"IOS动画3"],
+                             [UIImage imageNamed:@"IOS动画4"],
+                             [UIImage imageNamed:@"IOS动画5"],
+                             [UIImage imageNamed:@"IOS动画6"],
+                             [UIImage imageNamed:@"IOS动画7"],
+                             [UIImage imageNamed:@"IOS动画8"],
+                             [UIImage imageNamed:@"IOS动画9"],
+                             [UIImage imageNamed:@"IOS动画10"],
+                             [UIImage imageNamed:@"IOS动画11"], nil];
+    // all frames will execute in 1.75 seconds
+    sonic.animationDuration = 1.0;
+    // repeat the annimation forever
+    sonic.animationRepeatCount = 0;
+    [recordView addSubview:sonic];
+    
+    self.lblTimer=[[XLLabel alloc]initWithFrame:CGRectMake1(0, 330, 320, 50) Text:@"00:00:00"];
+    [self.lblTimer setFont:GLOBAL_FONTSIZE(40)];
+    [self.lblTimer setTextColor:BGCOLOR];
+    [self.lblTimer setTextAlignment:NSTextAlignmentCenter];
     [recordView addSubview:self.lblTimer];
     
     operatorView=[[UIView alloc]initWithFrame:CGRectMake(0, recordView.bounds.size.height-CGHeight(45), CGWidth(320), CGHeight(40))];
     [recordView addSubview:operatorView];
-    self.bPlayer=[[XLButton alloc]initWithFrame:CGRectMake1(10, 0, 140, 40) Name:@"播放"];
+    self.bPlayer=[[UIButton alloc]initWithFrame:CGRectMake1(115, 0, 40, 40)];
+    [self.bPlayer setImage:[UIImage imageNamed:@"播放_开始"] forState:UIControlStateNormal];
+    [self.bPlayer setImage:[UIImage imageNamed:@"播放_停止"] forState:UIControlStateSelected];
     [self.bPlayer addTarget:self action:@selector(startStopPlaying) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:self.bPlayer];
-    self.bDelete=[[XLButton alloc]initWithFrame:CGRectMake1(160, 0, 140, 40) Name:@"删除"];
+    self.bDelete=[[UIButton alloc]initWithFrame:CGRectMake1(165, 0, 40, 40)];
+    [self.bDelete setImage:[UIImage imageNamed:@"删除"] forState:UIControlStateNormal];
     [self.bDelete addTarget:self action:@selector(deleteRecorder) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:self.bDelete];
     
-    self.recordButton=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-CGHeight(45), CGWidth(300), CGHeight(40)) Name:@"点击开始录音"];
+    self.recordButton=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-CGHeight(45), CGWidth(300), CGHeight(40)) Name:@"点击开始录音" Type:3];
     [self.recordButton addTarget:self action:@selector(startStopRecording) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.recordButton];
     //
@@ -90,6 +115,7 @@
 {
     [self stopPlayer];
     if([self playingStep]==0){
+        [sonic startAnimating];
         //创建文件管理器
         NSFileManager *fileManager = [NSFileManager defaultManager];
         //如果录音文件存在都直接播放
@@ -101,17 +127,19 @@
             [player setDelegate:self];
             if([player prepareToPlay]){
                 [player play];
+                [self.bPlayer setSelected:YES];
                 [self setPlayingStep:1];
-                [self.bPlayer setTitle:@"停止" forState:UIControlStateNormal];
                 currentPlayLongTime=0;
                 [self timerFiredPlayer];
                 timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFiredPlayer) userInfo:nil repeats:YES];
             }
         }
     }else{
+        [sonic stopAnimating];
         [self setPlayingStep:0];
         currentPlayLongTime=0;
-        [self.bPlayer setTitle:@"播放" forState:UIControlStateNormal];
+        [self.bPlayer setSelected:NO];
+        [self.lblTimer setText:@"00:00:00"];
     }
 }
 
@@ -120,6 +148,7 @@
 {
     [self stopRecorder];
     if(self.recordingStep==0){
+        [sonic startAnimating];
         //开始录音
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
@@ -142,6 +171,7 @@
             timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFiredRecorder) userInfo:nil repeats:YES];
         }
     }else{
+        [sonic stopAnimating];
         if(self.recordingStep==1){
             //停止录音
             [self setRecordingStep:2];

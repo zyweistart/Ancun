@@ -7,7 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "BaiduMapUtils.h"
 
-@interface AccidentViewController : BaseViewController
+@interface AccidentViewController : BaseViewController<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
+
+@property (strong,nonatomic)BMKMapView* mapView;
+@property (strong,nonatomic)BMKLocationService *locService;
+@property (strong,nonatomic)NSArray *poiList;
 
 @end

@@ -20,7 +20,7 @@
 {
     self=[super initWithFrame:rect];
     if(self){
-        self.layer.cornerRadius = CGWidth(10);
+        self.layer.cornerRadius = 0;
         self.layer.masksToBounds = YES;
         [self setTitle:name forState:UIControlStateNormal];
         [self.titleLabel setFont:GLOBAL_FONTSIZE(16)];
@@ -43,6 +43,16 @@
     }else if(type==3){
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self setBackgroundImage:[RGBCOLOR(51, 155, 154) TransformationWithImage] forState:UIControlStateNormal];
+        [self setBackgroundImage:[RGBCOLOR(149, 207, 206) TransformationWithImage] forState:UIControlStateHighlighted];
+    }else if(type==4){
+        [self.titleLabel setFont:GLOBAL_FONTSIZE(14)];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setBackgroundImage:[RGBCOLOR(255, 162, 0) TransformationWithImage] forState:UIControlStateNormal];
+        [self setBackgroundImage:[RGBCOLOR(149, 207, 206) TransformationWithImage] forState:UIControlStateHighlighted];
+    }else if(type==5){
+        [self.titleLabel setFont:GLOBAL_FONTSIZE(14)];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setBackgroundImage:[RGBCOLOR(254, 72, 0) TransformationWithImage] forState:UIControlStateNormal];
         [self setBackgroundImage:[RGBCOLOR(149, 207, 206) TransformationWithImage] forState:UIControlStateHighlighted];
     }else{
         [self setBackgroundImage:[[UIColor clearColor] TransformationWithImage] forState:UIControlStateNormal];

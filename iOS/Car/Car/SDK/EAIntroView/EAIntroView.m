@@ -347,11 +347,11 @@
     [UIView animateWithDuration:0.3 animations:^{
         for (int idx = 0; idx < pageViews.count; idx++) {
             if (idx == panelIndex) {
-                [pageViews[idx] setAlpha:1];
+                [((UIView*)pageViews[idx]) setAlpha:1];
             }
             else {
                 if(!self.hideOffscreenPages) {
-                    [pageViews[idx] setAlpha:0];
+                    [((UIView*)pageViews[idx]) setAlpha:0];
                 }
             }
         }

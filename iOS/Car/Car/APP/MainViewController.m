@@ -25,14 +25,15 @@
 
 @end
 
-@implementation MainViewController
+@implementation MainViewController{
+    UIImageView *bgView;
+}
 
 - (id)init
 {
     self=[super init];
     if(self){
         [self setTitle:@"车安存"];
-        [self.view setBackgroundColor:RGBCOLOR(0, 175, 178)];
     }
     return self;
 }
@@ -40,34 +41,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self createButtonWithFrame:CGRectMake1(100, 100, 120, 120) title:@"事故处理" titleFont:GLOBAL_FONTSIZE(16)  imagedName:@"player_s" borderColor:RGBCOLOR(102, 208, 208) titleColor:RGBCOLOR(109, 180, 176) action:@selector(goAccident)];
-    [self createButtonWithFrame:CGRectMake1(15, 140, 70, 70) title:@"去电录音" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"player_s" borderColor:RGBCOLOR(198, 178, 205) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goCall)];
-    [self createButtonWithFrame:CGRectMake1(235, 140, 70, 70) title:@"随手拍" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"player_s" borderColor:RGBCOLOR(214, 210, 165) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goPhotograph)];
-    [self createButtonWithFrame:CGRectMake1(45, 230, 70, 70) title:@"录音笔" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"player_s" borderColor:RGBCOLOR(172, 191, 206) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goRecord)];
-    [self createButtonWithFrame:CGRectMake1(205, 230, 70, 70) title:@"录像" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"player_s" borderColor:RGBCOLOR(179, 210, 212) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goVideo)];
-    [self createButtonWithFrame:CGRectMake1(120, 280, 80, 80) title:@"申请公证" titleFont:GLOBAL_FONTSIZE(12) imagedName:@"player_s" borderColor:RGBCOLOR(115, 210, 212) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goBid)];
+    bgView=[[UIImageView alloc]initWithFrame:self.view.bounds];
+    [bgView setUserInteractionEnabled:YES];
+    [bgView setImage:[UIImage imageNamed:@"BJ_2"]];
+    [self.view addSubview:bgView];
+    [self createButtonWithFrame:CGRectMake1(100, 100, 120, 120) title:@"事故处理" titleFont:GLOBAL_FONTSIZE(16)  imagedName:@"事故处理" borderColor:RGBCOLOR(102, 208, 208) titleColor:RGBCOLOR(109, 180, 176) action:@selector(goAccident)];
+    [self createButtonWithFrame:CGRectMake1(15, 140, 70, 70) title:@"去电录音" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"去电录音" borderColor:RGBCOLOR(198, 178, 205) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goCall)];
+    [self createButtonWithFrame:CGRectMake1(235, 140, 70, 70) title:@"随手拍" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"随手拍" borderColor:RGBCOLOR(214, 210, 165) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goPhotograph)];
+    [self createButtonWithFrame:CGRectMake1(45, 230, 70, 70) title:@"录音笔" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"录音笔" borderColor:RGBCOLOR(172, 191, 206) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goRecord)];
+    [self createButtonWithFrame:CGRectMake1(205, 230, 70, 70) title:@"录像" titleFont:GLOBAL_FONTSIZE(12)  imagedName:@"录像" borderColor:RGBCOLOR(179, 210, 212) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goVideo)];
+    UIButton *bid=[self createButtonWithFrame:CGRectMake1(120, 280, 80, 80) title:@"申请公证" titleFont:GLOBAL_FONTSIZE(12) imagedName:@"申请公证" borderColor:RGBCOLOR(115, 210, 212) titleColor:RGBCOLOR(102, 102, 102) action:@selector(goBid)];
+    [bid setBackgroundColor:RGBCOLOR(255, 162, 0)];
     //出险动态
-    UIButton *dynamicButton=[[UIButton alloc]initWithFrame:CGRectMake(-1, self.view.bounds.size.height-CGHeight(50)+1, CGWidth(160), CGHeight(50))];
+    UIButton *dynamicButton=[[UIButton alloc]initWithFrame:CGRectMake(-1, bgView.bounds.size.height-CGHeight(50)+1, CGWidth(160), CGHeight(50))];
     dynamicButton.layer.borderColor=RGBCOLOR(102, 207, 210).CGColor;
     dynamicButton.layer.borderWidth=1;
     [dynamicButton setBackgroundColor:RGBCOLOR(51, 157, 153)];
     [dynamicButton.titleLabel setFont:GLOBAL_FONTSIZE(14)];
     [dynamicButton setTitle:@"出险动态" forImage:UIControlStateNormal];
     [dynamicButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [dynamicButton setImage:[UIImage imageNamed:@"player_s"] forState:UIControlStateNormal];
+    [dynamicButton setImage:[UIImage imageNamed:@"出险动态"] forState:UIControlStateNormal];
+    [dynamicButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     [dynamicButton addTarget:self action:@selector(goDynamic) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:dynamicButton];
+    [bgView addSubview:dynamicButton];
     //用户中心
-    UIButton *userCenterButton=[[UIButton alloc]initWithFrame:CGRectMake(CGWidth(160)-2, self.view.bounds.size.height-CGHeight(50)+1, CGWidth(163), CGHeight(50))];
+    UIButton *userCenterButton=[[UIButton alloc]initWithFrame:CGRectMake(CGWidth(160)-2, bgView.bounds.size.height-CGHeight(50)+1, CGWidth(163), CGHeight(50))];
     userCenterButton.layer.borderColor=RGBCOLOR(102, 207, 210).CGColor;
     userCenterButton.layer.borderWidth=1;
     [userCenterButton setBackgroundColor:RGBCOLOR(51, 157, 153)];
     [userCenterButton.titleLabel setFont:GLOBAL_FONTSIZE(14)];
     [userCenterButton setTitle:@"用户中心" forImage:UIControlStateNormal];
     [userCenterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [userCenterButton setImage:[UIImage imageNamed:@"player_s"] forState:UIControlStateNormal];
+    [userCenterButton setImage:[UIImage imageNamed:@"用户中心"] forState:UIControlStateNormal];
+    [userCenterButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     [userCenterButton addTarget:self action:@selector(goUserCenter) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:userCenterButton];
+    [bgView addSubview:userCenterButton];
+    //
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"事故处理流程" style:UIBarButtonItemStylePlain target:self action:@selector(goProcess)];
 }
 
 - (UIButton*)createButtonWithFrame:(CGRect)frame title:(NSString*)title titleFont:(UIFont*)titleFont imagedName:(NSString*)imagedName borderColor:(UIColor *)borderColor titleColor:(UIColor *)titleColor action:(SEL)action
@@ -82,8 +92,13 @@
     [button.titleLabel setFont:titleFont];
     [button setTitle:title forImage:[UIImage imageNamed:imagedName]];
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    [bgView addSubview:button];
     return button;
+}
+
+- (void)goProcess
+{
+    
 }
 
 - (void)goAccident

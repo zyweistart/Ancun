@@ -17,7 +17,7 @@
 @property (strong,nonatomic) NSString *recordedFilePath;
 @property (strong,nonatomic) XLButton *recordButton;
 @property (strong,nonatomic) XLLabel *lblTimer;
-@property (strong,nonatomic) XLButton *bPlayer;
-@property (strong,nonatomic) XLButton *bDelete;
+@property (strong,nonatomic) UIButton *bPlayer;
+@property (strong,nonatomic) UIButton *bDelete;
 
 @end

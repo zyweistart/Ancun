@@ -25,6 +25,8 @@
     NSMutableArray *_leftDataItemArray;
     NSMutableArray *_rightDataItemArray;
     
+    UIButton* goRecharge;
+    
 }
 
 - (id)init {
@@ -63,7 +65,7 @@
         [self.tableView setTableHeaderView:topView];
         
         //增加充值按钮
-        UIButton* goRecharge= [[UIButton alloc] initWithFrame:CGRectMake1(0, 0, 70, 30)];
+        goRecharge= [[UIButton alloc] initWithFrame:CGRectMake1(0, 0, 70, 30)];
         [goRecharge setTitle:@"充值" forState:UIControlStateNormal];
         [goRecharge setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [[goRecharge titleLabel]setFont:[UIFont systemFontOfSize:16]];
@@ -72,6 +74,8 @@
         [goRecharge setBackgroundColor:[UIColor colorWithRed:(65/255.0) green:(194/255.0) blue:(252/255.0) alpha:1]];
         [goRecharge addTarget:self action:@selector(accountPay:) forControlEvents:UIControlEventTouchUpInside];
         [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:goRecharge]];
+        //充值按钮隐藏
+        [goRecharge setHidden:YES];
     }
     return self;
 }
@@ -118,6 +122,20 @@
                 [self autoRefresh];
             }
         }
+    }
+    if(goRecharge.isHidden){
+        //获取套餐
+        NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
+        [requestParams setObject:@"3"  forKey:@"type"];
+        [requestParams setObject:PRODUCTRECORDNO_STRING  forKey:@"productrecordno"];
+        [requestParams setObject:@"1"  forKey:@"status"];
+        [requestParams setObject:@"8"  forKey:@"pagesize"];
+        [requestParams setObject:@"1" forKey:@"currentpage"];
+        self.hRequest=[[HttpRequest alloc]init];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setRequestCode:5000];
+        [self.hRequest setIsShowMessage:NO];
+        [self.hRequest loginhandle:@"v4QrycomboList" requestParams:requestParams];
     }
 }
 
@@ -208,6 +226,12 @@
             //重新刷新信息
             [[Config Instance] setIsRefreshAccountPayList:YES];
             [_leftTopTab sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+    } else if(reqCode==5000) {
+        if([response successFlag]) {
+            if([@"100000" isEqualToString:[response code]]){
+                [goRecharge setHidden:NO];
+            }
         }
     } else {
         [super requestFinishedByResponse:response requestCode:reqCode];
