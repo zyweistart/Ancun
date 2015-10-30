@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "CameraView.h"
 
-@interface HandleViewController : BaseViewController
+@interface HandleViewController : BaseViewController<CameraViewDelegate>
 
 @end

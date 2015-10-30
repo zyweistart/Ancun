@@ -32,6 +32,7 @@
 		C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94664761BE30AFE00172DA3 /* ReminderViewController.m */; };
 		C946647A1BE3103200172DA3 /* HandleProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94664791BE3103200172DA3 /* HandleProcessViewController.m */; };
 		C946647D1BE3162D00172DA3 /* HandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C946647C1BE3162D00172DA3 /* HandleViewController.m */; };
+		C94664801BE3547A00172DA3 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = C946647F1BE3547A00172DA3 /* CameraView.m */; };
 		C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE6E1BD640760050A926 /* CallListViewController.m */; };
 		C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE711BD6408A0050A926 /* PhotographListViewController.m */; };
 		C979AE751BD640940050A926 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE741BD640940050A926 /* RecordListViewController.m */; };
@@ -162,6 +163,8 @@
 		C94664791BE3103200172DA3 /* HandleProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleProcessViewController.m; sourceTree = "<group>"; };
 		C946647B1BE3162D00172DA3 /* HandleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleViewController.h; sourceTree = "<group>"; };
 		C946647C1BE3162D00172DA3 /* HandleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleViewController.m; sourceTree = "<group>"; };
+		C946647E1BE3547A00172DA3 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		C946647F1BE3547A00172DA3 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		C979AE6D1BD640760050A926 /* CallListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallListViewController.h; sourceTree = "<group>"; };
 		C979AE6E1BD640760050A926 /* CallListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallListViewController.m; sourceTree = "<group>"; };
 		C979AE701BD6408A0050A926 /* PhotographListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographListViewController.h; sourceTree = "<group>"; };
@@ -392,6 +395,8 @@
 				C98A8CB81BCE53A10096C69B /* XLButton.m */,
 				C98A8CB91BCE53A10096C69B /* XLLabel.h */,
 				C98A8CBA1BCE53A10096C69B /* XLLabel.m */,
+				C946647E1BE3547A00172DA3 /* CameraView.h */,
+				C946647F1BE3547A00172DA3 /* CameraView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -979,6 +984,7 @@
 				C9C937871BCC9B6A0055B52D /* main.m in Sources */,
 				C9F31DF01BCCA9B400E598E6 /* LoadMoreTableFooterView.m in Sources */,
 				C9F31E211BCCB4C100E598E6 /* RegisterViewController.m in Sources */,
+				C94664801BE3547A00172DA3 /* CameraView.m in Sources */,
 				C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */,
 				C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */,
 				C988B5A71BDF0B7900A5F2E4 /* RecordCell.m in Sources */,
