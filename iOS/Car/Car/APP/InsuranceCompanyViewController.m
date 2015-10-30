@@ -7,6 +7,7 @@
 //
 
 #import "InsuranceCompanyViewController.h"
+#import "ReminderViewController.h"
 
 @interface InsuranceCompanyViewController ()
 
@@ -37,6 +38,11 @@
     }else{
         return [tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.navigationController pushViewController:[[ReminderViewController alloc]init] animated:YES];
 }
 
 @end
