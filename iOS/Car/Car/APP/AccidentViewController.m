@@ -85,25 +85,24 @@
     XLButton *bDouble=[[XLButton alloc]initWithFrame:CGRectMake1(170, 65, 140, 35) Name:@"两车事故" Type:5];
     [bDouble addTarget:self action:@selector(goHandleMore) forControlEvents:UIControlEventTouchUpInside];
     [moreView addSubview:bDouble];
-    self.locService = [[BMKLocationService alloc]init];
     geoCodeSearch=[[BMKGeoCodeSearch alloc]init];
+    self.locService = [[BMKLocationService alloc]init];
+    [self.locService setDelegate:self];
+    //启动LocationService
+    [self.locService startUserLocationService];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.mapView viewWillAppear];
     [self.mapView setDelegate:self];
-    [self.locService setDelegate:self];
     [geoCodeSearch setDelegate:self];
-    //启动LocationService
-    [self.locService startUserLocationService];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.mapView viewWillDisappear];
     [self.mapView setDelegate:nil];
-    [self.locService setDelegate:nil];
     [geoCodeSearch setDelegate:nil];
 }
 

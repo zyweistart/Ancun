@@ -12,6 +12,7 @@
 #import "RecordViewController.h"
 #import "UploadViewController.h"
 #import "UserCenterViewController.h"
+#import "ProcessViewController.h"
 #import "BidViewController.h"
 #import "UIButton+Utils.h"
 #import "UIImage+Utils.h"
@@ -98,7 +99,7 @@
 
 - (void)goProcess
 {
-    
+    [self.navigationController pushViewController:[[ProcessViewController alloc]init] animated:YES];
 }
 
 - (void)goAccident

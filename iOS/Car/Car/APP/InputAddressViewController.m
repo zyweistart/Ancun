@@ -29,6 +29,7 @@
         [inputAddress setDelegate:self];
         [inputAddress becomeFirstResponder];
         [inputAddress setKeyboardType:UIKeyboardTypeDefault];
+        [inputAddress setClearButtonMode:UITextFieldViewModeWhileEditing];
         [inputView addSubview:inputAddress];
         
         [[NSNotificationCenter defaultCenter] addObserver:self

@@ -28,6 +28,7 @@
 		C92F62CF1BE20995000FE15F /* InsuranceCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62CE1BE20995000FE15F /* InsuranceCompanyViewController.m */; };
 		C92F62D21BE20C68000FE15F /* InputAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62D11BE20C68000FE15F /* InputAddressViewController.m */; };
 		C92F62D51BE22B13000FE15F /* BaiduMapUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62D41BE22B13000FE15F /* BaiduMapUtils.m */; };
+		C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94664731BE3015800172DA3 /* ProcessViewController.m */; };
 		C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE6E1BD640760050A926 /* CallListViewController.m */; };
 		C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE711BD6408A0050A926 /* PhotographListViewController.m */; };
 		C979AE751BD640940050A926 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE741BD640940050A926 /* RecordListViewController.m */; };
@@ -150,6 +151,8 @@
 		C92F62D11BE20C68000FE15F /* InputAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAddressViewController.m; sourceTree = "<group>"; };
 		C92F62D31BE22B13000FE15F /* BaiduMapUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapUtils.h; sourceTree = "<group>"; };
 		C92F62D41BE22B13000FE15F /* BaiduMapUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapUtils.m; sourceTree = "<group>"; };
+		C94664721BE3015800172DA3 /* ProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
+		C94664731BE3015800172DA3 /* ProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
 		C979AE6D1BD640760050A926 /* CallListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallListViewController.h; sourceTree = "<group>"; };
 		C979AE6E1BD640760050A926 /* CallListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallListViewController.m; sourceTree = "<group>"; };
 		C979AE701BD6408A0050A926 /* PhotographListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographListViewController.h; sourceTree = "<group>"; };
@@ -773,6 +776,8 @@
 				C9F31E471BCCD58100E598E6 /* MainViewController.m */,
 				C98A8CB31BCE51B70096C69B /* UploadViewController.h */,
 				C98A8CB41BCE51B70096C69B /* UploadViewController.m */,
+				C94664721BE3015800172DA3 /* ProcessViewController.h */,
+				C94664731BE3015800172DA3 /* ProcessViewController.m */,
 			);
 			name = "公共";
 			sourceTree = "<group>";
@@ -962,6 +967,7 @@
 				C988B5A71BDF0B7900A5F2E4 /* RecordCell.m in Sources */,
 				C9CBCB621BD76D7B005A5CF1 /* ACContactSingleCell.m in Sources */,
 				C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */,
+				C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,
 				C9CF7AD41BCF839000DBBCDA /* FeedbackViewController.m in Sources */,

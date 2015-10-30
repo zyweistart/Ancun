@@ -17,7 +17,7 @@
 - (void)setTitle:(NSString *)title
 {
     [super setTitle:@""];
-    UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 49)];
+    UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, CGWidth(100), 44)];
     [lblTitle setText:title];
     [lblTitle setTextColor:[UIColor whiteColor]];
     [lblTitle setFont:GLOBAL_FONTSIZE(20)];
