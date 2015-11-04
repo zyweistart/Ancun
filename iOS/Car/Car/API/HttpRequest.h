@@ -21,6 +21,8 @@
 @property int reqCode;
 //是否为文件下载
 @property BOOL isFileDownload;
+//显示返回的错误信息
+@property BOOL isShowFailedMessage;
 //多文件上传数据提交
 @property BOOL isMultipartFormDataSubmit;
 //代理对象
@@ -29,5 +31,6 @@
 - (id)initWithRequestCode:(int)requestCode;
 + (BOOL)isNetworkConnection;
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params;
+- (void)handleWithParams:(NSMutableDictionary*)params;
 
 @end

@@ -28,11 +28,11 @@
 #warning 当前运行版本为测试版本，仅供测试使用
 //测试配置
 #define PHONENUMBER @"95105856"
-#define ANCUN_HTTP_URL @"http://192.168.0.221:8080/accore/http/HttpService"
+#define ANCUN_HTTP_URL @"http://www.cheancun.com/api/api.php?"
 #else
 //正式配置
 #define PHONENUMBER @"95105856"
-#define ANCUN_HTTP_URL @"http://server.ancun.com:3391/rest/RestService"
+#define ANCUN_HTTP_URL @"http://www.cheancun.com/api/api.php?"
 #endif
 
 #endif

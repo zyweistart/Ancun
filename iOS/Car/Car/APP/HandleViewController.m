@@ -44,7 +44,7 @@
     [scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [scrollView setBackgroundColor:BCOLOR(244)];
     [self.view addSubview:scrollView];
-    XLButton *bSubmit=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-CGHeight(45), CGWidth(300),CGHeight(40)) Name:@"提交照片" Type:3];
+    XLButton *bSubmit=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-64-CGHeight(45), CGWidth(300),CGHeight(40)) Name:@"提交照片" Type:3];
     [bSubmit addTarget:self action:@selector(goSubmit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bSubmit];
     //图1

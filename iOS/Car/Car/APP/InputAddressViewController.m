@@ -13,8 +13,8 @@
 @end
 
 @implementation InputAddressViewController{
-    UITextField *inputAddress;
     UIButton *bCancel;
+    UITextField *inputAddress;
 }
 
 - (id)init
@@ -29,23 +29,19 @@
         [inputAddress setDelegate:self];
         [inputAddress becomeFirstResponder];
         [inputAddress setKeyboardType:UIKeyboardTypeDefault];
+        [inputAddress setReturnKeyType:UIReturnKeyDone];
         [inputAddress setClearButtonMode:UITextFieldViewModeWhileEditing];
         [inputView addSubview:inputAddress];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textFieldChanged) name:UITextFieldTextDidChangeNotification
                                                    object:inputAddress];
-        
-        
-        bCancel=[[UIButton alloc]initWithFrame:CGRectMake(CGWidth(260), 0, CGWidth(40), 40)];
+        bCancel=[[UIButton alloc]initWithFrame:CGRectMake(CGWidth(270), 0, CGWidth(45), 40)];
         [bCancel setTitle:@"取消" forState:UIControlStateNormal];
         [bCancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [bCancel addTarget:self action:@selector(goCancel) forControlEvents:UIControlEventTouchUpInside];
         [inputView addSubview:bCancel];
-        
         self.navigationItem.hidesBackButton=YES;
         self.navigationItem.titleView=inputView;
-        
         [self buildTableViewWithView:self.view];
     }
     return self;
@@ -71,31 +67,32 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [inputAddress resignFirstResponder];
     BMKPoiInfo *info=[self.dataItemArray objectAtIndex:[indexPath row]];
     NSString *address=[BaiduMapUtils getAddress:info];
-    NSLog(@"%@",address);
-    [inputAddress resignFirstResponder];
+    NSMutableDictionary *da=[[NSMutableDictionary alloc]initWithDictionary:@{@"address":address}];
+    [self.rDelegate onControllerResult:500 requestCode:500 data:da];
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)textFieldChanged
-{
-    if([@"" isEqualToString:[inputAddress text]]){
-        [bCancel setTitle:@"取消" forState:UIControlStateNormal];
-    }else{
-        [bCancel setTitle:@"确认" forState:UIControlStateNormal];
-    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
     [theTextField resignFirstResponder];
+    if (![@"" isEqualToString:[theTextField text]]){
+        NSString *address=[inputAddress text];
+        NSMutableDictionary *da=[[NSMutableDictionary alloc]initWithDictionary:@{@"address":address}];
+        [self.rDelegate onControllerResult:500 requestCode:500 data:da];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     return YES;
+}
+
+- (void)textFieldChanged
+{
 }
 
 - (void)goCancel
 {
-    NSLog(@"%@",[inputAddress text]);
     [inputAddress resignFirstResponder];
     [self.navigationController popViewControllerAnimated:YES];
 }

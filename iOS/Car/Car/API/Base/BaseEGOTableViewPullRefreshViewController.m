@@ -7,10 +7,10 @@
     if(self){
         self.currentPage=0;
         self.dataItemArray=[[NSMutableArray alloc]init];
-//        [self.dataItemArray addObject:@"a1"];
-//        [self.dataItemArray addObject:@"a2"];
-//        [self.dataItemArray addObject:@"a3"];
-//        [self.dataItemArray addObject:@"a4"];
+        [self.dataItemArray addObject:@"a1"];
+        [self.dataItemArray addObject:@"a2"];
+        [self.dataItemArray addObject:@"a3"];
+        [self.dataItemArray addObject:@"a4"];
     }
     return self;
 }
@@ -19,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self buildTableViewWithView:self.view];
+    [self buildTableViewWithView:self.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,8 +73,10 @@
 
 - (void)loadHttp
 {
-    
+    NSLog(@"子类必须重写该方法调用网络接口");
+    [self performSelector:@selector(loadDone) withObject:nil afterDelay:3.0];
 }
+
 //调用该方法完成刷新状态
 - (void)loadDone
 {
@@ -146,8 +148,6 @@
         return cell;
     }
 }
-
-
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {

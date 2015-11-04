@@ -28,13 +28,13 @@
 {
     [super viewDidLoad];
     
-    XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(10), 64, CGWidth(300), CGHeight(50)) Text:@"为更高效的对事故进行处理，建议在我的资料中完善个人信息."];
+    XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(10), 0, CGWidth(300), CGHeight(50)) Text:@"为更高效的对事故进行处理，建议在我的资料中完善个人信息."];
     [lbl setFont:GLOBAL_FONTSIZE(15)];
     [lbl setTextColor:BGCOLOR];
     [lbl setNumberOfLines:0];
     [self.view addSubview:lbl];
     
-    UIScrollView *contentView=[[UIScrollView alloc]initWithFrame:CGRectMake(CGWidth(10), 120, CGWidth(300), self.view.bounds.size.height-125)];
+    UIScrollView *contentView=[[UIScrollView alloc]initWithFrame:CGRectMake(CGWidth(10), 120-64, CGWidth(300), self.view.bounds.size.height-125)];
     [contentView setContentSize:CGSizeMake1(300, 375)];
     contentView.layer.cornerRadius=CGWidth(3);
     contentView.layer.masksToBounds=YES;

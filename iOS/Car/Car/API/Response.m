@@ -28,9 +28,9 @@
             //转换成JSON格式
             NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:[response data] options:NSJSONReadingMutableLeaves error:nil];
             if(resultJSON!=nil){
+                [response setCode:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"result"]]];
+                [response setMsg:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"reason"]]];
                 [response setResultJSON:resultJSON];
-                [response setCode:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"code"]]];
-                [response setMsg:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"Message"]]];
             }
         }
     }

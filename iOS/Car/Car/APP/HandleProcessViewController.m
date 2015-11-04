@@ -29,12 +29,12 @@
 {
     [super viewDidLoad];
     
-    XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(10), 64, CGWidth(300), CGHeight(20)) Text:@"请按以下步骤处理此次事故:"];
+    XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(10), 0, CGWidth(300), CGHeight(20)) Text:@"请按以下步骤处理此次事故:"];
     [lbl setTextColor:BGCOLOR];
     [lbl setNumberOfLines:0];
     [self.view addSubview:lbl];
     
-    UIScrollView *contentView=[[UIScrollView alloc]initWithFrame:CGRectMake(CGWidth(10), 64+CGHeight(20), CGWidth(300), self.view.bounds.size.height-64-CGHeight(95))];
+    UIScrollView *contentView=[[UIScrollView alloc]initWithFrame:CGRectMake(CGWidth(10), CGHeight(20), CGWidth(300), self.view.bounds.size.height-64-CGHeight(100))];
     [contentView setContentSize:CGSizeMake1(300, 375)];
     contentView.layer.cornerRadius=CGWidth(3);
     contentView.layer.masksToBounds=YES;
@@ -52,10 +52,10 @@
     [contentView addSubview:[self createTitleView:185 ImageNamed:@"交警认定责任" Info:@"责任认定" Call:NO]];
     [contentView addSubview:[self createTitleView:325 ImageNamed:nil Info:@"线上定损" Call:NO]];
     
-    XLButton *bOK=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-CGHeight(70), CGWidth(300),CGHeight(40)) Name:@"开始处理" Type:3];
+    XLButton *bOK=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-64-CGHeight(75), CGWidth(300),CGHeight(40)) Name:@"开始处理" Type:3];
     [bOK addTarget:self action:@selector(goNext) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bOK];
-    lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(15), self.view.bounds.size.height-CGHeight(30), CGWidth(290), CGHeight(30)) Text:@"注意:拍照过程中请留意周边来往车辆"];
+    lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(15), self.view.bounds.size.height-64-CGHeight(30), CGWidth(290), CGHeight(30)) Text:@"注意:拍照过程中请留意周边来往车辆"];
     [lbl setTextColor:BGCOLOR];
     [self.view addSubview:lbl];
 }

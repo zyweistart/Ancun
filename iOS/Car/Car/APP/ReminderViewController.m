@@ -29,14 +29,15 @@
 {
     [super viewDidLoad];
     
-    XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(10), 64, CGWidth(300), CGHeight(20)) Text:@"遇事别急，先做好安全防范:"];
+    XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(10), 0, CGWidth(300), CGHeight(20)) Text:@"遇事别急，先做好安全防范:"];
 //    [lbl setFont:GLOBAL_FONTSIZE(15)];
     [lbl setTextColor:BGCOLOR];
     [lbl setNumberOfLines:0];
     [self.view addSubview:lbl];
     
-    UIScrollView *contentView=[[UIScrollView alloc]initWithFrame:CGRectMake(CGWidth(10), 64+CGHeight(20), CGWidth(300), self.view.bounds.size.height-64-CGHeight(70))];
+    UIScrollView *contentView=[[UIScrollView alloc]initWithFrame:CGRectMake(CGWidth(10), CGHeight(20), CGWidth(300), self.view.bounds.size.height-64-CGHeight(20))];
     [contentView setContentSize:CGSizeMake1(300, 400)];
+    [contentView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     contentView.layer.cornerRadius=CGWidth(3);
     contentView.layer.masksToBounds=YES;
     contentView.layer.borderColor=BGCOLOR.CGColor;
@@ -52,7 +53,7 @@
     [contentView addSubview:[self createTitleView:176 ImageNamed:@"警示牌" Info:@"车后50至100米之间放置随车三脚架(确保自身安全)"]];
     [contentView addSubview:[self createTitleView:347 ImageNamed:nil Info:@"无人员伤亡，车辆后续可移动"]];
     
-    XLButton *bOK=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-CGHeight(45), CGWidth(300),CGHeight(40)) Name:@"确定" Type:3];
+    XLButton *bOK=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-64-CGHeight(45), CGWidth(300),CGHeight(40)) Name:@"确定" Type:3];
     [bOK addTarget:self action:@selector(goNext) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bOK];
 }

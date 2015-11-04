@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */; };
 		C92F62971BE1B2F4000FE15F /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62961BE1B2F4000FE15F /* SJAvatarBrowser.m */; };
 		C92F62AD1BE1B848000FE15F /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92F62A61BE1B848000FE15F /* BaiduMapAPI_Base.framework */; };
 		C92F62AE1BE1B848000FE15F /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92F62A71BE1B848000FE15F /* BaiduMapAPI_Cloud.framework */; };
@@ -75,6 +76,8 @@
 		C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7AD61BCF839A00DBBCDA /* UploadSettingViewController.m */; };
 		C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7AD91BCF83A700DBBCDA /* NotificationSettingViewController.m */; };
 		C9CF7ADE1BCF90BF00DBBCDA /* BidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7ADD1BCF90BF00DBBCDA /* BidViewController.m */; };
+		C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */; };
+		C9D24E601BE73ADB007D489F /* BeinDangerHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */; };
 		C9F31DC81BCCA5D200E598E6 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DC71BCCA5D200E598E6 /* Common.m */; };
 		C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DCA1BCCA76800E598E6 /* HttpDownload.m */; };
 		C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DDF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -130,6 +133,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C925AFB01BE88CC90009E357 /* BeinDangerHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerHistoryCell.h; sourceTree = "<group>"; };
+		C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerHistoryCell.m; sourceTree = "<group>"; };
 		C92F62951BE1B2F4000FE15F /* SJAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAvatarBrowser.h; sourceTree = "<group>"; };
 		C92F62961BE1B2F4000FE15F /* SJAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAvatarBrowser.m; sourceTree = "<group>"; };
 		C92F62A61BE1B848000FE15F /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = framework/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
@@ -250,6 +255,10 @@
 		C9CF7AD91BCF83A700DBBCDA /* NotificationSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSettingViewController.m; sourceTree = "<group>"; };
 		C9CF7ADC1BCF90BF00DBBCDA /* BidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidViewController.h; sourceTree = "<group>"; };
 		C9CF7ADD1BCF90BF00DBBCDA /* BidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidViewController.m; sourceTree = "<group>"; };
+		C9D24E5B1BE73AC0007D489F /* BeinDangerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerDetailViewController.h; sourceTree = "<group>"; };
+		C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerDetailViewController.m; sourceTree = "<group>"; };
+		C9D24E5E1BE73ADB007D489F /* BeinDangerHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerHistoryViewController.h; sourceTree = "<group>"; };
+		C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerHistoryViewController.m; sourceTree = "<group>"; };
 		C9F31DC61BCCA5D200E598E6 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C9F31DC71BCCA5D200E598E6 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		C9F31DC91BCCA76800E598E6 /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
@@ -391,12 +400,12 @@
 		C98A8CB61BCE53540096C69B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C946647E1BE3547A00172DA3 /* CameraView.h */,
+				C946647F1BE3547A00172DA3 /* CameraView.m */,
 				C98A8CB71BCE53A10096C69B /* XLButton.h */,
 				C98A8CB81BCE53A10096C69B /* XLButton.m */,
 				C98A8CB91BCE53A10096C69B /* XLLabel.h */,
 				C98A8CBA1BCE53A10096C69B /* XLLabel.m */,
-				C946647E1BE3547A00172DA3 /* CameraView.h */,
-				C946647F1BE3547A00172DA3 /* CameraView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -504,6 +513,7 @@
 				C98A8CB61BCE53540096C69B /* UI */,
 				C9F31E0D1BCCB10800E598E6 /* 事故处理 */,
 				C9F31E451BCCD56B00E598E6 /* 公共 */,
+				C9D24E5A1BE73A8A007D489F /* 出险 */,
 				C9F31E091BCCB0F000E598E6 /* 去电录音 */,
 				C9F31E0C1BCCB10100E598E6 /* 录像 */,
 				C9F31E0A1BCCB0F600E598E6 /* 录音笔 */,
@@ -548,6 +558,8 @@
 				C988B5A61BDF0B7900A5F2E4 /* RecordCell.m */,
 				C988B5A21BDF0B6100A5F2E4 /* VideoCell.h */,
 				C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */,
+				C925AFB01BE88CC90009E357 /* BeinDangerHistoryCell.h */,
+				C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -587,6 +599,17 @@
 				C9CF7ADD1BCF90BF00DBBCDA /* BidViewController.m */,
 			);
 			name = "申办公证";
+			sourceTree = "<group>";
+		};
+		C9D24E5A1BE73A8A007D489F /* 出险 */ = {
+			isa = PBXGroup;
+			children = (
+				C9D24E5B1BE73AC0007D489F /* BeinDangerDetailViewController.h */,
+				C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */,
+				C9D24E5E1BE73ADB007D489F /* BeinDangerHistoryViewController.h */,
+				C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */,
+			);
+			name = "出险";
 			sourceTree = "<group>";
 		};
 		C9F31DC11BCCA0D500E598E6 /* 用户管理 */ = {
@@ -961,6 +984,7 @@
 				C9F31E4C1BCCD5D500E598E6 /* RecordViewController.m in Sources */,
 				C98A8CB21BCDEEA10096C69B /* VPImageCropperViewController.m in Sources */,
 				C92F62D21BE20C68000FE15F /* InputAddressViewController.m in Sources */,
+				C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */,
 				C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */,
 				C9F31E381BCCB6CC00E598E6 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9CF7AD11BCF838600DBBCDA /* AboutViewController.m in Sources */,
@@ -974,11 +998,13 @@
 				C98A8CA71BCDEAA50096C69B /* PhotographItem.m in Sources */,
 				C98A8CA11BCDEA740096C69B /* VideoItem.m in Sources */,
 				C979AE751BD640940050A926 /* RecordListViewController.m in Sources */,
+				C9D24E601BE73ADB007D489F /* BeinDangerHistoryViewController.m in Sources */,
 				C9CBCB691BD76D8B005A5CF1 /* LongPressButton.m in Sources */,
 				C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */,
 				C9F31E271BCCB59A00E598E6 /* SQLiteOperate.m in Sources */,
 				C92F62D51BE22B13000FE15F /* BaiduMapUtils.m in Sources */,
 				C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */,
+				C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */,
 				C9F31E241BCCB4CC00E598E6 /* UserCenterViewController.m in Sources */,
 				C9C937871BCC9B6A0055B52D /* main.m in Sources */,

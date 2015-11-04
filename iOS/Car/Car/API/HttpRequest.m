@@ -1,4 +1,5 @@
 #import "HttpRequest.h"
+#import "NSString+Utils.h"
 #import "Reachability.h"
 
 @implementation HttpRequest
@@ -13,6 +14,7 @@
     if(self){
         self.reqCode=requestCode;
         self.isFileDownload=NO;
+        self.isShowFailedMessage=NO;
         self.isMultipartFormDataSubmit=NO;
     }
     return self;
@@ -102,6 +104,51 @@
     }
 }
 
+
+- (void)handleWithParams:(NSMutableDictionary*)params
+{
+    if ([HttpRequest isNetworkConnection]) {
+        NSMutableString *URL=[[NSMutableString alloc]initWithString:ANCUN_HTTP_URL];
+        if(!self.isMultipartFormDataSubmit){
+            if([params count]>0){
+                long d=(long)[[NSDate date] timeIntervalSince1970];
+                [params setObject:[NSString stringWithFormat:@"%ld",d] forKey:@"httpTime"];
+                NSMutableArray *strs=[[NSMutableArray alloc]init];
+                for(NSString *key in params){
+                    [URL appendFormat:@"%@=%@&",key,[params objectForKey:key]];
+                    [strs addObject:key];
+                }
+                NSMutableString *sign=[[NSMutableString alloc]init];
+                for(NSString *key in [strs sortedArrayUsingSelector:@selector(compare:)]){
+                    [sign appendFormat:@"%@=%@|",key,[params objectForKey:key]];
+                }
+                NSRange deleteRange1 = {[sign length]-1,1};
+                [sign deleteCharactersInRange:deleteRange1];
+                [URL appendFormat:@"sign=%@",[sign md5]];
+            }
+        }
+        // 初始化一个请求
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
+        // 设置请求方法
+        request.HTTPMethod = @"POST";
+        // 60秒请求超时
+        request.timeoutInterval = 60;
+        if(self.isMultipartFormDataSubmit){
+            
+        }else{
+            
+        }
+        // 初始化一个连接
+        NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
+        // 开始一个异步请求
+        [conn start];
+    } else {
+        if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
+            [_delegate requestFailed:self.reqCode];
+        }
+    }
+}
+
 #pragma mark 该方法在响应connection时调用
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -140,9 +187,11 @@
         NSString *responseString =[[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
         Response *response=[Response toData:responseString];
         //成功标记
-        [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
-        if(![response successFlag]){
-            NSLog(@"%@",[response msg]);
+        [response setSuccessFlag:[@"success" isEqualToString:[response code]]];
+        if(self.isShowFailedMessage){
+            if(![response successFlag]){
+                NSLog(@"%@",[response msg]);
+            }
         }
         [_delegate requestFinishedByResponse:response requestCode:self.reqCode];
     }

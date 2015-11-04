@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     //地图视图
-    self.mapView = [[BMKMapView alloc]initWithFrame:self.view.bounds];
+    self.mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, CGWidth(320), self.view.bounds.size.height-64-CGHeight(105))];
     [self.mapView setZoomLevel:20];
     [self.mapView setShowMapPoi:YES];
     [self.mapView setShowsUserLocation:YES];
@@ -52,7 +52,7 @@
     [mark setImage:[UIImage imageNamed:@"mark_d"]];
     [self.mapView addSubview:mark];
     
-    UIView *moreView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(105), CGWidth(320), CGHeight(105))];
+    UIView *moreView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(105)-64, CGWidth(320), CGHeight(105))];
     [moreView setBackgroundColor:BCOLOR(244)];
     [self.view addSubview:moreView];
     UIView *infoView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 60)];
@@ -126,7 +126,7 @@
  */
 - (void)willStartLocatingUser
 {
-    NSLog(@"start locate");
+//    NSLog(@"start locate");
 }
 
 /**
@@ -163,7 +163,7 @@
  */
 - (void)didStopLocatingUser
 {
-    NSLog(@"stop locate");
+//    NSLog(@"stop locate");
 }
 
 /**
@@ -173,7 +173,7 @@
  */
 - (void)didFailToLocateUserWithError:(NSError *)error
 {
-    NSLog(@"location error");
+//    NSLog(@"location error");
 }
 
 /**
@@ -223,8 +223,16 @@
 - (void)goInputAddress
 {
     InputAddressViewController *mInputAddressViewController=[[InputAddressViewController alloc]init];
+    [mInputAddressViewController setRDelegate:self];
     [mInputAddressViewController setDataItemArray:[[NSMutableArray alloc]initWithArray:self.poiList]];
     [self.navigationController pushViewController:mInputAddressViewController animated:YES];
+}
+
+- (void)onControllerResult:(NSInteger)resultCode requestCode:(NSInteger)requestCode data:(NSMutableDictionary*)result
+{
+    //获取地址
+    address=[result objectForKey:@"address"];
+    [lblAddress setText:[NSString stringWithFormat:@"%@",address]];
 }
 
 @end
