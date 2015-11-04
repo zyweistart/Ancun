@@ -160,20 +160,20 @@
 
 - (void)goUserCenter
 {
-//    [self.navigationController pushViewController:[[UserCenterViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[UserCenterViewController alloc]init] animated:YES];
     
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
-    [self.hRequest setDelegate:self];
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"addUser" forKey:@"act"];
-    [params setObject:@"23123" forKey:@"pwd"];
-    [params setObject:@"13888888888" forKey:@"mobile"];
-    [params setObject:@"12345" forKey:@"code"];
-    [params setObject:@"0" forKey:@"gender"];
-    [params setObject:@"1" forKey:@"appver"];
-    [params setObject:@"baidu" forKey:@"regfrom"];
-//    [self.hRequest setIsShowFailedMessage:YES];
-    [self.hRequest handleWithParams:params];
+//    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+//    [self.hRequest setDelegate:self];
+//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//    [params setObject:@"addUser" forKey:@"act"];
+//    [params setObject:@"23123" forKey:@"pwd"];
+//    [params setObject:@"13888888888" forKey:@"mobile"];
+//    [params setObject:@"12345" forKey:@"code"];
+//    [params setObject:@"0" forKey:@"gender"];
+//    [params setObject:@"1" forKey:@"appver"];
+//    [params setObject:@"baidu" forKey:@"regfrom"];
+////    [self.hRequest setIsShowFailedMessage:YES];
+//    [self.hRequest handleWithParams:params];
 }
 
 #pragma mark - UIImagePickerControllerDelegate

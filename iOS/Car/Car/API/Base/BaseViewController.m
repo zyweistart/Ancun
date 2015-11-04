@@ -9,7 +9,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self.view setBackgroundColor:[UIColor whiteColor]];
+        [self.view setBackgroundColor:BCOLOR(244)];
     }
     return self;
 }
@@ -27,12 +27,14 @@
 - (void)setTitle:(NSString *)title
 {
     [super setTitle:@""];
-    UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, CGWidth(100), 44)];
-    [lblTitle setText:title];
-    [lblTitle setTextColor:[UIColor whiteColor]];
-    [lblTitle setFont:GLOBAL_FONTSIZE(20)];
-    [lblTitle setTextAlignment:NSTextAlignmentCenter];
-    self.navigationItem.titleView=lblTitle;
+    if(title){
+        UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, CGWidth(100), 44)];
+        [lblTitle setText:title];
+        [lblTitle setTextColor:[UIColor whiteColor]];
+        [lblTitle setFont:GLOBAL_FONTSIZE(20)];
+        [lblTitle setTextAlignment:NSTextAlignmentCenter];
+        self.navigationItem.titleView=lblTitle;
+    }
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode

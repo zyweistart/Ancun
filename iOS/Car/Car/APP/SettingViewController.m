@@ -33,6 +33,7 @@
         UIView *footView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [self.tableView setTableFooterView:footView];
         XLButton *button=[[XLButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"账号退出" Type:1];
+        [button addTarget:self action:@selector(goLogout) forControlEvents:UIControlEventTouchUpInside];
         [footView addSubview:button];
     }
     return self;
@@ -84,6 +85,13 @@
             [self.navigationController pushViewController:[[FeedbackViewController alloc]init] animated:YES];
         }
     }
+}
+
+- (void)goLogout
+{
+    [User resetConfig];
+    AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [myDelegate windowRootViewController];
 }
 
 @end

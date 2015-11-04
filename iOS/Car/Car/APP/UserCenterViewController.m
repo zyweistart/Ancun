@@ -12,6 +12,7 @@
 #import "PhotographListViewController.h"
 #import "VideoListViewController.h"
 #import "SettingViewController.h"
+#import "MyInformationViewController.h"
 
 @interface UserCenterViewController ()
 
@@ -28,6 +29,10 @@
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         UIView *headView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 100)];
         [headView setBackgroundColor:[UIColor redColor]];
+        [headView setUserInteractionEnabled:YES];
+        XLButton *button=[[XLButton alloc]initWithFrame:CGRectMake1(10, 10, 100, 40) Name:@"完善资料"];
+        [button addTarget:self action:@selector(goInformation) forControlEvents:UIControlEventTouchUpInside];
+        [headView addSubview:button];
         [self.tableView setTableHeaderView:headView];
     }
     return self;
@@ -60,6 +65,11 @@
     }else{
         [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
     }
+}
+
+- (void)goInformation
+{
+    [self.navigationController pushViewController:[[MyInformationViewController alloc]init] animated:YES];
 }
 
 @end

@@ -16,6 +16,8 @@
     #import "GlobalDefine.h"
     #import "XLLabel.h"
     #import "XLButton.h"
+    #import "XLTextField.h"
+    #import "User.h"
 #endif
 
 //自定义颜色表

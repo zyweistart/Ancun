@@ -34,6 +34,8 @@
 		C946647A1BE3103200172DA3 /* HandleProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94664791BE3103200172DA3 /* HandleProcessViewController.m */; };
 		C946647D1BE3162D00172DA3 /* HandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C946647C1BE3162D00172DA3 /* HandleViewController.m */; };
 		C94664801BE3547A00172DA3 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = C946647F1BE3547A00172DA3 /* CameraView.m */; };
+		C95B77891BE9A9990066623D /* XLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C95B77881BE9A9990066623D /* XLTextField.m */; };
+		C95B778C1BE9ADF40066623D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95B778B1BE9ADF40066623D /* ForgetPasswordViewController.m */; };
 		C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE6E1BD640760050A926 /* CallListViewController.m */; };
 		C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE711BD6408A0050A926 /* PhotographListViewController.m */; };
 		C979AE751BD640940050A926 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE741BD640940050A926 /* RecordListViewController.m */; };
@@ -51,6 +53,8 @@
 		C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CB81BCE53A10096C69B /* XLButton.m */; };
 		C98A8CBC1BCE53A10096C69B /* XLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CBA1BCE53A10096C69B /* XLLabel.m */; };
 		C98A8CBF1BCE53D40096C69B /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CBE1BCE53D40096C69B /* UIColor+Utils.m */; };
+		C99F03151BE9DD0000476FA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C99F03141BE9DD0000476FA8 /* User.m */; };
+		C99F03181BE9EA8B00476FA8 /* MyInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99F03171BE9EA8B00476FA8 /* MyInformationViewController.m */; };
 		C9A036271BE09EB100A8E387 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A036261BE09EB100A8E387 /* FileUtils.m */; };
 		C9A0362A1BE0A5D300A8E387 /* VideoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A036291BE0A5D300A8E387 /* VideoUtils.m */; };
 		C9A0362C1BE0A79100A8E387 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A0362B1BE0A79100A8E387 /* AVFoundation.framework */; };
@@ -170,6 +174,10 @@
 		C946647C1BE3162D00172DA3 /* HandleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleViewController.m; sourceTree = "<group>"; };
 		C946647E1BE3547A00172DA3 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
 		C946647F1BE3547A00172DA3 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
+		C95B77871BE9A9990066623D /* XLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLTextField.h; sourceTree = "<group>"; };
+		C95B77881BE9A9990066623D /* XLTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLTextField.m; sourceTree = "<group>"; };
+		C95B778A1BE9ADF40066623D /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		C95B778B1BE9ADF40066623D /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		C979AE6D1BD640760050A926 /* CallListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallListViewController.h; sourceTree = "<group>"; };
 		C979AE6E1BD640760050A926 /* CallListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallListViewController.m; sourceTree = "<group>"; };
 		C979AE701BD6408A0050A926 /* PhotographListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographListViewController.h; sourceTree = "<group>"; };
@@ -204,6 +212,10 @@
 		C98A8CBA1BCE53A10096C69B /* XLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLLabel.m; sourceTree = "<group>"; };
 		C98A8CBD1BCE53D40096C69B /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
 		C98A8CBE1BCE53D40096C69B /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
+		C99F03131BE9DD0000476FA8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C99F03141BE9DD0000476FA8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C99F03161BE9EA8B00476FA8 /* MyInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInformationViewController.h; sourceTree = "<group>"; };
+		C99F03171BE9EA8B00476FA8 /* MyInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInformationViewController.m; sourceTree = "<group>"; };
 		C9A036251BE09EB100A8E387 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		C9A036261BE09EB100A8E387 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		C9A036281BE0A5D300A8E387 /* VideoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoUtils.h; sourceTree = "<group>"; };
@@ -406,6 +418,8 @@
 				C98A8CB81BCE53A10096C69B /* XLButton.m */,
 				C98A8CB91BCE53A10096C69B /* XLLabel.h */,
 				C98A8CBA1BCE53A10096C69B /* XLLabel.m */,
+				C95B77871BE9A9990066623D /* XLTextField.h */,
+				C95B77881BE9A9990066623D /* XLTextField.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -615,12 +629,16 @@
 		C9F31DC11BCCA0D500E598E6 /* 用户管理 */ = {
 			isa = PBXGroup;
 			children = (
+				C95B778A1BE9ADF40066623D /* ForgetPasswordViewController.h */,
+				C95B778B1BE9ADF40066623D /* ForgetPasswordViewController.m */,
 				C9F31E1B1BCCB4B500E598E6 /* LoginViewController.h */,
 				C9F31E1C1BCCB4B500E598E6 /* LoginViewController.m */,
 				C9F31E1F1BCCB4C100E598E6 /* RegisterViewController.h */,
 				C9F31E201BCCB4C100E598E6 /* RegisterViewController.m */,
 				C9F31E221BCCB4CC00E598E6 /* UserCenterViewController.h */,
 				C9F31E231BCCB4CC00E598E6 /* UserCenterViewController.m */,
+				C99F03161BE9EA8B00476FA8 /* MyInformationViewController.h */,
+				C99F03171BE9EA8B00476FA8 /* MyInformationViewController.m */,
 			);
 			name = "用户管理";
 			sourceTree = "<group>";
@@ -766,6 +784,8 @@
 				C98A8CA31BCDEA870096C69B /* RecordItem.m */,
 				C98A8CA51BCDEAA50096C69B /* PhotographItem.h */,
 				C98A8CA61BCDEAA50096C69B /* PhotographItem.m */,
+				C99F03131BE9DD0000476FA8 /* User.h */,
+				C99F03141BE9DD0000476FA8 /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -975,6 +995,7 @@
 				C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */,
 				C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */,
 				C9CBCB6C1BD76DB3005A5CF1 /* AttributedLabel.m in Sources */,
+				C95B77891BE9A9990066623D /* XLTextField.m in Sources */,
 				C98A8C9E1BCDEA5D0096C69B /* BaseItem.m in Sources */,
 				C98A8CBC1BCE53A10096C69B /* XLLabel.m in Sources */,
 				C9F31E3A1BCCB6CC00E598E6 /* BaseViewController.m in Sources */,
@@ -1016,6 +1037,7 @@
 				C988B5A71BDF0B7900A5F2E4 /* RecordCell.m in Sources */,
 				C9CBCB621BD76D7B005A5CF1 /* ACContactSingleCell.m in Sources */,
 				C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */,
+				C95B778C1BE9ADF40066623D /* ForgetPasswordViewController.m in Sources */,
 				C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,
@@ -1031,6 +1053,7 @@
 				C98A8CB11BCDEEA10096C69B /* UIImage+Utils.m in Sources */,
 				C946647A1BE3103200172DA3 /* HandleProcessViewController.m in Sources */,
 				C9F31E481BCCD58100E598E6 /* MainViewController.m in Sources */,
+				C99F03181BE9EA8B00476FA8 /* MyInformationViewController.m in Sources */,
 				C92F62CF1BE20995000FE15F /* InsuranceCompanyViewController.m in Sources */,
 				C9F31E1A1BCCB3E300E598E6 /* UIButton+Utils.m in Sources */,
 				C9C937C31BCCA0880055B52D /* EAIntroView.m in Sources */,
@@ -1040,6 +1063,7 @@
 				C98A8CBF1BCE53D40096C69B /* UIColor+Utils.m in Sources */,
 				C9F31E181BCCB3E300E598E6 /* AppDelegate+Utils.m in Sources */,
 				C9F31DF21BCCA9B400E598E6 /* PullTableView.m in Sources */,
+				C99F03151BE9DD0000476FA8 /* User.m in Sources */,
 				C9F31E041BCCAB8E00E598E6 /* Reachability.m in Sources */,
 				C9F31DF11BCCA9B400E598E6 /* MessageInterceptor.m in Sources */,
 				C9A0362A1BE0A5D300A8E387 /* VideoUtils.m in Sources */,

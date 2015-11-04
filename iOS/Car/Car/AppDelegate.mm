@@ -11,6 +11,7 @@
 //引入地图功能所有的头文件
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "MainViewController.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,9 +27,13 @@
         NSLog(@"manager start failed!");
     }
     [self p_adaptorForScreen];
+    [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setBarTintColor:BGCOLOR];
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     [self windowRootViewController];
     return YES;
 }
@@ -45,10 +50,13 @@
 
 - (void)windowRootViewController
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *mMainViewController=[[UINavigationController alloc]initWithRootViewController:[[MainViewController alloc]init]];
-    self.window.rootViewController=mMainViewController;
-    self.window.backgroundColor = [UIColor whiteColor];
+    if([[User getInstance]isLogin]){
+        UINavigationController *mMainViewController=[[UINavigationController alloc]initWithRootViewController:[[MainViewController alloc]init]];
+        self.window.rootViewController=mMainViewController;
+    }else{
+        UINavigationController *mLoginViewController=[[UINavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+        self.window.rootViewController=mLoginViewController;
+    }
     [self.window makeKeyAndVisible];
 }
 

@@ -54,6 +54,9 @@
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self setBackgroundImage:[RGBCOLOR(254, 72, 0) TransformationWithImage] forState:UIControlStateNormal];
         [self setBackgroundImage:[RGBCOLOR(149, 207, 206) TransformationWithImage] forState:UIControlStateHighlighted];
+    }else if(type==6){
+        [self.titleLabel setFont:GLOBAL_FONTSIZE(14)];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }else{
         [self setBackgroundImage:[[UIColor clearColor] TransformationWithImage] forState:UIControlStateNormal];
         [self setBackgroundImage:[[UIColor clearColor] TransformationWithImage] forState:UIControlStateHighlighted];
