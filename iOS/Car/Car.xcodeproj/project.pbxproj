@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90B33041BEB3BCF004243F6 /* ModifySingleDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90B33031BEB3BCF004243F6 /* ModifySingleDataViewController.m */; };
 		C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */; };
 		C92F62971BE1B2F4000FE15F /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62961BE1B2F4000FE15F /* SJAvatarBrowser.m */; };
 		C92F62AD1BE1B848000FE15F /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92F62A61BE1B848000FE15F /* BaiduMapAPI_Base.framework */; };
@@ -137,6 +138,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C90B33021BEB3BCF004243F6 /* ModifySingleDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifySingleDataViewController.h; sourceTree = "<group>"; };
+		C90B33031BEB3BCF004243F6 /* ModifySingleDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifySingleDataViewController.m; sourceTree = "<group>"; };
 		C925AFB01BE88CC90009E357 /* BeinDangerHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerHistoryCell.h; sourceTree = "<group>"; };
 		C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerHistoryCell.m; sourceTree = "<group>"; };
 		C92F62951BE1B2F4000FE15F /* SJAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAvatarBrowser.h; sourceTree = "<group>"; };
@@ -633,12 +636,14 @@
 				C95B778B1BE9ADF40066623D /* ForgetPasswordViewController.m */,
 				C9F31E1B1BCCB4B500E598E6 /* LoginViewController.h */,
 				C9F31E1C1BCCB4B500E598E6 /* LoginViewController.m */,
+				C90B33021BEB3BCF004243F6 /* ModifySingleDataViewController.h */,
+				C90B33031BEB3BCF004243F6 /* ModifySingleDataViewController.m */,
+				C99F03161BE9EA8B00476FA8 /* MyInformationViewController.h */,
+				C99F03171BE9EA8B00476FA8 /* MyInformationViewController.m */,
 				C9F31E1F1BCCB4C100E598E6 /* RegisterViewController.h */,
 				C9F31E201BCCB4C100E598E6 /* RegisterViewController.m */,
 				C9F31E221BCCB4CC00E598E6 /* UserCenterViewController.h */,
 				C9F31E231BCCB4CC00E598E6 /* UserCenterViewController.m */,
-				C99F03161BE9EA8B00476FA8 /* MyInformationViewController.h */,
-				C99F03171BE9EA8B00476FA8 /* MyInformationViewController.m */,
 			);
 			name = "用户管理";
 			sourceTree = "<group>";
@@ -1064,6 +1069,7 @@
 				C9F31E181BCCB3E300E598E6 /* AppDelegate+Utils.m in Sources */,
 				C9F31DF21BCCA9B400E598E6 /* PullTableView.m in Sources */,
 				C99F03151BE9DD0000476FA8 /* User.m in Sources */,
+				C90B33041BEB3BCF004243F6 /* ModifySingleDataViewController.m in Sources */,
 				C9F31E041BCCAB8E00E598E6 /* Reachability.m in Sources */,
 				C9F31DF11BCCA9B400E598E6 /* MessageInterceptor.m in Sources */,
 				C9A0362A1BE0A5D300A8E387 /* VideoUtils.m in Sources */,

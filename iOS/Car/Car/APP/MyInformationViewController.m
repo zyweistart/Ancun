@@ -7,6 +7,7 @@
 //
 
 #import "MyInformationViewController.h"
+#import "ModifySingleDataViewController.h"
 #import "CameraView.h"
 
 @interface MyInformationViewController ()
@@ -39,7 +40,6 @@
         [cameraView4.currentImageView setImage:[UIImage imageNamed:@"驾照底"]];
         [cameraView4 setControler:self];
         [contentView addSubview:cameraView4];
-        
     }
     return self;
 }
@@ -55,6 +55,15 @@
     [[cell detailTextLabel]setText:@"张二牛"];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row=[indexPath row];
+    if(row>0){
+        ModifySingleDataViewController *mModifySingleDataViewController=[[ModifySingleDataViewController alloc]initWithType:row WithValue:@""];
+        [self.navigationController pushViewController:mModifySingleDataViewController animated:YES];
+    }
 }
 
 @end

@@ -127,6 +127,9 @@
 {
     [self goResignFirstResponder];
     if(bAgreement.selected){
+        [[User getInstance]setIsLogin:YES];
+        AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [myDelegate windowRootViewController];
     }else{
         NSLog(@"请先阅读协议");
     }
