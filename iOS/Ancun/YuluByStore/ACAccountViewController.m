@@ -125,14 +125,17 @@
         //获取套餐
         NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
         [requestParams setObject:PRODUCTRECORDNO_STRING_APPSTORE  forKey:@"productrecordno"];
-        //只支持基础服务套餐版
         [requestParams setObject:@"3"  forKey:@"type"];
         [requestParams setObject:@"1"  forKey:@"status"];
+        //充值套餐记录编号
+        [requestParams setObject:@"包月套餐"  forKey:@"name"];
+//        [requestParams setObject:@"d74c6d7791f331a3bf8f9fc16ae16656"  forKey:@"productrecordno"];
         [requestParams setObject:[NSString stringWithFormat: @"%d",PAGESIZE]  forKey:@"pagesize"];
         [requestParams setObject:[NSString stringWithFormat: @"%ld",(long)_currentPage] forKey:@"currentpage"];
         self.hRequest=[[HttpRequest alloc]init];
         [self.hRequest setDelegate:self];
         [self.hRequest setIsShowMessage:NO];
+        [self.hRequest setIsResponseMessage:NO];
         [self.hRequest setRequestCode:5000];
         [self.hRequest loginhandle:@"v4QrycomboList" requestParams:requestParams];
     }
@@ -227,12 +230,11 @@
             [_leftTopTab sendActionsForControlEvents:UIControlEventTouchUpInside];
         }
     } else if(reqCode==5000) {
+        //未获取到套餐
+        isAppStorePay=NO;
         if([response successFlag]) {
             if([@"100000" isEqualToString:[response code]]){
                 isAppStorePay=YES;
-            }else{
-                //未获取到套餐
-                isAppStorePay=NO;
             }
         }
     } else {
