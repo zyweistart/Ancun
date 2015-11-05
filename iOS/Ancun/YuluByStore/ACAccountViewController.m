@@ -127,9 +127,7 @@
         [requestParams setObject:PRODUCTRECORDNO_STRING_APPSTORE  forKey:@"productrecordno"];
         [requestParams setObject:@"3"  forKey:@"type"];
         [requestParams setObject:@"1"  forKey:@"status"];
-        //充值套餐记录编号
-        [requestParams setObject:@"包月套餐"  forKey:@"name"];
-//        [requestParams setObject:@"d74c6d7791f331a3bf8f9fc16ae16656"  forKey:@"productrecordno"];
+        [requestParams setObject:@"包月套餐"  forKey:@"remark"];
         [requestParams setObject:[NSString stringWithFormat: @"%d",PAGESIZE]  forKey:@"pagesize"];
         [requestParams setObject:[NSString stringWithFormat: @"%ld",(long)_currentPage] forKey:@"currentpage"];
         self.hRequest=[[HttpRequest alloc]init];
