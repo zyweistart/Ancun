@@ -59,6 +59,7 @@
 		C9985E1A17C35C240048C2FD /* ACRechargeByAppStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9985E1917C35C220048C2FD /* ACRechargeByAppStoreViewController.m */; };
 		C99B80DC17A0C8C7004D0BFB /* ACGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99B80DA17A0C8C7004D0BFB /* ACGuideViewController.m */; };
 		C99BC2E618ED2ACE00650DF5 /* ACForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99BC2E518ED2ACE00650DF5 /* ACForgetPasswordViewController.m */; };
+		C99F031B1BEA04B100476FA8 /* ACPaymentAlipayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99F031A1BEA04B100476FA8 /* ACPaymentAlipayViewController.m */; };
 		C99F0C6A18EBDC9F00C27BFC /* ACRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99F0C6918EBDC9F00C27BFC /* ACRegistrationViewController.m */; };
 		C99FCA5117B086300003B2FF /* ACAccountPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FCA5017B086300003B2FF /* ACAccountPayCell.m */; };
 		C99FCA5417B086440003B2FF /* ACAccountUseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FCA5317B086440003B2FF /* ACAccountUseRecordCell.m */; };
@@ -233,6 +234,8 @@
 		C99B80DA17A0C8C7004D0BFB /* ACGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ACGuideViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C99BC2E418ED2ACE00650DF5 /* ACForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACForgetPasswordViewController.h; sourceTree = "<group>"; };
 		C99BC2E518ED2ACE00650DF5 /* ACForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACForgetPasswordViewController.m; sourceTree = "<group>"; };
+		C99F03191BEA04B100476FA8 /* ACPaymentAlipayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPaymentAlipayViewController.h; sourceTree = "<group>"; };
+		C99F031A1BEA04B100476FA8 /* ACPaymentAlipayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPaymentAlipayViewController.m; sourceTree = "<group>"; };
 		C99F0C6818EBDC9F00C27BFC /* ACRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRegistrationViewController.h; sourceTree = "<group>"; };
 		C99F0C6918EBDC9F00C27BFC /* ACRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRegistrationViewController.m; sourceTree = "<group>"; };
 		C99FCA4F17B086300003B2FF /* ACAccountPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAccountPayCell.h; sourceTree = "<group>"; };
@@ -465,6 +468,8 @@
 			children = (
 				C9D97A0F179FA64F0076ACF3 /* ACAccountViewController.h */,
 				C9D97A10179FA64F0076ACF3 /* ACAccountViewController.m */,
+				C99F03191BEA04B100476FA8 /* ACPaymentAlipayViewController.h */,
+				C99F031A1BEA04B100476FA8 /* ACPaymentAlipayViewController.m */,
 				C91D0BD718EE83BA006B10A3 /* ACPaymentViewController.h */,
 				C91D0BD818EE83BA006B10A3 /* ACPaymentViewController.m */,
 				C91D0BDA18EE9A4D006B10A3 /* ACRechargeByAlipayViewController.h */,
@@ -1153,6 +1158,7 @@
 				C9985E1A17C35C240048C2FD /* ACRechargeByAppStoreViewController.m in Sources */,
 				C9A67EAA17CD882900E9A81E /* ACContactsViewController.m in Sources */,
 				C9430B861ADCB32D001BED0A /* POVoiceHUD.m in Sources */,
+				C99F031B1BEA04B100476FA8 /* ACPaymentAlipayViewController.m in Sources */,
 				C90BCF7A17D037B700813641 /* ACNavigationWebPageViewController.m in Sources */,
 				C9D4D18917E2B8EE0013D03E /* CDataScanner.m in Sources */,
 				C997105A18F62EF100E56D22 /* KKGestureLockPreviewView.m in Sources */,

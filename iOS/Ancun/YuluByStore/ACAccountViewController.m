@@ -1,11 +1,8 @@
 #import "ACAccountViewController.h"
 #import "ACAccountPayCell.h"
 #import "ACAccountUseRecordCell.h"
-#ifdef JAILBREAK
-    #import "ACRechargeByAlipayViewController.h"
-#else
-    #import "ACRechargeByAppStoreViewController.h"
-#endif
+#import "ACRechargeByAlipayViewController.h"
+#import "ACRechargeByAppStoreViewController.h"
 #import "DataSingleton.h"
 #import "NSString+Utils.h"
 
@@ -26,6 +23,8 @@
     NSMutableArray *_rightDataItemArray;
     
     UIButton* goRecharge;
+    
+    BOOL isAppStorePay;
     
 }
 
@@ -74,8 +73,7 @@
         [goRecharge setBackgroundColor:[UIColor colorWithRed:(65/255.0) green:(194/255.0) blue:(252/255.0) alpha:1]];
         [goRecharge addTarget:self action:@selector(accountPay:) forControlEvents:UIControlEventTouchUpInside];
         [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:goRecharge]];
-        //充值按钮隐藏
-        [goRecharge setHidden:YES];
+        isAppStorePay=YES;
     }
     return self;
 }
@@ -123,18 +121,19 @@
             }
         }
     }
-    if(goRecharge.isHidden){
+    if(isAppStorePay){
         //获取套餐
         NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
+        [requestParams setObject:PRODUCTRECORDNO_STRING_APPSTORE  forKey:@"productrecordno"];
+        //只支持基础服务套餐版
         [requestParams setObject:@"3"  forKey:@"type"];
-        [requestParams setObject:PRODUCTRECORDNO_STRING  forKey:@"productrecordno"];
         [requestParams setObject:@"1"  forKey:@"status"];
-        [requestParams setObject:@"8"  forKey:@"pagesize"];
-        [requestParams setObject:@"1" forKey:@"currentpage"];
+        [requestParams setObject:[NSString stringWithFormat: @"%d",PAGESIZE]  forKey:@"pagesize"];
+        [requestParams setObject:[NSString stringWithFormat: @"%ld",(long)_currentPage] forKey:@"currentpage"];
         self.hRequest=[[HttpRequest alloc]init];
         [self.hRequest setDelegate:self];
-        [self.hRequest setRequestCode:5000];
         [self.hRequest setIsShowMessage:NO];
+        [self.hRequest setRequestCode:5000];
         [self.hRequest loginhandle:@"v4QrycomboList" requestParams:requestParams];
     }
 }
@@ -156,15 +155,15 @@
     } else if([[Config Instance]isRefreshAccountPayList]) {
         [_leftTopTab sendActionsForControlEvents:UIControlEventTouchUpInside];
     } else {
-#ifdef JAILBREAK
-        ACRechargeByAlipayViewController *rechargeByAlipayViewController=[[ACRechargeByAlipayViewController alloc] init];
-        rechargeByAlipayViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:rechargeByAlipayViewController animated:YES];
-#else
-        ACRechargeByAppStoreViewController *rechargeByAppStoreViewController=[[ACRechargeByAppStoreViewController alloc] init];
-        rechargeByAppStoreViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:rechargeByAppStoreViewController animated:YES];
-#endif
+        if(isAppStorePay){
+            ACRechargeByAppStoreViewController *rechargeByAppStoreViewController=[[ACRechargeByAppStoreViewController alloc] init];
+            rechargeByAppStoreViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:rechargeByAppStoreViewController animated:YES];
+        }else{
+            ACRechargeByAlipayViewController *rechargeByAlipayViewController=[[ACRechargeByAlipayViewController alloc] init];
+            rechargeByAlipayViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:rechargeByAlipayViewController animated:YES];
+        }
     }
 }
 
@@ -230,7 +229,10 @@
     } else if(reqCode==5000) {
         if([response successFlag]) {
             if([@"100000" isEqualToString:[response code]]){
-                [goRecharge setHidden:NO];
+                isAppStorePay=YES;
+            }else{
+                //未获取到套餐
+                isAppStorePay=NO;
             }
         }
     } else {
@@ -490,7 +492,7 @@
             self.dataItemArray=_rightDataItemArray;
             NSMutableDictionary *requestParams = [[NSMutableDictionary alloc] init];
             [requestParams setObject:[NSString stringWithFormat: @"%d",PAGESIZE]  forKey:@"pagesize"];
-            [requestParams setObject:[NSString stringWithFormat: @"%d",_currentPage] forKey:@"currentpage"];
+            [requestParams setObject:[NSString stringWithFormat: @"%ld",_currentPage] forKey:@"currentpage"];
             self.hRequest=[[HttpRequest alloc]init];
             [self.hRequest setDelegate:self];
             [self.hRequest setController:self];

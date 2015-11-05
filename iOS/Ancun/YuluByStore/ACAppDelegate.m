@@ -19,12 +19,9 @@
 #import "BaiduMobStat.h"
 #import "MobClick.h"
 #endif
-#ifdef JAILBREAK
-    #import <AlipaySDK/AlipaySDK.h>
-    #import "ACPaymentViewController.h"
-#else
-    #import "IAPHelper.h"
-#endif
+#import <AlipaySDK/AlipaySDK.h>
+#import "ACPaymentAlipayViewController.h"
+#import "IAPHelper.h"
 
 
 #define NotifyActionKey "NotifyAction"
@@ -92,11 +89,9 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
     [statTracker startWithAppId:[bundle objectForInfoDictionaryKey:@"BaiduWithAppId"]];
 #endif
     
-#ifndef JAILBREAK
     if([SKPaymentQueue canMakePayments]) {
         [[SKPaymentQueue defaultQueue] addTransactionObserver:[IAPHelper sharedHelper]];
     }
-#endif
     
     //获取最后保存的版本号不存在则为0
 //    float lastVersionNo=[[Common getCache:DEFAULTDATA_LASTVERSIONNO] floatValue];
@@ -143,10 +138,8 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
     // [EXT] 重新上线
     [self startSdkWith:kAppId appKey:kAppKey appSecret:kAppSecret];
     if([[Config Instance]isLogin]) {
-#ifdef JAILBREAK
         //重新返回到应用的时候刷新用户信息
         [[Config Instance] setIsRefreshUserInfo:YES];
-#endif
     }
 }
 
@@ -174,7 +167,6 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
     }
 }
 
-#ifdef JAILBREAK
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     //跳转支付宝钱包进行支付，处理支付结果
@@ -183,8 +175,8 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
         if([@"9000" isEqualToString:resultStatus]){
             UIViewController *controller=[[Config Instance]mPaymentViewController];
             if(controller) {
-                if([controller isKindOfClass:[ACPaymentViewController class]]) {
-                    ACPaymentViewController *viewController=(ACPaymentViewController *)controller;
+                if([controller isKindOfClass:[ACPaymentAlipayViewController class]]) {
+                    ACPaymentAlipayViewController *viewController=(ACPaymentAlipayViewController *)controller;
                     [viewController successStep];
                 }
             }
@@ -195,7 +187,6 @@ NSString* const NotificationActionTwoIdent = @"ACTION_TWO";
     }];
     return YES;
 }
-#endif
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {

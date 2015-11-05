@@ -8,7 +8,7 @@
 
 #import "ACAccountPay1Cell.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ACPaymentViewController.h"
+#import "ACPaymentAlipayViewController.h"
 
 @implementation ACAccountPay1Cell
 
@@ -68,7 +68,7 @@
 }
 
 - (void)goPay:(id)sender {
-    ACPaymentViewController *paymentViewController=[[ACPaymentViewController alloc]initWithData:_data];
+    ACPaymentAlipayViewController *paymentViewController=[[ACPaymentAlipayViewController alloc]initWithData:_data];
     [_controler.navigationController pushViewController:paymentViewController animated:YES];
 }
 
