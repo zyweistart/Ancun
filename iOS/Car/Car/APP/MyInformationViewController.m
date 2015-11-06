@@ -8,13 +8,17 @@
 
 #import "MyInformationViewController.h"
 #import "ModifySingleDataViewController.h"
+#import "HeadCell.h"
 #import "CameraView.h"
 
 @interface MyInformationViewController ()
 
 @end
 
-@implementation MyInformationViewController
+@implementation MyInformationViewController{
+    XLCamera *camera;
+    UIImageView *ivHead;
+}
 
 - (id)init
 {
@@ -46,24 +50,53 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"SAMPLECell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    NSInteger row=[indexPath row];
+    if(row==0){
+        static NSString *cellIdentifier = @"HEADCELL";
+        HeadCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[HeadCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        }
+        [[cell textLabel]setText:[self.dataItemArray objectAtIndex:row]];
+        ivHead=cell.ivHeader;
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        return cell;
+    }else{
+        static NSString *cellIdentifier = @"SAMPLECell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        }
+        [[cell textLabel]setText:[self.dataItemArray objectAtIndex:row]];
+        [[cell detailTextLabel]setText:@"张二牛"];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        return cell;
     }
-    [[cell textLabel]setText:[self.dataItemArray objectAtIndex:[indexPath row]]];
-    [[cell detailTextLabel]setText:@"张二牛"];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row=[indexPath row];
-    if(row>0){
+    if(row==0){
+        camera=[[XLCamera alloc]initWithController:self];
+        [camera setCropperDelegate:self];
+        [camera open];
+    }else{
         ModifySingleDataViewController *mModifySingleDataViewController=[[ModifySingleDataViewController alloc]initWithType:row WithValue:@""];
         [self.navigationController pushViewController:mModifySingleDataViewController animated:YES];
     }
+}
+
+#pragma mark VPImageCropperDelegate
+- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
+    [ivHead setImage:editedImage];
+    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
+    [cropperViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

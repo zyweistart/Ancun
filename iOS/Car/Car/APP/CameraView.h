@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLCamera.h"
+
 @class CameraView;
 @protocol CameraViewDelegate
 

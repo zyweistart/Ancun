@@ -41,6 +41,8 @@
 		C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE711BD6408A0050A926 /* PhotographListViewController.m */; };
 		C979AE751BD640940050A926 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE741BD640940050A926 /* RecordListViewController.m */; };
 		C979AE781BD641260050A926 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE771BD641260050A926 /* VideoListViewController.m */; };
+		C97B42981BEC479E007FB971 /* HeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C97B42971BEC479E007FB971 /* HeadCell.m */; };
+		C97B429B1BEC50D5007FB971 /* XLCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C97B429A1BEC50D5007FB971 /* XLCamera.m */; };
 		C988B5A41BDF0B6100A5F2E4 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */; };
 		C988B5A71BDF0B7900A5F2E4 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C988B5A61BDF0B7900A5F2E4 /* RecordCell.m */; };
 		C98A8C9E1BCDEA5D0096C69B /* BaseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8C9D1BCDEA5D0096C69B /* BaseItem.m */; };
@@ -189,6 +191,10 @@
 		C979AE741BD640940050A926 /* RecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListViewController.m; sourceTree = "<group>"; };
 		C979AE761BD641260050A926 /* VideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
 		C979AE771BD641260050A926 /* VideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListViewController.m; sourceTree = "<group>"; };
+		C97B42961BEC479E007FB971 /* HeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCell.h; sourceTree = "<group>"; };
+		C97B42971BEC479E007FB971 /* HeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadCell.m; sourceTree = "<group>"; };
+		C97B42991BEC50D5007FB971 /* XLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLCamera.h; sourceTree = "<group>"; };
+		C97B429A1BEC50D5007FB971 /* XLCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLCamera.m; sourceTree = "<group>"; };
 		C988B5A21BDF0B6100A5F2E4 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
 		C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		C988B5A51BDF0B7900A5F2E4 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
@@ -419,6 +425,8 @@
 				C946647F1BE3547A00172DA3 /* CameraView.m */,
 				C98A8CB71BCE53A10096C69B /* XLButton.h */,
 				C98A8CB81BCE53A10096C69B /* XLButton.m */,
+				C97B42991BEC50D5007FB971 /* XLCamera.h */,
+				C97B429A1BEC50D5007FB971 /* XLCamera.m */,
 				C98A8CB91BCE53A10096C69B /* XLLabel.h */,
 				C98A8CBA1BCE53A10096C69B /* XLLabel.m */,
 				C95B77871BE9A9990066623D /* XLTextField.h */,
@@ -577,6 +585,8 @@
 				C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */,
 				C925AFB01BE88CC90009E357 /* BeinDangerHistoryCell.h */,
 				C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */,
+				C97B42961BEC479E007FB971 /* HeadCell.h */,
+				C97B42971BEC479E007FB971 /* HeadCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1005,6 +1015,7 @@
 				C98A8CBC1BCE53A10096C69B /* XLLabel.m in Sources */,
 				C9F31E3A1BCCB6CC00E598E6 /* BaseViewController.m in Sources */,
 				C9F31DFF1BCCAB3600E598E6 /* HttpRequest.m in Sources */,
+				C97B42981BEC479E007FB971 /* HeadCell.m in Sources */,
 				C946647D1BE3162D00172DA3 /* HandleViewController.m in Sources */,
 				C9F31E001BCCAB3600E598E6 /* Response.m in Sources */,
 				C9F31E4C1BCCD5D500E598E6 /* RecordViewController.m in Sources */,
@@ -1012,6 +1023,7 @@
 				C92F62D21BE20C68000FE15F /* InputAddressViewController.m in Sources */,
 				C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */,
 				C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */,
+				C97B429B1BEC50D5007FB971 /* XLCamera.m in Sources */,
 				C9F31E381BCCB6CC00E598E6 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9CF7AD11BCF838600DBBCDA /* AboutViewController.m in Sources */,
 				C979AE781BD641260050A926 /* VideoListViewController.m in Sources */,

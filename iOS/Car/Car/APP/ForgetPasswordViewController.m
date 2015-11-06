@@ -52,4 +52,9 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)goLogin
+{
+    
+}
+
 @end

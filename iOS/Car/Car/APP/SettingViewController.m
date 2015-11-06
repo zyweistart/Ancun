@@ -10,8 +10,8 @@
 #import "NotificationSettingViewController.h"
 #import "UploadSettingViewController.h"
 #import "ModifyPwdViewController.h"
-#import "AboutViewController.h"
 #import "FeedbackViewController.h"
+#import "AboutViewController.h"
 #import "XLButton.h"
 
 @interface SettingViewController ()
@@ -32,7 +32,7 @@
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         UIView *footView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [self.tableView setTableFooterView:footView];
-        XLButton *button=[[XLButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"账号退出" Type:1];
+        XLButton *button=[[XLButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"账号退出" Type:3];
         [button addTarget:self action:@selector(goLogout) forControlEvents:UIControlEventTouchUpInside];
         [footView addSubview:button];
     }

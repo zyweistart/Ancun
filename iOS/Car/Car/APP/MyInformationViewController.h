@@ -7,7 +7,8 @@
 //
 
 #import "BaseTableViewController.h"
+#import "XLCamera.h"
 
-@interface MyInformationViewController : BaseTableViewController
+@interface MyInformationViewController : BaseTableViewController<VPImageCropperDelegate>
 
 @end

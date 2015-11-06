@@ -7,10 +7,11 @@
 //
 
 #import "CameraView.h"
-#import "CameraUtility.h"
 #import "SJAvatarBrowser.h"
 
-@implementation CameraView
+@implementation CameraView{
+    XLCamera *camera;
+}
 
 - (id)initWithFrame:(CGRect)rect
 {
@@ -47,15 +48,10 @@
 
 - (void)goPhotograph
 {
-    if ([CameraUtility isCameraAvailable]) {
-        if([CameraUtility doesCameraSupportTakingPhotos]){
-            UIImagePickerController *imagePickerNC = [[UIImagePickerController alloc] init];
-            [imagePickerNC setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [imagePickerNC setMediaTypes:@[(NSString *)kUTTypeImage]];
-            [imagePickerNC setDelegate:self];
-            [self.controler presentViewController:imagePickerNC animated:YES completion:nil];
-        }
-    }
+    camera=[[XLCamera alloc]initWithController:self.controler];
+    [camera setPickerDelegate:self];
+    [camera setIsImageCut:NO];
+    [camera open];
 }
 
 - (void)goRPhotograph
@@ -71,19 +67,16 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSString *mediaType=[info objectForKey:UIImagePickerControllerMediaType];
-    if([@"public.image" isEqualToString:mediaType]){
-        //照片
-        self.currentImage=[info objectForKey:UIImagePickerControllerOriginalImage];
-        if(self.currentImage){
-            if(self.isDelete){
-                [self.pai setHidden:YES];
-                [self.rPai setHidden:NO];
-            }
-            [self.currentImageView setImage:self.currentImage];
-            if([self.delegate respondsToSelector:@selector(CameraSuccess:)]){
-                [self.delegate CameraSuccess:self];
-            }
+    //照片
+    self.currentImage=[info objectForKey:UIImagePickerControllerOriginalImage];
+    if(self.currentImage){
+        if(self.isDelete){
+            [self.pai setHidden:YES];
+            [self.rPai setHidden:NO];
+        }
+        [self.currentImageView setImage:self.currentImage];
+        if([self.delegate respondsToSelector:@selector(CameraSuccess:)]){
+            [self.delegate CameraSuccess:self];
         }
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -92,16 +85,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    // bug fixes: UIImagePickerController使用中偷换StatusBar颜色的问题
-    if ([navigationController isKindOfClass:[UIImagePickerController class]] &&
-        ((UIImagePickerController *)navigationController).sourceType ==     UIImagePickerControllerSourceTypePhotoLibrary) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
