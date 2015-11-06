@@ -12,4 +12,5 @@
 
 + (NSString*)formatPhone:(NSString*)phone;
 
++ (BOOL)isNull:(id)obj;
 @end

@@ -21,7 +21,7 @@
 #import "FileUtils.h"
 #import "VideoUtils.h"
 #import "TimeUtils.h"
-#import "NSString+Utils.h"
+#import "HandleViewController.h"
 
 @interface MainViewController ()
 
@@ -155,7 +155,8 @@
 
 - (void)goDynamic
 {
-    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]init] animated:YES];
+//    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[HandleViewController alloc]init] animated:YES];
 }
 
 - (void)goUserCenter

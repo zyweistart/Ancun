@@ -55,9 +55,9 @@
 
 - (void)goSave
 {
-//    NSString *context=[self.tfData text];
+    NSString *context=[self.tfData text];
     if(self.rDelegate && [self.rDelegate respondsToSelector:@selector(onControllerResult:requestCode:data:)]){
-        [self.rDelegate onControllerResult:500 requestCode:self.type data:nil];
+        [self.rDelegate onControllerResult:500 requestCode:self.type data:@{@"value":context}];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

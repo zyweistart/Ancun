@@ -12,6 +12,9 @@
 
 //是否已登陆
 @property Boolean isLogin;
+@property (copy,nonatomic) NSString *name;
+@property (copy,nonatomic) NSString *cardId;
+@property (copy,nonatomic) NSString *phone;
 
 + (User *)getInstance;
 

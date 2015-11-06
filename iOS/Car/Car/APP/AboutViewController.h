@@ -6,8 +6,8 @@
 //  Copyright © 2015 Ancun. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface AboutViewController : BaseViewController
+@interface AboutViewController : BaseTableViewController
 
 @end

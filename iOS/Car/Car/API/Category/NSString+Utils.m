@@ -170,7 +170,7 @@
 
 - (BOOL)isEmpty
 {
-    return self==nil||[@"" isEqualToString:self];
+    return [@"" isEqualToString:self];
 }
 
 @end

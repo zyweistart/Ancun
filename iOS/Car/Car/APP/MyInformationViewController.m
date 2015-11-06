@@ -18,6 +18,7 @@
 @implementation MyInformationViewController{
     XLCamera *camera;
     UIImageView *ivHead;
+    NSArray *nameLists;
 }
 
 - (id)init
@@ -26,7 +27,8 @@
     if(self){
         [self setTitle:@"我的资料"];
         self.dataItemArray=[[NSMutableArray alloc]init];
-        [self.dataItemArray addObjectsFromArray:@[@"头像",@"真实姓名",@"身份证号",@"手机号"]];
+        [self reloadTableData];
+        nameLists=@[@"",@"真实姓名",@"身份证号",@"手机号"];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         
         UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 265)];
@@ -67,8 +69,14 @@
         if(!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
-        [[cell textLabel]setText:[self.dataItemArray objectAtIndex:row]];
-        [[cell detailTextLabel]setText:@"张二牛"];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:row];
+        NSString *disName=[nameLists objectAtIndex:row];
+        [[cell textLabel]setText:disName];
+        NSString *value=[data objectForKey:[NSString stringWithFormat:@"%ld",row]];
+        if([value isEmpty]){
+            value=@"未填写";
+        }
+        [[cell detailTextLabel]setText:value];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }
@@ -82,9 +90,45 @@
         [camera setCropperDelegate:self];
         [camera open];
     }else{
-        ModifySingleDataViewController *mModifySingleDataViewController=[[ModifySingleDataViewController alloc]initWithType:row WithValue:@""];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:row];
+        NSString *value=[data objectForKey:[NSString stringWithFormat:@"%ld",row]];
+        ModifySingleDataViewController *mModifySingleDataViewController=[[ModifySingleDataViewController alloc]initWithType:row WithValue:value];
+        [mModifySingleDataViewController setRDelegate:self];
         [self.navigationController pushViewController:mModifySingleDataViewController animated:YES];
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+- (void)reloadTableData
+{
+    [self.dataItemArray removeAllObjects];
+    NSString *name=[[User getInstance]name];
+    if([Common isNull:name]||[name isEmpty]){
+        name=@"";
+    }
+    NSString *cardId=[[User getInstance]cardId];
+    if([Common isNull:cardId]||[cardId isEmpty]){
+        cardId=@"";
+    }
+    NSString *phone=[[User getInstance]phone];
+    if([Common isNull:phone]||[phone isEmpty]){
+        phone=@"";
+    }
+    [self.dataItemArray addObjectsFromArray:@[@"头像",@{@"1":name},@{@"2":cardId},@{@"3":phone}]];
+}
+
+- (void)onControllerResult:(NSInteger)resultCode requestCode:(NSInteger)requestCode data:(NSDictionary *)result
+{
+    NSString *value=[result objectForKey:@"value"];
+    if(requestCode==1){
+        [[User getInstance]setName:value];
+    }else if(requestCode==2){
+        [[User getInstance]setCardId:value];
+    }else if(requestCode==3){
+        [[User getInstance]setPhone:value];
+    }
+    [self reloadTableData];
+    [self.tableView reloadData];
 }
 
 #pragma mark VPImageCropperDelegate

@@ -11,4 +11,7 @@
 
 @interface HandleViewController : BaseViewController<CameraViewDelegate>
 
+
+@property (strong,nonatomic) UIView *viewFrame;
+
 @end

@@ -18,7 +18,11 @@
 
 @end
 
-@implementation UserCenterViewController
+@implementation UserCenterViewController{
+    UIImageView *header;
+    XLLabel *lblName;
+    XLLabel *lblInformation;
+}
 
 - (id)init
 {
@@ -27,13 +31,31 @@
         [self setTitle:@"我的"];
         self.dataItemArray=[NSMutableArray arrayWithArray:@[@"去电录音",@"录音笔",@"随手拍",@"录像",@"设置"]];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
-        UIView *headView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 100)];
-        [headView setBackgroundColor:[UIColor redColor]];
+        UIImageView *headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 160)];
         [headView setUserInteractionEnabled:YES];
-        XLButton *button=[[XLButton alloc]initWithFrame:CGRectMake1(10, 10, 100, 40) Name:@"完善资料"];
+        [headView setImage:[UIImage imageNamed:@"广告"]];
+        header=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+        header.layer.cornerRadius=header.bounds.size.width/2;
+        header.layer.masksToBounds=YES;
+        [header setImage:[UIImage imageNamed:@"未上传人像"]];
+        [headView addSubview:header];
+        //姓名
+        lblName=[[XLLabel alloc]initWithFrame:CGRectMake1(60, 10, 200, 20)];
+        [lblName setText:@"黄晓明"];
+        [lblName setTextColor:[UIColor whiteColor]];
+        [headView addSubview:lblName];
+        //信息
+        lblInformation=[[XLLabel alloc]initWithFrame:CGRectMake1(60, 30, 200, 20)];
+        [lblInformation setText:@"今日限行尾号:0和5"];
+        [lblInformation setTextColor:[UIColor whiteColor]];
+        [headView addSubview:lblInformation];
+        
+        XLButton *button=[[XLButton alloc]initWithFrame:CGRectMake1(60, 55, 100, 30) Name:@"完善资料" Type:3];
         [button addTarget:self action:@selector(goInformation) forControlEvents:UIControlEventTouchUpInside];
         [headView addSubview:button];
         [self.tableView setTableHeaderView:headView];
+        //
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"上传中" style:UIBarButtonItemStylePlain target:self action:@selector(goUploading)];
     }
     return self;
 }
@@ -65,6 +87,12 @@
     }else{
         [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+- (void)goUploading
+{
+    NSLog(@"上传中。。。。。");
 }
 
 - (void)goInformation

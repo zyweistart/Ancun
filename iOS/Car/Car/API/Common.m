@@ -25,4 +25,9 @@
     return @"";
 }
 
++ (BOOL)isNull:(id)obj
+{
+    return obj==nil;
+}
+
 @end

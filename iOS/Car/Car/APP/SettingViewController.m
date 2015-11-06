@@ -60,7 +60,9 @@
     NSArray *datas=[self.dataItemArray objectAtIndex:section];
     [cell.textLabel setText:[datas objectAtIndex:row]];
     if(section==1&&row==0){
-        [cell.detailTextLabel setText:@"v1.2"];
+        NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
+        NSString *versionString=[infoDict objectForKey:@"CFBundleShortVersionString"];
+        [cell.detailTextLabel setText:[NSString stringWithFormat:@"v%@",versionString]];
     }
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
@@ -85,6 +87,7 @@
             [self.navigationController pushViewController:[[FeedbackViewController alloc]init] animated:YES];
         }
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (void)goLogout

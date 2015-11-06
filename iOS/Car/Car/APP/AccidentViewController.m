@@ -16,6 +16,7 @@
 @end
 
 @implementation AccidentViewController{
+    UIButton *bLocation;
     UIImageView *mark;
     CLLocation *location;
     BMKGeoCodeSearch *geoCodeSearch;
@@ -51,6 +52,16 @@
     [mark setCenter:CGPointMake(self.mapView.bounds.size.width/2, self.mapView.bounds.size.height/2-mark.bounds.size.height/2)];
     [mark setImage:[UIImage imageNamed:@"mark_d"]];
     [self.mapView addSubview:mark];
+    bLocation=[[UIButton alloc]initWithFrame:CGRectMake(self.mapView.bounds.size.width-CGWidth(20+10), self.mapView.bounds.size.height-CGHeight(20+10), CGWidth(20), CGHeight(20))];
+    bLocation.layer.masksToBounds=YES;
+    bLocation.layer.cornerRadius=CGWidth(1);
+    bLocation.layer.borderWidth=CGWidth(1);
+    bLocation.layer.borderColor=BCOLOR(224).CGColor;
+    [bLocation setBackgroundColor:[UIColor whiteColor]];
+    [bLocation setImage:[UIImage imageNamed:@"定位"] forState:UIControlStateNormal];
+    [bLocation addTarget:self action:@selector(goLocaltion) forControlEvents:UIControlEventTouchUpInside];
+    [bLocation setHidden:YES];
+    [self.mapView addSubview:bLocation];
     
     UIView *moreView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(105)-64, CGWidth(320), CGHeight(105))];
     [moreView setBackgroundColor:BCOLOR(244)];
@@ -147,7 +158,7 @@
     location=userLocation.location;
     //反地理编码出地理位置
     if([self reverseGeoCodeLat:location.coordinate.latitude Lng:location.coordinate.longitude]){
-//        self.mapView.showsUserLocation=NO;
+        [bLocation setHidden:NO];
         [self.locService stopUserLocationService];
     }
     //将定位的点居中显示
@@ -233,6 +244,13 @@
     //获取地址
     address=[result objectForKey:@"address"];
     [lblAddress setText:[NSString stringWithFormat:@"%@",address]];
+}
+
+- (void)goLocaltion
+{
+    [bLocation setHidden:YES];
+    //启动LocationService
+    [self.locService startUserLocationService];
 }
 
 @end

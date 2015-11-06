@@ -43,6 +43,7 @@
 		C979AE781BD641260050A926 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE771BD641260050A926 /* VideoListViewController.m */; };
 		C97B42981BEC479E007FB971 /* HeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C97B42971BEC479E007FB971 /* HeadCell.m */; };
 		C97B429B1BEC50D5007FB971 /* XLCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C97B429A1BEC50D5007FB971 /* XLCamera.m */; };
+		C97B429E1BEC7890007FB971 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C97B429D1BEC7890007FB971 /* SwitchCell.m */; };
 		C988B5A41BDF0B6100A5F2E4 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */; };
 		C988B5A71BDF0B7900A5F2E4 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C988B5A61BDF0B7900A5F2E4 /* RecordCell.m */; };
 		C98A8C9E1BCDEA5D0096C69B /* BaseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8C9D1BCDEA5D0096C69B /* BaseItem.m */; };
@@ -195,6 +196,8 @@
 		C97B42971BEC479E007FB971 /* HeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadCell.m; sourceTree = "<group>"; };
 		C97B42991BEC50D5007FB971 /* XLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLCamera.h; sourceTree = "<group>"; };
 		C97B429A1BEC50D5007FB971 /* XLCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLCamera.m; sourceTree = "<group>"; };
+		C97B429C1BEC7890007FB971 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		C97B429D1BEC7890007FB971 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		C988B5A21BDF0B6100A5F2E4 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
 		C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		C988B5A51BDF0B7900A5F2E4 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
@@ -587,6 +590,8 @@
 				C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */,
 				C97B42961BEC479E007FB971 /* HeadCell.h */,
 				C97B42971BEC479E007FB971 /* HeadCell.m */,
+				C97B429C1BEC7890007FB971 /* SwitchCell.h */,
+				C97B429D1BEC7890007FB971 /* SwitchCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1020,6 +1025,7 @@
 				C9F31E001BCCAB3600E598E6 /* Response.m in Sources */,
 				C9F31E4C1BCCD5D500E598E6 /* RecordViewController.m in Sources */,
 				C98A8CB21BCDEEA10096C69B /* VPImageCropperViewController.m in Sources */,
+				C97B429E1BEC7890007FB971 /* SwitchCell.m in Sources */,
 				C92F62D21BE20C68000FE15F /* InputAddressViewController.m in Sources */,
 				C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */,
 				C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */,

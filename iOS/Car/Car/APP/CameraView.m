@@ -48,10 +48,12 @@
 
 - (void)goPhotograph
 {
-    camera=[[XLCamera alloc]initWithController:self.controler];
-    [camera setPickerDelegate:self];
-    [camera setIsImageCut:NO];
-    [camera open];
+    if(self.controler){
+        camera=[[XLCamera alloc]initWithController:self.controler];
+        [camera setPickerDelegate:self];
+        [camera setIsImageCut:NO];
+        [camera open];
+    }
 }
 
 - (void)goRPhotograph
