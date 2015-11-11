@@ -137,7 +137,7 @@
         [mUserName setStyle:2];
         [mUserName setKeyboardType:UIKeyboardTypeNumberPad];
         [viewFrameChild addSubview:mUserName];
-        XLButton *bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(160,110,130,40) Name:@"获取验证码" Type:2];
+        XLButton *bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(160,110,130,40) Name:@"获取验证码" Type:3];
         [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
         [viewFrameChild addSubview:bGetCode];
         cameraViewPai=[[CameraView alloc]initWithFrame:CGRectMake1(10, 160, 280, 180)];
@@ -251,9 +251,11 @@
 
 - (void)goOK
 {
-    [cameraView4 setCurrentImage:cameraViewPai.currentImage];
-    [cameraView4.currentImageView setImage:cameraView4.currentImage];
-    [self.viewFrame setHidden:YES];
+    if(cameraViewPai.currentImage){
+        [cameraView4 setCurrentImage:cameraViewPai.currentImage];
+        [cameraView4.currentImageView setImage:cameraView4.currentImage];
+        [self.viewFrame setHidden:YES];
+    }
 }
 
 - (void)goPai

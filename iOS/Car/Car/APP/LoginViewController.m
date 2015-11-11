@@ -34,6 +34,7 @@
     mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(20, 150, 280, 40)];
     [mUserName setPlaceholder:@"请输入手机号"];
     [mUserName setStyle:1];
+    [mUserName setKeyboardType:UIKeyboardTypePhonePad];
     [bgView addSubview:mUserName];
     
     mPassword=[[XLTextField alloc]initWithFrame:CGRectMake1(20, 210, 280, 40)];
@@ -68,9 +69,24 @@
 
 - (void)goLogin
 {
-    [[User getInstance]setIsLogin:YES];
-    AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [myDelegate windowRootViewController];
+    NSString *userName=[mUserName text];
+    if([userName isEmpty]){
+        [Common alert:@"请输入手机号"];
+        return;
+    }
+    NSString *password=[mPassword text];
+    if([password isEmpty]){
+        [Common alert:@"请输入密码"];
+        return;
+    }
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"userLogin" forKey:@"act"];
+    [params setObject:userName forKey:@"mobile"];
+    [params setObject:[password md5] forKey:@"pwd"];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
 }
 
 - (void)goForgetPassword
@@ -81,6 +97,18 @@
 - (void)goRegister
 {
     [self.navigationController pushViewController:[[RegisterViewController alloc]init] animated:YES];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            NSString *uid=[[response resultJSON]objectForKey:@"uid"];
+            [[User getInstance]setUid:uid];
+            AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [myDelegate windowRootViewController];
+        }
+    }
 }
 
 @end

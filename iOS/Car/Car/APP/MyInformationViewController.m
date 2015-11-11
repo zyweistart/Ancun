@@ -19,6 +19,7 @@
     XLCamera *camera;
     UIImageView *ivHead;
     NSArray *nameLists;
+    UIImage *currentEditedImage;
 }
 
 - (id)init
@@ -106,15 +107,15 @@
     if([Common isNull:name]||[name isEmpty]){
         name=@"";
     }
-    NSString *cardId=[[User getInstance]cardId];
-    if([Common isNull:cardId]||[cardId isEmpty]){
-        cardId=@"";
+    NSString *identityNum=[[User getInstance]identityNum];
+    if([Common isNull:identityNum]||[identityNum isEmpty]){
+        identityNum=@"";
     }
     NSString *phone=[[User getInstance]phone];
     if([Common isNull:phone]||[phone isEmpty]){
         phone=@"";
     }
-    [self.dataItemArray addObjectsFromArray:@[@"头像",@{@"1":name},@{@"2":cardId},@{@"3":phone}]];
+    [self.dataItemArray addObjectsFromArray:@[@"头像",@{@"1":name},@{@"2":identityNum},@{@"3":phone}]];
 }
 
 - (void)onControllerResult:(NSInteger)resultCode requestCode:(NSInteger)requestCode data:(NSDictionary *)result
@@ -123,24 +124,56 @@
     if(requestCode==1){
         [[User getInstance]setName:value];
     }else if(requestCode==2){
-        [[User getInstance]setCardId:value];
+        [[User getInstance]setIdentityNum:value];
     }else if(requestCode==3){
         [[User getInstance]setPhone:value];
     }
     [self reloadTableData];
     [self.tableView reloadData];
+    
+    
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"upUserInfo" forKey:@"act"];
+    [params setObject:[User getInstance].uid forKey:@"uid"];
+    [params setObject:[User getInstance].uid forKey:@"name"];
+    [params setObject:[User getInstance].uid forKey:@"identityNum"];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
 }
 
 #pragma mark VPImageCropperDelegate
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
-    [ivHead setImage:editedImage];
+    currentEditedImage=editedImage;
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
-        [self.tableView reloadData];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"upLoadPic" forKey:@"act"];
+        [params setObject:[User getInstance].uid forKey:@"uid"];
+        [params setObject:@"1" forKey:@"type"];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
     }];
 }
 
 - (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
     [cropperViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            NSLog(@"%@",[response responseString]);
+        }else if(reqCode==501){
+            [ivHead setImage:currentEditedImage];
+            [self.tableView reloadData];
+        }
+    }
 }
 
 @end

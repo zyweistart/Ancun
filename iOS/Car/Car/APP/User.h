@@ -11,13 +11,17 @@
 @interface User : NSObject
 
 //是否已登陆
-@property Boolean isLogin;
+@property (copy,nonatomic) NSString *uid;
 @property (copy,nonatomic) NSString *name;
-@property (copy,nonatomic) NSString *cardId;
 @property (copy,nonatomic) NSString *phone;
+@property (copy,nonatomic) NSString *headPic;
+@property (copy,nonatomic) NSString *identityNum;
+@property (copy,nonatomic) NSString *driverLicense;
 
 + (User *)getInstance;
 
 + (void)resetConfig;
+
+- (BOOL)isLogin;
 
 @end

@@ -7,10 +7,6 @@
     if(self){
         self.currentPage=0;
         self.dataItemArray=[[NSMutableArray alloc]init];
-        [self.dataItemArray addObject:@"a1"];
-        [self.dataItemArray addObject:@"a2"];
-        [self.dataItemArray addObject:@"a3"];
-        [self.dataItemArray addObject:@"a4"];
     }
     return self;
 }
@@ -22,13 +18,13 @@
     [self buildTableViewWithView:self.view];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-//    if(!self.tableView.pullTableIsRefreshing) {
-//        self.tableView.pullTableIsRefreshing = YES;
-//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
-//    }
+    [super viewDidAppear:animated];
+    if(!self.tableView.pullTableIsRefreshing) {
+        self.tableView.pullTableIsRefreshing = YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
+    }
 }
 
 - (void)viewDidUnload
@@ -168,20 +164,20 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        NSDictionary *rData=[[response resultJSON] objectForKey:@"Data"];
+        NSDictionary *rData=[[response resultJSON] objectForKey:@"data"];
         if(rData){
             //当前页
-            self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
+//            self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
             //获取数据列表
-            NSDictionary *tabData=[rData objectForKey:@"Tab"];
+            NSDictionary *tabData=rData;
             if(tabData){
                 NSMutableArray *nsArr=[[NSMutableArray alloc]init];
                 for(id data in tabData){
                     [nsArr addObject:data];
                 }
-                if([self currentPage]==1){
+//                if([self currentPage]==1){
                     [[self dataItemArray] removeAllObjects];
-                }
+//                }
                 [[self dataItemArray] addObjectsFromArray:nsArr];
             }
         }

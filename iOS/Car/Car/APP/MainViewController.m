@@ -82,6 +82,18 @@
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"事故处理流程" style:UIBarButtonItemStylePlain target:self action:@selector(goProcess)];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getUserInfo" forKey:@"act"];
+    [params setObject:[User getInstance].uid forKey:@"uid"];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
+}
+
 - (UIButton*)createButtonWithFrame:(CGRect)frame title:(NSString*)title titleFont:(UIFont*)titleFont imagedName:(NSString*)imagedName borderColor:(UIColor *)borderColor titleColor:(UIColor *)titleColor action:(SEL)action
 {
     UIButton *button=[[UIButton alloc]initWithFrame:frame];
@@ -162,19 +174,6 @@
 - (void)goUserCenter
 {
     [self.navigationController pushViewController:[[UserCenterViewController alloc]init] animated:YES];
-    
-//    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"addUser" forKey:@"act"];
-//    [params setObject:@"23123" forKey:@"pwd"];
-//    [params setObject:@"13888888888" forKey:@"mobile"];
-//    [params setObject:@"12345" forKey:@"code"];
-//    [params setObject:@"0" forKey:@"gender"];
-//    [params setObject:@"1" forKey:@"appver"];
-//    [params setObject:@"baidu" forKey:@"regfrom"];
-////    [self.hRequest setIsShowFailedMessage:YES];
-//    [self.hRequest handleWithParams:params];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -229,7 +228,17 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        NSLog(@"成功了:%@",[response responseString]);
+        if(reqCode==500){
+            NSString *name=[[response resultJSON]objectForKey:@"name"];
+            NSString *headPic=[[response resultJSON]objectForKey:@"headPic"];
+            NSString *identityNum=[[response resultJSON]objectForKey:@"identityNum"];
+            NSString *driverLicense=[[response resultJSON]objectForKey:@"driverLicense"];
+            [[User getInstance]setName:name];
+            [[User getInstance]setHeadPic:headPic];
+            [[User getInstance]setIdentityNum:identityNum];
+            [[User getInstance]setDriverLicense:driverLicense];
+            NSLog(@"获取信息成功：%@",[response responseString]);
+        }
     }
 }
 

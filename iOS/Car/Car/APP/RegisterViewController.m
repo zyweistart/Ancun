@@ -94,11 +94,20 @@
 
 - (void)goGetCode
 {
+    NSString *userName=[mUserName text];
+    if([userName isEmpty]){
+        [Common alert:@"请输入手机号"];
+        return;
+    }
     if(verificationCodeTime==nil){
-        second=GLOBAL_SECOND;
-        [bGetCode setEnabled:NO];
-        [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
-        verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+        [self.hRequest setDelegate:self];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"sendcode" forKey:@"act"];
+        [params setObject:userName forKey:@"mobile"];
+        [params setObject:@"1" forKey:@"type"];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
     }
 }
 
@@ -127,11 +136,40 @@
 {
     [self goResignFirstResponder];
     if(bAgreement.selected){
-        [[User getInstance]setIsLogin:YES];
-        AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [myDelegate windowRootViewController];
+        NSString *userName=[mUserName text];
+        if([userName isEmpty]){
+            [Common alert:@"请输入手机号"];
+            return;
+        }
+        NSString *code=[mCode text];
+        if([code isEmpty]){
+            [Common alert:@"请输入验证码"];
+            return;
+        }
+        NSString *password=[mPassword text];
+        if([password isEmpty]){
+            [Common alert:@"请输入密码"];
+            return;
+        }
+        NSString *rePassword=[mRePassword text];
+        if(![password isEqualToString:rePassword]){
+            [Common alert:@"两次密码不相同"];
+            return;
+        }
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"addUser" forKey:@"act"];
+        [params setObject:userName forKey:@"mobile"];
+        [params setObject:code forKey:@"code"];
+        [params setObject:[password md5] forKey:@"pwd"];
+        [params setObject:@"1" forKey:@"gender"];
+        [params setObject:@"1" forKey:@"appver"];
+        [params setObject:@"baidu" forKey:@"regfrom"];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
     }else{
-        NSLog(@"请先阅读协议");
+        [Common alert:@"请先阅读协议"];
     }
 }
 
@@ -141,6 +179,23 @@
     [mCode resignFirstResponder];
     [mPassword resignFirstResponder];
     [mRePassword resignFirstResponder];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            second=GLOBAL_SECOND;
+            [bGetCode setEnabled:NO];
+            [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
+            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+        }else if(reqCode==501){
+            NSString *uid=[[response resultJSON]objectForKey:@"uid"];
+            [[User getInstance]setUid:uid];
+            AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [myDelegate windowRootViewController];
+        }
+    }
 }
 
 @end

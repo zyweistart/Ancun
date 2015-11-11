@@ -20,10 +20,19 @@
     self=[super init];
     if(self){
         [self setTitle:@"合作保险公司"];
-        [self.dataItemArray addObjectsFromArray:@[@"去电录音",@"录音笔",@"随手拍",@"录像存证",@"设置"]];
         [self buildTableViewWithView:self.view];
     }
     return self;
+}
+
+- (void)loadHttp
+{
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getInsurer" forKey:@"act"];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -33,10 +42,12 @@
         if(!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell.textLabel setText:@"合作医院"];
+        NSInteger row=[indexPath row];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:row];
+        [cell.textLabel setText:[data objectForKey:@"insurerName"]];
         return cell;
     }else{
-        return [tableView cellForRowAtIndexPath:indexPath];
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 }
 

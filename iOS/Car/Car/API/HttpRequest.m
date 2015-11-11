@@ -136,7 +136,6 @@
         if(self.isMultipartFormDataSubmit){
             
         }else{
-            
         }
         // 初始化一个连接
         NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -190,7 +189,7 @@
         [response setSuccessFlag:[@"success" isEqualToString:[response code]]];
         if(self.isShowFailedMessage){
             if(![response successFlag]){
-                NSLog(@"%@",[response msg]);
+                [Common alert:[response msg]];
             }
         }
         [_delegate requestFinishedByResponse:response requestCode:self.reqCode];
