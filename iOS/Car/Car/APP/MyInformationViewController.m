@@ -135,9 +135,10 @@
     self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"upUserInfo" forKey:@"act"];
-    [params setObject:[User getInstance].uid forKey:@"uid"];
-    [params setObject:[User getInstance].uid forKey:@"name"];
-    [params setObject:[User getInstance].uid forKey:@"identityNum"];
+//    [params setObject:[User getInstance].uid forKey:@"uid"];
+//    [params setObject:[User getInstance].uid forKey:@"name"];
+//    [params setObject:[User getInstance].uid forKey:@"identityNum"];
+    [self.hRequest setPostParams:@{@"uid":[User getInstance].uid,@"name":value,@"identityNum":value}];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];

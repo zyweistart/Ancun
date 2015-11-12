@@ -15,13 +15,13 @@
 #import "ProcessViewController.h"
 #import "BidViewController.h"
 #import "BeinDangerDetailViewController.h"
+#import "HandleViewController.h"
 #import "UIButton+Utils.h"
 #import "UIImage+Utils.h"
 #import "CameraUtility.h"
 #import "FileUtils.h"
 #import "VideoUtils.h"
 #import "TimeUtils.h"
-#import "HandleViewController.h"
 
 @interface MainViewController ()
 
@@ -237,7 +237,7 @@
             [[User getInstance]setHeadPic:headPic];
             [[User getInstance]setIdentityNum:identityNum];
             [[User getInstance]setDriverLicense:driverLicense];
-            NSLog(@"获取信息成功：%@",[response responseString]);
+//            NSLog(@"获取用户信息成功：%@",[response responseString]);
         }
     }
 }

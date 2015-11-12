@@ -63,6 +63,9 @@
 		C9A0362A1BE0A5D300A8E387 /* VideoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A036291BE0A5D300A8E387 /* VideoUtils.m */; };
 		C9A0362C1BE0A79100A8E387 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A0362B1BE0A79100A8E387 /* AVFoundation.framework */; };
 		C9A0362F1BE0AC6100A8E387 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A0362E1BE0AC6100A8E387 /* TimeUtils.m */; };
+		C9BC903F1BF4661A0085DD00 /* DES.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC903E1BF4661A0085DD00 /* DES.m */; };
+		C9BC90421BF4664C0085DD00 /* DesEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90411BF4664C0085DD00 /* DesEncrypt.m */; };
+		C9BC90451BF468570085DD00 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90441BF468570085DD00 /* Utility.m */; };
 		C9C937871BCC9B6A0055B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937861BCC9B6A0055B52D /* main.m */; };
 		C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9C937891BCC9B6A0055B52D /* AppDelegate.mm */; };
 		C9C937921BCC9B6A0055B52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C937911BCC9B6A0055B52D /* Assets.xcassets */; };
@@ -235,6 +238,12 @@
 		C9A0362B1BE0A79100A8E387 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C9A0362D1BE0AC6100A8E387 /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		C9A0362E1BE0AC6100A8E387 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		C9BC903D1BF4661A0085DD00 /* DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DES.h; sourceTree = "<group>"; };
+		C9BC903E1BF4661A0085DD00 /* DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DES.m; sourceTree = "<group>"; };
+		C9BC90401BF4664C0085DD00 /* DesEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesEncrypt.h; sourceTree = "<group>"; };
+		C9BC90411BF4664C0085DD00 /* DesEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesEncrypt.m; sourceTree = "<group>"; };
+		C9BC90431BF468570085DD00 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		C9BC90441BF468570085DD00 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		C9C937821BCC9B6A0055B52D /* Car.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Car.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C937861BCC9B6A0055B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9C937881BCC9B6A0055B52D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -508,11 +517,17 @@
 			children = (
 				C9CBCB6A1BD76DB3005A5CF1 /* AttributedLabel.h */,
 				C9CBCB6B1BD76DB3005A5CF1 /* AttributedLabel.m */,
+				C92F62D31BE22B13000FE15F /* BaiduMapUtils.h */,
+				C92F62D41BE22B13000FE15F /* BaiduMapUtils.m */,
 				C9F31E311BCCB6CC00E598E6 /* Base */,
 				C9F31E111BCCB3E300E598E6 /* Category */,
 				C9CBCB631BD76D8B005A5CF1 /* ChineseToPinyin */,
 				C9F31DC61BCCA5D200E598E6 /* Common.h */,
 				C9F31DC71BCCA5D200E598E6 /* Common.m */,
+				C9BC903D1BF4661A0085DD00 /* DES.h */,
+				C9BC903E1BF4661A0085DD00 /* DES.m */,
+				C9BC90401BF4664C0085DD00 /* DesEncrypt.h */,
+				C9BC90411BF4664C0085DD00 /* DesEncrypt.m */,
 				C9C937BB1BCC9D590055B52D /* GlobalDefine.h */,
 				C9F31DC91BCCA76800E598E6 /* HttpDownload.h */,
 				C9F31DCA1BCCA76800E598E6 /* HttpDownload.m */,
@@ -527,8 +542,8 @@
 				C92F62961BE1B2F4000FE15F /* SJAvatarBrowser.m */,
 				C9F31E251BCCB59A00E598E6 /* SQLiteOperate.h */,
 				C9F31E261BCCB59A00E598E6 /* SQLiteOperate.m */,
-				C92F62D31BE22B13000FE15F /* BaiduMapUtils.h */,
-				C92F62D41BE22B13000FE15F /* BaiduMapUtils.m */,
+				C9BC90431BF468570085DD00 /* Utility.h */,
+				C9BC90441BF468570085DD00 /* Utility.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1014,6 +1029,7 @@
 				C9F31E551BCCD63E00E598E6 /* AccidentViewController.m in Sources */,
 				C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */,
 				C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */,
+				C9BC90451BF468570085DD00 /* Utility.m in Sources */,
 				C9CBCB6C1BD76DB3005A5CF1 /* AttributedLabel.m in Sources */,
 				C95B77891BE9A9990066623D /* XLTextField.m in Sources */,
 				C98A8C9E1BCDEA5D0096C69B /* BaseItem.m in Sources */,
@@ -1068,6 +1084,7 @@
 				C9CF7ACD1BCF837200DBBCDA /* ModifyPwdViewController.m in Sources */,
 				C988B5A41BDF0B6100A5F2E4 /* VideoCell.m in Sources */,
 				C9CF7ACA1BCF806100DBBCDA /* SettingViewController.m in Sources */,
+				C9BC90421BF4664C0085DD00 /* DesEncrypt.m in Sources */,
 				C9CF7ADE1BCF90BF00DBBCDA /* BidViewController.m in Sources */,
 				C9F31E1D1BCCB4B500E598E6 /* LoginViewController.m in Sources */,
 				C9C937C21BCCA0880055B52D /* EAIntroPage.m in Sources */,
@@ -1078,6 +1095,7 @@
 				C9F31E481BCCD58100E598E6 /* MainViewController.m in Sources */,
 				C99F03181BE9EA8B00476FA8 /* MyInformationViewController.m in Sources */,
 				C92F62CF1BE20995000FE15F /* InsuranceCompanyViewController.m in Sources */,
+				C9BC903F1BF4661A0085DD00 /* DES.m in Sources */,
 				C9F31E1A1BCCB3E300E598E6 /* UIButton+Utils.m in Sources */,
 				C9C937C31BCCA0880055B52D /* EAIntroView.m in Sources */,
 				C9F31E391BCCB6CC00E598E6 /* BaseTableViewController.m in Sources */,

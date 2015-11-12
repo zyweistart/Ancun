@@ -32,7 +32,7 @@
 #warning 当前运行版本为测试版本，仅供测试使用
 //测试配置
 #define PHONENUMBER @"95105856"
-#define ANCUN_HTTP_URL @"http://www.cheancun.com/api/api.php?"
+#define ANCUN_HTTP_URL @" "
 #else
 //正式配置
 #define PHONENUMBER @"95105856"

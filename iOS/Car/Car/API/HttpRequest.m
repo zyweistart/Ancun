@@ -15,7 +15,6 @@
         self.reqCode=requestCode;
         self.isFileDownload=NO;
         self.isShowFailedMessage=NO;
-        self.isMultipartFormDataSubmit=NO;
     }
     return self;
 }
@@ -32,21 +31,33 @@
     }
 }
 
-- (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params
+- (void)handleWithParams:(NSMutableDictionary*)params
 {
     if ([HttpRequest isNetworkConnection]) {
-        NSString *url=@"";
-        if(self.isMultipartFormDataSubmit){
-            NSString *access_token=[params objectForKey:@"access_token"];
-            url=[NSString stringWithFormat:@"%@&access_token=%@&dir=image&Type=1",url,access_token];
+        NSMutableString *URL=[[NSMutableString alloc]initWithString:ANCUN_HTTP_URL];
+        if([params count]>0){
+            long d=(long)[[NSDate date] timeIntervalSince1970];
+            [params setObject:[NSString stringWithFormat:@"%ld",d] forKey:@"httpTime"];
+            NSMutableArray *strs=[[NSMutableArray alloc]init];
+            for(NSString *key in params){
+                [URL appendFormat:@"%@=%@&",key,[params objectForKey:key]];
+                [strs addObject:key];
+            }
+            NSMutableString *sign=[[NSMutableString alloc]init];
+            for(NSString *key in [strs sortedArrayUsingSelector:@selector(compare:)]){
+                [sign appendFormat:@"%@=%@|",key,[params objectForKey:key]];
+            }
+            NSRange deleteRange1 = {[sign length]-1,1};
+            [sign deleteCharactersInRange:deleteRange1];
+            [URL appendFormat:@"sign=%@",[sign md5]];
         }
         // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
         // 设置请求方法
         request.HTTPMethod = @"POST";
         // 60秒请求超时
         request.timeoutInterval = 60;
-        if(self.isMultipartFormDataSubmit){
+        if(self.postParams){
             NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
             
             NSString *boundary=@"AaB03x";
@@ -55,91 +66,38 @@
             NSMutableData *body = [NSMutableData data];
             
             // add params (all params are strings)
-            for (NSString *param in params) {
-                id value=[params objectForKey:param];
+            for (NSString *p in self.postParams) {
+                id value=[self.postParams objectForKey:p];
                 if(![value isKindOfClass:[NSData class]]){
                     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
-                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", [param stringByAddingPercentEscapesUsingEncoding:gbkEncoding]] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", [p stringByAddingPercentEscapesUsingEncoding:gbkEncoding]] dataUsingEncoding:gbkEncoding]];
                     [body appendData:[[NSString stringWithFormat:@"%@\r\n", value] dataUsingEncoding:gbkEncoding]];
                 }
             }
             // add image data
-            for (NSString *param in params) {
-                id value=[params objectForKey:param];
+            for (NSString *p in self.postParams) {
+                id value=[self.postParams objectForKey:p];
                 if([value isKindOfClass:[NSData class]]){
                     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
-                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.png\"\r\n",param,param] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.png\"\r\n",p,p] dataUsingEncoding:gbkEncoding]];
                     [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:gbkEncoding]];
                     [body appendData:value];
                     [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:gbkEncoding]];
                 }
             }
             [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:gbkEncoding]];
-            
-            //        NSLog(@"%@",[[NSString alloc] initWithData:body  encoding:gbkEncoding]);
+            //打印请求数据
+            NSString *pos=[[NSString alloc] initWithData:body encoding:gbkEncoding];
+            NSLog(@"%@",pos);
             
             [request setValue:[NSString stringWithFormat:@"multipart/form-data, boundary=%@",boundary] forHTTPHeaderField: @"Content-Type"];
-            
             // set the content-length
             [request setValue:[NSString stringWithFormat:@"%ld",[body length]] forHTTPHeaderField:@"Content-Length"];
-            
             [request setHTTPBody:body];
-            
-        }else{
-            NSString *bodyContent=@"";
-            // 对字符串进行编码后转成NSData对象
-            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
-            // 设置请求主体
-            request.HTTPBody = data;
         }
-        // 初始化一个连接
+        //初始化一个连接
         NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
-
-        // 开始一个异步请求
-        [conn start];
-    } else {
-        if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
-            [_delegate requestFailed:self.reqCode];
-        }
-    }
-}
-
-
-- (void)handleWithParams:(NSMutableDictionary*)params
-{
-    if ([HttpRequest isNetworkConnection]) {
-        NSMutableString *URL=[[NSMutableString alloc]initWithString:ANCUN_HTTP_URL];
-        if(!self.isMultipartFormDataSubmit){
-            if([params count]>0){
-                long d=(long)[[NSDate date] timeIntervalSince1970];
-                [params setObject:[NSString stringWithFormat:@"%ld",d] forKey:@"httpTime"];
-                NSMutableArray *strs=[[NSMutableArray alloc]init];
-                for(NSString *key in params){
-                    [URL appendFormat:@"%@=%@&",key,[params objectForKey:key]];
-                    [strs addObject:key];
-                }
-                NSMutableString *sign=[[NSMutableString alloc]init];
-                for(NSString *key in [strs sortedArrayUsingSelector:@selector(compare:)]){
-                    [sign appendFormat:@"%@=%@|",key,[params objectForKey:key]];
-                }
-                NSRange deleteRange1 = {[sign length]-1,1};
-                [sign deleteCharactersInRange:deleteRange1];
-                [URL appendFormat:@"sign=%@",[sign md5]];
-            }
-        }
-        // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
-        // 设置请求方法
-        request.HTTPMethod = @"POST";
-        // 60秒请求超时
-        request.timeoutInterval = 60;
-        if(self.isMultipartFormDataSubmit){
-            
-        }else{
-        }
-        // 初始化一个连接
-        NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
-        // 开始一个异步请求
+        //开始一个异步请求
         [conn start];
     } else {
         if( [_delegate respondsToSelector: @selector(requestFailed:)]) {

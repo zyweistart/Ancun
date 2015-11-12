@@ -24,7 +24,8 @@
 //显示返回的错误信息
 @property BOOL isShowFailedMessage;
 //多文件上传数据提交
-@property BOOL isMultipartFormDataSubmit;
+//@property BOOL isMultipartFormDataSubmit;
+@property (strong,nonatomic)NSDictionary *postParams;
 //代理对象
 @property (strong,nonatomic) NSObject<HttpViewDelegate> *delegate;
 

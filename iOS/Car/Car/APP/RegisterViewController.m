@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#import "DesEncrypt.h"
 #define GLOBAL_GETCODE_STRING @"%ds后重发"
 #define GLOBAL_SECOND 60
 
@@ -161,7 +162,7 @@
         [params setObject:@"addUser" forKey:@"act"];
         [params setObject:userName forKey:@"mobile"];
         [params setObject:code forKey:@"code"];
-        [params setObject:[password md5] forKey:@"pwd"];
+        [params setObject:[DesEncrypt encryptEBCWithText:password] forKey:@"pwd"];
         [params setObject:@"1" forKey:@"gender"];
         [params setObject:@"1" forKey:@"appver"];
         [params setObject:@"baidu" forKey:@"regfrom"];

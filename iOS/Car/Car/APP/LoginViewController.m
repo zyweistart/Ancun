@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
+#import "DesEncrypt.h"
 
 @interface LoginViewController ()
 
@@ -59,6 +60,9 @@
     [bRegister addTarget:self action:@selector(goRegister) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:bRegister];
     
+    [mUserName setText:@"15957103691"];
+    [mPassword setText:@"123456ac"];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,7 +87,8 @@
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"userLogin" forKey:@"act"];
     [params setObject:userName forKey:@"mobile"];
-    [params setObject:[password md5] forKey:@"pwd"];
+    password=[DesEncrypt encryptEBCWithText:password];
+    [params setObject:password forKey:@"pwd"];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
