@@ -46,6 +46,19 @@
     NSLog(@"请求失败编号:%d",reqCode);
 }
 
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
+{
+    if(![path isEmpty]){
+        UIImageView *imageView=(UIImageView*)sender;
+        if(imageView){
+            UIImage *image=[[UIImage alloc] initWithContentsOfFile:path];
+            if(image){
+                [imageView setImage:image];
+            }
+        }
+    }
+}
+
 - (void)onControllerResult:(NSInteger)resultCode requestCode:(NSInteger)requestCode data:(NSMutableDictionary*)result
 {
     

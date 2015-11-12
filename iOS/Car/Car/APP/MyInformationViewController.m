@@ -20,12 +20,14 @@
     UIImageView *ivHead;
     NSArray *nameLists;
     UIImage *currentEditedImage;
+    CameraView *cameraView4;
 }
 
 - (id)init
 {
     self=[super init];
     if(self){
+        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
         [self setTitle:@"我的资料"];
         self.dataItemArray=[[NSMutableArray alloc]init];
         [self reloadTableData];
@@ -43,12 +45,18 @@
         [lblTitle setFont:GLOBAL_FONTSIZE(15)];
         [headTitle addSubview:lblTitle];
         [contentView addSubview:headTitle];
-        CameraView *cameraView4=[[CameraView alloc]initWithFrame:CGRectMake1(0, 40, 320, 200)];
+        cameraView4=[[CameraView alloc]initWithFrame:CGRectMake1(0, 40, 320, 200)];
         [cameraView4.currentImageView setImage:[UIImage imageNamed:@"驾照底"]];
         [cameraView4 setControler:self];
         [contentView addSubview:cameraView4];
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]driverLicense] RequestCode:500 Object:cameraView4.currentImageView];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,6 +68,7 @@
         if(!cell) {
             cell = [[HeadCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
+        [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]headPic] RequestCode:500 Object:cell.ivHeader];
         [[cell textLabel]setText:[self.dataItemArray objectAtIndex:row]];
         ivHead=cell.ivHeader;
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -131,7 +140,6 @@
     [self reloadTableData];
     [self.tableView reloadData];
     
-    
     self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"upUserInfo" forKey:@"act"];
@@ -153,6 +161,7 @@
         [params setObject:@"upLoadPic" forKey:@"act"];
         [params setObject:[User getInstance].uid forKey:@"uid"];
         [params setObject:@"1" forKey:@"type"];
+        [self.hRequest setPostParams:@{@"imgFile":UIImageJPEGRepresentation(editedImage,0.00001)}];
         [self.hRequest setDelegate:self];
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];

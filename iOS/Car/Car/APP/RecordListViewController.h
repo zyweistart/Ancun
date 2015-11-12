@@ -6,8 +6,8 @@
 //  Copyright © 2015 Ancun. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseEGOTableViewPullRefreshViewController.h"
 
-@interface RecordListViewController : BaseTableViewController
+@interface RecordListViewController : BaseEGOTableViewPullRefreshViewController
 
 @end

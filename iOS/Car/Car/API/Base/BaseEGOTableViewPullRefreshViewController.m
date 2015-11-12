@@ -21,10 +21,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing = YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
-    }
+//    if(!self.tableView.pullTableIsRefreshing) {
+//        self.tableView.pullTableIsRefreshing = YES;
+//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+//    }
 }
 
 - (void)viewDidUnload
@@ -54,7 +54,7 @@
     /*
      *子类重写该方法完成下拉刷新的功能
      */
-    self.currentPage=1;
+    self.currentPage=0;
     [self loadHttp];
 }
 
@@ -145,6 +145,11 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
@@ -175,9 +180,9 @@
                 for(id data in tabData){
                     [nsArr addObject:data];
                 }
-//                if([self currentPage]==1){
+                if([self currentPage]==0){
                     [[self dataItemArray] removeAllObjects];
-//                }
+                }
                 [[self dataItemArray] addObjectsFromArray:nsArr];
             }
         }

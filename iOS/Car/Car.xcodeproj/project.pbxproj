@@ -66,6 +66,9 @@
 		C9BC903F1BF4661A0085DD00 /* DES.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC903E1BF4661A0085DD00 /* DES.m */; };
 		C9BC90421BF4664C0085DD00 /* DesEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90411BF4664C0085DD00 /* DesEncrypt.m */; };
 		C9BC90451BF468570085DD00 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90441BF468570085DD00 /* Utility.m */; };
+		C9BC90481BF47A2C0085DD00 /* PhotographDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90471BF47A2C0085DD00 /* PhotographDetailViewController.m */; };
+		C9BC904B1BF47ABD0085DD00 /* RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC904A1BF47ABD0085DD00 /* RecordDetailViewController.m */; };
+		C9BC904E1BF47B480085DD00 /* VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC904D1BF47B480085DD00 /* VideoDetailViewController.m */; };
 		C9C937871BCC9B6A0055B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937861BCC9B6A0055B52D /* main.m */; };
 		C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9C937891BCC9B6A0055B52D /* AppDelegate.mm */; };
 		C9C937921BCC9B6A0055B52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C937911BCC9B6A0055B52D /* Assets.xcassets */; };
@@ -244,6 +247,12 @@
 		C9BC90411BF4664C0085DD00 /* DesEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesEncrypt.m; sourceTree = "<group>"; };
 		C9BC90431BF468570085DD00 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		C9BC90441BF468570085DD00 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		C9BC90461BF47A2C0085DD00 /* PhotographDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographDetailViewController.h; sourceTree = "<group>"; };
+		C9BC90471BF47A2C0085DD00 /* PhotographDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotographDetailViewController.m; sourceTree = "<group>"; };
+		C9BC90491BF47ABD0085DD00 /* RecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailViewController.h; sourceTree = "<group>"; };
+		C9BC904A1BF47ABD0085DD00 /* RecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailViewController.m; sourceTree = "<group>"; };
+		C9BC904C1BF47B480085DD00 /* VideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDetailViewController.h; sourceTree = "<group>"; };
+		C9BC904D1BF47B480085DD00 /* VideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDetailViewController.m; sourceTree = "<group>"; };
 		C9C937821BCC9B6A0055B52D /* Car.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Car.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C937861BCC9B6A0055B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9C937881BCC9B6A0055B52D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -597,16 +606,16 @@
 				C9CBCB5E1BD76D7B005A5CF1 /* ACContactCell.m */,
 				C9CBCB5F1BD76D7B005A5CF1 /* ACContactSingleCell.h */,
 				C9CBCB601BD76D7B005A5CF1 /* ACContactSingleCell.m */,
-				C988B5A51BDF0B7900A5F2E4 /* RecordCell.h */,
-				C988B5A61BDF0B7900A5F2E4 /* RecordCell.m */,
-				C988B5A21BDF0B6100A5F2E4 /* VideoCell.h */,
-				C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */,
 				C925AFB01BE88CC90009E357 /* BeinDangerHistoryCell.h */,
 				C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */,
 				C97B42961BEC479E007FB971 /* HeadCell.h */,
 				C97B42971BEC479E007FB971 /* HeadCell.m */,
+				C988B5A51BDF0B7900A5F2E4 /* RecordCell.h */,
+				C988B5A61BDF0B7900A5F2E4 /* RecordCell.m */,
 				C97B429C1BEC7890007FB971 /* SwitchCell.h */,
 				C97B429D1BEC7890007FB971 /* SwitchCell.m */,
+				C988B5A21BDF0B6100A5F2E4 /* VideoCell.h */,
+				C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -744,6 +753,8 @@
 				C9F31E4B1BCCD5D500E598E6 /* RecordViewController.m */,
 				C979AE731BD640940050A926 /* RecordListViewController.h */,
 				C979AE741BD640940050A926 /* RecordListViewController.m */,
+				C9BC90491BF47ABD0085DD00 /* RecordDetailViewController.h */,
+				C9BC904A1BF47ABD0085DD00 /* RecordDetailViewController.m */,
 			);
 			name = "录音笔";
 			sourceTree = "<group>";
@@ -755,6 +766,8 @@
 				C9F31E4E1BCCD5EF00E598E6 /* PhotographViewController.m */,
 				C979AE701BD6408A0050A926 /* PhotographListViewController.h */,
 				C979AE711BD6408A0050A926 /* PhotographListViewController.m */,
+				C9BC90461BF47A2C0085DD00 /* PhotographDetailViewController.h */,
+				C9BC90471BF47A2C0085DD00 /* PhotographDetailViewController.m */,
 			);
 			name = "随手拍";
 			sourceTree = "<group>";
@@ -766,6 +779,8 @@
 				C9F31E511BCCD61C00E598E6 /* VideoViewController.m */,
 				C979AE761BD641260050A926 /* VideoListViewController.h */,
 				C979AE771BD641260050A926 /* VideoListViewController.m */,
+				C9BC904C1BF47B480085DD00 /* VideoDetailViewController.h */,
+				C9BC904D1BF47B480085DD00 /* VideoDetailViewController.m */,
 			);
 			name = "录像";
 			sourceTree = "<group>";
@@ -1029,6 +1044,7 @@
 				C9F31E551BCCD63E00E598E6 /* AccidentViewController.m in Sources */,
 				C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */,
 				C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */,
+				C9BC90481BF47A2C0085DD00 /* PhotographDetailViewController.m in Sources */,
 				C9BC90451BF468570085DD00 /* Utility.m in Sources */,
 				C9CBCB6C1BD76DB3005A5CF1 /* AttributedLabel.m in Sources */,
 				C95B77891BE9A9990066623D /* XLTextField.m in Sources */,
@@ -1066,6 +1082,7 @@
 				C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */,
 				C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */,
+				C9BC904B1BF47ABD0085DD00 /* RecordDetailViewController.m in Sources */,
 				C9F31E241BCCB4CC00E598E6 /* UserCenterViewController.m in Sources */,
 				C9C937871BCC9B6A0055B52D /* main.m in Sources */,
 				C9F31DF01BCCA9B400E598E6 /* LoadMoreTableFooterView.m in Sources */,
@@ -1077,6 +1094,7 @@
 				C9CBCB621BD76D7B005A5CF1 /* ACContactSingleCell.m in Sources */,
 				C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */,
 				C95B778C1BE9ADF40066623D /* ForgetPasswordViewController.m in Sources */,
+				C9BC904E1BF47B480085DD00 /* VideoDetailViewController.m in Sources */,
 				C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,

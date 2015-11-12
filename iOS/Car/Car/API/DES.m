@@ -31,12 +31,10 @@ static Byte iv[] = {'3','B','1','3','0','8','B','5'};//only Used for Cipher Bloc
                                           &numBytesEncrypted);
     if (cryptStatus == kCCSuccess)
     {
-        NSLog(@"DES加密成功");
         return encryptBytes;
     }
     else
     {
-        NSLog(@"DES加密失败");
         return nil;
     }
 }
@@ -57,12 +55,10 @@ static Byte iv[] = {'3','B','1','3','0','8','B','5'};//only Used for Cipher Bloc
                                           &numBytesEncrypted);
     if (cryptStatus == kCCSuccess)
     {
-        NSLog(@"DES解密成功");
         return decryptBytes;
     }
     else
     {
-        NSLog(@"DES解密失败");
         return nil;
     }
 }

@@ -56,8 +56,16 @@
         [self.tableView setTableHeaderView:headView];
         //
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"上传中" style:UIBarButtonItemStylePlain target:self action:@selector(goUploading)];
+        
+        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]headPic] RequestCode:500 Object:header];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
