@@ -10,4 +10,7 @@
 
 @interface RecordDetailViewController : BaseViewController
 
+- (id)initWithData:(NSDictionary*)data;
+@property (strong,nonatomic)NSDictionary *cData;
+
 @end

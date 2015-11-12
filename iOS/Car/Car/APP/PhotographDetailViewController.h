@@ -8,6 +8,9 @@
 
 #import "BaseViewController.h"
 
-@interface PhotographDetailViewController : BaseViewController
+@interface PhotographDetailViewController : BaseViewController<UIAlertViewDelegate>
+
+- (id)initWithData:(NSDictionary*)data;
+@property (strong,nonatomic)NSDictionary *cData;
 
 @end

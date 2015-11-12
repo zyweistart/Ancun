@@ -10,8 +10,9 @@
 
 @implementation VideoDetailViewController
 
-- (id)init
+- (id)initWithData:(NSDictionary*)data
 {
+    self.cData=data;
     self=[super init];
     if(self){
         [self setTitle:@"录像存证"];
