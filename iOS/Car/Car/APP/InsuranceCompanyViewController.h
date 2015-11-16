@@ -10,4 +10,12 @@
 
 @interface InsuranceCompanyViewController : BaseEGOTableViewPullRefreshViewController
 
+@property (strong,nonatomic) NSMutableArray *dataKeys;
+@property (strong,nonatomic) NSMutableDictionary *dataResults;
+
+//地图信息
+@property (strong,nonatomic) NSDictionary *mapData;
+
+- (id)initWithType:(int)type;
+
 @end

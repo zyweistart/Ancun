@@ -10,4 +10,7 @@
 @property (strong,nonatomic) HttpDownload *hDownload;
 @property (assign,nonatomic) NSObject<ResultDelegate> *rDelegate;
 
+- (id)initWithData:(NSDictionary*)data;
+@property (strong,nonatomic)NSDictionary *cData;
+
 @end

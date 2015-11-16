@@ -31,7 +31,6 @@
 
 - (id)initWithRequestCode:(int)requestCode;
 + (BOOL)isNetworkConnection;
-- (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params;
 - (void)handleWithParams:(NSMutableDictionary*)params;
 
 @end

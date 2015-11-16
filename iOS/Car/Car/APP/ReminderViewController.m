@@ -84,7 +84,11 @@
 
 - (void)goNext
 {
-    [self.navigationController pushViewController:[[HandleProcessViewController alloc]init] animated:YES];
+    HandleProcessViewController *mHandleProcessViewController=[[HandleProcessViewController alloc]init];
+    [mHandleProcessViewController setMapData:self.mapData];
+    [mHandleProcessViewController setInsuranceData:self.insuranceData];
+    [mHandleProcessViewController setInsuranceOData:self.insuranceOData];
+    [self.navigationController pushViewController:mHandleProcessViewController animated:YES];
 }
 
 @end

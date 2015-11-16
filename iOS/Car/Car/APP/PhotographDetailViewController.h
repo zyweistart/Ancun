@@ -10,7 +10,4 @@
 
 @interface PhotographDetailViewController : BaseViewController<UIAlertViewDelegate>
 
-- (id)initWithData:(NSDictionary*)data;
-@property (strong,nonatomic)NSDictionary *cData;
-
 @end

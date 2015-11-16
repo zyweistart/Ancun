@@ -11,7 +11,12 @@
 
 @interface HandleViewController : BaseViewController<CameraViewDelegate>
 
-
 @property (strong,nonatomic) UIView *viewFrame;
+//地图信息
+@property (strong,nonatomic) NSDictionary *mapData;
+//我们保险公司
+@property (strong,nonatomic) NSDictionary *insuranceData;
+//对方保险公司
+@property (strong,nonatomic) NSDictionary *insuranceOData;
 
 @end

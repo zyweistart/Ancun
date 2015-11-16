@@ -82,8 +82,23 @@
     if(buttonIndex==1){
         NSString *name=[tf text];
         if(![name isEmpty]){
-            NSLog(@"%@",name);
+            self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+            NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+            [params setObject:@"reName" forKey:@"act"];
+            [params setObject:[User getInstance].uid forKey:@"uid"];
+            [params setObject:name forKey:@"localName"];
+            [params setObject:@"1" forKey:@"localUrl"];
+            [self.hRequest setDelegate:self];
+            [self.hRequest setIsShowFailedMessage:YES];
+            [self.hRequest handleWithParams:params];
         }
+    }
+}
+
+-(void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        
     }
 }
 

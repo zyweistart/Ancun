@@ -14,6 +14,15 @@
     return self;
 }
 
+- (id)initWithData:(NSDictionary*)data
+{
+    self.cData=data;
+    self=[self init];
+    if(self){
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

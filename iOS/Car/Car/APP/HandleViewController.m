@@ -24,7 +24,9 @@
     CameraView *cameraView6;
     CameraView *cameraView7;
     CameraView *cameraView8;
+    CameraView *cameraView9;
     CameraView *cameraViewPai;
+    XLLabel *lblCompany;
 }
 
 - (id)init
@@ -41,7 +43,7 @@
 {
     [super viewDidLoad];
     scrollView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-    [scrollView setContentSize:CGSizeMake1(320, 528+50)];
+    [scrollView setContentSize:CGSizeMake1(320, 660+50)];
     [scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [scrollView setBackgroundColor:BCOLOR(244)];
     [self.view addSubview:scrollView];
@@ -70,15 +72,13 @@
     cameraView4=[[CameraView alloc]initWithFrame:CGRectMake1(160, 132, 160, 132)];
     [cameraView4.lblInfo setText:@"当事人1驾驶证、行驶证"];
     [cameraView4.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
-//    [cameraView4 setControler:self];
     [cameraView4.pai addTarget:self action:@selector(goPai) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:cameraView4];
     //图5
     cameraView5=[[CameraView alloc]initWithFrame:CGRectMake1(0, 264, 160, 132)];
-    [cameraView5.lblInfo setText:@"补充照片"];
-    [cameraView5 setControler:self];
-    [cameraView5 setDelegate:self];
-    [cameraView5 setIsDelete:YES];
+    
+    
+    
     [scrollView addSubview:cameraView5];
     //图6
     cameraView6=[[CameraView alloc]initWithFrame:CGRectMake1(160, 264, 160, 132)];
@@ -98,12 +98,33 @@
     cameraView8=[[CameraView alloc]initWithFrame:CGRectMake1(160, 396, 160, 132)];
     [cameraView8.lblInfo setText:@"补充照片"];
     [cameraView8 setControler:self];
+    [cameraView8 setDelegate:self];
     [cameraView8 setIsDelete:YES];
     [scrollView addSubview:cameraView8];
+    //图9
+    cameraView9=[[CameraView alloc]initWithFrame:CGRectMake1(0, 528, 160, 132)];
+    [cameraView9.lblInfo setText:@"补充照片"];
+    [cameraView9 setControler:self];
+    [cameraView9 setDelegate:self];
+    [cameraView9 setIsDelete:YES];
+    [scrollView addSubview:cameraView9];
     
-    [cameraView6 setHidden:YES];
     [cameraView7 setHidden:YES];
     [cameraView8 setHidden:YES];
+    [cameraView9 setHidden:YES];
+    if(self.insuranceOData){
+        //两车事故
+        [cameraView5.lblInfo setText:@"当事人1驾驶证、行驶证"];
+        [cameraView5.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
+        [cameraView5.pai addTarget:self action:@selector(goPai) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        //单车事故
+        [cameraView5.lblInfo setText:@"补充照片"];
+        [cameraView5 setControler:self];
+        [cameraView5 setDelegate:self];
+        [cameraView5 setIsDelete:YES];
+        [cameraView6 setHidden:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -118,7 +139,7 @@
         if(inch35){
             topX=self.viewFrame.bounds.size.height-CGHeight(440);
         }
-        UIView *viewFrameChild=[[UIView alloc]initWithFrame:CGRectMake(CGWidth(10), topX, CGWidth(300), CGHeight(400))];
+        UIView *viewFrameChild=[[UIView alloc]initWithFrame:CGRectMake(CGWidth(10), topX, CGWidth(300), CGHeight(450))];
         viewFrameChild.layer.borderWidth=CGWidth(1);
         viewFrameChild.layer.borderColor=BCOLOR(150).CGColor;
         [viewFrameChild setBackgroundColor:BCOLOR(244)];
@@ -131,6 +152,7 @@
         mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 60, 280, 40)];
         [mUserName setPlaceholder:@"当事人手机号"];
         [mUserName setStyle:2];
+        [mUserName setKeyboardType:UIKeyboardTypeNamePhonePad];
         [viewFrameChild addSubview:mUserName];
         mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 110, 145, 40)];
         [mUserName setPlaceholder:@"请输入验证码"];
@@ -140,15 +162,17 @@
         XLButton *bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(160,110,130,40) Name:@"获取验证码" Type:3];
         [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
         [viewFrameChild addSubview:bGetCode];
-        cameraViewPai=[[CameraView alloc]initWithFrame:CGRectMake1(10, 160, 280, 180)];
+        lblCompany=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 160, 280, 40) Text:@"平安保险"];
+        [viewFrameChild addSubview:lblCompany];
+        cameraViewPai=[[CameraView alloc]initWithFrame:CGRectMake1(10, 210, 280, 180)];
         [cameraViewPai.lblInfo setText:@"当事人1驾驶证、行驶证"];
         [cameraViewPai.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
         [cameraViewPai setControler:self];
         [viewFrameChild addSubview:cameraViewPai];
-        XLButton *bCancel=[[XLButton alloc]initWithFrame:CGRectMake1(10,350,135,40) Name:@"取消" Type:2];
+        XLButton *bCancel=[[XLButton alloc]initWithFrame:CGRectMake1(10,400,135,40) Name:@"取消" Type:2];
         [bCancel addTarget:self action:@selector(goCancel) forControlEvents:UIControlEventTouchUpInside];
         [viewFrameChild addSubview:bCancel];
-        XLButton *bOk=[[XLButton alloc]initWithFrame:CGRectMake1(155,350,135,40) Name:@"确定" Type:3];
+        XLButton *bOk=[[XLButton alloc]initWithFrame:CGRectMake1(155,400,135,40) Name:@"确定" Type:3];
         [bOk addTarget:self action:@selector(goOK) forControlEvents:UIControlEventTouchUpInside];
         [viewFrameChild addSubview:bOk];
     }
@@ -160,13 +184,17 @@
         if(cameraView5.currentImage){
             [cameraView6 setHidden:NO];
         }
-    }if(camera==cameraView6){
+    }else if(camera==cameraView6){
         if(cameraView6.currentImage){
             [cameraView7 setHidden:NO];
         }
-    }if(camera==cameraView7){
+    }else if(camera==cameraView7){
         if(cameraView7.currentImage){
             [cameraView8 setHidden:NO];
+        }
+    }else if(camera==cameraView8){
+        if(cameraView8.currentImage){
+            [cameraView9 setHidden:NO];
         }
     }
 }
@@ -180,15 +208,23 @@
             [cameraView6 setHidden:NO];
             [cameraView7 setHidden:YES];
             [cameraView8 setHidden:YES];
+            [cameraView9 setHidden:YES];
             if(cameraView7.currentImage){
                 [self cameraCopy:cameraView6 To:cameraView7];
                 [self resetCameraView:cameraView7];
                 [cameraView7 setHidden:NO];
                 [cameraView8 setHidden:YES];
+                [cameraView9 setHidden:YES];
                 if(cameraView8.currentImage){
                     [self cameraCopy:cameraView7 To:cameraView8];
                     [self resetCameraView:cameraView8];
                     [cameraView8 setHidden:NO];
+                    [cameraView9 setHidden:YES];
+                    if(cameraView9.currentImage){
+                        [self cameraCopy:cameraView8 To:cameraView9];
+                        [self resetCameraView:cameraView9];
+                        [cameraView9 setHidden:NO];
+                    }
                 }
             }
         }else{
@@ -200,10 +236,17 @@
             [self resetCameraView:cameraView7];
             [cameraView7 setHidden:NO];
             [cameraView8 setHidden:YES];
+            [cameraView9 setHidden:YES];
             if(cameraView8.currentImage){
                 [self cameraCopy:cameraView7 To:cameraView8];
                 [self resetCameraView:cameraView8];
                 [cameraView8 setHidden:NO];
+                [cameraView9 setHidden:YES];
+                if(cameraView9.currentImage){
+                    [self cameraCopy:cameraView8 To:cameraView9];
+                    [self resetCameraView:cameraView9];
+                    [cameraView9 setHidden:NO];
+                }
             }
         }else{
             [cameraView7 setHidden:YES];
@@ -213,8 +256,22 @@
             [self cameraCopy:cameraView7 To:cameraView8];
             [self resetCameraView:cameraView8];
             [cameraView8 setHidden:NO];
+            [cameraView9 setHidden:YES];
+            if(cameraView9.currentImage){
+                [self cameraCopy:cameraView8 To:cameraView9];
+                [self resetCameraView:cameraView9];
+                [cameraView9 setHidden:NO];
+            }
         }else{
             [cameraView7 setHidden:YES];
+        }
+    }else if(camera==cameraView8){
+        if(cameraView9.currentImage){
+            [self cameraCopy:cameraView8 To:cameraView9];
+            [self resetCameraView:cameraView9];
+            [cameraView9 setHidden:NO];
+        }else{
+            [cameraView8 setHidden:YES];
         }
     }
 }

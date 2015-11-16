@@ -13,14 +13,17 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.lblName=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 0, 320, 25) Text:@"20151023163253"];
+        self.lblName=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 0, 320, 25)];
         [self.lblName setFont:GLOBAL_FONTSIZE(15)];
         [self.lblName setTextColor:BCOLOR(50)];
         [self addSubview:self.lblName];
-        self.lblSize=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 25, 150, 20) Text:@"206.45KB"];
+        self.lblSize=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 25, 150, 20)];
         [self addSubview:self.lblSize];
-        self.lblTime=[[XLLabel alloc]initWithFrame:CGRectMake1(160, 25, 160, 20) Text:@"2015-1-23 16:33:56"];
+        self.lblTime=[[XLLabel alloc]initWithFrame:CGRectMake1(160, 25, 130, 20)];
         [self addSubview:self.lblTime];
+        self.icUp=[[UIImageView alloc]initWithFrame:CGRectMake1(295, 25, 15, 15)];
+        [self.icUp setImage:[UIImage imageNamed:@"上传"]];
+        [self addSubview:self.icUp];
     }
     return self;
 }

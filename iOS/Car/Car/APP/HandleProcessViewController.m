@@ -13,7 +13,9 @@
 
 @end
 
-@implementation HandleProcessViewController
+@implementation HandleProcessViewController{
+    UIView *callView;
+}
 
 - (id)init
 {
@@ -47,7 +49,8 @@
     [line setBackgroundColor:BCOLOR(200)];
     [contentView addSubview:line];
     
-    [contentView addSubview:[self createTitleView:5 ImageNamed:nil Info:@"双方事故请拨打122报警" Call:YES]];
+    callView=[self createTitleView:5 ImageNamed:nil Info:@"双方事故请拨打122报警" Call:YES];
+    [contentView addSubview:callView];
     [contentView addSubview:[self createTitleView:45 ImageNamed:@"交警拍照片" Info:@"拍照取证" Call:NO]];
     [contentView addSubview:[self createTitleView:185 ImageNamed:@"交警认定责任" Info:@"责任认定" Call:NO]];
     [contentView addSubview:[self createTitleView:325 ImageNamed:nil Info:@"线上定损" Call:NO]];
@@ -58,6 +61,20 @@
     lbl=[[XLLabel alloc]initWithFrame:CGRectMake(CGWidth(15), self.view.bounds.size.height-64-CGHeight(30), CGWidth(290), CGHeight(30)) Text:@"注意:拍照过程中请留意周边来往车辆"];
     [lbl setTextColor:BGCOLOR];
     [self.view addSubview:lbl];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if(self.insuranceOData==nil){
+        [callView setHidden:YES];
+    }else{
+        [callView setHidden:NO];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (UIView *)createTitleView:(CGFloat)top ImageNamed:(NSString*)imageNamed Info:(NSString*)info Call:(BOOL)callF
@@ -100,7 +117,11 @@
 
 - (void)goNext
 {
-    [self.navigationController pushViewController:[[HandleViewController alloc]init] animated:YES];
+    HandleViewController *mHandleViewController=[[HandleViewController alloc]init];
+    [mHandleViewController setMapData:self.mapData];
+    [mHandleViewController setInsuranceData:self.insuranceData];
+    [mHandleViewController setInsuranceOData:self.insuranceOData];
+    [self.navigationController pushViewController:mHandleViewController animated:YES];
 }
 
 @end

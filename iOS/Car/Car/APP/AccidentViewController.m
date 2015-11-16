@@ -223,12 +223,26 @@
 
 - (void)goHandleSingle
 {
-    [self.navigationController pushViewController:[[InsuranceCompanyViewController alloc]init] animated:YES];
+    InsuranceCompanyViewController *mInsuranceCompanyViewController=[[InsuranceCompanyViewController alloc]initWithType:1];
+    [mInsuranceCompanyViewController setMapData:@{
+                                                  KEYLATITUDE:[NSString stringWithFormat:@"%lf",location.coordinate.latitude],
+                                                  KEYLONGITUDE:[NSString stringWithFormat:@"%lf",location.coordinate.longitude],
+                                                  KEYADDRESSNAME:address,
+                                                  KEYTIME:time
+                                                  }];
+    [self.navigationController pushViewController:mInsuranceCompanyViewController animated:YES];
 }
 
 - (void)goHandleMore
 {
-    [self.navigationController pushViewController:[[InsuranceCompanyViewController alloc]init] animated:YES];
+    InsuranceCompanyViewController *mInsuranceCompanyViewController=[[InsuranceCompanyViewController alloc]initWithType:2];
+    [mInsuranceCompanyViewController setMapData:@{
+                                                  KEYLATITUDE:[NSString stringWithFormat:@"%lf",location.coordinate.latitude],
+                                                  KEYLONGITUDE:[NSString stringWithFormat:@"%lf",location.coordinate.longitude],
+                                                  KEYADDRESSNAME:address,
+                                                  KEYTIME:time
+                                                  }];
+    [self.navigationController pushViewController:mInsuranceCompanyViewController animated:YES];
 }
 
 - (void)goInputAddress
