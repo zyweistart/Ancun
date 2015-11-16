@@ -117,10 +117,10 @@
 
 - (void)goNext
 {
-    HandleViewController *mHandleViewController=[[HandleViewController alloc]init];
+    HandleViewController *mHandleViewController=[[HandleViewController alloc]initWithData:self.insuranceOData];
     [mHandleViewController setMapData:self.mapData];
     [mHandleViewController setInsuranceData:self.insuranceData];
-    [mHandleViewController setInsuranceOData:self.insuranceOData];
+//    [mHandleViewController setInsuranceOData:self.insuranceOData];
     [self.navigationController pushViewController:mHandleViewController animated:YES];
 }
 

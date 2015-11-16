@@ -92,6 +92,7 @@
 		C9CF7ADE1BCF90BF00DBBCDA /* BidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7ADD1BCF90BF00DBBCDA /* BidViewController.m */; };
 		C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */; };
 		C9D24E601BE73ADB007D489F /* BeinDangerHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */; };
+		C9DB28B21BF9A7C200CEEB1D /* AccidentCerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */; };
 		C9F31DC81BCCA5D200E598E6 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DC71BCCA5D200E598E6 /* Common.m */; };
 		C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DCA1BCCA76800E598E6 /* HttpDownload.m */; };
 		C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DDF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -301,6 +302,8 @@
 		C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerDetailViewController.m; sourceTree = "<group>"; };
 		C9D24E5E1BE73ADB007D489F /* BeinDangerHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerHistoryViewController.h; sourceTree = "<group>"; };
 		C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerHistoryViewController.m; sourceTree = "<group>"; };
+		C9DB28B01BF9A7C200CEEB1D /* AccidentCerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentCerView.h; sourceTree = "<group>"; };
+		C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentCerView.m; sourceTree = "<group>"; };
 		C9F31DC61BCCA5D200E598E6 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C9F31DC71BCCA5D200E598E6 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		C9F31DC91BCCA76800E598E6 /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
@@ -800,6 +803,8 @@
 				C94664791BE3103200172DA3 /* HandleProcessViewController.m */,
 				C946647B1BE3162D00172DA3 /* HandleViewController.h */,
 				C946647C1BE3162D00172DA3 /* HandleViewController.m */,
+				C9DB28B01BF9A7C200CEEB1D /* AccidentCerView.h */,
+				C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */,
 			);
 			name = "事故处理";
 			sourceTree = "<group>";
@@ -1060,6 +1065,7 @@
 				C97B429E1BEC7890007FB971 /* SwitchCell.m in Sources */,
 				C92F62D21BE20C68000FE15F /* InputAddressViewController.m in Sources */,
 				C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */,
+				C9DB28B21BF9A7C200CEEB1D /* AccidentCerView.m in Sources */,
 				C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */,
 				C97B429B1BEC50D5007FB971 /* XLCamera.m in Sources */,
 				C9F31E381BCCB6CC00E598E6 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,

@@ -7,11 +7,11 @@
 //
 
 #import "BaseViewController.h"
-#import "CameraView.h"
+#import "AccidentCerView.h"
 
-@interface HandleViewController : BaseViewController<CameraViewDelegate>
+@interface HandleViewController : BaseViewController<CameraViewDelegate,AccidentCerViewDelegate>
 
-@property (strong,nonatomic) UIView *viewFrame;
+//@property (strong,nonatomic) UIView *viewFrame;
 //地图信息
 @property (strong,nonatomic) NSDictionary *mapData;
 //我们保险公司

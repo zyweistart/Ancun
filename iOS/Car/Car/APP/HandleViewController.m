@@ -9,6 +9,7 @@
 #import "HandleViewController.h"
 #import "UIImage+Utils.h"
 #import "CameraUtility.h"
+#import "AccidentCerView.h"
 
 @interface HandleViewController ()
 
@@ -25,12 +26,15 @@
     CameraView *cameraView7;
     CameraView *cameraView8;
     CameraView *cameraView9;
-    CameraView *cameraViewPai;
     XLLabel *lblCompany;
+    
+    AccidentCerView *mAccidentCerView1;
+    AccidentCerView *mAccidentCerView2;
 }
 
-- (id)init
+- (id)initWithData:(NSDictionary *)data
 {
+    [self setInsuranceOData:data];
     self=[super init];
     if(self){
         [self setTitle:@"现场拍照取证 "];
@@ -72,13 +76,11 @@
     cameraView4=[[CameraView alloc]initWithFrame:CGRectMake1(160, 132, 160, 132)];
     [cameraView4.lblInfo setText:@"当事人1驾驶证、行驶证"];
     [cameraView4.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
-    [cameraView4.pai addTarget:self action:@selector(goPai) forControlEvents:UIControlEventTouchUpInside];
+    [cameraView4.pai setTag:1];
+    [cameraView4.pai addTarget:self action:@selector(goPai:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:cameraView4];
     //图5
     cameraView5=[[CameraView alloc]initWithFrame:CGRectMake1(0, 264, 160, 132)];
-    
-    
-    
     [scrollView addSubview:cameraView5];
     //图6
     cameraView6=[[CameraView alloc]initWithFrame:CGRectMake1(160, 264, 160, 132)];
@@ -114,9 +116,10 @@
     [cameraView9 setHidden:YES];
     if(self.insuranceOData){
         //两车事故
-        [cameraView5.lblInfo setText:@"当事人1驾驶证、行驶证"];
+        [cameraView5.lblInfo setText:@"当事人2驾驶证、行驶证"];
         [cameraView5.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
-        [cameraView5.pai addTarget:self action:@selector(goPai) forControlEvents:UIControlEventTouchUpInside];
+        [cameraView5.pai setTag:2];
+        [cameraView5.pai addTarget:self action:@selector(goPai:) forControlEvents:UIControlEventTouchUpInside];
     }else{
         //单车事故
         [cameraView5.lblInfo setText:@"补充照片"];
@@ -130,51 +133,27 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(self.viewFrame==nil){
-        self.viewFrame=[[UIView alloc]initWithFrame:self.view.bounds];
-        [self.viewFrame setBackgroundColor:BCOLORA(100, 0.5)];
-        [self.viewFrame setHidden:YES];
-        [self.navigationController.view addSubview:self.viewFrame];
-        CGFloat topX=64+CGHeight(20);
-        if(inch35){
-            topX=self.viewFrame.bounds.size.height-CGHeight(440);
-        }
-        UIView *viewFrameChild=[[UIView alloc]initWithFrame:CGRectMake(CGWidth(10), topX, CGWidth(300), CGHeight(450))];
-        viewFrameChild.layer.borderWidth=CGWidth(1);
-        viewFrameChild.layer.borderColor=BCOLOR(150).CGColor;
-        [viewFrameChild setBackgroundColor:BCOLOR(244)];
-        [self.viewFrame addSubview:viewFrameChild];
-        
-        XLTextField *mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 10, 280, 40)];
-        [mUserName setPlaceholder:@"当事人车牌号"];
-        [mUserName setStyle:2];
-        [viewFrameChild addSubview:mUserName];
-        mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 60, 280, 40)];
-        [mUserName setPlaceholder:@"当事人手机号"];
-        [mUserName setStyle:2];
-        [mUserName setKeyboardType:UIKeyboardTypeNamePhonePad];
-        [viewFrameChild addSubview:mUserName];
-        mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 110, 145, 40)];
-        [mUserName setPlaceholder:@"请输入验证码"];
-        [mUserName setStyle:2];
-        [mUserName setKeyboardType:UIKeyboardTypeNumberPad];
-        [viewFrameChild addSubview:mUserName];
-        XLButton *bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(160,110,130,40) Name:@"获取验证码" Type:3];
-        [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
-        [viewFrameChild addSubview:bGetCode];
-        lblCompany=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 160, 280, 40) Text:@"平安保险"];
-        [viewFrameChild addSubview:lblCompany];
-        cameraViewPai=[[CameraView alloc]initWithFrame:CGRectMake1(10, 210, 280, 180)];
-        [cameraViewPai.lblInfo setText:@"当事人1驾驶证、行驶证"];
-        [cameraViewPai.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
-        [cameraViewPai setControler:self];
-        [viewFrameChild addSubview:cameraViewPai];
-        XLButton *bCancel=[[XLButton alloc]initWithFrame:CGRectMake1(10,400,135,40) Name:@"取消" Type:2];
-        [bCancel addTarget:self action:@selector(goCancel) forControlEvents:UIControlEventTouchUpInside];
-        [viewFrameChild addSubview:bCancel];
-        XLButton *bOk=[[XLButton alloc]initWithFrame:CGRectMake1(155,400,135,40) Name:@"确定" Type:3];
-        [bOk addTarget:self action:@selector(goOK) forControlEvents:UIControlEventTouchUpInside];
-        [viewFrameChild addSubview:bOk];
+    if(mAccidentCerView1==nil){
+        mAccidentCerView1=[[AccidentCerView alloc]initWithFrame:self.view.bounds];
+        [mAccidentCerView1 setHidden:YES];
+        [mAccidentCerView1 setDelegate:self];
+        [mAccidentCerView1.cameraViewPai setDelegate:self];
+        [mAccidentCerView1.cameraViewPai setControler:self];
+        [mAccidentCerView1.cameraViewPai.lblInfo setText:@"当事人1驾驶证、行驶证"];
+        [mAccidentCerView1.bOk setTag:1];
+        [mAccidentCerView1.bCancel setTag:1];
+        [self.navigationController.view addSubview:mAccidentCerView1];
+    }
+    if(mAccidentCerView2==nil){
+        mAccidentCerView2=[[AccidentCerView alloc]initWithFrame:self.view.bounds];
+        [mAccidentCerView2 setHidden:YES];
+        [mAccidentCerView2 setDelegate:self];
+        [mAccidentCerView2.cameraViewPai setDelegate:self];
+        [mAccidentCerView2.cameraViewPai setControler:self];
+        [mAccidentCerView2.cameraViewPai.lblInfo setText:@"当事人2驾驶证、行驶证"];
+        [mAccidentCerView2.bOk setTag:2];
+        [mAccidentCerView2.bCancel setTag:2];
+        [self.navigationController.view addSubview:mAccidentCerView2];
     }
 }
 
@@ -298,30 +277,67 @@
 
 - (void)goSubmit
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    NSLog(@"地图wyth :%@",self.mapData);
+    NSLog(@"保险公司一:%@",self.insuranceData);
+    NSLog(@"保险公司二:%@",self.insuranceOData);
+    NSLog(@"碰撞部位局部照:%@",cameraView1.currentImage);
+    NSLog(@"前车前方5米前景:%@",cameraView2.currentImage);
+    NSLog(@"后车后方5米后景:%@",cameraView3.currentImage);
+    NSLog(@"当事人1驾驶证、行驶证:%@",cameraView4.currentImage);
+    NSLog(@"当事人1驾驶证、行驶证车牌号:%@",[mAccidentCerView1.tfCarNumber text]);
+    NSLog(@"当事人1驾驶证、行驶证手机号:%@",[mAccidentCerView1.tfPhone text]);
+    NSLog(@"当事人1驾驶证、行驶证验证码:%@",[mAccidentCerView1.tfCode text]);
+    if(self.insuranceOData){
+        NSLog(@"当事人2驾驶证、行驶证:%@",cameraView5.currentImage);
+        NSLog(@"当事人2驾驶证、行驶证车牌号:%@",[mAccidentCerView2.tfCarNumber text]);
+        NSLog(@"当事人2驾驶证、行驶证手机号:%@",[mAccidentCerView2.tfPhone text]);
+        NSLog(@"当事人2驾驶证、行驶证验证码:%@",[mAccidentCerView2.tfCode text]);
+        NSLog(@"补充照片1:%@",cameraView6.currentImage);
+        NSLog(@"补充照片2:%@",cameraView7.currentImage);
+        NSLog(@"补充照片3:%@",cameraView8.currentImage);
+        NSLog(@"补充照片4:%@",cameraView9.currentImage);
+    }else{
+        NSLog(@"补充照片1:%@",cameraView5.currentImage);
+        NSLog(@"补充照片2:%@",cameraView6.currentImage);
+        NSLog(@"补充照片3:%@",cameraView7.currentImage);
+        NSLog(@"补充照片4:%@",cameraView8.currentImage);
+    }
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)goCancel
+- (void)accidentCerViewOK:(id)sender
 {
-    [self.viewFrame setHidden:YES];
-}
-
-- (void)goOK
-{
-    if(cameraViewPai.currentImage){
-        [cameraView4 setCurrentImage:cameraViewPai.currentImage];
-        [cameraView4.currentImageView setImage:cameraView4.currentImage];
-        [self.viewFrame setHidden:YES];
+    if([sender tag]==1){
+        if(mAccidentCerView1.cameraViewPai.currentImage){
+            [cameraView4 setCurrentImage:mAccidentCerView1.cameraViewPai.currentImage];
+            [cameraView4.currentImageView setImage:cameraView4.currentImage];
+        }
+        [mAccidentCerView1 setHidden:YES];
+    }else if([sender tag]==2){
+        if(mAccidentCerView2.cameraViewPai.currentImage){
+            [cameraView5 setCurrentImage:mAccidentCerView2.cameraViewPai.currentImage];
+            [cameraView5.currentImageView setImage:cameraView5.currentImage];
+        }
+        [mAccidentCerView2 setHidden:YES];
     }
 }
 
-- (void)goPai
+- (void)accidentCerViewCancel:(id)sender
 {
-    [self.viewFrame setHidden:NO];
+    if([sender tag]==1){
+        [mAccidentCerView1 setHidden:YES];
+    }else if([sender tag]==2){
+        [mAccidentCerView2 setHidden:YES];
+    }
 }
 
-- (void)goGetCode
+- (void)goPai:(UIButton*)sender
 {
+    if([sender tag]==1){
+        [mAccidentCerView1 setHidden:NO];
+    }else if([sender tag]==2){
+        [mAccidentCerView2 setHidden:NO];
+    }
 }
 
 @end
