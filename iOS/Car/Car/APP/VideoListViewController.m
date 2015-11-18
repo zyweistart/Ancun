@@ -8,6 +8,7 @@
 
 #import "VideoListViewController.h"
 #import "VideoDetailViewController.h"
+#import "PhotographDetailViewController.h"
 #import "VideoCell.h"
 
 @interface VideoListViewController ()
@@ -28,12 +29,12 @@
 
 - (void)loadHttp
 {
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getSecurityList" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
     [params setObject:@"3" forKey:@"type"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.currentPage] forKey:@"page"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
@@ -47,7 +48,7 @@
             cell = [[VideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        NSString *url=[data objectForKey:@"attchUrl"];
+        NSString *url=[data objectForKey:@"videoThumbnail"];
         [self.hDownload AsynchronousDownloadWithUrl:url RequestCode:500 Object:cell.ivIcon];
         [cell.lblName setText:[data objectForKey:@"localName"]];
         [cell.lblSize setText:[data objectForKey:@"fileSize"]];
@@ -61,14 +62,42 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        [self.navigationController pushViewController:[[VideoDetailViewController alloc]init] animated:YES];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[PhotographDetailViewController alloc]initWithData:data] animated:YES];
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"删除了");
+    if([[self dataItemArray] count]>0){
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        NSString *fid=[data objectForKey:@"id"];
+        NSString *type=[data objectForKey:@"type"];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"delSecurity" forKey:@"act"];
+        [params setObject:[User getInstance].uid forKey:@"uid"];
+        [params setObject:fid forKey:@"id"];
+        [params setObject:type forKey:@"type"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
+    }
+}
+
+-(void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    if(reqCode==501){
+        if([response successFlag]){
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing = YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.5];
+            }
+        }
+    }else{
+        [super requestFinishedByResponse:response requestCode:reqCode];
+    }
 }
 
 @end

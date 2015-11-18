@@ -18,6 +18,12 @@
 @property (copy,nonatomic) NSString *identityNum;
 @property (copy,nonatomic) NSString *driverLicense;
 
+
+@property (assign,nonatomic) BOOL configMessageNotice;
+@property (assign,nonatomic) BOOL configMessageDynamic;
+@property (assign,nonatomic) BOOL configUploadFile2G3GAuto;
+@property (assign,nonatomic) BOOL configUploadFileWiFiAuto;
+
 + (User *)getInstance;
 
 + (void)resetConfig;

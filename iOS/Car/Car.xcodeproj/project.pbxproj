@@ -93,6 +93,11 @@
 		C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */; };
 		C9D24E601BE73ADB007D489F /* BeinDangerHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */; };
 		C9DB28B21BF9A7C200CEEB1D /* AccidentCerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */; };
+		C9DB60B11BFC2C50001B2A94 /* XLButtonPICTEXT.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60B01BFC2C50001B2A94 /* XLButtonPICTEXT.m */; };
+		C9DB60B41BFC587E001B2A94 /* CheckBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60B31BFC587E001B2A94 /* CheckBoxCell.m */; };
+		C9DB60B71BFC58F4001B2A94 /* BidListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60B61BFC58F4001B2A94 /* BidListViewController.m */; };
+		C9DB60BA1BFC5E0C001B2A94 /* BidApplyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60B91BFC5E0C001B2A94 /* BidApplyListViewController.m */; };
+		C9DB60BD1BFC64F9001B2A94 /* ApplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60BC1BFC64F9001B2A94 /* ApplyCell.m */; };
 		C9F31DC81BCCA5D200E598E6 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DC71BCCA5D200E598E6 /* Common.m */; };
 		C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DCA1BCCA76800E598E6 /* HttpDownload.m */; };
 		C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DDF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -304,6 +309,16 @@
 		C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerHistoryViewController.m; sourceTree = "<group>"; };
 		C9DB28B01BF9A7C200CEEB1D /* AccidentCerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentCerView.h; sourceTree = "<group>"; };
 		C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentCerView.m; sourceTree = "<group>"; };
+		C9DB60AF1BFC2C50001B2A94 /* XLButtonPICTEXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLButtonPICTEXT.h; sourceTree = "<group>"; };
+		C9DB60B01BFC2C50001B2A94 /* XLButtonPICTEXT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLButtonPICTEXT.m; sourceTree = "<group>"; };
+		C9DB60B21BFC587E001B2A94 /* CheckBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxCell.h; sourceTree = "<group>"; };
+		C9DB60B31BFC587E001B2A94 /* CheckBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckBoxCell.m; sourceTree = "<group>"; };
+		C9DB60B51BFC58F4001B2A94 /* BidListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidListViewController.h; sourceTree = "<group>"; };
+		C9DB60B61BFC58F4001B2A94 /* BidListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidListViewController.m; sourceTree = "<group>"; };
+		C9DB60B81BFC5E0C001B2A94 /* BidApplyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidApplyListViewController.h; sourceTree = "<group>"; };
+		C9DB60B91BFC5E0C001B2A94 /* BidApplyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidApplyListViewController.m; sourceTree = "<group>"; };
+		C9DB60BB1BFC64F9001B2A94 /* ApplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyCell.h; sourceTree = "<group>"; };
+		C9DB60BC1BFC64F9001B2A94 /* ApplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyCell.m; sourceTree = "<group>"; };
 		C9F31DC61BCCA5D200E598E6 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C9F31DC71BCCA5D200E598E6 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		C9F31DC91BCCA76800E598E6 /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
@@ -455,6 +470,8 @@
 				C98A8CBA1BCE53A10096C69B /* XLLabel.m */,
 				C95B77871BE9A9990066623D /* XLTextField.h */,
 				C95B77881BE9A9990066623D /* XLTextField.m */,
+				C9DB60AF1BFC2C50001B2A94 /* XLButtonPICTEXT.h */,
+				C9DB60B01BFC2C50001B2A94 /* XLButtonPICTEXT.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -619,6 +636,10 @@
 				C97B429D1BEC7890007FB971 /* SwitchCell.m */,
 				C988B5A21BDF0B6100A5F2E4 /* VideoCell.h */,
 				C988B5A31BDF0B6100A5F2E4 /* VideoCell.m */,
+				C9DB60B21BFC587E001B2A94 /* CheckBoxCell.h */,
+				C9DB60B31BFC587E001B2A94 /* CheckBoxCell.m */,
+				C9DB60BB1BFC64F9001B2A94 /* ApplyCell.h */,
+				C9DB60BC1BFC64F9001B2A94 /* ApplyCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -656,6 +677,10 @@
 			children = (
 				C9CF7ADC1BCF90BF00DBBCDA /* BidViewController.h */,
 				C9CF7ADD1BCF90BF00DBBCDA /* BidViewController.m */,
+				C9DB60B51BFC58F4001B2A94 /* BidListViewController.h */,
+				C9DB60B61BFC58F4001B2A94 /* BidListViewController.m */,
+				C9DB60B81BFC5E0C001B2A94 /* BidApplyListViewController.h */,
+				C9DB60B91BFC5E0C001B2A94 /* BidApplyListViewController.m */,
 			);
 			name = "申办公证";
 			sourceTree = "<group>";
@@ -1048,6 +1073,7 @@
 				C9F31E441BCCD56300E598E6 /* CallViewController.m in Sources */,
 				C9F31E551BCCD63E00E598E6 /* AccidentViewController.m in Sources */,
 				C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */,
+				C9DB60BA1BFC5E0C001B2A94 /* BidApplyListViewController.m in Sources */,
 				C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */,
 				C9BC90481BF47A2C0085DD00 /* PhotographDetailViewController.m in Sources */,
 				C9BC90451BF468570085DD00 /* Utility.m in Sources */,
@@ -1067,6 +1093,7 @@
 				C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */,
 				C9DB28B21BF9A7C200CEEB1D /* AccidentCerView.m in Sources */,
 				C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */,
+				C9DB60B71BFC58F4001B2A94 /* BidListViewController.m in Sources */,
 				C97B429B1BEC50D5007FB971 /* XLCamera.m in Sources */,
 				C9F31E381BCCB6CC00E598E6 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9CF7AD11BCF838600DBBCDA /* AboutViewController.m in Sources */,
@@ -1079,6 +1106,7 @@
 				C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */,
 				C98A8CA71BCDEAA50096C69B /* PhotographItem.m in Sources */,
 				C98A8CA11BCDEA740096C69B /* VideoItem.m in Sources */,
+				C9DB60B41BFC587E001B2A94 /* CheckBoxCell.m in Sources */,
 				C979AE751BD640940050A926 /* RecordListViewController.m in Sources */,
 				C9D24E601BE73ADB007D489F /* BeinDangerHistoryViewController.m in Sources */,
 				C9CBCB691BD76D8B005A5CF1 /* LongPressButton.m in Sources */,
@@ -1122,10 +1150,12 @@
 				C9BC903F1BF4661A0085DD00 /* DES.m in Sources */,
 				C9F31E1A1BCCB3E300E598E6 /* UIButton+Utils.m in Sources */,
 				C9C937C31BCCA0880055B52D /* EAIntroView.m in Sources */,
+				C9DB60BD1BFC64F9001B2A94 /* ApplyCell.m in Sources */,
 				C9F31E391BCCB6CC00E598E6 /* BaseTableViewController.m in Sources */,
 				C98A8CA41BCDEA870096C69B /* RecordItem.m in Sources */,
 				C9F31DC81BCCA5D200E598E6 /* Common.m in Sources */,
 				C98A8CBF1BCE53D40096C69B /* UIColor+Utils.m in Sources */,
+				C9DB60B11BFC2C50001B2A94 /* XLButtonPICTEXT.m in Sources */,
 				C9F31E181BCCB3E300E598E6 /* AppDelegate+Utils.m in Sources */,
 				C9F31DF21BCCA9B400E598E6 /* PullTableView.m in Sources */,
 				C99F03151BE9DD0000476FA8 /* User.m in Sources */,

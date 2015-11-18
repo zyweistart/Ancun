@@ -7,6 +7,8 @@
 //
 
 #import "BidViewController.h"
+#import "BidListViewController.h"
+#import "BidApplyListViewController.h"
 
 @interface BidViewController ()
 
@@ -19,7 +21,7 @@
     self=[super init];
     if(self){
         [self setTitle:@"我的"];
-        self.dataItemArray=[NSMutableArray arrayWithArray:@[@"去电录音",@"录音笔",@"录像",@"随手拍"]];
+        self.dataItemArray=[NSMutableArray arrayWithArray:@[@"去电录音",@"随手拍",@"录音笔",@"录像"]];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         //
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"已申请" style:UIBarButtonItemStylePlain target:self action:@selector(goApply)];
@@ -43,12 +45,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if([[self dataItemArray] count]>0){
+        if([indexPath row]==0){
+            
+        }else{
+            [self.navigationController pushViewController:[[BidListViewController alloc]initWithType:[NSString stringWithFormat:@"%ld",[indexPath row]]] animated:YES];
+        }
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
 - (void)goApply
 {
-    
+    [self.navigationController pushViewController:[[BidApplyListViewController alloc]init] animated:YES];
 }
 
 @end

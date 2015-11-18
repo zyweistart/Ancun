@@ -51,8 +51,10 @@
             [sign deleteCharactersInRange:deleteRange1];
             [URL appendFormat:@"sign=%@",[sign md5]];
         }
+        NSString *urlString=[[NSString alloc]initWithString:URL];
+        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         // 设置请求方法
         request.HTTPMethod = @"POST";
         // 60秒请求超时

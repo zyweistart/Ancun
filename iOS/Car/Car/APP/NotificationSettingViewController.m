@@ -43,6 +43,11 @@
         cell = [[SwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     NSInteger row=indexPath.row;
+    if(row==0){
+        [cell.bSwitch setSelected:[[User getInstance]configMessageNotice]];
+    }else if(row==1){
+        [cell.bSwitch setSelected:[[User getInstance]configMessageDynamic]];
+    }
     NSString *content=[self.dataItemArray objectAtIndex:row];
     [cell.textLabel setText:content];
     [cell.bSwitch addTarget:self action:@selector(goSwitch:) forControlEvents:UIControlEventTouchUpInside];
@@ -52,6 +57,12 @@
 - (void)goSwitch:(UIButton*)sender
 {
     [sender setSelected:!sender.selected];
+    NSInteger tag=[sender tag];
+    if(tag==0){
+        [[User getInstance]setConfigMessageNotice:sender.selected];
+    }else if(tag==1){
+        [[User getInstance]setConfigMessageDynamic:sender.selected];
+    }
 }
 
 @end

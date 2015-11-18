@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface PhotographDetailViewController : BaseViewController<UIAlertViewDelegate>
+@interface PhotographDetailViewController : BaseViewController<UIAlertViewDelegate,UIActionSheetDelegate>
 
 @end

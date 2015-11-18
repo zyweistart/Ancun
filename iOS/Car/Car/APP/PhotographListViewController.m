@@ -28,7 +28,7 @@
 
 - (void)loadHttp
 {
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getSecurityList" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
@@ -69,7 +69,34 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"删除了");
+    if([[self dataItemArray] count]>0){
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        NSString *fid=[data objectForKey:@"id"];
+        NSString *type=[data objectForKey:@"type"];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"delSecurity" forKey:@"act"];
+        [params setObject:[User getInstance].uid forKey:@"uid"];
+        [params setObject:fid forKey:@"id"];
+        [params setObject:type forKey:@"type"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
+    }
+}
+
+-(void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    if(reqCode==501){
+        if([response successFlag]){
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing = YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.5];
+            }
+        }
+    }else{
+        [super requestFinishedByResponse:response requestCode:reqCode];
+    }
 }
 
 @end
