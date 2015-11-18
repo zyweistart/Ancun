@@ -60,14 +60,11 @@
     if(![path isEmpty]){
         UIImageView *imageView=(UIImageView*)sender;
         if(imageView){
-            UIImage *image=[[UIImage alloc]initWithContentsOfFile:path];
+            path=[NSString stringWithFormat:@"%@thum",path];
+            UIImage *image=[UIImage imageWithContentsOfFile:path];
             if(image){
                 [imageView setImage:image];
             }
-//            NSData *image = [NSData dataWithContentsOfFile:path];
-//            if(image){
-//                [imageView setImage:[UIImage imageWithData:image]];
-//            }
         }
     }
 }

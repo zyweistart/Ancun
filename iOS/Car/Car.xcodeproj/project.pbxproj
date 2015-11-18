@@ -67,8 +67,6 @@
 		C9BC90421BF4664C0085DD00 /* DesEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90411BF4664C0085DD00 /* DesEncrypt.m */; };
 		C9BC90451BF468570085DD00 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90441BF468570085DD00 /* Utility.m */; };
 		C9BC90481BF47A2C0085DD00 /* PhotographDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC90471BF47A2C0085DD00 /* PhotographDetailViewController.m */; };
-		C9BC904B1BF47ABD0085DD00 /* RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC904A1BF47ABD0085DD00 /* RecordDetailViewController.m */; };
-		C9BC904E1BF47B480085DD00 /* VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC904D1BF47B480085DD00 /* VideoDetailViewController.m */; };
 		C9C937871BCC9B6A0055B52D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C937861BCC9B6A0055B52D /* main.m */; };
 		C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9C937891BCC9B6A0055B52D /* AppDelegate.mm */; };
 		C9C937921BCC9B6A0055B52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C937911BCC9B6A0055B52D /* Assets.xcassets */; };
@@ -98,6 +96,7 @@
 		C9DB60B71BFC58F4001B2A94 /* BidListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60B61BFC58F4001B2A94 /* BidListViewController.m */; };
 		C9DB60BA1BFC5E0C001B2A94 /* BidApplyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60B91BFC5E0C001B2A94 /* BidApplyListViewController.m */; };
 		C9DB60BD1BFC64F9001B2A94 /* ApplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60BC1BFC64F9001B2A94 /* ApplyCell.m */; };
+		C9DB60C01BFC7EEF001B2A94 /* XLZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB60BF1BFC7EEF001B2A94 /* XLZoomImage.m */; };
 		C9F31DC81BCCA5D200E598E6 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DC71BCCA5D200E598E6 /* Common.m */; };
 		C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DCA1BCCA76800E598E6 /* HttpDownload.m */; };
 		C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F31DDF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -255,10 +254,6 @@
 		C9BC90441BF468570085DD00 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		C9BC90461BF47A2C0085DD00 /* PhotographDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographDetailViewController.h; sourceTree = "<group>"; };
 		C9BC90471BF47A2C0085DD00 /* PhotographDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotographDetailViewController.m; sourceTree = "<group>"; };
-		C9BC90491BF47ABD0085DD00 /* RecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailViewController.h; sourceTree = "<group>"; };
-		C9BC904A1BF47ABD0085DD00 /* RecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailViewController.m; sourceTree = "<group>"; };
-		C9BC904C1BF47B480085DD00 /* VideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDetailViewController.h; sourceTree = "<group>"; };
-		C9BC904D1BF47B480085DD00 /* VideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDetailViewController.m; sourceTree = "<group>"; };
 		C9C937821BCC9B6A0055B52D /* Car.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Car.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C937861BCC9B6A0055B52D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9C937881BCC9B6A0055B52D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -319,6 +314,8 @@
 		C9DB60B91BFC5E0C001B2A94 /* BidApplyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidApplyListViewController.m; sourceTree = "<group>"; };
 		C9DB60BB1BFC64F9001B2A94 /* ApplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyCell.h; sourceTree = "<group>"; };
 		C9DB60BC1BFC64F9001B2A94 /* ApplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyCell.m; sourceTree = "<group>"; };
+		C9DB60BE1BFC7EEF001B2A94 /* XLZoomImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLZoomImage.h; sourceTree = "<group>"; };
+		C9DB60BF1BFC7EEF001B2A94 /* XLZoomImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLZoomImage.m; sourceTree = "<group>"; };
 		C9F31DC61BCCA5D200E598E6 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C9F31DC71BCCA5D200E598E6 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		C9F31DC91BCCA76800E598E6 /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
@@ -472,6 +469,8 @@
 				C95B77881BE9A9990066623D /* XLTextField.m */,
 				C9DB60AF1BFC2C50001B2A94 /* XLButtonPICTEXT.h */,
 				C9DB60B01BFC2C50001B2A94 /* XLButtonPICTEXT.m */,
+				C9DB60BE1BFC7EEF001B2A94 /* XLZoomImage.h */,
+				C9DB60BF1BFC7EEF001B2A94 /* XLZoomImage.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -781,8 +780,6 @@
 				C9F31E4B1BCCD5D500E598E6 /* RecordViewController.m */,
 				C979AE731BD640940050A926 /* RecordListViewController.h */,
 				C979AE741BD640940050A926 /* RecordListViewController.m */,
-				C9BC90491BF47ABD0085DD00 /* RecordDetailViewController.h */,
-				C9BC904A1BF47ABD0085DD00 /* RecordDetailViewController.m */,
 			);
 			name = "录音笔";
 			sourceTree = "<group>";
@@ -807,8 +804,6 @@
 				C9F31E511BCCD61C00E598E6 /* VideoViewController.m */,
 				C979AE761BD641260050A926 /* VideoListViewController.h */,
 				C979AE771BD641260050A926 /* VideoListViewController.m */,
-				C9BC904C1BF47B480085DD00 /* VideoDetailViewController.h */,
-				C9BC904D1BF47B480085DD00 /* VideoDetailViewController.m */,
 			);
 			name = "录像";
 			sourceTree = "<group>";
@@ -1116,7 +1111,6 @@
 				C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */,
 				C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */,
-				C9BC904B1BF47ABD0085DD00 /* RecordDetailViewController.m in Sources */,
 				C9F31E241BCCB4CC00E598E6 /* UserCenterViewController.m in Sources */,
 				C9C937871BCC9B6A0055B52D /* main.m in Sources */,
 				C9F31DF01BCCA9B400E598E6 /* LoadMoreTableFooterView.m in Sources */,
@@ -1128,7 +1122,6 @@
 				C9CBCB621BD76D7B005A5CF1 /* ACContactSingleCell.m in Sources */,
 				C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */,
 				C95B778C1BE9ADF40066623D /* ForgetPasswordViewController.m in Sources */,
-				C9BC904E1BF47B480085DD00 /* VideoDetailViewController.m in Sources */,
 				C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,
@@ -1136,6 +1129,7 @@
 				C9CF7ACD1BCF837200DBBCDA /* ModifyPwdViewController.m in Sources */,
 				C988B5A41BDF0B6100A5F2E4 /* VideoCell.m in Sources */,
 				C9CF7ACA1BCF806100DBBCDA /* SettingViewController.m in Sources */,
+				C9DB60C01BFC7EEF001B2A94 /* XLZoomImage.m in Sources */,
 				C9BC90421BF4664C0085DD00 /* DesEncrypt.m in Sources */,
 				C9CF7ADE1BCF90BF00DBBCDA /* BidViewController.m in Sources */,
 				C9F31E1D1BCCB4B500E598E6 /* LoginViewController.m in Sources */,

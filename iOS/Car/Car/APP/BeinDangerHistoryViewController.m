@@ -93,12 +93,12 @@
         NSString *status=[data objectForKey:@"status"];
         [cell.lblStatus setText:[Utility getBeinDangerStatus:status]];
         //添加出险图片
-//        NSString *images=[data objectForKey:@"images"];
-//        NSArray *foo=[images componentsSeparatedByString:@","];
-//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:0] RequestCode:502 Object:cell.imageView1];
-//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:1] RequestCode:502 Object:cell.imageView2];
-//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:2] RequestCode:502 Object:cell.imageView3];
-//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:3] RequestCode:502 Object:cell.imageView4];
+        NSString *images=[data objectForKey:@"images"];
+        NSArray *foo=[images componentsSeparatedByString:@","];
+        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:0] RequestCode:502 Object:cell.imageView1];
+        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:1] RequestCode:502 Object:cell.imageView2];
+        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:2] RequestCode:502 Object:cell.imageView3];
+        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:3] RequestCode:502 Object:cell.imageView4];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

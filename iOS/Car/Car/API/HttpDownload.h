@@ -13,5 +13,6 @@
 - (id)initWithDelegate:(NSObject<HttpDownloadDelegate>*)delegate;
 
 - (void)AsynchronousDownloadWithUrl:(NSString *)url RequestCode:(NSInteger)reqCode Object:(id)sender;
+- (void)AsynchronousDownloadWithUrl:(NSString *)url RequestCode:(NSInteger)reqCode Object:(id)sender DownloadType:(NSInteger)downloadType;
 
 @end

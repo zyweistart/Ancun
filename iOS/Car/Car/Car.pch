@@ -19,7 +19,8 @@
     #import "XLTextField.h"
     #import "Common.h"
     #import "User.h"
-    #import "NSString+Utils.h"
+#import "NSString+Utils.h"
+#import "UIImage+Utils.h"
 
 #import "Utility.h"
     #import "TimeUtils.h"

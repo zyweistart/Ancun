@@ -9,6 +9,7 @@
 #import "PhotographDetailViewController.h"
 #import "UIButton+Utils.h"
 #import "XLButtonPICTEXT.h"
+#import "SJAvatarBrowser.h"
 
 @implementation PhotographDetailViewController{
     UIImageView *pImageV;
@@ -44,6 +45,8 @@
     [self.view addSubview:lblName];
     pImageV=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 30, 320, 150)];
     [pImageV setBackgroundColor:[UIColor redColor]];
+    [pImageV setUserInteractionEnabled:YES];
+    [pImageV addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goPlayer)]];
     [self.view addSubview:pImageV];
     UIView *operatorView=[[UIView alloc]initWithFrame:CGRectMake1(0, 180, 320, 80)];
     [operatorView setBackgroundColor:[UIColor whiteColor]];
@@ -54,7 +57,7 @@
     [bPlayer setTitle:@"播放" forState:UIControlStateNormal];
     [bPlayer setTitleColor:BCOLOR(150) forState:UIControlStateNormal];
     [bPlayer setImage:[UIImage imageNamed:@"播放_开始"] forState:UIControlStateNormal];
-    [bPlayer addTarget:self action:@selector(goDetail) forControlEvents:UIControlEventTouchUpInside];
+    [bPlayer addTarget:self action:@selector(goPlayer) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:bPlayer];
     XLButtonPICTEXT *bName=[[XLButtonPICTEXT alloc]initWithFrame:CGRectMake1(130, 15, 60, 40)];
     [bName.titleLabel setFont:GLOBAL_FONTSIZE(13)];
@@ -96,12 +99,19 @@
     }else if([@"3" isEqualToString:type]){
         NSString *imageUrl=[self.cData objectForKey:@"videoThumbnail"];
         [self.hDownload AsynchronousDownloadWithUrl:imageUrl RequestCode:500 Object:pImageV];
+    }else{
+        //录音
+        [pImageV setImage:[UIImage imageNamed:@"录音笔出证"]];
     }
 }
 
-- (void)goDetail
+- (void)goPlayer
 {
-    NSLog(@"播放");
+    if([@"1" isEqualToString:type]){
+        [SJAvatarBrowser showImage:pImageV];
+    }else if([@"2" isEqualToString:type]){
+        //下载
+    }
 }
 
 - (void)goReName

@@ -7,7 +7,7 @@
 //
 
 #import "RecordListViewController.h"
-#import "RecordDetailViewController.h"
+#import "PhotographDetailViewController.h"
 #import "RecordCell.h"
 
 @interface RecordListViewController ()
@@ -59,7 +59,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        [self.navigationController pushViewController:[[RecordDetailViewController alloc]init] animated:YES];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[PhotographDetailViewController alloc]initWithData:data] animated:YES];
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }

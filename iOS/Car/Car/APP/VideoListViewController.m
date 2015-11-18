@@ -7,7 +7,6 @@
 //
 
 #import "VideoListViewController.h"
-#import "VideoDetailViewController.h"
 #import "PhotographDetailViewController.h"
 #import "VideoCell.h"
 
