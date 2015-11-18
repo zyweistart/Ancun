@@ -20,11 +20,24 @@
     self=[super init];
     if(self){
         [self setTitle:@"历史出险"];
-//        [self.dataItemArray addObjectsFromArray:@[@"去电录音",@"录音笔",@"随手拍",@"录像存证",@"设置"]];
-//        [self buildTableViewWithView:self.view];
+        self.dataKeys=[[NSMutableArray alloc]init];
+        self.dataResults=[[NSMutableDictionary alloc]init];
+        [self buildTableViewWithView:self.view];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
     }
     return self;
+}
+
+- (void)loadHttp
+{
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getAccidentList" forKey:@"act"];
+    [params setObject:[User getInstance].uid forKey:@"uid"];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -34,10 +47,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSString *dateTime=[self.dataKeys objectAtIndex:section];
     UIView *headTitle=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
     [headTitle setBackgroundColor:BCOLOR(244)];
     XLLabel *lblTitle=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 30)];
-    [lblTitle setText:@"2016-10-20"];
+    [lblTitle setText:dateTime];
     [lblTitle setTextColor:BGCOLOR];
     [lblTitle setFont:GLOBAL_FONTSIZE(15)];
     [headTitle addSubview:lblTitle];
@@ -47,7 +61,14 @@
 //指定有多少个分区(Section)，默认为1
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    return 2;
+    return [self.dataKeys count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSString *key=[self.dataKeys objectAtIndex:section];
+    NSArray *array=[self.dataResults objectForKey:key];
+    return [array count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -55,27 +76,62 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([[self dataItemArray] count]>0){
+    if([[self dataResults] count]>0){
         static NSString *cellIdentifier = @"SAMPLECell";
         BeinDangerHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
             cell = [[BeinDangerHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        //删除子视图
-        for(UIView *view in [cell.scrollView subviews]){
-            [view removeFromSuperview];
-        }
-        //添加出出险图片
-        [cell addSubImage:@"警示牌"];
-        [cell addSubImage:@"双跳灯"];
-        [cell addSubImage:@"警示牌"];
-        [cell addSubImage:@"交警拍照片"];
-        [cell addSubImage:@"交警认定责任"];
-        [cell addSubImage:@"双跳灯"];
+//        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        NSString *key=[self.dataKeys objectAtIndex:[indexPath section]];
+        NSArray *array=[self.dataResults objectForKey:key];
+        NSDictionary *data=[array objectAtIndex:[indexPath row]];
+        NSString *time=[data objectForKey:@"time"];
+        NSString *dateTime=[TimeUtils timestampConvertDate13Format:@"MM-dd" WithTime:time];
+        [cell.lblTime setText:dateTime];
+        [cell.lblAddress setText:[data objectForKey:@"address"]];
+        NSString *status=[data objectForKey:@"status"];
+        [cell.lblStatus setText:[Utility getBeinDangerStatus:status]];
+        //添加出险图片
+//        NSString *images=[data objectForKey:@"images"];
+//        NSArray *foo=[images componentsSeparatedByString:@","];
+//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:0] RequestCode:502 Object:cell.imageView1];
+//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:1] RequestCode:502 Object:cell.imageView2];
+//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:2] RequestCode:502 Object:cell.imageView3];
+//        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:3] RequestCode:502 Object:cell.imageView4];
         return cell;
     }else{
-        return [tableView cellForRowAtIndexPath:indexPath];
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        NSDictionary *rData=[[response resultJSON] objectForKey:@"data"];
+        if(rData){
+            //获取数据列表
+            NSDictionary *tabData=rData;
+            if(tabData){
+                if([self currentPage]==0){
+                    [[self dataResults] removeAllObjects];
+                }
+                for(id data in tabData){
+                    NSString *time=[data objectForKey:@"time"];
+                    NSString *dateTime=[TimeUtils timestampConvertDate13Format:@"yyyy-MM" WithTime:time];
+                    NSMutableArray *mutable=[self.dataResults objectForKey:dateTime];
+                    if(mutable==nil){
+                        mutable=[[NSMutableArray alloc]init];
+                    }
+                    [mutable addObject:data];
+                    [self.dataResults setObject:mutable forKey:dateTime];
+                }
+                self.dataKeys = [[NSMutableArray alloc] initWithArray:[[self.dataResults allKeys]sortedArrayUsingSelector:@selector(compare:)]];
+            }
+        }
+    }
+    [self loadDone];
 }
 
 @end

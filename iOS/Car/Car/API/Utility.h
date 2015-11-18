@@ -10,4 +10,6 @@
 
 @interface Utility : NSObject
 
++ (NSString*)getBeinDangerStatus:(NSString*)status;
+
 @end

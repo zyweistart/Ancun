@@ -167,8 +167,7 @@
 
 - (void)goDynamic
 {
-//    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]init] animated:YES];
-    [self.navigationController pushViewController:[[HandleViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]init] animated:YES];
 }
 
 - (void)goUserCenter

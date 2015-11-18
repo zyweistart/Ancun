@@ -178,7 +178,7 @@
 {
     if([response successFlag]){
         if(reqCode==500){
-            NSLog(@"%@",[response responseString]);
+//            NSLog(@"%@",[response responseString]);
         }else if(reqCode==501){
             [ivHead setImage:currentEditedImage];
             [self.tableView reloadData];

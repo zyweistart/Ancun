@@ -17,4 +17,14 @@
     return [dateFormatter stringFromDate:[NSDate date]];
 }
 
+//13位时间戳
++ (NSString*)timestampConvertDate13Format:(NSString*)format WithTime:(NSString*)time
+{
+    NSTimeInterval secs=[time doubleValue]/1000;
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:secs];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    return [formatter stringFromDate:confromTimesp];
+}
+
 @end

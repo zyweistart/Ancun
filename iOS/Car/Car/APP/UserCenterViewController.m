@@ -22,6 +22,7 @@
     UIImageView *header;
     XLLabel *lblName;
     XLLabel *lblInformation;
+    UIImageView *headView;
 }
 
 - (id)init
@@ -31,7 +32,7 @@
         [self setTitle:@"我的"];
         self.dataItemArray=[NSMutableArray arrayWithArray:@[@"去电录音",@"录音笔",@"随手拍",@"录像",@"设置"]];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
-        UIImageView *headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 160)];
+        headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 160)];
         [headView setUserInteractionEnabled:YES];
         [headView setImage:[UIImage imageNamed:@"广告"]];
         header=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
@@ -41,12 +42,10 @@
         [headView addSubview:header];
         //姓名
         lblName=[[XLLabel alloc]initWithFrame:CGRectMake1(60, 10, 200, 20)];
-        [lblName setText:@"黄晓明"];
         [lblName setTextColor:[UIColor whiteColor]];
         [headView addSubview:lblName];
         //信息
         lblInformation=[[XLLabel alloc]initWithFrame:CGRectMake1(60, 30, 200, 20)];
-        [lblInformation setText:@"今日限行尾号:0和5"];
         [lblInformation setTextColor:[UIColor whiteColor]];
         [headView addSubview:lblInformation];
         
@@ -65,7 +64,20 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [lblName setText:[User getInstance].name];
+    [lblInformation setText:@"今日限行尾号:0和5"];
     [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]headPic] RequestCode:500 Object:header];
+    [self requestBanner];
+}
+
+- (void)requestBanner
+{
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:502];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getBanner" forKey:@"act"];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -106,6 +118,21 @@
 - (void)goInformation
 {
     [self.navigationController pushViewController:[[MyInformationViewController alloc]init] animated:YES];
+}
+
+- (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    if(reqCode==502){
+        if([response successFlag]){
+            NSArray *array=[[response resultJSON] objectForKey:@"data"];
+            for(NSDictionary *data in array){
+                NSString *bannerUrl=[data objectForKey:@"bannerUrl"];
+                [self.hDownload AsynchronousDownloadWithUrl:bannerUrl RequestCode:502 Object:headView];
+            }
+        }
+    }else {
+        [super requestFinishedByResponse:response requestCode:reqCode];
+    }
 }
 
 @end

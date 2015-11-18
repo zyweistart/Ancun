@@ -11,4 +11,7 @@
 
 @interface BeinDangerHistoryViewController : BaseEGOTableViewPullRefreshViewController
 
+@property (strong,nonatomic) NSMutableArray *dataKeys;
+@property (strong,nonatomic) NSMutableDictionary *dataResults;
+
 @end

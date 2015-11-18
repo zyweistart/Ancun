@@ -15,4 +15,5 @@
 
 + (NSString*)getTimeFormatter:(NSString*)format;
 
++ (NSString*)timestampConvertDate13Format:(NSString*)format WithTime:(NSString*)time;
 @end
