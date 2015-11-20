@@ -83,12 +83,12 @@
         [Common alert:@"请输入密码"];
         return;
     }
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"userLogin" forKey:@"act"];
     [params setObject:userName forKey:@"mobile"];
     password=[DesEncrypt encryptEBCWithText:password];
     [params setObject:password forKey:@"pwd"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setView:self.view];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];

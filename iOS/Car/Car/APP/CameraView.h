@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XLCamera.h"
+#import "HttpRequest.h"
 
 @class CameraView;
 @protocol CameraViewDelegate
@@ -18,8 +19,11 @@
 
 @end
 
-@interface CameraView : UIView<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
+@interface CameraView : UIView<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,HttpViewDelegate>
 
+@property (strong,nonatomic)HttpRequest *hRequest;
+
+@property (strong,nonatomic)NSString *imageNetAddressUrl;
 @property (strong,nonatomic)UIViewController *controler;
 @property (strong,nonatomic)XLLabel *lblInfo;
 @property (strong,nonatomic)UIImage *currentImage;
@@ -28,5 +32,7 @@
 @property (strong,nonatomic)UIButton *rPai;
 @property (assign,nonatomic)BOOL isDelete;
 @property (strong,nonatomic)NSObject<CameraViewDelegate> *delegate;
+
+- (void)resetCamera;
 
 @end

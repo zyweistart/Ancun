@@ -8,7 +8,8 @@
 
 #import "BaseTableViewController.h"
 #import "XLCamera.h"
+#import "CameraView.h"
 
-@interface MyInformationViewController : BaseTableViewController<VPImageCropperDelegate>
+@interface MyInformationViewController : BaseTableViewController<VPImageCropperDelegate,CameraViewDelegate>
 
 @end

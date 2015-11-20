@@ -6,9 +6,12 @@
 //  Copyright © 2015 Ancun. All rights reserved.
 //
 
+#define KEYTIME @"KEYTIME"
+#define KEYLATITUDE @"KEYLATITUDE"
+#define KEYLONGITUDE @"KEYLONGITUDE"
+#define KEYADDRESSNAME @"KEYADDRESSNAME"
+
 #import "HandleViewController.h"
-#import "UIImage+Utils.h"
-#import "CameraUtility.h"
 #import "AccidentCerView.h"
 
 @interface HandleViewController ()
@@ -16,6 +19,7 @@
 @end
 
 @implementation HandleViewController{
+    XLLabel *lblCompany;
     UIScrollView *scrollView;
     CameraView *cameraView1;
     CameraView *cameraView2;
@@ -26,7 +30,6 @@
     CameraView *cameraView7;
     CameraView *cameraView8;
     CameraView *cameraView9;
-    XLLabel *lblCompany;
     
     AccidentCerView *mAccidentCerView1;
     AccidentCerView *mAccidentCerView2;
@@ -74,7 +77,7 @@
     [scrollView addSubview:cameraView3];
     //图4
     cameraView4=[[CameraView alloc]initWithFrame:CGRectMake1(160, 132, 160, 132)];
-    [cameraView4.lblInfo setText:@"当事人1驾驶证、行驶证"];
+    [cameraView4.lblInfo setText:@"当事人驾驶证、行驶证"];
     [cameraView4.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
     [cameraView4.pai setTag:1];
     [cameraView4.pai addTarget:self action:@selector(goPai:) forControlEvents:UIControlEventTouchUpInside];
@@ -116,6 +119,7 @@
     [cameraView9 setHidden:YES];
     if(self.insuranceOData){
         //两车事故
+        [cameraView4.lblInfo setText:@"当事人1驾驶证、行驶证"];
         [cameraView5.lblInfo setText:@"当事人2驾驶证、行驶证"];
         [cameraView5.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
         [cameraView5.pai setTag:2];
@@ -139,7 +143,13 @@
         [mAccidentCerView1 setDelegate:self];
         [mAccidentCerView1.cameraViewPai setDelegate:self];
         [mAccidentCerView1.cameraViewPai setControler:self];
-        [mAccidentCerView1.cameraViewPai.lblInfo setText:@"当事人1驾驶证、行驶证"];
+        if(self.insuranceOData){
+            //两车事故
+            [mAccidentCerView1.cameraViewPai.lblInfo setText:@"当事人1驾驶证、行驶证"];
+        }else{
+            //单车事故
+            [mAccidentCerView1.cameraViewPai.lblInfo setText:@"当事人驾驶证、行驶证"];
+        }
         [mAccidentCerView1.bOk setTag:1];
         [mAccidentCerView1.bCancel setTag:1];
         [self.navigationController.view addSubview:mAccidentCerView1];
@@ -260,6 +270,7 @@
     [obj setDelegate:self];
     [obj setIsDelete:to.isDelete];
     [obj setCurrentImage:to.currentImage];
+    [obj setImageNetAddressUrl:to.imageNetAddressUrl];
     [obj.currentImageView setImage:to.currentImageView.image];
     [obj.pai setHidden:YES];
     [obj.rPai setHidden:NO];
@@ -269,52 +280,112 @@
 {
     [camera setIsDelete:YES];
     [camera setDelegate:self];
-    [camera setCurrentImage:nil];
-    [camera.currentImageView setImage:nil];
-    [camera.pai setHidden:NO];
-    [camera.rPai setHidden:YES];
+    [camera resetCamera];
 }
 
 - (void)goSubmit
 {
-    NSLog(@"地图wyth :%@",self.mapData);
-    NSLog(@"保险公司一:%@",self.insuranceData);
-    NSLog(@"保险公司二:%@",self.insuranceOData);
-    NSLog(@"碰撞部位局部照:%@",cameraView1.currentImage);
-    NSLog(@"前车前方5米前景:%@",cameraView2.currentImage);
-    NSLog(@"后车后方5米后景:%@",cameraView3.currentImage);
-    NSLog(@"当事人1驾驶证、行驶证:%@",cameraView4.currentImage);
-    NSLog(@"当事人1驾驶证、行驶证车牌号:%@",[mAccidentCerView1.tfCarNumber text]);
-    NSLog(@"当事人1驾驶证、行驶证手机号:%@",[mAccidentCerView1.tfPhone text]);
-    NSLog(@"当事人1驾驶证、行驶证验证码:%@",[mAccidentCerView1.tfCode text]);
-    if(self.insuranceOData){
-        NSLog(@"当事人2驾驶证、行驶证:%@",cameraView5.currentImage);
-        NSLog(@"当事人2驾驶证、行驶证车牌号:%@",[mAccidentCerView2.tfCarNumber text]);
-        NSLog(@"当事人2驾驶证、行驶证手机号:%@",[mAccidentCerView2.tfPhone text]);
-        NSLog(@"当事人2驾驶证、行驶证验证码:%@",[mAccidentCerView2.tfCode text]);
-        NSLog(@"补充照片1:%@",cameraView6.currentImage);
-        NSLog(@"补充照片2:%@",cameraView7.currentImage);
-        NSLog(@"补充照片3:%@",cameraView8.currentImage);
-        NSLog(@"补充照片4:%@",cameraView9.currentImage);
-    }else{
-        NSLog(@"补充照片1:%@",cameraView5.currentImage);
-        NSLog(@"补充照片2:%@",cameraView6.currentImage);
-        NSLog(@"补充照片3:%@",cameraView7.currentImage);
-        NSLog(@"补充照片4:%@",cameraView8.currentImage);
+    if([cameraView1.imageNetAddressUrl isEmpty]){
+        [Common alert:@"请上传碰撞部位局部照"];
+        return;
     }
-//    [self.navigationController popToRootViewControllerAnimated:YES];
+    if([cameraView2.imageNetAddressUrl isEmpty]){
+        [Common alert:@"请上传前车前方5米前景照"];
+        return;
+    }
+    if([cameraView3.imageNetAddressUrl isEmpty]){
+        [Common alert:@"请上传后车后方5米后景照"];
+        return;
+    }
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"addAccident" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:[User getInstance].uid forKey:@"uid"];
+    [dic setObject:cameraView1.imageNetAddressUrl forKey:@"accidentPic1"];
+    [dic setObject:cameraView2.imageNetAddressUrl forKey:@"accidentPic2"];
+    [dic setObject:cameraView3.imageNetAddressUrl forKey:@"accidentPic3"];
+    [dic setObject:cameraView4.imageNetAddressUrl forKey:@"accidentPic4"];
+    [dic setObject:@""forKey:@"accidentPic5"];
+    [dic setObject:[self.insuranceData objectForKey:@"insurerId"] forKey:@"insuranceOne"];
+    [dic setObject:@"" forKey:@"insuranceTwo"];
+    [dic setObject:[self.mapData objectForKey:KEYADDRESSNAME] forKey:@"address"];
+    [dic setObject:[self.mapData objectForKey:KEYTIME] forKey:@"happenTime"];
+    [dic setObject:[mAccidentCerView1.tfPhone text] forKey:@"mobile1"];
+    [dic setObject:[mAccidentCerView1.tfCarNumber text] forKey:@"carNoOne"];
+    [dic setObject:[mAccidentCerView2.tfPhone text] forKey:@"mobile2"];
+    [dic setObject:[mAccidentCerView2.tfCarNumber text] forKey:@"carNoTwo"];
+    if(self.insuranceOData){
+        if([cameraView4.imageNetAddressUrl isEmpty]){
+            [Common alert:@"请上传当事人1驾驶证、行驶证"];
+            return;
+        }
+        if([cameraView5.imageNetAddressUrl isEmpty]){
+            [Common alert:@"请上传当事人2驾驶证、行驶证"];
+            return;
+        }
+        //两车事故
+        [dic setObject:@"2" forKey:@"type"];
+        [dic setObject:[self.insuranceOData objectForKey:@"insurerId"] forKey:@"insuranceTwo"];
+        [dic setObject:cameraView5.imageNetAddressUrl forKey:@"accidentPic5"];
+        NSArray *picMores=@[cameraView6.imageNetAddressUrl,
+                            cameraView7.imageNetAddressUrl,
+                            cameraView8.imageNetAddressUrl,
+                            cameraView9.imageNetAddressUrl];
+        NSMutableString *addressUrls=[[NSMutableString alloc]init];
+        for(NSString *pic in picMores){
+            if(![pic isEmpty]){
+                [addressUrls appendFormat:@"%@,",pic];
+            }
+        }
+        if([addressUrls length]>0){
+            NSRange deleteRange1 = {[addressUrls length]-1,1};
+            [addressUrls deleteCharactersInRange:deleteRange1];
+        }
+        [dic setObject:addressUrls forKey:@"accidentPicMore"];
+    }else{
+        if([cameraView4.imageNetAddressUrl isEmpty]){
+            [Common alert:@"请上传当事人驾驶证、行驶证"];
+            return;
+        }
+        //单车事故
+        [dic setObject:@"1" forKey:@"type"];
+        NSArray *picMores=@[cameraView5.imageNetAddressUrl,
+                            cameraView6.imageNetAddressUrl,
+                            cameraView7.imageNetAddressUrl,
+                            cameraView8.imageNetAddressUrl];
+        NSMutableString *addressUrls=[[NSMutableString alloc]init];
+        for(NSString *pic in picMores){
+            if(![pic isEmpty]){
+                [addressUrls appendFormat:@"%@,",pic];
+            }
+        }
+        if([addressUrls length]>0){
+            NSRange deleteRange1 = {[addressUrls length]-1,1};
+            [addressUrls deleteCharactersInRange:deleteRange1];
+        }
+        [dic setObject:addressUrls forKey:@"accidentPicMore"];
+    }
+    [self.hRequest setJsonParams:dic];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setView:self.view];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
+    NSLog(@"%@",dic);
 }
 
 - (void)accidentCerViewOK:(id)sender
 {
     if([sender tag]==1){
         if(mAccidentCerView1.cameraViewPai.currentImage){
+            [cameraView4 setImageNetAddressUrl:mAccidentCerView1.cameraViewPai.imageNetAddressUrl];
             [cameraView4 setCurrentImage:mAccidentCerView1.cameraViewPai.currentImage];
             [cameraView4.currentImageView setImage:cameraView4.currentImage];
         }
         [mAccidentCerView1 setHidden:YES];
     }else if([sender tag]==2){
         if(mAccidentCerView2.cameraViewPai.currentImage){
+            [cameraView5 setImageNetAddressUrl:mAccidentCerView2.cameraViewPai.imageNetAddressUrl];
             [cameraView5 setCurrentImage:mAccidentCerView2.cameraViewPai.currentImage];
             [cameraView5.currentImageView setImage:cameraView5.currentImage];
         }
@@ -337,6 +408,16 @@
         [mAccidentCerView1 setHidden:NO];
     }else if([sender tag]==2){
         [mAccidentCerView2 setHidden:NO];
+    }
+}
+
+- (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            [Common alert:@"事故上报成功"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }
 }
 

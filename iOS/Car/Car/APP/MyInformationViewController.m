@@ -9,7 +9,6 @@
 #import "MyInformationViewController.h"
 #import "ModifySingleDataViewController.h"
 #import "HeadCell.h"
-#import "CameraView.h"
 
 @interface MyInformationViewController ()
 
@@ -47,8 +46,10 @@
         [contentView addSubview:headTitle];
         cameraView4=[[CameraView alloc]initWithFrame:CGRectMake1(0, 40, 320, 200)];
         [cameraView4.currentImageView setImage:[UIImage imageNamed:@"驾照底"]];
+        [cameraView4 setDelegate:self];
         [cameraView4 setControler:self];
         [contentView addSubview:cameraView4];
+        [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]driverLicense] RequestCode:500 Object:cameraView4.currentImageView];
     }
     return self;
 }
@@ -56,7 +57,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]driverLicense] RequestCode:500 Object:cameraView4.currentImageView];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,6 +141,7 @@
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"upUserInfo" forKey:@"act"];
     [self.hRequest setJsonParams:@{@"uid":[User getInstance].uid,@"name":[User getInstance].name,@"identityNum":[User getInstance].identityNum}];
+    [self.hRequest setView:self.view];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
@@ -150,12 +151,13 @@
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
     currentEditedImage=editedImage;
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
         NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
         [params setObject:@"upLoadPic" forKey:@"act"];
         [params setObject:[User getInstance].uid forKey:@"uid"];
         [params setObject:@"1" forKey:@"type"];
-        [self.hRequest setPostParams:@{@"uploadfile":UIImageJPEGRepresentation(editedImage,0.00001)}];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+        [self.hRequest setPostParams:@{@"uploadfile":UIImagePNGRepresentation(cameraView4.currentImage)}];
+        [self.hRequest setView:self.view];
         [self.hRequest setDelegate:self];
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
@@ -164,6 +166,21 @@
 
 - (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
     [cropperViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
+{
+    if(![path isEmpty]){
+        UIImageView *imageView=(UIImageView*)sender;
+        if(imageView){
+            path=[NSString stringWithFormat:@"%@thum",path];
+            UIImage *image=[UIImage imageWithContentsOfFile:path];
+            if(image){
+                [imageView setImage:image];
+                [cameraView4 setCurrentImage:image];
+            }
+        }
+    }
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
@@ -175,8 +192,17 @@
         }else if(reqCode==501){
             [[User getInstance]setHeadPic:[[response resultJSON] objectForKey:@"img"]];
             [ivHead setImage:currentEditedImage];
+        }else if(reqCode==502){
+            [[User getInstance]setDriverLicense:[[response resultJSON]objectForKey:@"img"]];
+            [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]driverLicense] RequestCode:500 Object:cameraView4.currentImageView];
         }
     }
+}
+
+- (void)CameraSuccess:(CameraView *)camera1
+{
+    [[User getInstance]setDriverLicense:camera1.imageNetAddressUrl];
+    [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]driverLicense] RequestCode:500 Object:cameraView4.currentImageView];
 }
 
 @end

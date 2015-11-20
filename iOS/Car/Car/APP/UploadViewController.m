@@ -93,7 +93,7 @@
 {
     [super viewWillAppear:animated];
     if(self.saveType==1){
-        NSData * imageData = UIImageJPEGRepresentation(self.originalImage,1);
+        NSData * imageData = UIImagePNGRepresentation(self.originalImage);
         self.fileSize = [imageData length];
         [self.lblFileSize setText:[FileUtils getFileSize:self.fileSize]];
         [self.lblFileType setText:@"图片存证"];

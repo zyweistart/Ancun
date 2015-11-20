@@ -41,8 +41,8 @@
         [self.currentImageView setUserInteractionEnabled:YES];
         [self.currentImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goZoom)]];
         [self.currentImageView addSubview:self.rPai];
-        [self.pai setHidden:NO];
-        [self.rPai setHidden:YES];
+        
+        [self resetCamera];
     }
     return self;
 }
@@ -73,14 +73,7 @@
     //照片
     self.currentImage=[info objectForKey:UIImagePickerControllerOriginalImage];
     if(self.currentImage){
-        if(self.isDelete){
-            [self.pai setHidden:YES];
-            [self.rPai setHidden:NO];
-        }
-        [self.currentImageView setImage:self.currentImage];
-        if([self.delegate respondsToSelector:@selector(CameraSuccess:)]){
-            [self.delegate CameraSuccess:self];
-        }
+        [self uploadFile:self.currentImage];
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -93,10 +86,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==0){
-        self.currentImage=nil;
-        [self.currentImageView setImage:nil];
-        [self.pai setHidden:NO];
-        [self.rPai setHidden:YES];
+        [self resetCamera];
         if([self.delegate respondsToSelector:@selector(CameraDelete:)]){
             [self.delegate CameraDelete:self];
         }
@@ -112,6 +102,47 @@
     if(self.currentImage){
         [SJAvatarBrowser showImage:self.currentImageView];
     }
+}
+
+//文件上传
+- (void)uploadFile:(UIImage*)image
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"upLoadPic" forKey:@"act"];
+    [params setObject:[User getInstance].uid forKey:@"uid"];
+    [params setObject:@"3" forKey:@"type"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+    [self.hRequest setPostParams:@{@"uploadfile":UIImagePNGRepresentation(image)}];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setView:self.controler.view];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            if(self.isDelete){
+                [self.pai setHidden:YES];
+                [self.rPai setHidden:NO];
+            }
+            [self.currentImageView setImage:self.currentImage];
+            self.imageNetAddressUrl=[[response resultJSON] objectForKey:@"img"];
+            if([self.delegate respondsToSelector:@selector(CameraSuccess:)]){
+                [self.delegate CameraSuccess:self];
+            }
+        }
+    }
+}
+
+- (void)resetCamera
+{
+    self.currentImage=nil;
+    [self setImageNetAddressUrl:@""];
+    [self.currentImageView setImage:nil];
+    [self.pai setHidden:NO];
+    [self.rPai setHidden:YES];
 }
 
 @end
