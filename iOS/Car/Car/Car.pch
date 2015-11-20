@@ -30,13 +30,13 @@
 #define BGCOLOR RGBCOLOR(0,174,159)
 
 #pragma mark 测试环境宏定义
-//#define TEST
+#define TEST
 
 #ifdef TEST
 #warning 当前运行版本为测试版本，仅供测试使用
 //测试配置
 #define PHONENUMBER @"95105856"
-#define ANCUN_HTTP_URL @" "
+#define ANCUN_HTTP_URL @"http://www.cheancun.com/api/ios_api.php?"
 #else
 //正式配置
 #define PHONENUMBER @"95105856"

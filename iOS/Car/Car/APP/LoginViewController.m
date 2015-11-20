@@ -89,6 +89,7 @@
     [params setObject:userName forKey:@"mobile"];
     password=[DesEncrypt encryptEBCWithText:password];
     [params setObject:password forKey:@"pwd"];
+    [self.hRequest setView:self.view];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];

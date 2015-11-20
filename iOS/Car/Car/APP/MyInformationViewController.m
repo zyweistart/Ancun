@@ -99,7 +99,7 @@
         camera=[[XLCamera alloc]initWithController:self];
         [camera setCropperDelegate:self];
         [camera open];
-    }else{
+    }else if(row==1||row==2){
         NSDictionary *data=[self.dataItemArray objectAtIndex:row];
         NSString *value=[data objectForKey:[NSString stringWithFormat:@"%ld",row]];
         ModifySingleDataViewController *mModifySingleDataViewController=[[ModifySingleDataViewController alloc]initWithType:row WithValue:value];
@@ -137,16 +137,10 @@
     }else if(requestCode==3){
         [[User getInstance]setPhone:value];
     }
-    [self reloadTableData];
-    [self.tableView reloadData];
-    
     self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"upUserInfo" forKey:@"act"];
-//    [params setObject:[User getInstance].uid forKey:@"uid"];
-//    [params setObject:[User getInstance].uid forKey:@"name"];
-//    [params setObject:[User getInstance].uid forKey:@"identityNum"];
-    [self.hRequest setPostParams:@{@"uid":[User getInstance].uid,@"name":value,@"identityNum":value}];
+    [self.hRequest setJsonParams:@{@"uid":[User getInstance].uid,@"name":[User getInstance].name,@"identityNum":[User getInstance].identityNum}];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
@@ -161,7 +155,7 @@
         [params setObject:@"upLoadPic" forKey:@"act"];
         [params setObject:[User getInstance].uid forKey:@"uid"];
         [params setObject:@"1" forKey:@"type"];
-        [self.hRequest setPostParams:@{@"imgFile":UIImageJPEGRepresentation(editedImage,0.00001)}];
+        [self.hRequest setPostParams:@{@"uploadfile":UIImageJPEGRepresentation(editedImage,0.00001)}];
         [self.hRequest setDelegate:self];
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
@@ -172,16 +166,15 @@
     [cropperViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
         if(reqCode==500){
-//            NSLog(@"%@",[response responseString]);
-        }else if(reqCode==501){
-            [ivHead setImage:currentEditedImage];
+            [self reloadTableData];
             [self.tableView reloadData];
+        }else if(reqCode==501){
+            [[User getInstance]setHeadPic:[[response resultJSON] objectForKey:@"img"]];
+            [ivHead setImage:currentEditedImage];
         }
     }
 }

@@ -1,11 +1,15 @@
 #import "HttpRequest.h"
 #import "NSString+Utils.h"
 #import "Reachability.h"
+#import "ATMHud.h"
+#import "MBProgressHUD.h"
 
 @implementation HttpRequest
 {
     NSMutableData *_data;
     long long downloadFileSize;
+    ATMHud *mAtmHud;
+    MBProgressHUD *mBMPHud;
 }
 
 - (id)initWithRequestCode:(int)requestCode
@@ -33,8 +37,13 @@
 
 - (void)handleWithParams:(NSMutableDictionary*)params
 {
+    [self handleWithParams:params WithURL:ANCUN_HTTP_URL];
+}
+
+- (void)handleWithParams:(NSMutableDictionary*)params WithURL:(NSString*)url
+{
     if ([HttpRequest isNetworkConnection]) {
-        NSMutableString *URL=[[NSMutableString alloc]initWithString:ANCUN_HTTP_URL];
+        NSMutableString *URL=[[NSMutableString alloc]initWithString:url];
         if([params count]>0){
             long d=(long)[[NSDate date] timeIntervalSince1970];
             [params setObject:[NSString stringWithFormat:@"%ld",d] forKey:@"httpTime"];
@@ -59,11 +68,11 @@
         request.HTTPMethod = @"POST";
         // 60秒请求超时
         request.timeoutInterval = 60;
+        
         if(self.postParams){
             NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
             
             NSString *boundary=@"AaB03x";
-            
             // post body
             NSMutableData *body = [NSMutableData data];
             
@@ -89,18 +98,39 @@
             }
             [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:gbkEncoding]];
             //打印请求数据
-            NSString *pos=[[NSString alloc] initWithData:body encoding:gbkEncoding];
-            NSLog(@"%@",pos);
+//            NSString *pos=[[NSString alloc] initWithData:body encoding:gbkEncoding];
+//            NSLog(@"%@",pos);
             
             [request setValue:[NSString stringWithFormat:@"multipart/form-data, boundary=%@",boundary] forHTTPHeaderField: @"Content-Type"];
             // set the content-length
             [request setValue:[NSString stringWithFormat:@"%ld",[body length]] forHTTPHeaderField:@"Content-Length"];
             [request setHTTPBody:body];
+        }else if(self.jsonParams){
+            NSError *error;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.jsonParams options:NSJSONWritingPrettyPrinted error:&error];
+            if (jsonData) {
+                [request setHTTPBody:jsonData];
+            }
         }
         //初始化一个连接
         NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
         //开始一个异步请求
         [conn start];
+        if(self.view){
+            if(self.isFileDownload){
+                mAtmHud=[[ATMHud alloc]init];
+                [self.view addSubview:mAtmHud.view];
+                [mAtmHud setCaption:@"下载中..."];
+                [mAtmHud setProgress:0.01];
+                [mAtmHud show];
+            }else{
+                mBMPHud = [[MBProgressHUD alloc]initWithView:self.view];
+                [self.view addSubview:mBMPHud];
+                mBMPHud.dimBackground = NO;
+                mBMPHud.square = YES;
+                [mBMPHud show:YES];
+            }
+        }
     } else {
         if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
             [_delegate requestFailed:self.reqCode];
@@ -130,9 +160,11 @@
     [_data appendData:data];
     if(self.isFileDownload) {
         //显示下载进度条
-        float size=[_data length]/(float)downloadFileSize;
-        if(size>0) {
-            NSLog(@"%lf",size);
+        if(mAtmHud){
+            float size=[_data length]/(float)downloadFileSize;
+            if(size>0) {
+                [mAtmHud setProgress:size];
+            }
         }
     }
 }
@@ -149,10 +181,24 @@
         [response setSuccessFlag:[@"success" isEqualToString:[response code]]];
         if(self.isShowFailedMessage){
             if(![response successFlag]){
-                [Common alert:[response msg]];
+                if([response msg]&&![[response msg]isEmpty]){
+                    [Common alert:[response msg]];
+                }
             }
         }
         [_delegate requestFinishedByResponse:response requestCode:self.reqCode];
+    }
+    //隐藏等待条
+    if (mBMPHud) {
+        [mBMPHud hide:YES];
+        [mBMPHud removeFromSuperview];
+        mBMPHud=nil;
+    }
+    //隐藏下载进度条
+    if(mAtmHud) {
+        [mAtmHud hide];
+        [mAtmHud.view removeFromSuperview];
+        mAtmHud=nil;
     }
 }
 
@@ -163,6 +209,18 @@
         [_delegate connection:connection didFailWithError:error];
     } else if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
         [_delegate requestFailed:self.reqCode];
+    }
+    //隐藏等待条
+    if (mBMPHud) {
+        [mBMPHud hide:YES];
+        [mBMPHud removeFromSuperview];
+        mBMPHud=nil;
+    }
+    //隐藏下载进度条
+    if(mAtmHud) {
+        [mAtmHud hide];
+        [mAtmHud.view removeFromSuperview];
+        mAtmHud=nil;
     }
 }
 

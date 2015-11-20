@@ -66,6 +66,7 @@
     [super viewDidAppear:animated];
     [lblName setText:[User getInstance].name];
     [lblInformation setText:@"今日限行尾号:0和5"];
+    NSLog(@"%@",[[User getInstance]headPic]);
     [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]headPic] RequestCode:500 Object:header];
     [self requestBanner];
 }

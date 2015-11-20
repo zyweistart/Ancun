@@ -8,6 +8,7 @@
 
 #import "CameraView.h"
 #import "SJAvatarBrowser.h"
+#import "XLZoomImage.h"
 
 @implementation CameraView{
     XLCamera *camera;

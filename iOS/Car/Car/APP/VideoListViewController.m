@@ -9,6 +9,7 @@
 #import "VideoListViewController.h"
 #import "PhotographDetailViewController.h"
 #import "VideoCell.h"
+#import "XLZoomImage.h"
 
 @interface VideoListViewController ()
 
@@ -62,8 +63,14 @@
 {
     if([[self dataItemArray] count]>0){
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        [self.navigationController pushViewController:[[PhotographDetailViewController alloc]initWithData:data] animated:YES];
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+        NSString *attchUrl=[data objectForKey:@"attchUrl"];
+        NSLog(@"%@",attchUrl);
+        XLZoomImage *zoomImage=[[XLZoomImage alloc]initWithBounds:self.navigationController.view withImageURL:attchUrl];
+        [zoomImage showView];
+        
+//        [self.navigationController pushViewController:[[PhotographDetailViewController alloc]initWithData:data] animated:YES];
+//        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
 

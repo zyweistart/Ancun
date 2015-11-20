@@ -86,9 +86,9 @@
             }
         }
     }
-    for(NSDictionary *d in selectedData){
-        
-    }
+//    for(NSDictionary *d in selectedData){
+//        
+//    }
 }
 
 @end

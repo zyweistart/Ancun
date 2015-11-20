@@ -22,6 +22,8 @@
 #import "FileUtils.h"
 #import "VideoUtils.h"
 #import "TimeUtils.h"
+#import "MarqueeLabel.h"
+#import "NoticeListViewController.h"
 
 @interface MainViewController ()
 
@@ -29,6 +31,7 @@
 
 @implementation MainViewController{
     UIImageView *bgView;
+    MarqueeLabel *lblNotice;
 }
 
 - (id)init
@@ -78,6 +81,18 @@
     [userCenterButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     [userCenterButton addTarget:self action:@selector(goUserCenter) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:userCenterButton];
+    lblNotice=[[MarqueeLabel alloc]initWithFrame:CGRectMake1(10, 0, 300, 30)];
+    [lblNotice setTextColor:BCOLOR(100)];
+    [lblNotice setUserInteractionEnabled:YES];
+    lblNotice.marqueeType = MLContinuousReverse;
+    lblNotice.textAlignment = NSTextAlignmentLeft;
+    lblNotice.lineBreakMode = NSLineBreakByTruncatingHead;
+    lblNotice.scrollDuration = 8.0;
+    lblNotice.fadeLength = 15.0f;
+    lblNotice.leadingBuffer = 40.0f;
+    [lblNotice addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goNotice)]];
+    [bgView addSubview:lblNotice];
+    [lblNotice setHidden:YES];
     //
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"事故处理流程" style:UIBarButtonItemStylePlain target:self action:@selector(goProcess)];
 }
@@ -85,6 +100,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    //获取用户信息
     self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getUserInfo" forKey:@"act"];
@@ -92,6 +108,13 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
+    //获取公告
+//    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+//    params=[[NSMutableDictionary alloc]init];
+//    [params setObject:@"getNotice" forKey:@"act"];
+//    [self.hRequest setDelegate:self];
+//    [self.hRequest setIsShowFailedMessage:YES];
+//    [self.hRequest handleWithParams:params];
 }
 
 - (UIButton*)createButtonWithFrame:(CGRect)frame title:(NSString*)title titleFont:(UIFont*)titleFont imagedName:(NSString*)imagedName borderColor:(UIColor *)borderColor titleColor:(UIColor *)titleColor action:(SEL)action
@@ -175,6 +198,11 @@
     [self.navigationController pushViewController:[[UserCenterViewController alloc]init] animated:YES];
 }
 
+- (void)goNotice
+{
+    [self.navigationController pushViewController:[[NoticeListViewController alloc]init] animated:YES];
+}
+
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -237,6 +265,15 @@
             [[User getInstance]setIdentityNum:identityNum];
             [[User getInstance]setDriverLicense:driverLicense];
 //            NSLog(@"获取用户信息成功：%@",[response responseString]);
+        }else if(reqCode==501){
+            NSLog(@"%@",[response responseString]);
+            NSArray *array=[[response resultJSON]objectForKey:@"data"];
+            for(id d in array){
+                NSString *title=[d objectForKey:@"title"];
+                [lblNotice setText:[NSString stringWithFormat:@"公告:%@",title]];
+                [lblNotice setHidden:NO];
+                break;
+            }
         }
     }
 }

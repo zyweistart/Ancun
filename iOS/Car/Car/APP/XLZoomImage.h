@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HttpRequest.h"
 
-@interface XLZoomImage : UIView
+@interface XLZoomImage : UIView<HttpViewDelegate>
 
 - (id)initWithBounds:(UIView*)view withImageURL:(NSString*)url;
+
+@property (strong,nonatomic)HttpRequest *hRequest;
+
+- (void)showView;
 
 @end

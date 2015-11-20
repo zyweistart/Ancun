@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C90B33041BEB3BCF004243F6 /* ModifySingleDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90B33031BEB3BCF004243F6 /* ModifySingleDataViewController.m */; };
+		C90C93221BFDBE8B002B3D84 /* NoticeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90C93211BFDBE8B002B3D84 /* NoticeListViewController.m */; };
+		C90C93251BFDBE9C002B3D84 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90C93241BFDBE9C002B3D84 /* NoticeDetailViewController.m */; };
+		C90C93291BFDC086002B3D84 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C90C93281BFDC086002B3D84 /* MarqueeLabel.m */; };
 		C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */; };
 		C92F62971BE1B2F4000FE15F /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62961BE1B2F4000FE15F /* SJAvatarBrowser.m */; };
 		C92F62AD1BE1B848000FE15F /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92F62A61BE1B848000FE15F /* BaiduMapAPI_Base.framework */; };
@@ -37,6 +40,13 @@
 		C94664801BE3547A00172DA3 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = C946647F1BE3547A00172DA3 /* CameraView.m */; };
 		C95B77891BE9A9990066623D /* XLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C95B77881BE9A9990066623D /* XLTextField.m */; };
 		C95B778C1BE9ADF40066623D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95B778B1BE9ADF40066623D /* ForgetPasswordViewController.m */; };
+		C9662CF71BFD98C9004EB914 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662CF61BFD98C9004EB914 /* MBProgressHUD.m */; };
+		C9662D061BFD9936004EB914 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662CFA1BFD9936004EB914 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C9662D071BFD9936004EB914 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662CFD1BFD9936004EB914 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C9662D081BFD9936004EB914 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662CFF1BFD9936004EB914 /* ATMHudView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C9662D091BFD9936004EB914 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662D011BFD9936004EB914 /* ATMProgressLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C9662D0A1BFD9936004EB914 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662D031BFD9936004EB914 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C9662D0B1BFD9936004EB914 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662D051BFD9936004EB914 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE6E1BD640760050A926 /* CallListViewController.m */; };
 		C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE711BD6408A0050A926 /* PhotographListViewController.m */; };
 		C979AE751BD640940050A926 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE741BD640940050A926 /* RecordListViewController.m */; };
@@ -154,6 +164,12 @@
 /* Begin PBXFileReference section */
 		C90B33021BEB3BCF004243F6 /* ModifySingleDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifySingleDataViewController.h; sourceTree = "<group>"; };
 		C90B33031BEB3BCF004243F6 /* ModifySingleDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifySingleDataViewController.m; sourceTree = "<group>"; };
+		C90C93201BFDBE8B002B3D84 /* NoticeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeListViewController.h; sourceTree = "<group>"; };
+		C90C93211BFDBE8B002B3D84 /* NoticeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeListViewController.m; sourceTree = "<group>"; };
+		C90C93231BFDBE9C002B3D84 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
+		C90C93241BFDBE9C002B3D84 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailViewController.m; sourceTree = "<group>"; };
+		C90C93271BFDC086002B3D84 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
+		C90C93281BFDC086002B3D84 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
 		C925AFB01BE88CC90009E357 /* BeinDangerHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerHistoryCell.h; sourceTree = "<group>"; };
 		C925AFB11BE88CC90009E357 /* BeinDangerHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerHistoryCell.m; sourceTree = "<group>"; };
 		C92F62951BE1B2F4000FE15F /* SJAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAvatarBrowser.h; sourceTree = "<group>"; };
@@ -195,6 +211,21 @@
 		C95B77881BE9A9990066623D /* XLTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLTextField.m; sourceTree = "<group>"; };
 		C95B778A1BE9ADF40066623D /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		C95B778B1BE9ADF40066623D /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		C9662CF51BFD98C9004EB914 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		C9662CF61BFD98C9004EB914 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		C9662CF91BFD9936004EB914 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
+		C9662CFA1BFD9936004EB914 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
+		C9662CFB1BFD9936004EB914 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
+		C9662CFC1BFD9936004EB914 /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
+		C9662CFD1BFD9936004EB914 /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
+		C9662CFE1BFD9936004EB914 /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
+		C9662CFF1BFD9936004EB914 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		C9662D001BFD9936004EB914 /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
+		C9662D011BFD9936004EB914 /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
+		C9662D021BFD9936004EB914 /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
+		C9662D031BFD9936004EB914 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
+		C9662D041BFD9936004EB914 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
+		C9662D051BFD9936004EB914 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
 		C979AE6D1BD640760050A926 /* CallListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallListViewController.h; sourceTree = "<group>"; };
 		C979AE6E1BD640760050A926 /* CallListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallListViewController.m; sourceTree = "<group>"; };
 		C979AE701BD6408A0050A926 /* PhotographListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographListViewController.h; sourceTree = "<group>"; };
@@ -425,12 +456,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C90C931F1BFDBE6D002B3D84 /* 公告 */ = {
+			isa = PBXGroup;
+			children = (
+				C90C93201BFDBE8B002B3D84 /* NoticeListViewController.h */,
+				C90C93211BFDBE8B002B3D84 /* NoticeListViewController.m */,
+				C90C93231BFDBE9C002B3D84 /* NoticeDetailViewController.h */,
+				C90C93241BFDBE9C002B3D84 /* NoticeDetailViewController.m */,
+			);
+			name = "公告";
+			sourceTree = "<group>";
+		};
+		C90C93261BFDC086002B3D84 /* MarqueeLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C90C93271BFDC086002B3D84 /* MarqueeLabel.h */,
+				C90C93281BFDC086002B3D84 /* MarqueeLabel.m */,
+			);
+			path = MarqueeLabel;
+			sourceTree = "<group>";
+		};
 		C92F62C61BE1B9BA000FE15F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				C92F62CB1BE1BCF1000FE15F /* mapapi.bundle */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C9662CF41BFD98C9004EB914 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				C9662CF51BFD98C9004EB914 /* MBProgressHUD.h */,
+				C9662CF61BFD98C9004EB914 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		C9662CF81BFD9936004EB914 /* ATMHud */ = {
+			isa = PBXGroup;
+			children = (
+				C9662CF91BFD9936004EB914 /* ATMHud.h */,
+				C9662CFA1BFD9936004EB914 /* ATMHud.m */,
+				C9662CFB1BFD9936004EB914 /* ATMHudDelegate.h */,
+				C9662CFC1BFD9936004EB914 /* ATMHudQueueItem.h */,
+				C9662CFD1BFD9936004EB914 /* ATMHudQueueItem.m */,
+				C9662CFE1BFD9936004EB914 /* ATMHudView.h */,
+				C9662CFF1BFD9936004EB914 /* ATMHudView.m */,
+				C9662D001BFD9936004EB914 /* ATMProgressLayer.h */,
+				C9662D011BFD9936004EB914 /* ATMProgressLayer.m */,
+				C9662D021BFD9936004EB914 /* ATMSoundFX.h */,
+				C9662D031BFD9936004EB914 /* ATMSoundFX.m */,
+				C9662D041BFD9936004EB914 /* ATMTextLayer.h */,
+				C9662D051BFD9936004EB914 /* ATMTextLayer.m */,
+			);
+			path = ATMHud;
 			sourceTree = "<group>";
 		};
 		C98A8CA81BCDEEA10096C69B /* ImageUtils */ = {
@@ -543,6 +623,7 @@
 		C9C937B81BCC9C2F0055B52D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				C90C93261BFDC086002B3D84 /* MarqueeLabel */,
 				C9CBCB6A1BD76DB3005A5CF1 /* AttributedLabel.h */,
 				C9CBCB6B1BD76DB3005A5CF1 /* AttributedLabel.m */,
 				C92F62D31BE22B13000FE15F /* BaiduMapUtils.h */,
@@ -579,6 +660,7 @@
 		C9C937B91BCC9C2F0055B52D /* APP */ = {
 			isa = PBXGroup;
 			children = (
+				C90C931F1BFDBE6D002B3D84 /* 公告 */,
 				C9CBCB5C1BD76D67005A5CF1 /* Cell */,
 				C9F31E281BCCB61500E598E6 /* Model */,
 				C98A8CB61BCE53540096C69B /* UI */,
@@ -599,6 +681,8 @@
 		C9C937BA1BCC9C2F0055B52D /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				C9662CF81BFD9936004EB914 /* ATMHud */,
+				C9662CF41BFD98C9004EB914 /* MBProgressHUD */,
 				C98A8CA81BCDEEA10096C69B /* ImageUtils */,
 				C9F31E011BCCAB8E00E598E6 /* ASIHTTP */,
 				C9F31DDC1BCCA9B400E598E6 /* EGOTableViewPullRefresh */,
@@ -1067,7 +1151,9 @@
 			files = (
 				C9F31E441BCCD56300E598E6 /* CallViewController.m in Sources */,
 				C9F31E551BCCD63E00E598E6 /* AccidentViewController.m in Sources */,
+				C9662D071BFD9936004EB914 /* ATMHudQueueItem.m in Sources */,
 				C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */,
+				C90C93251BFDBE9C002B3D84 /* NoticeDetailViewController.m in Sources */,
 				C9DB60BA1BFC5E0C001B2A94 /* BidApplyListViewController.m in Sources */,
 				C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */,
 				C9BC90481BF47A2C0085DD00 /* PhotographDetailViewController.m in Sources */,
@@ -1087,8 +1173,10 @@
 				C92F62D21BE20C68000FE15F /* InputAddressViewController.m in Sources */,
 				C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */,
 				C9DB28B21BF9A7C200CEEB1D /* AccidentCerView.m in Sources */,
+				C9662CF71BFD98C9004EB914 /* MBProgressHUD.m in Sources */,
 				C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */,
 				C9DB60B71BFC58F4001B2A94 /* BidListViewController.m in Sources */,
+				C9662D0B1BFD9936004EB914 /* ATMTextLayer.m in Sources */,
 				C97B429B1BEC50D5007FB971 /* XLCamera.m in Sources */,
 				C9F31E381BCCB6CC00E598E6 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9CF7AD11BCF838600DBBCDA /* AboutViewController.m in Sources */,
@@ -1100,6 +1188,9 @@
 				C9F31E191BCCB3E300E598E6 /* NSString+Utils.m in Sources */,
 				C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */,
 				C98A8CA71BCDEAA50096C69B /* PhotographItem.m in Sources */,
+				C9662D081BFD9936004EB914 /* ATMHudView.m in Sources */,
+				C9662D0A1BFD9936004EB914 /* ATMSoundFX.m in Sources */,
+				C90C93291BFDC086002B3D84 /* MarqueeLabel.m in Sources */,
 				C98A8CA11BCDEA740096C69B /* VideoItem.m in Sources */,
 				C9DB60B41BFC587E001B2A94 /* CheckBoxCell.m in Sources */,
 				C979AE751BD640940050A926 /* RecordListViewController.m in Sources */,
@@ -1108,6 +1199,7 @@
 				C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */,
 				C9F31E271BCCB59A00E598E6 /* SQLiteOperate.m in Sources */,
 				C92F62D51BE22B13000FE15F /* BaiduMapUtils.m in Sources */,
+				C9662D091BFD9936004EB914 /* ATMProgressLayer.m in Sources */,
 				C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */,
 				C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */,
@@ -1125,6 +1217,7 @@
 				C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,
+				C90C93221BFDBE8B002B3D84 /* NoticeListViewController.m in Sources */,
 				C9CF7AD41BCF839000DBBCDA /* FeedbackViewController.m in Sources */,
 				C9CF7ACD1BCF837200DBBCDA /* ModifyPwdViewController.m in Sources */,
 				C988B5A41BDF0B6100A5F2E4 /* VideoCell.m in Sources */,
@@ -1134,6 +1227,7 @@
 				C9CF7ADE1BCF90BF00DBBCDA /* BidViewController.m in Sources */,
 				C9F31E1D1BCCB4B500E598E6 /* LoginViewController.m in Sources */,
 				C9C937C21BCCA0880055B52D /* EAIntroPage.m in Sources */,
+				C9662D061BFD9936004EB914 /* ATMHud.m in Sources */,
 				C9A0362F1BE0AC6100A8E387 /* TimeUtils.m in Sources */,
 				C92F62971BE1B2F4000FE15F /* SJAvatarBrowser.m in Sources */,
 				C98A8CB11BCDEEA10096C69B /* UIImage+Utils.m in Sources */,
