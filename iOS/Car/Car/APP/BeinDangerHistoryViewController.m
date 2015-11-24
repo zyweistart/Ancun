@@ -93,13 +93,15 @@
         [cell.lblAddress setText:[data objectForKey:@"address"]];
         NSString *status=[data objectForKey:@"status"];
         [cell.lblStatus setText:[Utility getBeinDangerStatus:status]];
-        //添加出险图片
+        //图片
+        for(UIView *v in cell.scrollView.subviews){
+            [v removeFromSuperview];
+        }
         NSString *images=[data objectForKey:@"images"];
         NSArray *foo=[images componentsSeparatedByString:@","];
-        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:0] RequestCode:502 Object:cell.imageView1];
-        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:1] RequestCode:502 Object:cell.imageView2];
-        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:2] RequestCode:502 Object:cell.imageView3];
-        [self.hDownload AsynchronousDownloadWithUrl:[foo objectAtIndex:3] RequestCode:502 Object:cell.imageView4];
+        for(NSString *u in foo){
+            [cell addSubImage:u];
+        }
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

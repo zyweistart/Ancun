@@ -24,6 +24,7 @@
 #import "TimeUtils.h"
 #import "MarqueeLabel.h"
 #import "NoticeListViewController.h"
+#import "BeinDangerHistoryViewController.h"
 
 @interface MainViewController ()
 
@@ -190,7 +191,8 @@
 
 - (void)goDynamic
 {
-    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]init] animated:YES];
+//    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
 }
 
 - (void)goUserCenter

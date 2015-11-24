@@ -9,13 +9,15 @@
 #import "BeinDangerDetailViewController.h"
 #import "BeinDangerHistoryViewController.h"
 #import "HandleViewController.h"
-#import "BeinDangerHistoryCell.h"
+#import "BeinDangerHeader.h"
 
 @interface BeinDangerDetailViewController ()
 
 @end
 
-@implementation BeinDangerDetailViewController
+@implementation BeinDangerDetailViewController{
+    NSDictionary *resultJSON;
+}
 
 - (id)init
 {
@@ -54,17 +56,6 @@
     }
 }
 
-- (void)loadHttp
-{
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"getAccidentList" forKey:@"act"];
-    [params setObject:[User getInstance].uid forKey:@"uid"];
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
-    [self.hRequest setDelegate:self];
-    [self.hRequest setIsShowFailedMessage:YES];
-    [self.hRequest handleWithParams:params];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return CGHeight(40);
@@ -75,7 +66,28 @@
     UIView *headTitle=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
     [headTitle setBackgroundColor:BCOLOR(244)];
     XLLabel *lblTitle=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 30)];
-    [lblTitle setText:@"2015年11月04日"];
+    if(section==0){
+        NSString *time=[resultJSON objectForKey:@"time"];
+        time=[TimeUtils timestampConvertDate13Format:@"yyyy年MM月dd日" WithTime:time];
+        NSString *responsibility=[resultJSON objectForKey:@"responsibility"];
+        NSString *content=time;
+        if([@"1" isEqualToString:responsibility]){
+            content=[NSString stringWithFormat:@"%@---全责",time];
+        }else if([@"2" isEqualToString:responsibility]){
+            content=[NSString stringWithFormat:@"%@---无责",time];
+        }else if([@"3" isEqualToString:responsibility]){
+            content=[NSString stringWithFormat:@"%@---同等责任",time];
+        }
+        [lblTitle setText:content];
+    }else{
+        NSString *picStatus=[resultJSON objectForKey:@"picStatus"];
+        if([@"" isEqualToString:picStatus]){
+            
+        }else{
+            
+        }
+        [lblTitle setText:@"初审未通过原因"];
+    }
     [lblTitle setTextColor:BGCOLOR];
     [lblTitle setFont:GLOBAL_FONTSIZE(15)];
     [headTitle addSubview:lblTitle];
@@ -90,23 +102,68 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if(section==0){
+        return 1;
+    }else{
+        NSArray *priceData=[resultJSON objectForKey:@"priceData"];
+        if([priceData count]>0){
+            return [priceData count];
+        }else{
+            return 1;
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return CGHeight(115);
+    if([indexPath section]==0){
+        return CGHeight(180);
+    }else{
+        return CGHeight(45);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([[self dataItemArray] count]>0){
-        static NSString *cellIdentifier = @"SAMPLECell";
-        BeinDangerHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if([indexPath section]==0){
+        static NSString *cellIdentifier = @"BeinDangerHeaderCell";
+        BeinDangerHeader *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
-            cell = [[BeinDangerHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[BeinDangerHeader alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        NSString *address=[resultJSON objectForKey:@"address"];
+        [cell.lblAddress setText:address];
+        //图片
+        for(UIView *v in cell.scrollView.subviews){
+            [v removeFromSuperview];
+        }
+        NSString *images=[resultJSON objectForKey:@"images"];
+        NSArray *foo=[images componentsSeparatedByString:@","];
+        for(NSString *u in foo){
+            [cell addSubImage:u];
+        }
+        NSString *status=[resultJSON objectForKey:@"status"];
+        if([@"1" isEqualToString:status]){
+            [cell setCurrentType:1];
+        }else if([@"2" isEqualToString:status]){
+            [cell setCurrentType:2];
+        }else{
+            [cell setCurrentType:3];
         }
         return cell;
     }else{
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        static NSString *cellIdentifier = @"SAMPLECell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        NSArray *priceData=[resultJSON objectForKey:@"priceData"];
+        if([priceData count]>0){
+            NSDictionary *data=[priceData objectAtIndex:[indexPath row]];
+            [cell.textLabel setText:[NSString stringWithFormat:@"%@---%@",[data objectForKey:@"name"],[data objectForKey:@"price"]]];
+        }else{
+          [cell.textLabel setText:@"初审中，请等待处理结果..."];
+        }
+        [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        return cell;
     }
 }
 
@@ -126,10 +183,11 @@
 
 - (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
 {
-    NSLog(@"%@",[response resultJSON]);
     if([response successFlag]){
         if(reqCode==500){
-            
+            resultJSON=[[response resultJSON] objectForKey:@"data"];;
+            NSLog(@"%@",resultJSON);
+            [self.tableView reloadData];
         }
     }
 }
