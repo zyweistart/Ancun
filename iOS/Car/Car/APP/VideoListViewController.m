@@ -64,7 +64,7 @@
     if([[self dataItemArray] count]>0){
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
 
-        NSString *attchUrl=[data objectForKey:@"attchUrl"];
+        NSString *attchUrl=[data objectForKey:@"videoThumbnail"];
         NSLog(@"%@",attchUrl);
         XLZoomImage *zoomImage=[[XLZoomImage alloc]initWithBounds:self.navigationController.view withImageURL:attchUrl];
         [zoomImage showView];

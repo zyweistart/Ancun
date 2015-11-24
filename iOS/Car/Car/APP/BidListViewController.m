@@ -35,12 +35,12 @@
 
 - (void)loadHttp
 {
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getSecurityList" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
     [params setObject:currentType forKey:@"type"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.currentPage] forKey:@"page"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
@@ -86,9 +86,40 @@
             }
         }
     }
-//    for(NSDictionary *d in selectedData){
-//        
-//    }
+    if([selectedData count]==0){
+        [Common alert:@"申请公证项为空"];
+        return;
+    }
+    NSMutableString *recordNOs=[[NSMutableString alloc]init];
+    for(NSDictionary *d in selectedData){
+        NSString *recordNo=[d objectForKey:@"recordNo"];
+        [recordNOs appendFormat:@"%@,",recordNo];
+    }
+    NSRange deleteRange = {[recordNOs length]-1,1};
+    [recordNOs deleteCharactersInRange:deleteRange];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"applyNotary" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    [self.hRequest setJsonParams:@{
+                                   @"uid":[User getInstance].uid,
+                                   @"recordNo":recordNOs,
+                                   @"applyReason":@""
+                                   }];
+    [self.hRequest setView:self.view];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    NSLog(@"%@",[response responseString]);
+    if(reqCode==501){
+        if([response successFlag]){
+        }
+    }else if(reqCode==500){
+        [super requestFinishedByResponse:response requestCode:reqCode];
+    }
 }
 
 @end

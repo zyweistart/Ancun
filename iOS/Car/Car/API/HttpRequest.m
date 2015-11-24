@@ -175,8 +175,7 @@
     if( [_delegate respondsToSelector: @selector(connectionDidFinishLoading:)]) {
         [_delegate connectionDidFinishLoading:connection];
     } else if( [_delegate respondsToSelector: @selector(requestFinishedByResponse:requestCode:)]) {
-        NSString *responseString =[[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-        Response *response=[Response toData:responseString];
+        Response *response=[Response toData:_data];
         //成功标记
         [response setSuccessFlag:[@"success" isEqualToString:[response code]]];
         if(self.isShowFailedMessage){

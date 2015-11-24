@@ -299,7 +299,6 @@
     }
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"addAccident" forKey:@"act"];
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
     [dic setObject:[User getInstance].uid forKey:@"uid"];
     [dic setObject:cameraView1.imageNetAddressUrl forKey:@"accidentPic1"];
@@ -308,7 +307,6 @@
     [dic setObject:cameraView4.imageNetAddressUrl forKey:@"accidentPic4"];
     [dic setObject:@""forKey:@"accidentPic5"];
     [dic setObject:[self.insuranceData objectForKey:@"insurerId"] forKey:@"insuranceOne"];
-    [dic setObject:@"" forKey:@"insuranceTwo"];
     [dic setObject:[self.mapData objectForKey:KEYADDRESSNAME] forKey:@"address"];
     [dic setObject:[self.mapData objectForKey:KEYTIME] forKey:@"happenTime"];
     [dic setObject:[mAccidentCerView1.tfPhone text] forKey:@"mobile1"];
@@ -350,6 +348,7 @@
         }
         //单车事故
         [dic setObject:@"1" forKey:@"type"];
+        [dic setObject:@"0" forKey:@"insuranceTwo"];
         NSArray *picMores=@[cameraView5.imageNetAddressUrl,
                             cameraView6.imageNetAddressUrl,
                             cameraView7.imageNetAddressUrl,
@@ -366,12 +365,12 @@
         }
         [dic setObject:addressUrls forKey:@"accidentPicMore"];
     }
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setJsonParams:dic];
     [self.hRequest setDelegate:self];
     [self.hRequest setView:self.view];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
-    NSLog(@"%@",dic);
 }
 
 - (void)accidentCerViewOK:(id)sender

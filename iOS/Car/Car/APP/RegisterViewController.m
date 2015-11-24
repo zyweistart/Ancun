@@ -101,12 +101,13 @@
         return;
     }
     if(verificationCodeTime==nil){
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
-        [self.hRequest setDelegate:self];
         NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
         [params setObject:@"sendcode" forKey:@"act"];
         [params setObject:userName forKey:@"mobile"];
         [params setObject:@"1" forKey:@"type"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setView:self.view];
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
     }
@@ -157,7 +158,6 @@
             [Common alert:@"两次密码不相同"];
             return;
         }
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
         NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
         [params setObject:@"addUser" forKey:@"act"];
         [params setObject:userName forKey:@"mobile"];
@@ -166,7 +166,9 @@
         [params setObject:@"1" forKey:@"gender"];
         [params setObject:@"1" forKey:@"appver"];
         [params setObject:@"baidu" forKey:@"regfrom"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
         [self.hRequest setDelegate:self];
+        [self.hRequest setView:self.view];
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
     }else{

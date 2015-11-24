@@ -18,20 +18,19 @@
     return self;
 }
 
-+ (Response*)toData:(NSString*)repsonseString
++ (Response*)toData:(NSData*)data
 {
     Response *response=[[Response alloc]init];
-    if(repsonseString!=nil&&![@"" isEqualToString:repsonseString]){
-        [response setResponseString:repsonseString];
-        [response setData:[[response responseString] dataUsingEncoding: NSUTF8StringEncoding]];
-        if([response data]!=nil){
-            //转换成JSON格式
-            NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:[response data] options:NSJSONReadingMutableLeaves error:nil];
-            if(resultJSON!=nil){
-                [response setCode:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"result"]]];
-                [response setMsg:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"reason"]]];
-                [response setResultJSON:resultJSON];
-            }
+    [response setData:data];
+    if([response data]!=nil){
+        NSString *responseString =[[NSString alloc] initWithData:[response data] encoding:NSUTF8StringEncoding];
+        [response setResponseString:responseString];
+        //转换成JSON格式
+        NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:[response data] options:NSJSONReadingMutableLeaves error:nil];
+        if(resultJSON!=nil){
+            [response setCode:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"result"]]];
+            [response setMsg:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"reason"]]];
+            [response setResultJSON:resultJSON];
         }
     }
     return response;

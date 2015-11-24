@@ -101,10 +101,10 @@
 {
     [super viewDidAppear:animated];
     //获取用户信息
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getUserInfo" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];

@@ -23,11 +23,11 @@
 
 - (void)loadHttp
 {
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getNotaryList" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.currentPage] forKey:@"page"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];

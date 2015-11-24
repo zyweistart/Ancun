@@ -33,9 +33,9 @@
 
 - (void)loadHttp
 {
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getInsurer" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];

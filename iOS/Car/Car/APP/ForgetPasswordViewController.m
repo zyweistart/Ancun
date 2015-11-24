@@ -7,42 +7,74 @@
 //
 
 #import "ForgetPasswordViewController.h"
+#import "DesEncrypt.h"
+#define GLOBAL_GETCODE_STRING @"%ds后重发"
+#define GLOBAL_SECOND 60
 
 @interface ForgetPasswordViewController ()
 
 @end
 
 @implementation ForgetPasswordViewController{
+    UIView *viewFrame1;
+    UIView *viewFrame2;
     XLTextField *mUserName;
+    XLTextField *mCode;
     XLTextField *mPassword;
+    UIButton *bGetCode;
+    int second;
+    NSTimer *verificationCodeTime;
+}
+
+- (id)init
+{
+    self=[super init];
+    if(self){
+        [self setTitle:@"找回密码"];
+        //
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(goDone)];
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:@"找回密码"];
-    UIImageView *bgView=[[UIImageView alloc]initWithFrame:self.view.bounds];
-    [bgView setImage:[UIImage imageNamed:@"BJ_1"]];
-    [bgView setUserInteractionEnabled:YES];
-    [self.view addSubview:bgView];
     
-    UIImageView *logo=[[UIImageView alloc]initWithFrame:CGRectMake1(94, 60, 132, 62)];
-    [logo setImage:[UIImage imageNamed:@"LOGO"]];
-    [bgView addSubview:logo];
+    viewFrame1=[[UIView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:viewFrame1];
+    viewFrame2=[[UIView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:viewFrame2];
+    [viewFrame1 setHidden:NO];
+    [viewFrame2 setHidden:YES];
     
-    mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(20, 150, 280, 40)];
+    XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake1(20, 0, 280, 40) Text:@"密码重置信息将发送到您的手机上"];
+    [viewFrame1 addSubview:lbl];
+    
+    mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(20, 40, 280, 40)];
     [mUserName setPlaceholder:@"请输入手机号"];
-    [mUserName setStyle:1];
-    [bgView addSubview:mUserName];
+    [mUserName setStyle:2];
+    [mUserName setKeyboardType:UIKeyboardTypePhonePad];
+    [viewFrame1 addSubview:mUserName];
     
-    mPassword=[[XLTextField alloc]initWithFrame:CGRectMake1(20, 210, 280, 40)];
-    [mPassword setPlaceholder:@"请输入密码"];
-    [mPassword setSecureTextEntry:YES];
-    [mPassword setStyle:1];
-    [bgView addSubview:mPassword];
+    XLButton *bResetPwd=[[XLButton alloc]initWithFrame:CGRectMake1(20, 90, 280, 40) Name:@"重置密码" Type:3];
+    [bResetPwd addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
+    [viewFrame1 addSubview:bResetPwd];
     
-    XLButton *bLogin=[[XLButton alloc]initWithFrame:CGRectMake1(20, 270, 280, 40) Name:@"登录" Type:3];
-    [bLogin addTarget:self action:@selector(goLogin) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:bLogin];
+    mCode=[[XLTextField alloc]initWithFrame:CGRectMake1(20, 10, 280, 40)];
+    [mCode setPlaceholder:@"请输入短信验证码"];
+    [mCode setStyle:2];
+    [mCode setKeyboardType:UIKeyboardTypeNumberPad];
+    [viewFrame2 addSubview:mCode];
+    
+    mPassword=[[XLTextField alloc]initWithFrame:CGRectMake1(20, 60, 280, 40)];
+    [mPassword setPlaceholder:@"请输入6-16位字符新密码"];
+    [mPassword setStyle:2];
+    [mPassword setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    [viewFrame2 addSubview:mPassword];
+    
+    bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(20, 110, 280, 40) Name:@"获取验证码" Type:3];
+    [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
+    [viewFrame2 addSubview:bGetCode];
     
 }
 
@@ -52,9 +84,95 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)goLogin
+- (void)goGetCode
 {
-    
+    NSString *userName=[mUserName text];
+    if([userName isEmpty]){
+        [Common alert:@"请输入手机号"];
+        return;
+    }
+    if(verificationCodeTime==nil){
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"sendcode" forKey:@"act"];
+        [params setObject:userName forKey:@"mobile"];
+        [params setObject:@"2" forKey:@"type"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setView:self.view];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
+    }
+}
+
+- (void)goDone
+{
+    NSString *userName=[mUserName text];
+    if([userName isEmpty]){
+        [Common alert:@"请输入手机号"];
+        return;
+    }
+    NSString *code=[mCode text];
+    if([code isEmpty]){
+        [Common alert:@"请输入验证码"];
+        return;
+    }
+    NSString *password=[mPassword text];
+    if([password isEmpty]){
+        [Common alert:@"请输入密码"];
+        return;
+    }
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    [self.hRequest setDelegate:self];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"resetPwd" forKey:@"act"];
+    [params setObject:userName forKey:@"mobile"];
+    [params setObject:code forKey:@"code"];
+    [params setObject:[DesEncrypt encryptEBCWithText:password] forKey:@"pwd"];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest setView:self.view];
+    [self.hRequest handleWithParams:params];
+}
+
+- (void)updateTimer
+{
+    --second;
+    if(second==0){
+        [bGetCode setEnabled:YES];
+        [bGetCode setTitle:@"获取校验码" forState:UIControlStateNormal];
+        if(verificationCodeTime){
+            [verificationCodeTime invalidate];
+            verificationCodeTime=nil;
+        }
+    }else{
+        [bGetCode setEnabled:NO];
+        [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
+    }
+}
+
+- (void)goResignFirstResponder
+{
+    [mUserName resignFirstResponder];
+    [mCode resignFirstResponder];
+    [mPassword resignFirstResponder];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            second=GLOBAL_SECOND;
+            [bGetCode setEnabled:NO];
+            [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
+            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            [viewFrame1 setHidden:YES];
+            [viewFrame2 setHidden:NO];
+        }else if(reqCode==501){
+            NSString *uid=[[response resultJSON]objectForKey:@"uid"];
+            [[User getInstance]setUid:uid];
+            AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [myDelegate windowRootViewController];
+        }
+    }
 }
 
 @end

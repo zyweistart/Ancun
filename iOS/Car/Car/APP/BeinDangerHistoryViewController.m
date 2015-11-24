@@ -7,6 +7,7 @@
 //
 
 #import "BeinDangerHistoryViewController.h"
+#import "BeinDangerDetailViewController.h"
 #import "BeinDangerHistoryCell.h"
 
 @interface BeinDangerHistoryViewController ()
@@ -31,10 +32,10 @@
 
 - (void)loadHttp
 {
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getAccidentList" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
@@ -102,6 +103,16 @@
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.dataResults count]>0){
+        NSString *key=[self.dataKeys objectAtIndex:[indexPath section]];
+        NSArray *array=[self.dataResults objectForKey:key];
+        NSDictionary *data=[array objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:data] animated:YES];
     }
 }
 

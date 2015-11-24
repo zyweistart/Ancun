@@ -137,9 +137,9 @@
     }else if(requestCode==3){
         [[User getInstance]setPhone:value];
     }
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"upUserInfo" forKey:@"act"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setJsonParams:@{@"uid":[User getInstance].uid,@"name":[User getInstance].name,@"identityNum":[User getInstance].identityNum}];
     [self.hRequest setView:self.view];
     [self.hRequest setDelegate:self];

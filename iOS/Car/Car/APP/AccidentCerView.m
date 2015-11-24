@@ -76,12 +76,12 @@
         return;
     }
     if(verificationCodeTime==nil){
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
-        [self.hRequest setDelegate:self];
         NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
         [params setObject:@"sendcode" forKey:@"act"];
         [params setObject:userName forKey:@"mobile"];
         [params setObject:@"3" forKey:@"type"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
+        [self.hRequest setDelegate:self];
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
     }

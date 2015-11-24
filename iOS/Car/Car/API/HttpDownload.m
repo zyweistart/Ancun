@@ -1,4 +1,5 @@
 #import "HttpDownload.h"
+#import "MBProgressHUD.h"
 #import "NSString+Utils.h"
 
 @implementation HttpDownload{
@@ -6,6 +7,7 @@
     NSFileManager* fileManager;
     NSMutableDictionary *cacheData;
     NSOperationQueue *queue;
+    MBProgressHUD *mBMPHud;
 }
 
 - (id)initWithDelegate:(NSObject<HttpDownloadDelegate>*)delegate
@@ -22,6 +24,8 @@
         [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
         [self setDelegate:delegate];
         cacheData=[[NSMutableDictionary alloc]initWithCapacity:10];
+        
+        self.isShowProgressHUD=NO;
         
         queue = [[NSOperationQueue alloc] init];
         queue.maxConcurrentOperationCount = 8;
@@ -79,6 +83,13 @@
     NSString *fName=[NSString stringWithFormat:@"%@",[url md5]];
     NSString *path = [docDir stringByAppendingPathComponent:fName];
     if(![fileManager fileExistsAtPath:path]) {
+        if(self.isShowProgressHUD){
+            mBMPHud = [[MBProgressHUD alloc]initWithView:self.view];
+            [self.view addSubview:mBMPHud];
+            mBMPHud.dimBackground = NO;
+            mBMPHud.square = YES;
+            [mBMPHud show:YES];
+        }
         NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
             if (data) {
@@ -105,6 +116,13 @@
             }
             if([self.delegate respondsToSelector:@selector(requestFinishedByRequestCode:Path:Object:)]){
                 [self.delegate requestFinishedByRequestCode:reqCode Path:path Object:sender];
+            }
+            if(self.isShowProgressHUD){
+                if (mBMPHud) {
+                    [mBMPHud hide:YES];
+                    [mBMPHud removeFromSuperview];
+                    mBMPHud=nil;
+                }
             }
         }];
         [queue addOperation:operation];

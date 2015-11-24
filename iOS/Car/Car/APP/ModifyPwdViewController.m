@@ -84,13 +84,13 @@
         [Common alert:@"两次密码不相同"];
         return;
     }
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"uppwd" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
     [params setObject:[User getInstance].phone forKey:@"mobile"];
     [params setObject:[DesEncrypt encryptEBCWithText:oldPwd] forKey:@"oldpwd"];
     [params setObject:[DesEncrypt encryptEBCWithText:newPwd] forKey:@"newpwd"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];

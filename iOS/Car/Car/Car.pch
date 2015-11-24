@@ -19,11 +19,10 @@
     #import "XLTextField.h"
     #import "Common.h"
     #import "User.h"
-#import "NSString+Utils.h"
-#import "UIImage+Utils.h"
-
-#import "Utility.h"
+    #import "NSString+Utils.h"
+    #import "UIImage+Utils.h"
     #import "TimeUtils.h"
+    #import "Utility.h"
 #endif
 
 //自定义颜色表

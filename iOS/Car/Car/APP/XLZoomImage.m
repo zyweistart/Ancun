@@ -10,6 +10,7 @@
 
 @implementation XLZoomImage{
     NSString *imageUrl;
+    UIImageView *showImageView;
 }
 
 - (id)initWithBounds:(UIView*)view withImageURL:(NSString*)url
@@ -21,6 +22,8 @@
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goHideView)]];
         [self setBackgroundColor:[UIColor blackColor]];
         [view addSubview:self];
+        showImageView=[[UIImageView alloc]initWithFrame:self.bounds];
+        [self addSubview:showImageView];
         [self setHidden:YES];
     }
     return self;
@@ -47,7 +50,12 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-    NSLog(@"%@",[response responseString]);
+    if(reqCode==500){
+        if([response data]){
+            UIImage *image = [UIImage imageWithData:[response data]];
+            [showImageView setImage:image];
+        }
+    }
 }
 
 - (void)requestFailed:(int)reqCode
