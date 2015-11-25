@@ -40,7 +40,6 @@
 - (id)initWithData:(NSDictionary *)data
 {
     self.cData=data;
-    NSLog(@"%@",self.cData);
     return [self init];
 }
 

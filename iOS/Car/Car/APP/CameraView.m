@@ -182,6 +182,8 @@
         [self.lblTag setText:@"已通过"];
         [self.lblTag setBackgroundColor:BGCOLOR];
     }else{
+        [self.pai setHidden:NO];
+        self.imageNetAddressUrl=@"";
         [self.lblTag setText:@"重拍"];
         [self.lblTag setBackgroundColor:[UIColor orangeColor]];
     }
