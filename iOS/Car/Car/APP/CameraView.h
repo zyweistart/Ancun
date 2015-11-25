@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XLCamera.h"
 #import "HttpRequest.h"
+#import "HttpDownload.h"
 
 @class CameraView;
 @protocol CameraViewDelegate
@@ -19,9 +20,10 @@
 
 @end
 
-@interface CameraView : UIView<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,HttpViewDelegate>
+@interface CameraView : UIView<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,HttpViewDelegate,HttpDownloadDelegate>
 
 @property (strong,nonatomic)HttpRequest *hRequest;
+@property (strong,nonatomic) HttpDownload *hDownload;
 
 @property (strong,nonatomic)NSString *imageNetAddressUrl;
 @property (strong,nonatomic)UIViewController *controler;

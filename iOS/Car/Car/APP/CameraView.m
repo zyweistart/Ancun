@@ -43,6 +43,7 @@
         [self.currentImageView addSubview:self.rPai];
         
         [self resetCamera];
+        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
     }
     return self;
 }
@@ -143,6 +144,20 @@
     [self.currentImageView setImage:nil];
     [self.pai setHidden:NO];
     [self.rPai setHidden:YES];
+}
+
+- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
+{
+    if(![path isEmpty]){
+        UIImageView *imageView=(UIImageView*)sender;
+        if(imageView){
+            path=[NSString stringWithFormat:@"%@thum",path];
+            [self setCurrentImage:[UIImage imageWithContentsOfFile:path]];
+            if(self.currentImage){
+                [imageView setImage:self.currentImage];
+            }
+        }
+    }
 }
 
 @end

@@ -48,6 +48,7 @@
 		C9662D0A1BFD9936004EB914 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662D031BFD9936004EB914 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9662D0B1BFD9936004EB914 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9662D051BFD9936004EB914 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C969F0B41C03F7DB00EF9086 /* BeinDangerHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C969F0B31C03F7DB00EF9086 /* BeinDangerHeader.m */; };
+		C969F0B71C045F6300EF9086 /* CameraViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C969F0B61C045F6300EF9086 /* CameraViewCell.m */; };
 		C979AE6F1BD640760050A926 /* CallListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE6E1BD640760050A926 /* CallListViewController.m */; };
 		C979AE721BD6408A0050A926 /* PhotographListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE711BD6408A0050A926 /* PhotographListViewController.m */; };
 		C979AE751BD640940050A926 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C979AE741BD640940050A926 /* RecordListViewController.m */; };
@@ -229,6 +230,8 @@
 		C9662D051BFD9936004EB914 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
 		C969F0B21C03F7DB00EF9086 /* BeinDangerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerHeader.h; sourceTree = "<group>"; };
 		C969F0B31C03F7DB00EF9086 /* BeinDangerHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerHeader.m; sourceTree = "<group>"; };
+		C969F0B51C045F6300EF9086 /* CameraViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewCell.h; sourceTree = "<group>"; };
+		C969F0B61C045F6300EF9086 /* CameraViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewCell.m; sourceTree = "<group>"; };
 		C979AE6D1BD640760050A926 /* CallListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallListViewController.h; sourceTree = "<group>"; };
 		C979AE6E1BD640760050A926 /* CallListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallListViewController.m; sourceTree = "<group>"; };
 		C979AE701BD6408A0050A926 /* PhotographListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotographListViewController.h; sourceTree = "<group>"; };
@@ -728,6 +731,8 @@
 				C9DB60BC1BFC64F9001B2A94 /* ApplyCell.m */,
 				C969F0B21C03F7DB00EF9086 /* BeinDangerHeader.h */,
 				C969F0B31C03F7DB00EF9086 /* BeinDangerHeader.m */,
+				C969F0B51C045F6300EF9086 /* CameraViewCell.h */,
+				C969F0B61C045F6300EF9086 /* CameraViewCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1161,6 +1166,7 @@
 				C90C93251BFDBE9C002B3D84 /* NoticeDetailViewController.m in Sources */,
 				C9DB60BA1BFC5E0C001B2A94 /* BidApplyListViewController.m in Sources */,
 				C9CBCB681BD76D8B005A5CF1 /* ChineseToPinyin.m in Sources */,
+				C969F0B71C045F6300EF9086 /* CameraViewCell.m in Sources */,
 				C9BC90481BF47A2C0085DD00 /* PhotographDetailViewController.m in Sources */,
 				C9BC90451BF468570085DD00 /* Utility.m in Sources */,
 				C9CBCB6C1BD76DB3005A5CF1 /* AttributedLabel.m in Sources */,

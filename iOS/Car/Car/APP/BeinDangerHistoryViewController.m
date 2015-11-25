@@ -116,6 +116,7 @@
         NSDictionary *data=[array objectAtIndex:[indexPath row]];
         [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:data] animated:YES];
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

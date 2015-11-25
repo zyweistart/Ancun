@@ -21,11 +21,13 @@
     }else if([@"4" isEqualToString:status]){
         return @"责任认定有误";
     }else if([@"5" isEqualToString:status]){
-        return @"拍摄不清晰";
+        return @"<道路交通认定书>拍摄不清晰";
     }else if([@"6" isEqualToString:status]){
         return @"出险结束";
     }else if([@"7" isEqualToString:status]){
         return @"用户确认中";
+    }else if([@"8" isEqualToString:status]){
+        return @"补拍照片";
     }else{
         return [NSString stringWithFormat:@"未知状态:%@",status];
     }

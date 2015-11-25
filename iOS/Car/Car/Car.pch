@@ -29,7 +29,7 @@
 #define BGCOLOR RGBCOLOR(0,174,159)
 
 #pragma mark 测试环境宏定义
-#define TEST
+//#define TEST
 
 #ifdef TEST
 #warning 当前运行版本为测试版本，仅供测试使用
