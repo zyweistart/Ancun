@@ -329,7 +329,7 @@
 
 - (void)goReCarConfirm
 {
-    [self.navigationController pushViewController:[[BeinDangerOneCarConfirmViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[BeinDangerOneCarConfirmViewController alloc]initWithData:self.cData] animated:YES];
 }
 
 //线下确认

@@ -111,14 +111,6 @@
     }
 }
 
-- (void)CameraSuccess:(CameraView*)camera
-{
-}
-
-- (void)CameraDelete:(CameraView *)camera
-{
-}
-
 - (void)goSubmit
 {
     if([cameraView1.imageNetAddressUrl isEmpty]){
