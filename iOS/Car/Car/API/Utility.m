@@ -15,9 +15,9 @@
     if([@"1" isEqualToString:status]){
         return @"初审中";
     }else if([@"2" isEqualToString:status]){
-        return @"责任认定中";
+        return @"责任认定";
     }else if([@"3" isEqualToString:status]){
-        return @"保险定损中";
+        return @"保险定损";
     }else if([@"4" isEqualToString:status]){
         return @"责任认定有误";
     }else if([@"5" isEqualToString:status]){

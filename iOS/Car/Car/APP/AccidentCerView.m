@@ -82,6 +82,7 @@
         [params setObject:@"3" forKey:@"type"];
         self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
         [self.hRequest setDelegate:self];
+        [self.hRequest setView:self];
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
     }
@@ -120,12 +121,13 @@
         [Common alert:@"请输入验证码"];
         return;
     }
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
-    [self.hRequest setDelegate:self];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"confirmInfo" forKey:@"act"];
     [params setObject:userName forKey:@"mobile"];
     [params setObject:code forKey:@"code"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setView:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
 }

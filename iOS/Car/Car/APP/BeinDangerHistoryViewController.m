@@ -35,7 +35,7 @@
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"getAccidentList" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest handleWithParams:params];
@@ -114,7 +114,16 @@
         NSString *key=[self.dataKeys objectAtIndex:[indexPath section]];
         NSArray *array=[self.dataResults objectForKey:key];
         NSDictionary *data=[array objectAtIndex:[indexPath row]];
-        [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:data] animated:YES];
+        NSString *cid=[data objectForKey:@"id"];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"getAccidentInfo" forKey:@"act"];
+        [params setObject:[User getInstance].uid forKey:@"uid"];
+        [params setObject:cid forKey:@"id"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setView:self.view];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
@@ -122,30 +131,37 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-    if([response successFlag]){
-        NSDictionary *rData=[[response resultJSON] objectForKey:@"data"];
-        if(rData){
-            //获取数据列表
-            NSDictionary *tabData=rData;
-            if(tabData){
-                if([self currentPage]==0){
-                    [[self dataResults] removeAllObjects];
-                }
-                for(id data in tabData){
-                    NSString *time=[data objectForKey:@"time"];
-                    NSString *dateTime=[TimeUtils timestampConvertDate13Format:@"yyyy-MM" WithTime:time];
-                    NSMutableArray *mutable=[self.dataResults objectForKey:dateTime];
-                    if(mutable==nil){
-                        mutable=[[NSMutableArray alloc]init];
+    if(reqCode==500){
+        if([response successFlag]){
+            NSDictionary *rData=[[response resultJSON] objectForKey:@"data"];
+            if(rData){
+                //获取数据列表
+                NSDictionary *tabData=rData;
+                if(tabData){
+                    if([self currentPage]==0){
+                        [[self dataResults] removeAllObjects];
                     }
-                    [mutable addObject:data];
-                    [self.dataResults setObject:mutable forKey:dateTime];
+                    for(id data in tabData){
+                        NSString *time=[data objectForKey:@"time"];
+                        NSString *dateTime=[TimeUtils timestampConvertDate13Format:@"yyyy-MM" WithTime:time];
+                        NSMutableArray *mutable=[self.dataResults objectForKey:dateTime];
+                        if(mutable==nil){
+                            mutable=[[NSMutableArray alloc]init];
+                        }
+                        [mutable addObject:data];
+                        [self.dataResults setObject:mutable forKey:dateTime];
+                    }
+                    self.dataKeys = [[NSMutableArray alloc] initWithArray:[[self.dataResults allKeys]sortedArrayUsingSelector:@selector(compare:)]];
                 }
-                self.dataKeys = [[NSMutableArray alloc] initWithArray:[[self.dataResults allKeys]sortedArrayUsingSelector:@selector(compare:)]];
             }
         }
+        [self loadDone];
+    }else if(reqCode==501){
+        if([response successFlag]){
+            NSDictionary *data=[[response resultJSON] objectForKey:@"data"];
+            [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:data] animated:YES];
+        }
     }
-    [self loadDone];
 }
 
 @end

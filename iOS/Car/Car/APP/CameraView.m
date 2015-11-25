@@ -44,6 +44,13 @@
         
         [self resetCamera];
         self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
+        self.type=3;
+        
+        self.lblTag=[[XLLabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-CGWidth(55), self.bounds.size.height-CGHeight(25), CGWidth(50), CGHeight(25))];
+        [self.lblTag setFont:GLOBAL_FONTSIZE(13)];
+        [self.lblTag setTextColor:[UIColor whiteColor]];
+        [self.lblTag setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:self.lblTag];
     }
     return self;
 }
@@ -111,7 +118,7 @@
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"upLoadPic" forKey:@"act"];
     [params setObject:[User getInstance].uid forKey:@"uid"];
-    [params setObject:@"3" forKey:@"type"];
+    [params setObject:[NSString stringWithFormat:@"%d",self.type] forKey:@"type"];
     self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setPostParams:@{@"uploadfile":UIImagePNGRepresentation(image)}];
     [self.hRequest setDelegate:self];
@@ -137,6 +144,14 @@
     }
 }
 
+- (void)loadHttpImage:(NSString*)url
+{
+    if(url&&![url isEmpty]){
+        self.imageNetAddressUrl=url;
+        [self.hDownload AsynchronousDownloadWithUrl:url RequestCode:500 Object:self.currentImageView];
+    }
+}
+
 - (void)resetCamera
 {
     self.currentImage=nil;
@@ -157,6 +172,18 @@
                 [imageView setImage:self.currentImage];
             }
         }
+    }
+}
+
+- (void)setStatus:(BOOL)status
+{
+    if(status){
+        [self.pai setHidden:YES];
+        [self.lblTag setText:@"已通过"];
+        [self.lblTag setBackgroundColor:BGCOLOR];
+    }else{
+        [self.lblTag setText:@"重拍"];
+        [self.lblTag setBackgroundColor:[UIColor orangeColor]];
     }
 }
 

@@ -24,8 +24,19 @@
 
 - (void)open
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
+//    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    
+    // 拍照
+    if ([CameraUtility isCameraAvailable]) {
+        if([CameraUtility doesCameraSupportTakingPhotos]){
+            UIImagePickerController *imagePickerNC = [[UIImagePickerController alloc] init];
+            [imagePickerNC setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imagePickerNC setMediaTypes:@[(NSString *)kUTTypeImage]];
+            [imagePickerNC setDelegate:self];
+            [self.controller presentViewController:imagePickerNC animated:YES completion:nil];
+        }
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

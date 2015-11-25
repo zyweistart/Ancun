@@ -69,6 +69,9 @@
 		C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CB81BCE53A10096C69B /* XLButton.m */; };
 		C98A8CBC1BCE53A10096C69B /* XLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CBA1BCE53A10096C69B /* XLLabel.m */; };
 		C98A8CBF1BCE53D40096C69B /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A8CBE1BCE53D40096C69B /* UIColor+Utils.m */; };
+		C993D8331C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C993D8321C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.m */; };
+		C993D8361C0588CE0096E065 /* PaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C993D8351C0588CE0096E065 /* PaiCell.m */; };
+		C993D8391C058E7E0096E065 /* ReUploadAccidentImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C993D8381C058E7E0096E065 /* ReUploadAccidentImageViewController.m */; };
 		C99F03151BE9DD0000476FA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C99F03141BE9DD0000476FA8 /* User.m */; };
 		C99F03181BE9EA8B00476FA8 /* MyInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99F03171BE9EA8B00476FA8 /* MyInformationViewController.m */; };
 		C9A036271BE09EB100A8E387 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A036261BE09EB100A8E387 /* FileUtils.m */; };
@@ -272,6 +275,12 @@
 		C98A8CBA1BCE53A10096C69B /* XLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLLabel.m; sourceTree = "<group>"; };
 		C98A8CBD1BCE53D40096C69B /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
 		C98A8CBE1BCE53D40096C69B /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
+		C993D8311C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerOneCarConfirmViewController.h; sourceTree = "<group>"; };
+		C993D8321C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerOneCarConfirmViewController.m; sourceTree = "<group>"; };
+		C993D8341C0588CE0096E065 /* PaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaiCell.h; sourceTree = "<group>"; };
+		C993D8351C0588CE0096E065 /* PaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaiCell.m; sourceTree = "<group>"; };
+		C993D8371C058E7E0096E065 /* ReUploadAccidentImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReUploadAccidentImageViewController.h; sourceTree = "<group>"; };
+		C993D8381C058E7E0096E065 /* ReUploadAccidentImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReUploadAccidentImageViewController.m; sourceTree = "<group>"; };
 		C99F03131BE9DD0000476FA8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C99F03141BE9DD0000476FA8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C99F03161BE9EA8B00476FA8 /* MyInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInformationViewController.h; sourceTree = "<group>"; };
@@ -733,6 +742,8 @@
 				C969F0B31C03F7DB00EF9086 /* BeinDangerHeader.m */,
 				C969F0B51C045F6300EF9086 /* CameraViewCell.h */,
 				C969F0B61C045F6300EF9086 /* CameraViewCell.m */,
+				C993D8341C0588CE0096E065 /* PaiCell.h */,
+				C993D8351C0588CE0096E065 /* PaiCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -785,6 +796,10 @@
 				C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */,
 				C9D24E5E1BE73ADB007D489F /* BeinDangerHistoryViewController.h */,
 				C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */,
+				C993D8311C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.h */,
+				C993D8321C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.m */,
+				C993D8371C058E7E0096E065 /* ReUploadAccidentImageViewController.h */,
+				C993D8381C058E7E0096E065 /* ReUploadAccidentImageViewController.m */,
 			);
 			name = "出险";
 			sourceTree = "<group>";
@@ -1210,6 +1225,7 @@
 				C9F31DD21BCCA76800E598E6 /* HttpDownload.m in Sources */,
 				C9F31E271BCCB59A00E598E6 /* SQLiteOperate.m in Sources */,
 				C92F62D51BE22B13000FE15F /* BaiduMapUtils.m in Sources */,
+				C993D8391C058E7E0096E065 /* ReUploadAccidentImageViewController.m in Sources */,
 				C9662D091BFD9936004EB914 /* ATMProgressLayer.m in Sources */,
 				C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */,
 				C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */,
@@ -1226,12 +1242,14 @@
 				C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */,
 				C95B778C1BE9ADF40066623D /* ForgetPasswordViewController.m in Sources */,
 				C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */,
+				C993D8331C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.m in Sources */,
 				C98A8CB51BCE51B70096C69B /* UploadViewController.m in Sources */,
 				C9F31E521BCCD61C00E598E6 /* VideoViewController.m in Sources */,
 				C90C93221BFDBE8B002B3D84 /* NoticeListViewController.m in Sources */,
 				C9CF7AD41BCF839000DBBCDA /* FeedbackViewController.m in Sources */,
 				C9CF7ACD1BCF837200DBBCDA /* ModifyPwdViewController.m in Sources */,
 				C988B5A41BDF0B6100A5F2E4 /* VideoCell.m in Sources */,
+				C993D8361C0588CE0096E065 /* PaiCell.m in Sources */,
 				C969F0B41C03F7DB00EF9086 /* BeinDangerHeader.m in Sources */,
 				C9CF7ACA1BCF806100DBBCDA /* SettingViewController.m in Sources */,
 				C9DB60C01BFC7EEF001B2A94 /* XLZoomImage.m in Sources */,

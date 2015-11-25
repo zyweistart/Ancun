@@ -30,11 +30,15 @@
 @property (strong,nonatomic)XLLabel *lblInfo;
 @property (strong,nonatomic)UIImage *currentImage;
 @property (strong,nonatomic)UIImageView *currentImageView;
+@property (assign,nonatomic)int type;
 @property (strong,nonatomic)UIButton *pai;
 @property (strong,nonatomic)UIButton *rPai;
+@property (strong,nonatomic)XLLabel *lblTag;
 @property (assign,nonatomic)BOOL isDelete;
 @property (strong,nonatomic)NSObject<CameraViewDelegate> *delegate;
-
+- (void)loadHttpImage:(NSString*)url;
 - (void)resetCamera;
+- (void)setStatus:(BOOL)status;
+
 
 @end

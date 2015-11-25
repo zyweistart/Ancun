@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CameraView.h"
 
-@interface CameraViewCell : UITableViewCell<CameraViewDelegate>
+@interface CameraViewCell : UITableViewCell<CameraViewDelegate,HttpViewDelegate>
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithArray:(NSArray*)array Controller:(UIViewController*)controller;
+
+@property (strong,nonatomic) UIViewController *currentController;
+@property (strong,nonatomic) NSDictionary *cData;
+@property (strong,nonatomic) HttpRequest *hRequest;
 
 @end
