@@ -54,6 +54,8 @@
         if([response data]){
             UIImage *image = [UIImage imageWithData:[response data]];
             [showImageView setImage:image];
+        }else{
+            NSLog(@"请求图片失败");
         }
     }
 }
