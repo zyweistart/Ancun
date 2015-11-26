@@ -938,20 +938,20 @@
 		C9F31E0D1BCCB10800E598E6 /* 事故处理 */ = {
 			isa = PBXGroup;
 			children = (
+				C9DB28B01BF9A7C200CEEB1D /* AccidentCerView.h */,
+				C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */,
 				C9F31E531BCCD63E00E598E6 /* AccidentViewController.h */,
 				C9F31E541BCCD63E00E598E6 /* AccidentViewController.m */,
+				C94664781BE3103200172DA3 /* HandleProcessViewController.h */,
+				C94664791BE3103200172DA3 /* HandleProcessViewController.m */,
+				C946647B1BE3162D00172DA3 /* HandleViewController.h */,
+				C946647C1BE3162D00172DA3 /* HandleViewController.m */,
 				C92F62D01BE20C68000FE15F /* InputAddressViewController.h */,
 				C92F62D11BE20C68000FE15F /* InputAddressViewController.m */,
 				C92F62CD1BE20995000FE15F /* InsuranceCompanyViewController.h */,
 				C92F62CE1BE20995000FE15F /* InsuranceCompanyViewController.m */,
 				C94664751BE30AFE00172DA3 /* ReminderViewController.h */,
 				C94664761BE30AFE00172DA3 /* ReminderViewController.m */,
-				C94664781BE3103200172DA3 /* HandleProcessViewController.h */,
-				C94664791BE3103200172DA3 /* HandleProcessViewController.m */,
-				C946647B1BE3162D00172DA3 /* HandleViewController.h */,
-				C946647C1BE3162D00172DA3 /* HandleViewController.m */,
-				C9DB28B01BF9A7C200CEEB1D /* AccidentCerView.h */,
-				C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */,
 				C93C84C91C06D80200C53D6A /* WaitHandleViewController.h */,
 				C93C84CA1C06D80200C53D6A /* WaitHandleViewController.m */,
 			);

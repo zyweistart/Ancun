@@ -28,8 +28,7 @@
 
 
 
-#import "BeinDangerOneCarConfirmViewController.h"
-#import "BeinDangerTwoCarConfirmViewController.h"
+#import "WaitHandleViewController.h"
 
 @interface MainViewController ()
 
@@ -196,8 +195,8 @@
 
 - (void)goDynamic
 {
-//    [self.navigationController pushViewController:[[BeinDangerOneCarConfirmViewController alloc]initWithData:nil] animated:YES];
-    [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[WaitHandleViewController alloc]initWithData:nil] animated:YES];
+//    [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
 }
 
 - (void)goUserCenter
