@@ -35,7 +35,7 @@
 
 - (void)AsynchronousDownloadWithUrl:(NSString *)url RequestCode:(NSInteger)reqCode Object:(id)sender
 {
-    return [self AsynchronousDownloadWithUrl:url RequestCode:reqCode Object:sender DownloadType:1];
+    [self AsynchronousDownloadWithUrl:url RequestCode:reqCode Object:sender DownloadType:1];
 //    if([url isEmpty]){
 //        return;
 //    }

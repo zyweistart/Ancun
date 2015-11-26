@@ -14,6 +14,7 @@
 #import "PaiCell.h"
 #import "ReUploadAccidentImageViewController.h"
 #import "BeinDangerOneCarConfirmViewController.h"
+#import "BeinDangerTwoCarConfirmViewController.h"
 
 @interface BeinDangerDetailViewController ()
 
@@ -22,9 +23,10 @@
 @implementation BeinDangerDetailViewController{
     UIView *buttonView1;
     UIView *buttonView2;
-    XLButton *bAgreement;
+    CButtonAgreement *bAgreement;
     XLButton *bSubmitRe;
     XLButton *bSubmitRePic;
+    XLButton *bSubmitRePicReport;
     XLLabel *lblInformation;
 }
 
@@ -53,7 +55,7 @@
     UIView *footView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 85)];
     [self.tableView setTableFooterView:footView];
     
-    buttonView1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 50)];
+    buttonView1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 80)];
     [footView addSubview:buttonView1];
     
     buttonView2=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 85)];
@@ -63,15 +65,8 @@
     [lblInformation setTextAlignment:NSTextAlignmentCenter];
     [buttonView1 addSubview:lblInformation];
     
-    bAgreement=[[XLButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"我已阅读并同意《车安存车车辆线上定损协议》" Type:6];
-    [bAgreement.titleLabel setFont:GLOBAL_FONTSIZE(13)];
-    [bAgreement setTitleColor:BCOLOR(150) forState:UIControlStateNormal];
-    [bAgreement setImage:[UIImage imageNamed:@"单勾未选"] forState:UIControlStateNormal];
-    [bAgreement setImage:[UIImage imageNamed:@"单勾选中"] forState:UIControlStateSelected];
-    [bAgreement setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
-    [bAgreement addTarget:self action:@selector(goAgreement) forControlEvents:UIControlEventTouchUpInside];
+    bAgreement=[[CButtonAgreement alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"我已阅读并同意《车安存车车辆线上定损协议》"];
     [buttonView2 addSubview:bAgreement];
-    [bAgreement setSelected:YES];
     
     XLButton *bSubmit=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,145,40) Name:@"线下定损" Type:2];
     [bSubmit addTarget:self action:@selector(goOfflineConfirm) forControlEvents:UIControlEventTouchUpInside];
@@ -81,11 +76,15 @@
     [bSubmit addTarget:self action:@selector(goOnlineConfirm) forControlEvents:UIControlEventTouchUpInside];
     [buttonView2 addSubview:bSubmit];
     
-    bSubmitRePic=[[XLButton alloc]initWithFrame:CGRectMake1(10,5,300,40) Name:@"重新拍摄" Type:3];
+    bSubmitRePic=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新拍摄" Type:3];
     [bSubmitRePic addTarget:self action:@selector(goRePai) forControlEvents:UIControlEventTouchUpInside];
     [buttonView1 addSubview:bSubmitRePic];
     
-    bSubmitRe=[[XLButton alloc]initWithFrame:CGRectMake1(10,5,300,40) Name:@"重新认定" Type:3];
+    bSubmitRePicReport=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"拍摄交通认定书" Type:3];
+    [bSubmitRePicReport addTarget:self action:@selector(goRePaiPicReport) forControlEvents:UIControlEventTouchUpInside];
+    [buttonView1 addSubview:bSubmitRePicReport];
+    
+    bSubmitRe=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新认定" Type:3];
     [bSubmitRe addTarget:self action:@selector(goReCarConfirm) forControlEvents:UIControlEventTouchUpInside];
     [buttonView1 addSubview:bSubmitRe];
     
@@ -93,37 +92,7 @@
     //
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"历史出险" style:UIBarButtonItemStylePlain target:self action:@selector(goHistory)];
     
-    [buttonView1 setHidden:YES];
-    [bSubmitRe setHidden:YES];
-    [bSubmitRePic setHidden:YES];
-    [lblInformation setHidden:YES];
-    [buttonView2 setHidden:YES];
-    NSString *status=[self.cData objectForKey:@"status"];
-    if([@"1" isEqualToString:status]){
-        [buttonView1 setHidden:NO];
-        [lblInformation setHidden:NO];
-        NSArray *picData=[self.cData objectForKey:@"picData"];
-        if([picData count]>0){
-            [buttonView1 setHidden:NO];
-            [bSubmitRePic setHidden:NO];
-        }else{
-            [lblInformation setText:@"初审中,请等待处理结果..."];
-        }
-    }else if([@"2" isEqualToString:status]){
-        [buttonView1 setHidden:NO];
-        [bSubmitRe setHidden:NO];
-    }else if([@"3" isEqualToString:status]){
-        [buttonView1 setHidden:NO];
-        [lblInformation setHidden:NO];
-        [lblInformation setText:@"保险定损中,请等待处理结果..."];
-    }else if([@"6" isEqualToString:status]){
-        [buttonView1 setHidden:NO];
-        [lblInformation setHidden:NO];
-        [lblInformation setText:@"请将车辆开到指定修理点，完成理赔、修理"];
-    }else if([@"7" isEqualToString:status]){
-        [buttonView2 setHidden:NO];
-    }
-    [self.tableView reloadData];
+    [self loadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -148,6 +117,10 @@
             [lblTitle setText:@"责任认定未通过原因"];
         }else if([@"3" isEqualToString:status]){
             [lblTitle setText:@"保险定损中"];
+        }else if([@"4" isEqualToString:status]){
+            [lblTitle setText:@"责任认定未通过原因"];
+        }else if([@"5" isEqualToString:status]){
+            [lblTitle setText:@"责任认定未通过原因"];
         }else if([@"6" isEqualToString:status]){
             NSString *remark=[self.cData objectForKey:@"remark"];
             if([@"1" isEqualToString:remark]){
@@ -317,19 +290,27 @@
     [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
 }
 
-- (void)goAgreement
-{
-    [bAgreement setSelected:!bAgreement.isSelected];
-}
-
 - (void)goRePai
 {
     [self.navigationController pushViewController:[[ReUploadAccidentImageViewController alloc]initWithData:self.cData] animated:YES];
 }
 
+//拍摄道路认证书
+- (void)goRePaiPicReport
+{
+    [self.navigationController pushViewController:[[BeinDangerTwoCarConfirmViewController alloc]initWithData:self.cData] animated:YES];
+}
+
 - (void)goReCarConfirm
 {
-    [self.navigationController pushViewController:[[BeinDangerOneCarConfirmViewController alloc]initWithData:self.cData] animated:YES];
+    NSString *type=[self.cData objectForKey:@"type"];
+    if([@"1" isEqualToString:type]){
+        //单车
+        [self.navigationController pushViewController:[[BeinDangerOneCarConfirmViewController alloc]initWithData:self.cData] animated:YES];
+    }else if([@"2" isEqualToString:type]){
+        //多车
+        [self.navigationController pushViewController:[[BeinDangerTwoCarConfirmViewController alloc]initWithData:self.cData] animated:YES];
+    }
 }
 
 //线下确认
@@ -347,7 +328,7 @@
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
     }else{
-        [Common alert:@"请勾选协议"];
+        [Common alert:@"请勾选定损协议"];
     }
 }
 
@@ -367,13 +348,85 @@
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
     }else{
-        [Common alert:@"请勾选协议"];
+        [Common alert:@"请勾选定损协议"];
     }
+}
+- (void)loadData
+{
+    [buttonView1 setHidden:YES];
+    [bSubmitRe setHidden:YES];
+    [bSubmitRePic setHidden:YES];
+    [bSubmitRePicReport setHidden:YES];
+    [lblInformation setHidden:YES];
+    [buttonView2 setHidden:YES];
+    NSString *status=[self.cData objectForKey:@"status"];
+    if([@"1" isEqualToString:status]){
+        [buttonView1 setHidden:NO];
+        [lblInformation setHidden:NO];
+        NSArray *picData=[self.cData objectForKey:@"picData"];
+        if([picData count]>0){
+            [buttonView1 setHidden:NO];
+            [bSubmitRePic setHidden:NO];
+        }else{
+            [lblInformation setText:@"初审中,请等待处理结果..."];
+        }
+    }else if([@"2" isEqualToString:status]){
+        [buttonView1 setHidden:NO];
+        NSString *type=[self.cData objectForKey:@"type"];
+        if([@"2" isEqualToString:type]){
+            //多车事故
+            NSString *reportPic=[self.cData objectForKey:@"reportPic"];
+            if([reportPic isEmpty]){
+                [lblInformation setHidden:NO];
+                [lblInformation setText:@"请拍摄道路交通认定书..."];
+                [bSubmitRePicReport setHidden:NO];
+            }else{
+                [lblInformation setHidden:NO];
+                [lblInformation setText:@"责任认定中，请等待处理结果..."];
+            }
+        }else{
+            [bSubmitRe setHidden:NO];
+        }
+    }else if([@"3" isEqualToString:status]){
+        [buttonView1 setHidden:NO];
+        [lblInformation setHidden:NO];
+        [lblInformation setText:@"保险定损中,请等待处理结果..."];
+    }else if([@"4" isEqualToString:status]){
+        [buttonView1 setHidden:NO];
+        [bSubmitRe setHidden:NO];
+    }else if([@"5" isEqualToString:status]){
+        NSString *type=[self.cData objectForKey:@"type"];
+        if([@"2" isEqualToString:type]){
+            //多车事故
+            [buttonView1 setHidden:NO];
+            [bSubmitRePicReport setHidden:NO];
+        }
+    }else if([@"6" isEqualToString:status]){
+        [buttonView1 setHidden:NO];
+        [lblInformation setHidden:NO];
+        [lblInformation setText:@"请将车辆开到指定修理点，完成理赔、修理"];
+    }else if([@"7" isEqualToString:status]){
+        [buttonView2 setHidden:NO];
+    }
+    [self.tableView reloadData];
+}
+
+- (void)onControllerResult:(NSInteger)resultCode requestCode:(NSInteger)requestCode data:(NSDictionary*)result
+{
+    NSString *cid=[self.cData objectForKey:@"id"];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getAccidentInfo" forKey:@"act"];
+    [params setObject:[User getInstance].uid forKey:@"uid"];
+    [params setObject:cid forKey:@"id"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:502];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setView:self.navigationController.view];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
 {
-    NSLog(@"%@",[response responseString]);
     if([response successFlag]){
         if(reqCode==500){
             //线下确认
@@ -381,6 +434,9 @@
         }else if(reqCode==501){
             //线上确认
             [self.navigationController popViewControllerAnimated:YES];
+        }else if(reqCode==502){
+            self.cData=[[response resultJSON] objectForKey:@"data"];
+            [self loadData];
         }
     }
 }

@@ -6,15 +6,11 @@
 //  Copyright © 2015 Ancun. All rights reserved.
 //
 
-#define GLOBAL_GETCODE_STRING @"%ds后重发"
-#define GLOBAL_SECOND 60
-
 #import "AccidentCerView.h"
+#import "CButtonGetCode.h"
 
 @implementation AccidentCerView{
-    int second;
-    NSTimer *verificationCodeTime;
-    XLButton *bGetCode;
+    CButtonGetCode *bGetCode;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -48,7 +44,7 @@
         [self.tfCode setStyle:2];
         [self.tfCode setKeyboardType:UIKeyboardTypeNamePhonePad];
         [viewFrameChild addSubview:self.tfCode];
-        bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(160,110,130,40) Name:@"获取验证码" Type:3];
+        bGetCode=[[CButtonGetCode alloc]initWithFrame:CGRectMake1(160,110,130,40) View:self];
         [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
         [viewFrameChild addSubview:bGetCode];
         self.lblCompany=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 160, 280, 40) Text:@"平安保险"];
@@ -75,33 +71,7 @@
         [Common alert:@"请输入手机号"];
         return;
     }
-    if(verificationCodeTime==nil){
-        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-        [params setObject:@"sendcode" forKey:@"act"];
-        [params setObject:userName forKey:@"mobile"];
-        [params setObject:@"3" forKey:@"type"];
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
-        [self.hRequest setDelegate:self];
-        [self.hRequest setView:self];
-        [self.hRequest setIsShowFailedMessage:YES];
-        [self.hRequest handleWithParams:params];
-    }
-}
-
-- (void)updateTimer
-{
-    --second;
-    if(second==0){
-        [bGetCode setEnabled:YES];
-        [bGetCode setTitle:@"获取校验码" forState:UIControlStateNormal];
-        if(verificationCodeTime){
-            [verificationCodeTime invalidate];
-            verificationCodeTime=nil;
-        }
-    }else{
-        [bGetCode setEnabled:NO];
-        [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
-    }
+    [bGetCode goGetCode:userName Type:@"3"];
 }
 
 - (void)goOK:(id)sender
@@ -142,12 +112,7 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        if(reqCode==500){
-            second=GLOBAL_SECOND;
-            [bGetCode setEnabled:NO];
-            [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
-            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
-        }else{
+        if(reqCode==501){
             if([self.delegate respondsToSelector:@selector(accidentCerViewOK:)]){
                 [self.delegate accidentCerViewOK:self.bOk];
             }

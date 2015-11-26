@@ -66,24 +66,37 @@
     cameraView4=[[CameraView alloc]initWithFrame:CGRectMake1(160, 132, 160, 132)];
     [cameraView4.lblInfo setText:@"当事人1驾驶证、行驶证"];
     [cameraView4.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
-    [cameraView3 setControler:self];
+    [cameraView4 setControler:self];
     [scrollView addSubview:cameraView4];
     //图5
     cameraView5=[[CameraView alloc]initWithFrame:CGRectMake1(0, 264, 160, 132)];
     [cameraView5.lblInfo setText:@"当事人2驾驶证、行驶证"];
     [cameraView5.currentImageView setImage:[UIImage imageNamed:@"证件小"]];
-    [cameraView3 setControler:self];
+    [cameraView5 setControler:self];
     [scrollView addSubview:cameraView5];
-    [cameraView1 setStatus:YES];
-    [cameraView2 setStatus:YES];
-    [cameraView3 setStatus:YES];
-    [cameraView4 setStatus:YES];
-    [cameraView5 setStatus:YES];
+    
     NSString *accidentPic1=[self.cData objectForKey:@"accidentPic1"];
     NSString *accidentPic2=[self.cData objectForKey:@"accidentPic2"];
     NSString *accidentPic3=[self.cData objectForKey:@"accidentPic3"];
     NSString *accidentPic4=[self.cData objectForKey:@"accidentPic4"];
     NSString *accidentPic5=[self.cData objectForKey:@"accidentPic5"];
+    [cameraView1 loadHttpImage:accidentPic1];
+    [cameraView2 loadHttpImage:accidentPic2];
+    [cameraView3 loadHttpImage:accidentPic3];
+    [cameraView4 loadHttpImage:accidentPic4];
+    NSString *type=[self.cData objectForKey:@"type"];
+    if([@"1" isEqualToString:type]){
+        //单车事故
+        [cameraView5 setHidden:YES];
+    }else{
+        [cameraView5 loadHttpImage:accidentPic5];
+    }
+    
+    [cameraView1 setStatus:YES];
+    [cameraView2 setStatus:YES];
+    [cameraView3 setStatus:YES];
+    [cameraView4 setStatus:YES];
+    [cameraView5 setStatus:YES];
     NSArray *picData=[self.cData objectForKey:@"picData"];
     for(NSDictionary *da in picData){
         NSString *url=[da objectForKey:@"pic"];
@@ -98,16 +111,6 @@
         }else if([accidentPic5 isEqualToString:url]){
             [cameraView5 setStatus:NO];
         }
-    }
-    [cameraView1 loadHttpImage:accidentPic1];
-    [cameraView2 loadHttpImage:accidentPic2];
-    [cameraView3 loadHttpImage:accidentPic3];
-    [cameraView4 loadHttpImage:accidentPic4];
-    NSString *type=[self.cData objectForKey:@"type"];
-    if([@"1" isEqualToString:type]){
-        [cameraView5 setHidden:YES];
-    }else{
-        [cameraView5 loadHttpImage:accidentPic5];
     }
 }
 

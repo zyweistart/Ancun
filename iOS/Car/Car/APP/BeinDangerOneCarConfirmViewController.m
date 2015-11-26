@@ -8,20 +8,17 @@
 
 #import "BeinDangerOneCarConfirmViewController.h"
 #import "DesEncrypt.h"
-#define GLOBAL_GETCODE_STRING @"%ds后重发"
-#define GLOBAL_SECOND 60
+#import "CButtonGetCode.h"
 
 @interface BeinDangerOneCarConfirmViewController ()
 
 @end
 
 @implementation BeinDangerOneCarConfirmViewController{
-    int second;
-    NSTimer *verificationCodeTime;
-    XLButton *bGetCode;
-    XLButton *bAgreement;
-    XLTextField *mUserName;
+    CButtonGetCode *bGetCode;
+    CButtonAgreement *bAgreement;
     XLTextField *mCode;
+    XLTextField *mUserName;
 }
 
 - (id)initWithData:(NSDictionary *)data
@@ -37,33 +34,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 20, 300, 40)];
+    XLLabel *lblHead=[[XLLabel alloc]initWithFrame:CGRectMake1(20, 0, 280, 40) Text:@"当事人"];
+    [lblHead setTextColor:BGCOLOR];
+    [lblHead setFont:GLOBAL_FONTSIZE(15)];
+    [self.view addSubview:lblHead];
+    
+    mUserName=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 40, 150, 40)];
     [mUserName setPlaceholder:@"请输入手机号"];
     [mUserName setKeyboardType:UIKeyboardTypePhonePad];
     [mUserName setReturnKeyType:UIReturnKeyNext];
     [mUserName setStyle:2];
     [self.view addSubview:mUserName];
     
-    mCode=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 70, 150, 40)];
+    bGetCode=[[CButtonGetCode alloc]initWithFrame:CGRectMake1(170, 40, 140, 40) View:self.view];
+    [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:bGetCode];
+    
+    mCode=[[XLTextField alloc]initWithFrame:CGRectMake1(10, 90, 300, 40)];
     [mCode setPlaceholder:@"请输入验证码"];
     [mCode setKeyboardType:UIKeyboardTypeNumberPad];
     [mCode setReturnKeyType:UIReturnKeyNext];
     [mCode setStyle:2];
     [self.view addSubview:mCode];
     
-    bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(170, 70, 140, 40) Name:@"获取验证码" Type:3];
-    [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:bGetCode];
-    
-    bAgreement=[[XLButton alloc]initWithFrame:CGRectMake1(10, 120, 280, 40) Name:@"我已阅读并同意《车安存车辆线上定损协议》" Type:6];
-    [bAgreement.titleLabel setFont:GLOBAL_FONTSIZE(13)];
-    [bAgreement setTitleColor:BCOLOR(150) forState:UIControlStateNormal];
-    [bAgreement setImage:[UIImage imageNamed:@"单勾未选"] forState:UIControlStateNormal];
-    [bAgreement setImage:[UIImage imageNamed:@"单勾选中"] forState:UIControlStateSelected];
-    [bAgreement setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
-    [bAgreement addTarget:self action:@selector(goAgreement) forControlEvents:UIControlEventTouchUpInside];
+    bAgreement=[[CButtonAgreement alloc]initWithFrame:CGRectMake1(10, 130, 280, 40) Name:@"我已阅读并同意《车安存车辆线上定损协议》"];
     [self.view addSubview:bAgreement];
-    [bAgreement setSelected:YES];
     
     XLButton *bRegister=[[XLButton alloc]initWithFrame:CGRectMake1(10, 170, 300, 40) Name:@"提交" Type:3];
     [bRegister addTarget:self action:@selector(goRegister) forControlEvents:UIControlEventTouchUpInside];
@@ -79,38 +74,7 @@
         [Common alert:@"请输入手机号"];
         return;
     }
-    if(verificationCodeTime==nil){
-        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-        [params setObject:@"sendcode" forKey:@"act"];
-        [params setObject:userName forKey:@"mobile"];
-        [params setObject:@"3" forKey:@"type"];
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
-        [self.hRequest setDelegate:self];
-        [self.hRequest setView:self.view];
-        [self.hRequest setIsShowFailedMessage:YES];
-        [self.hRequest handleWithParams:params];
-    }
-}
-
-- (void)updateTimer
-{
-    --second;
-    if(second==0){
-        [bGetCode setEnabled:YES];
-        [bGetCode setTitle:@"获取校验码" forState:UIControlStateNormal];
-        if(verificationCodeTime){
-            [verificationCodeTime invalidate];
-            verificationCodeTime=nil;
-        }
-    }else{
-        [bGetCode setEnabled:NO];
-        [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
-    }
-}
-
-- (void)goAgreement
-{
-    [bAgreement setSelected:!bAgreement.selected];
+    [bGetCode goGetCode:userName Type:@"3"];
 }
 
 - (void)goRegister
@@ -152,12 +116,7 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        if(reqCode==500){
-            second=GLOBAL_SECOND;
-            [bGetCode setEnabled:NO];
-            [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
-            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
-        }else if(reqCode==501){
+        if(reqCode==501){
             [self.navigationController popViewControllerAnimated:YES];
         }
     }

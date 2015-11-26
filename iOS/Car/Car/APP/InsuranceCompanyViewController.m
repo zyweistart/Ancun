@@ -109,7 +109,7 @@
         [mReminderViewController setMapData:self.mapData];
         [mReminderViewController setInsuranceData:data];
         if(currentType==2){
-            [mReminderViewController setInsuranceOData:@{}];
+            [mReminderViewController setInsuranceOData:data];
         }
         [self.navigationController pushViewController:mReminderViewController animated:YES];
     }

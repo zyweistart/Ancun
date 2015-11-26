@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
 
-@interface BeinDangerDetailViewController : BaseTableViewController
+@interface BeinDangerDetailViewController : BaseTableViewController<ResultDelegate>
 
 @end

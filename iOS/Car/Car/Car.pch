@@ -17,12 +17,14 @@
     #import "XLLabel.h"
     #import "XLButton.h"
     #import "XLTextField.h"
+    #import "CButtonAgreement.h"
     #import "Common.h"
     #import "User.h"
     #import "NSString+Utils.h"
     #import "UIImage+Utils.h"
     #import "TimeUtils.h"
     #import "Utility.h"
+    #import "CameraView.h"
 #endif
 
 //自定义颜色表

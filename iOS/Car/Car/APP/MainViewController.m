@@ -26,6 +26,11 @@
 #import "NoticeListViewController.h"
 #import "BeinDangerHistoryViewController.h"
 
+
+
+#import "BeinDangerOneCarConfirmViewController.h"
+#import "BeinDangerTwoCarConfirmViewController.h"
+
 @interface MainViewController ()
 
 @end
@@ -191,7 +196,7 @@
 
 - (void)goDynamic
 {
-//    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]init] animated:YES];
+//    [self.navigationController pushViewController:[[BeinDangerOneCarConfirmViewController alloc]initWithData:nil] animated:YES];
     [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
 }
 

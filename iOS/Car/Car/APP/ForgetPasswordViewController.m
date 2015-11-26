@@ -8,6 +8,7 @@
 
 #import "ForgetPasswordViewController.h"
 #import "DesEncrypt.h"
+#import "CButtonGetCode.h"
 #define GLOBAL_GETCODE_STRING @"%ds后重发"
 #define GLOBAL_SECOND 60
 
@@ -21,9 +22,7 @@
     XLTextField *mUserName;
     XLTextField *mCode;
     XLTextField *mPassword;
-    UIButton *bGetCode;
-    int second;
-    NSTimer *verificationCodeTime;
+    CButtonGetCode *bGetCode;
 }
 
 - (id)init
@@ -72,7 +71,7 @@
     [mPassword setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [viewFrame2 addSubview:mPassword];
     
-    bGetCode=[[XLButton alloc]initWithFrame:CGRectMake1(20, 110, 280, 40) Name:@"获取验证码" Type:3];
+    bGetCode=[[CButtonGetCode alloc]initWithFrame:CGRectMake1(20, 110, 280, 40) View:self.view];
     [bGetCode addTarget:self action:@selector(goGetCode) forControlEvents:UIControlEventTouchUpInside];
     [viewFrame2 addSubview:bGetCode];
     
@@ -91,17 +90,7 @@
         [Common alert:@"请输入手机号"];
         return;
     }
-    if(verificationCodeTime==nil){
-        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-        [params setObject:@"sendcode" forKey:@"act"];
-        [params setObject:userName forKey:@"mobile"];
-        [params setObject:@"2" forKey:@"type"];
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
-        [self.hRequest setDelegate:self];
-        [self.hRequest setView:self.view];
-        [self.hRequest setIsShowFailedMessage:YES];
-        [self.hRequest handleWithParams:params];
-    }
+    [bGetCode goGetCode:userName Type:@"2"];
 }
 
 - (void)goDone
@@ -121,7 +110,7 @@
         [Common alert:@"请输入密码"];
         return;
     }
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:500];
     [self.hRequest setDelegate:self];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"resetPwd" forKey:@"act"];
@@ -131,22 +120,6 @@
     [self.hRequest setIsShowFailedMessage:YES];
     [self.hRequest setView:self.view];
     [self.hRequest handleWithParams:params];
-}
-
-- (void)updateTimer
-{
-    --second;
-    if(second==0){
-        [bGetCode setEnabled:YES];
-        [bGetCode setTitle:@"获取校验码" forState:UIControlStateNormal];
-        if(verificationCodeTime){
-            [verificationCodeTime invalidate];
-            verificationCodeTime=nil;
-        }
-    }else{
-        [bGetCode setEnabled:NO];
-        [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
-    }
 }
 
 - (void)goResignFirstResponder
@@ -160,13 +133,6 @@
 {
     if([response successFlag]){
         if(reqCode==500){
-            second=GLOBAL_SECOND;
-            [bGetCode setEnabled:NO];
-            [bGetCode setTitle:[NSString stringWithFormat:GLOBAL_GETCODE_STRING,second] forState:UIControlStateNormal];
-            verificationCodeTime = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
-            [viewFrame1 setHidden:YES];
-            [viewFrame2 setHidden:NO];
-        }else if(reqCode==501){
             NSString *uid=[[response resultJSON]objectForKey:@"uid"];
             [[User getInstance]setUid:uid];
             AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];

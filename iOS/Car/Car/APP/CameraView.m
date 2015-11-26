@@ -80,6 +80,8 @@
 {
     //照片
     self.currentImage=[info objectForKey:UIImagePickerControllerOriginalImage];
+    //生成缩略图
+    self.currentImage=[self.currentImage cutCenterImageSize:CGSizeMake1(300, 240)];
     if(self.currentImage){
         [self uploadFile:self.currentImage];
     }

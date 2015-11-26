@@ -33,6 +33,10 @@
 		C92F62CF1BE20995000FE15F /* InsuranceCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62CE1BE20995000FE15F /* InsuranceCompanyViewController.m */; };
 		C92F62D21BE20C68000FE15F /* InputAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62D11BE20C68000FE15F /* InputAddressViewController.m */; };
 		C92F62D51BE22B13000FE15F /* BaiduMapUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C92F62D41BE22B13000FE15F /* BaiduMapUtils.m */; };
+		C93C84C81C06953100C53D6A /* BeinDangerTwoCarConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C84C71C06953100C53D6A /* BeinDangerTwoCarConfirmViewController.m */; };
+		C93C84CB1C06D80200C53D6A /* WaitHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C84CA1C06D80200C53D6A /* WaitHandleViewController.m */; };
+		C93C84CE1C06E19400C53D6A /* CButtonAgreement.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C84CD1C06E19400C53D6A /* CButtonAgreement.m */; };
+		C93C84D11C06E57300C53D6A /* CButtonGetCode.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C84D01C06E57300C53D6A /* CButtonGetCode.m */; };
 		C94664741BE3015800172DA3 /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94664731BE3015800172DA3 /* ProcessViewController.m */; };
 		C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94664761BE30AFE00172DA3 /* ReminderViewController.m */; };
 		C946647A1BE3103200172DA3 /* HandleProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94664791BE3103200172DA3 /* HandleProcessViewController.m */; };
@@ -202,6 +206,14 @@
 		C92F62D11BE20C68000FE15F /* InputAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAddressViewController.m; sourceTree = "<group>"; };
 		C92F62D31BE22B13000FE15F /* BaiduMapUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapUtils.h; sourceTree = "<group>"; };
 		C92F62D41BE22B13000FE15F /* BaiduMapUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapUtils.m; sourceTree = "<group>"; };
+		C93C84C61C06953100C53D6A /* BeinDangerTwoCarConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerTwoCarConfirmViewController.h; sourceTree = "<group>"; };
+		C93C84C71C06953100C53D6A /* BeinDangerTwoCarConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerTwoCarConfirmViewController.m; sourceTree = "<group>"; };
+		C93C84C91C06D80200C53D6A /* WaitHandleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitHandleViewController.h; sourceTree = "<group>"; };
+		C93C84CA1C06D80200C53D6A /* WaitHandleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitHandleViewController.m; sourceTree = "<group>"; };
+		C93C84CC1C06E19400C53D6A /* CButtonAgreement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CButtonAgreement.h; sourceTree = "<group>"; };
+		C93C84CD1C06E19400C53D6A /* CButtonAgreement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButtonAgreement.m; sourceTree = "<group>"; };
+		C93C84CF1C06E57300C53D6A /* CButtonGetCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CButtonGetCode.h; sourceTree = "<group>"; };
+		C93C84D01C06E57300C53D6A /* CButtonGetCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButtonGetCode.m; sourceTree = "<group>"; };
 		C94664721BE3015800172DA3 /* ProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
 		C94664731BE3015800172DA3 /* ProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
 		C94664751BE30AFE00172DA3 /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
@@ -566,6 +578,10 @@
 				C9DB60B01BFC2C50001B2A94 /* XLButtonPICTEXT.m */,
 				C9DB60BE1BFC7EEF001B2A94 /* XLZoomImage.h */,
 				C9DB60BF1BFC7EEF001B2A94 /* XLZoomImage.m */,
+				C93C84CC1C06E19400C53D6A /* CButtonAgreement.h */,
+				C93C84CD1C06E19400C53D6A /* CButtonAgreement.m */,
+				C93C84CF1C06E57300C53D6A /* CButtonGetCode.h */,
+				C93C84D01C06E57300C53D6A /* CButtonGetCode.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -798,6 +814,8 @@
 				C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */,
 				C993D8311C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.h */,
 				C993D8321C057B0F0096E065 /* BeinDangerOneCarConfirmViewController.m */,
+				C93C84C61C06953100C53D6A /* BeinDangerTwoCarConfirmViewController.h */,
+				C93C84C71C06953100C53D6A /* BeinDangerTwoCarConfirmViewController.m */,
 				C993D8371C058E7E0096E065 /* ReUploadAccidentImageViewController.h */,
 				C993D8381C058E7E0096E065 /* ReUploadAccidentImageViewController.m */,
 			);
@@ -934,6 +952,8 @@
 				C946647C1BE3162D00172DA3 /* HandleViewController.m */,
 				C9DB28B01BF9A7C200CEEB1D /* AccidentCerView.h */,
 				C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */,
+				C93C84C91C06D80200C53D6A /* WaitHandleViewController.h */,
+				C93C84CA1C06D80200C53D6A /* WaitHandleViewController.m */,
 			);
 			name = "事故处理";
 			sourceTree = "<group>";
@@ -1175,6 +1195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F31E441BCCD56300E598E6 /* CallViewController.m in Sources */,
+				C93C84CB1C06D80200C53D6A /* WaitHandleViewController.m in Sources */,
 				C9F31E551BCCD63E00E598E6 /* AccidentViewController.m in Sources */,
 				C9662D071BFD9936004EB914 /* ATMHudQueueItem.m in Sources */,
 				C9F31DEF1BCCA9B400E598E6 /* EGORefreshTableHeaderView.m in Sources */,
@@ -1212,6 +1233,7 @@
 				C9A036271BE09EB100A8E387 /* FileUtils.m in Sources */,
 				C9F31E4F1BCCD5EF00E598E6 /* PhotographViewController.m in Sources */,
 				C9F31E191BCCB3E300E598E6 /* NSString+Utils.m in Sources */,
+				C93C84C81C06953100C53D6A /* BeinDangerTwoCarConfirmViewController.m in Sources */,
 				C98A8CBB1BCE53A10096C69B /* XLButton.m in Sources */,
 				C98A8CA71BCDEAA50096C69B /* PhotographItem.m in Sources */,
 				C9662D081BFD9936004EB914 /* ATMHudView.m in Sources */,
@@ -1226,9 +1248,11 @@
 				C9F31E271BCCB59A00E598E6 /* SQLiteOperate.m in Sources */,
 				C92F62D51BE22B13000FE15F /* BaiduMapUtils.m in Sources */,
 				C993D8391C058E7E0096E065 /* ReUploadAccidentImageViewController.m in Sources */,
+				C93C84CE1C06E19400C53D6A /* CButtonAgreement.m in Sources */,
 				C9662D091BFD9936004EB914 /* ATMProgressLayer.m in Sources */,
 				C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */,
 				C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */,
+				C93C84D11C06E57300C53D6A /* CButtonGetCode.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */,
 				C9F31E241BCCB4CC00E598E6 /* UserCenterViewController.m in Sources */,
 				C9C937871BCC9B6A0055B52D /* main.m in Sources */,
