@@ -91,11 +91,11 @@
             [Common alert:@"请输入验证码"];
             return;
         }
+        NSString *cid=[self.cData objectForKey:@"id"];
         NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
         [params setObject:@"oneCarConfirm" forKey:@"act"];
         [params setObject:userName forKey:@"mobile"];
         [params setObject:code forKey:@"code"];
-        NSString *cid=[self.cData objectForKey:@"id"];
         [params setObject:cid forKey:@"id"];
         self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
         [self.hRequest setDelegate:self];
@@ -103,7 +103,7 @@
         [self.hRequest setIsShowFailedMessage:YES];
         [self.hRequest handleWithParams:params];
     }else{
-        [Common alert:@"请先阅读协议"];
+        [Common alert:@"请勾选定损协议"];
     }
 }
 

@@ -38,6 +38,7 @@
         [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.5];
     }
 }
+
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
@@ -91,10 +92,10 @@
         if(!cell) {
             cell = [[BeinDangerHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-//        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
         NSString *key=[self.dataKeys objectAtIndex:[indexPath section]];
         NSArray *array=[self.dataResults objectForKey:key];
         NSDictionary *data=[array objectAtIndex:[indexPath row]];
+        
         NSString *time=[data objectForKey:@"time"];
         NSString *dateTime=[TimeUtils timestampConvertDate13Format:@"MM-dd" WithTime:time];
         [cell.lblTime setText:dateTime];
@@ -122,18 +123,6 @@
         NSString *key=[self.dataKeys objectAtIndex:[indexPath section]];
         NSArray *array=[self.dataResults objectForKey:key];
         NSDictionary *data=[array objectAtIndex:[indexPath row]];
-        
-//        NSString *cid=[data objectForKey:@"id"];
-//        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//        [params setObject:@"getAccidentInfo" forKey:@"act"];
-//        [params setObject:[User getInstance].uid forKey:@"uid"];
-//        [params setObject:cid forKey:@"id"];
-//        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
-//        [self.hRequest setDelegate:self];
-//        [self.hRequest setView:self.view];
-//        [self.hRequest setIsShowFailedMessage:YES];
-//        [self.hRequest handleWithParams:params];
-        
         [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:data] animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -167,11 +156,6 @@
             }
         }
         [self loadDone];
-    }else if(reqCode==501){
-        if([response successFlag]){
-            NSDictionary *data=[[response resultJSON] objectForKey:@"data"];
-            [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:data] animated:YES];
-        }
     }
 }
 

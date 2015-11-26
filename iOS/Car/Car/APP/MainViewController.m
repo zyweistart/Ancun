@@ -18,7 +18,6 @@
 #import "MarqueeLabel.h"
 #import "NoticeListViewController.h"
 #import "BeinDangerDetailViewController.h"
-#import "BeinDangerHistoryViewController.h"
 
 @interface MainViewController ()
 
@@ -185,8 +184,7 @@
 
 - (void)goDynamic
 {
-//    [self.navigationController pushViewController:[[WaitHandleViewController alloc]initWithData:nil] animated:YES];
-    [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
+    [self loadBeinDangerHistoryList];
 }
 
 - (void)goUserCenter
@@ -248,6 +246,18 @@
     }
 }
 
+- (void)loadBeinDangerHistoryList
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getAccidentList" forKey:@"act"];
+    [params setObject:[User getInstance].uid forKey:@"uid"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:502];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setView:self.view];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
+}
+
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
@@ -270,6 +280,15 @@
                 [lblNotice setHidden:NO];
                 break;
             }
+        }else{
+            NSArray *rData=[[response resultJSON] objectForKey:@"data"];
+            if(rData){
+                if([rData count]>0){
+                    [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:[rData objectAtIndex:0] isHistory:YES] animated:YES];
+                    return;
+                }
+            }
+            [Common alert:@"暂无出险记录"];
         }
     }
 }

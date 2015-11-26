@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
 
+@protocol BeinDangerDetailDelegate
+
+@optional
+- (void)handleBeinDangerDetailCallBack;
+
+@end
+
 @interface BeinDangerDetailViewController : BaseTableViewController
 
 - (void)loadHttpData;
+- (id)initWithData:(NSDictionary *)data isHistory:(BOOL)isHistory;
 
 @end

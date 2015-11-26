@@ -23,32 +23,36 @@
 @implementation BeinDangerDetailViewController{
     UIView *buttonView1;
     UIView *buttonView2;
-    CButtonAgreement *bAgreement;
+    XLLabel *lblInformation;
     XLButton *bSubmitRe;
     XLButton *bSubmitRePic;
     XLButton *bSubmitRePicReport;
-    XLLabel *lblInformation;
-}
-
-- (id)init
-{
-    self=[super init];
-    if(self){
-        [self setTitle:@"出险详情"];
-    }
-    return self;
+    CButtonAgreement *bAgreement;
 }
 
 - (id)initWithData:(NSDictionary *)data
 {
     self.cData=data;
-    return [self init];
+    self=[super init];
+    if(self){
+        [self setTitle:@"出险详情"];
+        
+    }
+    return self;
+}
+
+- (id)initWithData:(NSDictionary *)data isHistory:(BOOL)isHistory
+{
+    self=[self initWithData:data];
+    if(isHistory){
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"历史出险" style:UIBarButtonItemStylePlain target:self action:@selector(goHistory)];
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataItemArray =[[NSMutableArray alloc]init];
     [self buildTableViewWithView:self.view];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -62,13 +66,13 @@
     [lblInformation setTextAlignment:NSTextAlignmentCenter];
     [buttonView1 addSubview:lblInformation];
     
-    bSubmitRePic=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新拍摄" Type:3];
-    [bSubmitRePic addTarget:self action:@selector(goRePai) forControlEvents:UIControlEventTouchUpInside];
-    [buttonView1 addSubview:bSubmitRePic];
-    
     bSubmitRe=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新认定" Type:3];
     [bSubmitRe addTarget:self action:@selector(goReCarConfirm) forControlEvents:UIControlEventTouchUpInside];
     [buttonView1 addSubview:bSubmitRe];
+    
+    bSubmitRePic=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新拍摄" Type:3];
+    [bSubmitRePic addTarget:self action:@selector(goRePai) forControlEvents:UIControlEventTouchUpInside];
+    [buttonView1 addSubview:bSubmitRePic];
     
     bSubmitRePicReport=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"拍摄交通认定书" Type:3];
     [bSubmitRePicReport addTarget:self action:@selector(goRePaiPicReport) forControlEvents:UIControlEventTouchUpInside];
@@ -89,15 +93,17 @@
     [buttonView2 addSubview:bSubmit];
     
     self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
-    //
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"历史出险" style:UIBarButtonItemStylePlain target:self action:@selector(goHistory)];
-    
-//    [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [buttonView1 setHidden:YES];
+    [lblInformation setHidden:YES];
+    [bSubmitRe setHidden:YES];
+    [bSubmitRePic setHidden:YES];
+    [bSubmitRePicReport setHidden:YES];
+    [buttonView2 setHidden:YES];
     [self loadHttpData];
 }
 
@@ -140,33 +146,28 @@
             [lblTitle setText:[NSString stringWithFormat:@"保险定损共%@元",priceCount]];
         }else if([@"8" isEqualToString:status]){
             [lblTitle setText:@"定损需补拍以下局部照"];
-        }else{
         }
     }
     [lblTitle setTextColor:BGCOLOR];
     [lblTitle setFont:GLOBAL_FONTSIZE(14)];
     [headTitle addSubview:lblTitle];
-    XLLabel *lblInfo=[[XLLabel alloc]initWithFrame:CGRectMake1(210, 5, 100, 30)];
-    [lblInfo setTextColor:BGCOLOR];
-    [lblInfo setFont:GLOBAL_FONTSIZE(14)];
-    [lblInfo setTextAlignment:NSTextAlignmentRight];
-    [lblInfo setHidden:YES];
-    [headTitle addSubview:lblInfo];
     if(section==0){
-        NSString *status=[self.cData objectForKey:@"status"];
-        if(![@"1" isEqualToString:status]){
-            //多车事故
-            NSString *responsibility=[self.cData objectForKey:@"responsibility"];
-            if([@"1" isEqualToString:responsibility]){
-                [lblInfo setText:@"本人为全部责任"];
-                [lblInfo setHidden:NO];
-            }else if([@"2" isEqualToString:responsibility]){
-                [lblInfo setText:@"本人为无责"];
-                [lblInfo setHidden:NO];
-            }else if([@"3" isEqualToString:responsibility]){
-                [lblInfo setText:@"本人为同等责任"];
-                [lblInfo setHidden:NO];
-            }
+        XLLabel *lblInfo=[[XLLabel alloc]initWithFrame:CGRectMake1(210, 5, 100, 30)];
+        [lblInfo setTextColor:BGCOLOR];
+        [lblInfo setFont:GLOBAL_FONTSIZE(14)];
+        [lblInfo setTextAlignment:NSTextAlignmentRight];
+        [headTitle addSubview:lblInfo];
+        [lblInfo setHidden:YES];
+        NSString *responsibility=[self.cData objectForKey:@"responsibility"];
+        if([@"1" isEqualToString:responsibility]){
+            [lblInfo setText:@"本人为全部责任"];
+            [lblInfo setHidden:NO];
+        }else if([@"2" isEqualToString:responsibility]){
+            [lblInfo setText:@"本人为无责"];
+            [lblInfo setHidden:NO];
+        }else if([@"3" isEqualToString:responsibility]){
+            [lblInfo setText:@"本人为同等责任"];
+            [lblInfo setHidden:NO];
         }
     }
     return headTitle;
@@ -217,12 +218,12 @@
         return CGHeight(180);
     }else{
         NSString *status=[self.cData objectForKey:@"status"];
-        if([@"8" isEqualToString:status]){
+        if([@"1" isEqualToString:status]){
+            return CGHeight(70);
+        }else if([@"8" isEqualToString:status]){
             NSArray *arr=[self.cData objectForKey:@"damageData"];
             NSInteger count=[arr count];
             return CGHeight((count/2+count%2)*132+60);
-        }else if([@"1" isEqualToString:status]){
-            return CGHeight(70);
         }else{
             return CGHeight(45);
         }
@@ -231,6 +232,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if([indexPath section]==0){
+        //事故照片信息
         static NSString *cellIdentifier = @"BeinDangerHeaderCell";
         BeinDangerHeader *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
@@ -238,7 +240,6 @@
         }
         NSString *address=[self.cData objectForKey:@"address"];
         [cell.lblAddress setText:[NSString stringWithFormat:@"事故地址:%@",address]];
-        //图片
         for(UIView *v in cell.scrollView.subviews){
             [v removeFromSuperview];
         }
@@ -298,11 +299,13 @@
     }
 }
 
+//历史出险
 - (void)goHistory
 {
     [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
 }
 
+//重新拍摄未通过审核的事故图片
 - (void)goRePai
 {
     [self.navigationController pushViewController:[[ReUploadAccidentImageViewController alloc]initWithData:self.cData] animated:YES];
@@ -314,6 +317,7 @@
     [self.navigationController pushViewController:[[BeinDangerTwoCarConfirmViewController alloc]initWithData:self.cData] animated:YES];
 }
 
+//责任认定
 - (void)goReCarConfirm
 {
     NSString *type=[self.cData objectForKey:@"type"];
@@ -365,23 +369,46 @@
     }
 }
 
+- (void)loadHttpData
+{
+    NSString *cid=[self.cData objectForKey:@"id"];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"getAccidentInfo" forKey:@"act"];
+    [params setObject:[User getInstance].uid forKey:@"uid"];
+    [params setObject:cid forKey:@"id"];
+    self.hRequest=[[HttpRequest alloc]initWithRequestCode:502];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setView:self.view];
+    [self.hRequest setIsShowFailedMessage:YES];
+    [self.hRequest handleWithParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            //线下确认
+            [self loadHttpData];
+        }else if(reqCode==501){
+            //线上确认
+            [self loadHttpData];
+        }else if(reqCode==502){
+            self.cData=[[response resultJSON] objectForKey:@"data"];
+            [self reloadViewData];
+        }
+    }
+}
+
 - (void)reloadViewData
 {
-    [buttonView1 setHidden:YES];
-    [bSubmitRe setHidden:YES];
-    [bSubmitRePic setHidden:YES];
-    [bSubmitRePicReport setHidden:YES];
-    [lblInformation setHidden:YES];
-    [buttonView2 setHidden:YES];
     NSString *status=[self.cData objectForKey:@"status"];
     if([@"1" isEqualToString:status]){
         [buttonView1 setHidden:NO];
-        [lblInformation setHidden:NO];
         NSArray *picData=[self.cData objectForKey:@"picData"];
         if([picData count]>0){
-            [buttonView1 setHidden:NO];
             [bSubmitRePic setHidden:NO];
         }else{
+            [lblInformation setHidden:NO];
             [lblInformation setText:@"初审中,请等待处理结果..."];
         }
     }else if([@"2" isEqualToString:status]){
@@ -423,36 +450,6 @@
         [buttonView2 setHidden:NO];
     }
     [self.tableView reloadData];
-}
-
-- (void)loadHttpData
-{
-    NSString *cid=[self.cData objectForKey:@"id"];
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"getAccidentInfo" forKey:@"act"];
-    [params setObject:[User getInstance].uid forKey:@"uid"];
-    [params setObject:cid forKey:@"id"];
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:502];
-    [self.hRequest setDelegate:self];
-    [self.hRequest setView:self.navigationController.view];
-    [self.hRequest setIsShowFailedMessage:YES];
-    [self.hRequest handleWithParams:params];
-}
-
-- (void)requestFinishedByResponse:(Response *)response requestCode:(int)reqCode
-{
-    if([response successFlag]){
-        if(reqCode==500){
-            //线下确认
-            [self.navigationController popViewControllerAnimated:YES];
-        }else if(reqCode==501){
-            //线上确认
-            [self.navigationController popViewControllerAnimated:YES];
-        }else if(reqCode==502){
-            self.cData=[[response resultJSON] objectForKey:@"data"];
-            [self reloadViewData];
-        }
-    }
 }
 
 @end
