@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
 
-@interface BeinDangerDetailViewController : BaseTableViewController<ResultDelegate>
+@interface BeinDangerDetailViewController : BaseTableViewController
+
+- (void)loadHttpData;
 
 @end

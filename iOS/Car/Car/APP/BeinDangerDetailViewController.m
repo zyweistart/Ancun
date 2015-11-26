@@ -9,12 +9,12 @@
 #import "BeinDangerDetailViewController.h"
 #import "BeinDangerHistoryViewController.h"
 #import "HandleViewController.h"
-#import "BeinDangerHeader.h"
-#import "CameraViewCell.h"
-#import "PaiCell.h"
 #import "ReUploadAccidentImageViewController.h"
 #import "BeinDangerOneCarConfirmViewController.h"
 #import "BeinDangerTwoCarConfirmViewController.h"
+#import "BeinDangerHeader.h"
+#import "CameraViewCell.h"
+#import "PaiCell.h"
 
 @interface BeinDangerDetailViewController ()
 
@@ -58,12 +58,24 @@
     buttonView1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 80)];
     [footView addSubview:buttonView1];
     
-    buttonView2=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 85)];
-    [footView addSubview:buttonView2];
-    
     lblInformation=[[XLLabel alloc]initWithFrame:CGRectMake1(10, 0, 300, 40)];
     [lblInformation setTextAlignment:NSTextAlignmentCenter];
     [buttonView1 addSubview:lblInformation];
+    
+    bSubmitRePic=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新拍摄" Type:3];
+    [bSubmitRePic addTarget:self action:@selector(goRePai) forControlEvents:UIControlEventTouchUpInside];
+    [buttonView1 addSubview:bSubmitRePic];
+    
+    bSubmitRe=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新认定" Type:3];
+    [bSubmitRe addTarget:self action:@selector(goReCarConfirm) forControlEvents:UIControlEventTouchUpInside];
+    [buttonView1 addSubview:bSubmitRe];
+    
+    bSubmitRePicReport=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"拍摄交通认定书" Type:3];
+    [bSubmitRePicReport addTarget:self action:@selector(goRePaiPicReport) forControlEvents:UIControlEventTouchUpInside];
+    [buttonView1 addSubview:bSubmitRePicReport];
+    
+    buttonView2=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 85)];
+    [footView addSubview:buttonView2];
     
     bAgreement=[[CButtonAgreement alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Name:@"我已阅读并同意《车安存车车辆线上定损协议》"];
     [buttonView2 addSubview:bAgreement];
@@ -76,23 +88,17 @@
     [bSubmit addTarget:self action:@selector(goOnlineConfirm) forControlEvents:UIControlEventTouchUpInside];
     [buttonView2 addSubview:bSubmit];
     
-    bSubmitRePic=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新拍摄" Type:3];
-    [bSubmitRePic addTarget:self action:@selector(goRePai) forControlEvents:UIControlEventTouchUpInside];
-    [buttonView1 addSubview:bSubmitRePic];
-    
-    bSubmitRePicReport=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"拍摄交通认定书" Type:3];
-    [bSubmitRePicReport addTarget:self action:@selector(goRePaiPicReport) forControlEvents:UIControlEventTouchUpInside];
-    [buttonView1 addSubview:bSubmitRePicReport];
-    
-    bSubmitRe=[[XLButton alloc]initWithFrame:CGRectMake1(10,40,300,40) Name:@"重新认定" Type:3];
-    [bSubmitRe addTarget:self action:@selector(goReCarConfirm) forControlEvents:UIControlEventTouchUpInside];
-    [buttonView1 addSubview:bSubmitRe];
-    
     self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
     //
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"历史出险" style:UIBarButtonItemStylePlain target:self action:@selector(goHistory)];
     
-    [self loadData];
+//    [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadHttpData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -192,7 +198,14 @@
             NSArray *priceData=[self.cData objectForKey:@"priceData"];
             return [priceData count];
         }else if([@"8" isEqualToString:status]){
-            return 1;
+            NSArray *arr=[self.cData objectForKey:@"damageData"];
+            NSInteger count=[arr count];
+            if(count>0){
+                return 1;
+            }else{
+                return 0;
+            }
+//            return 1;
         }else{
             return 0;
         }
@@ -351,7 +364,8 @@
         [Common alert:@"请勾选定损协议"];
     }
 }
-- (void)loadData
+
+- (void)reloadViewData
 {
     [buttonView1 setHidden:YES];
     [bSubmitRe setHidden:YES];
@@ -411,7 +425,7 @@
     [self.tableView reloadData];
 }
 
-- (void)onControllerResult:(NSInteger)resultCode requestCode:(NSInteger)requestCode data:(NSDictionary*)result
+- (void)loadHttpData
 {
     NSString *cid=[self.cData objectForKey:@"id"];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
@@ -436,7 +450,7 @@
             [self.navigationController popViewControllerAnimated:YES];
         }else if(reqCode==502){
             self.cData=[[response resultJSON] objectForKey:@"data"];
-            [self loadData];
+            [self reloadViewData];
         }
     }
 }

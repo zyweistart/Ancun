@@ -122,16 +122,19 @@
         NSString *key=[self.dataKeys objectAtIndex:[indexPath section]];
         NSArray *array=[self.dataResults objectForKey:key];
         NSDictionary *data=[array objectAtIndex:[indexPath row]];
-        NSString *cid=[data objectForKey:@"id"];
-        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-        [params setObject:@"getAccidentInfo" forKey:@"act"];
-        [params setObject:[User getInstance].uid forKey:@"uid"];
-        [params setObject:cid forKey:@"id"];
-        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
-        [self.hRequest setDelegate:self];
-        [self.hRequest setView:self.view];
-        [self.hRequest setIsShowFailedMessage:YES];
-        [self.hRequest handleWithParams:params];
+        
+//        NSString *cid=[data objectForKey:@"id"];
+//        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//        [params setObject:@"getAccidentInfo" forKey:@"act"];
+//        [params setObject:[User getInstance].uid forKey:@"uid"];
+//        [params setObject:cid forKey:@"id"];
+//        self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
+//        [self.hRequest setDelegate:self];
+//        [self.hRequest setView:self.view];
+//        [self.hRequest setIsShowFailedMessage:YES];
+//        [self.hRequest handleWithParams:params];
+        
+        [self.navigationController pushViewController:[[BeinDangerDetailViewController alloc]initWithData:data] animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }

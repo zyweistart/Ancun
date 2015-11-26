@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CameraView.h"
+#import "BeinDangerDetailViewController.h"
 
 @interface CameraViewCell : UITableViewCell<CameraViewDelegate,HttpViewDelegate>
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithArray:(NSArray*)array Controller:(UIViewController*)controller;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithArray:(NSArray*)array Controller:(BeinDangerDetailViewController*)controller;
 
-@property (strong,nonatomic) UIViewController *currentController;
+@property (strong,nonatomic) BeinDangerDetailViewController *currentController;
 @property (strong,nonatomic) NSDictionary *cData;
 @property (strong,nonatomic) HttpRequest *hRequest;
 

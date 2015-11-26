@@ -25,6 +25,11 @@
     #import "TimeUtils.h"
     #import "Utility.h"
     #import "CameraView.h"
+    #import "UIButton+Utils.h"
+    #import "UIImage+Utils.h"
+    #import "CameraUtility.h"
+    #import "FileUtils.h"
+    #import "VideoUtils.h"
 #endif
 
 //自定义颜色表

@@ -10,7 +10,7 @@
 
 @implementation CameraViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithArray:(NSArray*)array Controller:(UIViewController*)controller {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithArray:(NSArray*)array Controller:(BeinDangerDetailViewController*)controller {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.currentController=controller;
@@ -25,7 +25,11 @@
             [cameraV setControler:controller];
             [cameraV setType:6];
             [self addSubview:cameraV];
-            [cameraV loadHttpImage:[data objectForKey:@"uploadUrl"]];
+            NSString *uploadUrl=[data objectForKey:@"uploadUrl"];
+            if(![uploadUrl isEmpty]){
+                [cameraV loadHttpImage:[data objectForKey:@"uploadUrl"]];
+                [cameraV setStatus:NO];
+            }
         }
         XLButton *bSubmit=[[XLButton alloc]initWithFrame:CGRectMake1(10, (count/2+count%2)*132+10, 300, 40) Name:@"提交照片" Type:3];
         [bSubmit addTarget:self action:@selector(goSubmit) forControlEvents:UIControlEventTouchUpInside];
@@ -66,8 +70,7 @@
 {
     if([response successFlag]){
         if(reqCode==500){
-            //补拍图片
-            [self.currentController.navigationController popViewControllerAnimated:YES];
+            [self.currentController loadHttpData];
         }
     }
 }

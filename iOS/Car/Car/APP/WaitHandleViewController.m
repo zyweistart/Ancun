@@ -71,14 +71,14 @@
     NSInteger s=sec%60;
     NSString *sm,*ss;
     if(m>9){
-        sm=[NSString stringWithFormat:@"%d",m];
+        sm=[NSString stringWithFormat:@"%ld",m];
     }else{
-        sm=[NSString stringWithFormat:@"0%d",m];
+        sm=[NSString stringWithFormat:@"0%ld",m];
     }
     if(s>9){
-        ss=[NSString stringWithFormat:@"%d",s];
+        ss=[NSString stringWithFormat:@"%ld",s];
     }else{
-        ss=[NSString stringWithFormat:@"0%d",s];
+        ss=[NSString stringWithFormat:@"0%ld",s];
     }
     NSString *va = [NSString stringWithFormat:@"%@:%@",sm,ss];
     return [NSString stringWithFormat:GLOBAL_GETCODE_STRING,va];

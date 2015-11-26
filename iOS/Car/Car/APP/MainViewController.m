@@ -14,21 +14,11 @@
 #import "UserCenterViewController.h"
 #import "ProcessViewController.h"
 #import "BidViewController.h"
-#import "BeinDangerDetailViewController.h"
 #import "HandleViewController.h"
-#import "UIButton+Utils.h"
-#import "UIImage+Utils.h"
-#import "CameraUtility.h"
-#import "FileUtils.h"
-#import "VideoUtils.h"
-#import "TimeUtils.h"
 #import "MarqueeLabel.h"
 #import "NoticeListViewController.h"
+#import "BeinDangerDetailViewController.h"
 #import "BeinDangerHistoryViewController.h"
-
-
-
-#import "WaitHandleViewController.h"
 
 @interface MainViewController ()
 
@@ -195,8 +185,8 @@
 
 - (void)goDynamic
 {
-    [self.navigationController pushViewController:[[WaitHandleViewController alloc]initWithData:nil] animated:YES];
-//    [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
+//    [self.navigationController pushViewController:[[WaitHandleViewController alloc]initWithData:nil] animated:YES];
+    [self.navigationController pushViewController:[[BeinDangerHistoryViewController alloc]init] animated:YES];
 }
 
 - (void)goUserCenter
