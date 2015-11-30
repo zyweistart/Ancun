@@ -1,12 +1,15 @@
 #import "BaseEGOTableViewPullRefreshViewController.h"
 
-@implementation BaseEGOTableViewPullRefreshViewController
+@implementation BaseEGOTableViewPullRefreshViewController{
+    BOOL isFirstOpenLoad;
+}
 
 - (id)init{
     self=[super init];
     if(self){
         self.currentPage=0;
         self.dataItemArray=[[NSMutableArray alloc]init];
+        isFirstOpenLoad=YES;
     }
     return self;
 }
@@ -21,10 +24,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    if(!self.tableView.pullTableIsRefreshing) {
-//        self.tableView.pullTableIsRefreshing = YES;
-//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.5];
-//    }
+    if(isFirstOpenLoad){
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing = YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.5];
+        }
+        isFirstOpenLoad=NO;
+    }
 }
 
 - (void)viewDidUnload

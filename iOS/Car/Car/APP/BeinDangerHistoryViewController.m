@@ -30,15 +30,6 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing = YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.5];
-    }
-}
-
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
@@ -127,7 +118,6 @@
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
