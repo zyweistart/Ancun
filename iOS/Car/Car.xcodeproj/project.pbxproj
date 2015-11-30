@@ -107,6 +107,7 @@
 		C9CF7AD71BCF839A00DBBCDA /* UploadSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7AD61BCF839A00DBBCDA /* UploadSettingViewController.m */; };
 		C9CF7ADA1BCF83A700DBBCDA /* NotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7AD91BCF83A700DBBCDA /* NotificationSettingViewController.m */; };
 		C9CF7ADE1BCF90BF00DBBCDA /* BidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF7ADD1BCF90BF00DBBCDA /* BidViewController.m */; };
+		C9D0C4641C07EDB200A8713D /* XLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D0C4631C07EDB200A8713D /* XLImageView.m */; };
 		C9D24E5D1BE73AC0007D489F /* BeinDangerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */; };
 		C9D24E601BE73ADB007D489F /* BeinDangerHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D24E5F1BE73ADB007D489F /* BeinDangerHistoryViewController.m */; };
 		C9DB28B21BF9A7C200CEEB1D /* AccidentCerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB28B11BF9A7C200CEEB1D /* AccidentCerView.m */; };
@@ -356,6 +357,8 @@
 		C9CF7AD91BCF83A700DBBCDA /* NotificationSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSettingViewController.m; sourceTree = "<group>"; };
 		C9CF7ADC1BCF90BF00DBBCDA /* BidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidViewController.h; sourceTree = "<group>"; };
 		C9CF7ADD1BCF90BF00DBBCDA /* BidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidViewController.m; sourceTree = "<group>"; };
+		C9D0C4621C07EDB200A8713D /* XLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLImageView.h; sourceTree = "<group>"; };
+		C9D0C4631C07EDB200A8713D /* XLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImageView.m; sourceTree = "<group>"; };
 		C9D24E5B1BE73AC0007D489F /* BeinDangerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerDetailViewController.h; sourceTree = "<group>"; };
 		C9D24E5C1BE73AC0007D489F /* BeinDangerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeinDangerDetailViewController.m; sourceTree = "<group>"; };
 		C9D24E5E1BE73ADB007D489F /* BeinDangerHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeinDangerHistoryViewController.h; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 				C95B77881BE9A9990066623D /* XLTextField.m */,
 				C9DB60BE1BFC7EEF001B2A94 /* XLZoomImage.h */,
 				C9DB60BF1BFC7EEF001B2A94 /* XLZoomImage.m */,
+				C9D0C4621C07EDB200A8713D /* XLImageView.h */,
+				C9D0C4631C07EDB200A8713D /* XLImageView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1252,6 +1257,7 @@
 				C9662D091BFD9936004EB914 /* ATMProgressLayer.m in Sources */,
 				C94664771BE30AFE00172DA3 /* ReminderViewController.m in Sources */,
 				C925AFB21BE88CC90009E357 /* BeinDangerHistoryCell.m in Sources */,
+				C9D0C4641C07EDB200A8713D /* XLImageView.m in Sources */,
 				C93C84D11C06E57300C53D6A /* CButtonGetCode.m in Sources */,
 				C9C9378A1BCC9B6A0055B52D /* AppDelegate.mm in Sources */,
 				C9F31E241BCCB4CC00E598E6 /* UserCenterViewController.m in Sources */,

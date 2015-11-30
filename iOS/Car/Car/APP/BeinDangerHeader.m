@@ -74,11 +74,12 @@
 {
     NSInteger count=[[self.scrollView subviews]count];
     CGFloat width=count*80+count*5;
-    UIImageView *imv=[[UIImageView alloc]initWithFrame:CGRectMake1(width, 5, 80, 80)];
+    XLImageView *imv=[[XLImageView alloc]initWithFrame:CGRectMake1(width, 5, 80, 80)];
+    [imv loadImageNetUrl:imageNamed];
     [imv setBackgroundColor:[UIColor redColor]];
     [self.scrollView setContentSize:CGSizeMake1(width+80, 90)];
     [self.scrollView addSubview:imv];
-    [self.hDownload AsynchronousDownloadWithUrl:imageNamed RequestCode:500 Object:imv];
+//    [self.hDownload AsynchronousDownloadWithUrl:imageNamed RequestCode:500 Object:imv];
 }
 
 - (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender

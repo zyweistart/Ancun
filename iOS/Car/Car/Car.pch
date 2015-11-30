@@ -30,6 +30,7 @@
     #import "CameraUtility.h"
     #import "FileUtils.h"
     #import "VideoUtils.h"
+    #import "XLImageView.h"
 #endif
 
 //自定义颜色表

@@ -91,6 +91,8 @@
         return;
     }
     [bGetCode goGetCode:userName Type:@"2"];
+    [viewFrame1 setHidden:YES];
+    [viewFrame2 setHidden:NO];
 }
 
 - (void)goDone
