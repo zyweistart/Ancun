@@ -248,14 +248,18 @@
 
 - (void)loadBeinDangerHistoryList
 {
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"getAccidentList" forKey:@"act"];
-    [params setObject:[User getInstance].uid forKey:@"uid"];
-    self.hRequest=[[HttpRequest alloc]initWithRequestCode:502];
-    [self.hRequest setDelegate:self];
-    [self.hRequest setView:self.view];
-    [self.hRequest setIsShowFailedMessage:YES];
-    [self.hRequest handleWithParams:params];
+    if([[User getInstance]isAuthentication]){
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:@"getAccidentList" forKey:@"act"];
+        [params setObject:[User getInstance].uid forKey:@"uid"];
+        self.hRequest=[[HttpRequest alloc]initWithRequestCode:502];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setView:self.view];
+        [self.hRequest setIsShowFailedMessage:YES];
+        [self.hRequest handleWithParams:params];
+    }else{
+        [Common alert:@"请先去用户中心完善资料"];
+    }
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
@@ -266,11 +270,12 @@
             NSString *headPic=[[response resultJSON]objectForKey:@"headPic"];
             NSString *identityNum=[[response resultJSON]objectForKey:@"identityNum"];
             NSString *driverLicense=[[response resultJSON]objectForKey:@"driverLicense"];
+            NSString *mobile=[[response resultJSON]objectForKey:@"mobile"];
             [[User getInstance]setName:name];
             [[User getInstance]setHeadPic:headPic];
+            [[User getInstance]setPhone:mobile];
             [[User getInstance]setIdentityNum:identityNum];
             [[User getInstance]setDriverLicense:driverLicense];
-//            NSLog(@"获取用户信息成功：%@",[response responseString]);
         }else if(reqCode==501){
             NSLog(@"%@",[response responseString]);
             NSArray *array=[[response resultJSON]objectForKey:@"data"];

@@ -30,4 +30,6 @@
 
 - (BOOL)isLogin;
 
+- (BOOL)isAuthentication;
+
 @end

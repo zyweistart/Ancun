@@ -7,7 +7,6 @@
 //
 
 #import "BeinDangerOneCarConfirmViewController.h"
-#import "DesEncrypt.h"
 #import "CButtonGetCode.h"
 
 @interface BeinDangerOneCarConfirmViewController ()
@@ -15,10 +14,10 @@
 @end
 
 @implementation BeinDangerOneCarConfirmViewController{
-    CButtonGetCode *bGetCode;
-    CButtonAgreement *bAgreement;
     XLTextField *mCode;
     XLTextField *mUserName;
+    CButtonGetCode *bGetCode;
+    CButtonAgreement *bAgreement;
 }
 
 - (id)initWithData:(NSDictionary *)data

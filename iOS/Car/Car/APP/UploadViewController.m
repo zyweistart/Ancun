@@ -29,18 +29,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.thumImage=[[UIImageView alloc]initWithFrame:CGRectMake1(30, 70, 260, 150)];
+    
+    UIView *frame=[[UIView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:frame];
+    self.thumImage=[[UIImageView alloc]initWithFrame:CGRectMake1(30, 6, 260, 150)];
     [self.thumImage setImage:[UIImage imageNamed:@"局部照"]];
     [self.thumImage setBackgroundColor:[UIColor blackColor]];
     [self.thumImage setUserInteractionEnabled:YES];
     [self.thumImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goPlay)]];
-    [self.view addSubview:self.thumImage];
-    CGFloat f=self.view.bounds.size.height-CGHeight(70+150+20);
-    UIView *operatorView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-f, CGWidth(320), f)];
+    [frame addSubview:self.thumImage];
+    CGFloat f=frame.bounds.size.height-CGHeight(6+150+20);
+    UIView *operatorView=[[UIView alloc]initWithFrame:CGRectMake(0, frame.bounds.size.height-f, CGWidth(320), f)];
     operatorView.layer.borderWidth=2;
     operatorView.layer.borderColor=BCOLOR(229).CGColor;
     [operatorView setBackgroundColor:BCOLOR(244)];
-    [self.view addSubview:operatorView];
+    [frame addSubview:operatorView];
     
     XLLabel *lbl=[[XLLabel alloc]initWithFrame:CGRectMake1(15, 10,70, 30) Text:@"保存类型:"];
     [operatorView addSubview:lbl];
@@ -80,7 +83,7 @@
     self.lblSaveTime=[[XLLabel alloc]initWithFrame:CGRectMake1(90, 100, 200, 30)];
     [operatorView addSubview:self.lblSaveTime];
     //按钮
-    CGFloat bTop=operatorView.bounds.size.height-CGHeight(50);
+    CGFloat bTop=operatorView.bounds.size.height-64-CGHeight(50);
     XLButton *bCancel=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(20), bTop, CGWidth(130), CGHeight(40)) Name:@"取消" Type:2];
     [bCancel addTarget:self action:@selector(goCancel) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:bCancel];
@@ -128,7 +131,7 @@
         }
         if(self.moviePlayer==nil){
             self.moviePlayer=[[MPMoviePlayerController alloc]initWithContentURL:self.movFileUrl];
-            [self.moviePlayer.view setFrame:self.view.bounds];
+            [self.moviePlayer.view setFrame:self.navigationController.view.bounds];
             [self.moviePlayer.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
             [self.moviePlayer setShouldAutoplay:YES];
             [self.moviePlayer setFullscreen:YES animated:YES];

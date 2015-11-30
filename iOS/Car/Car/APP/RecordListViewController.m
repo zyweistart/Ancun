@@ -47,6 +47,12 @@
             cell = [[RecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        NSString *attchStatus=[data objectForKey:@"attchStatus"];
+        if([@"1" isEqualToString:attchStatus]){
+            [cell.icUp setHidden:NO];
+        }else{
+            [cell.icUp setHidden:YES];
+        }
         [cell.lblName setText:[data objectForKey:@"localName"]];
         [cell.lblSize setText:[data objectForKey:@"fileSize"]];
         [cell.lblTime setText:[data objectForKey:@"addTime"]];

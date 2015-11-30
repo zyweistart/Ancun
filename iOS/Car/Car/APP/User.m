@@ -95,4 +95,13 @@ static User * instance = nil;
     [Common setCacheByBool:CONFIGUPLOADFILEWIFIAUTO data:u];
 }
 
+//判断是否已认证
+- (BOOL)isAuthentication
+{
+    if([User getInstance].name){
+        return ![[User getInstance].name isEmpty];
+    }
+    return NO;
+}
+
 @end

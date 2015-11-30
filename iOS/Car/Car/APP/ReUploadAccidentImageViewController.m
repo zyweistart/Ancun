@@ -7,6 +7,7 @@
 //
 
 #import "ReUploadAccidentImageViewController.h"
+#import "WaitHandleViewController.h"
 
 @interface ReUploadAccidentImageViewController ()
 
@@ -166,7 +167,7 @@
 {
     if([response successFlag]){
         if(reqCode==500){
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController pushViewController:[[WaitHandleViewController alloc]initWithData:self.cData] animated:YES];
         }
     }
 }

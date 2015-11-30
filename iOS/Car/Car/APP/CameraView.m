@@ -51,6 +51,7 @@
         [self.lblTag setTextColor:[UIColor whiteColor]];
         [self.lblTag setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.lblTag];
+        self.isUploadFile=YES;
     }
     return self;
 }
@@ -82,8 +83,15 @@
     self.currentImage=[info objectForKey:UIImagePickerControllerOriginalImage];
     //生成缩略图
     self.currentImage=[self.currentImage cutCenterImageSize:CGSizeMake1(300, 240)];
-    if(self.currentImage){
-        [self uploadFile:self.currentImage];
+    if(self.isUploadFile){
+        if(self.currentImage){
+            [self uploadFile:self.currentImage];
+        }
+    }else{
+        [self.currentImageView setImage:self.currentImage];
+        if([self.delegate respondsToSelector:@selector(CameraSuccess:)]){
+            [self.delegate CameraSuccess:self];
+        }
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

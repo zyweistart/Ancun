@@ -394,6 +394,7 @@
             [self loadHttpData];
         }else if(reqCode==502){
             self.cData=[[response resultJSON] objectForKey:@"data"];
+            NSLog(@"%@",self.cData);
             [self reloadViewData];
         }
     }

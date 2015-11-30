@@ -12,6 +12,7 @@
 #define KEYADDRESSNAME @"KEYADDRESSNAME"
 
 #import "HandleViewController.h"
+#import "WaitHandleViewController.h"
 #import "AccidentCerView.h"
 
 @interface HandleViewController ()
@@ -153,6 +154,8 @@
         [mAccidentCerView1.bOk setTag:1];
         [mAccidentCerView1.bCancel setTag:1];
         [self.navigationController.view addSubview:mAccidentCerView1];
+        //当事人1默认为自己绑定的号码
+        [mAccidentCerView1.tfPhone setText:[User getInstance].phone];
     }
     if(mAccidentCerView2==nil){
         mAccidentCerView2=[[AccidentCerView alloc]initWithFrame:self.view.bounds];
@@ -414,8 +417,8 @@
 {
     if([response successFlag]){
         if(reqCode==500){
-            [Common alert:@"事故上报成功"];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            NSString *retId=[[response resultJSON]objectForKey:@"retId"];
+            [self.navigationController pushViewController:[[WaitHandleViewController alloc]initWithData:@{@"id":retId}] animated:YES];
         }
     }
 }

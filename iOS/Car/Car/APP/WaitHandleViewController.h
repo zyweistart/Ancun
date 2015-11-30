@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface WaitHandleViewController : BaseViewController
+@interface WaitHandleViewController : BaseViewController<UIAlertViewDelegate>
 
 @end

@@ -50,6 +50,12 @@
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
         NSString *url=[data objectForKey:@"videoThumbnail"];
         [self.hDownload AsynchronousDownloadWithUrl:url RequestCode:500 Object:cell.ivIcon];
+        NSString *attchStatus=[data objectForKey:@"attchStatus"];
+        if([@"1" isEqualToString:attchStatus]){
+            [cell.icUp setHidden:NO];
+        }else{
+            [cell.icUp setHidden:YES];
+        }
         [cell.lblName setText:[data objectForKey:@"localName"]];
         [cell.lblSize setText:[data objectForKey:@"fileSize"]];
         [cell.lblTime setText:[data objectForKey:@"addTime"]];

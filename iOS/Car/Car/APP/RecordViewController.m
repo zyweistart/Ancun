@@ -21,6 +21,8 @@
     long currentPlayLongTime;
     long currentRecordLongTime;
     UIImageView *sonic;
+    UIButton *rightButtonSaveType;
+    NSInteger saveType;
 }
 
 - (id)init
@@ -37,11 +39,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *recordView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, CGWidth(320), self.view.bounds.size.height-CGHeight(50))];
+    UIView *recordView=[[UIView alloc]initWithFrame:self.view.bounds];
     [recordView setBackgroundColor:BCOLOR(243)];
     [self.view addSubview:recordView];
     
-    sonic=[[UIImageView alloc]initWithFrame:CGRectMake1(75, 125, 165, 165)];
+    UIImageView *sonicW1=[[UIImageView alloc]initWithFrame:CGRectMake1(55, 61, 210, 210)];
+    [sonicW1 setImage:[UIImage imageNamed:@"动画外圈2"]];
+    [recordView addSubview:sonicW1];
+    UIImageView *sonicW2=[[UIImageView alloc]initWithFrame:CGRectMake1(7, 8, 195, 195)];
+    [sonicW2 setImage:[UIImage imageNamed:@"动画外圈1"]];
+    [sonicW1 addSubview:sonicW2];
+    
+    sonic=[[UIImageView alloc]initWithFrame:CGRectMake1(15, 15, 165, 165)];
     [sonic setImage:[UIImage imageNamed:@"IOS动画1"]];
     sonic.animationImages = [NSArray arrayWithObjects:
                              [UIImage imageNamed:@"IOS动画1"],
@@ -59,15 +68,15 @@
     sonic.animationDuration = 1.0;
     // repeat the annimation forever
     sonic.animationRepeatCount = 0;
-    [recordView addSubview:sonic];
+    [sonicW2 addSubview:sonic];
     
-    self.lblTimer=[[XLLabel alloc]initWithFrame:CGRectMake1(0, 330, 320, 50) Text:@"00:00:00"];
+    self.lblTimer=[[XLLabel alloc]initWithFrame:CGRectMake1(0, 290, 320, 50) Text:@"00:00:00"];
     [self.lblTimer setFont:GLOBAL_FONTSIZE(40)];
     [self.lblTimer setTextColor:BGCOLOR];
     [self.lblTimer setTextAlignment:NSTextAlignmentCenter];
     [recordView addSubview:self.lblTimer];
     
-    operatorView=[[UIView alloc]initWithFrame:CGRectMake(0, recordView.bounds.size.height-CGHeight(45), CGWidth(320), CGHeight(40))];
+    operatorView=[[UIView alloc]initWithFrame:CGRectMake(0, recordView.bounds.size.height-CGHeight(100)-64, CGWidth(320), CGHeight(40))];
     [recordView addSubview:operatorView];
     self.bPlayer=[[UIButton alloc]initWithFrame:CGRectMake1(115, 0, 40, 40)];
     [self.bPlayer setImage:[UIImage imageNamed:@"播放_开始"] forState:UIControlStateNormal];
@@ -79,35 +88,37 @@
     [self.bDelete addTarget:self action:@selector(deleteRecorder) forControlEvents:UIControlEventTouchUpInside];
     [operatorView addSubview:self.bDelete];
     
-    self.recordButton=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), self.view.bounds.size.height-CGHeight(45), CGWidth(300), CGHeight(40)) Name:@"点击开始录音" Type:3];
+    self.recordButton=[[XLButton alloc]initWithFrame:CGRectMake(CGWidth(10), recordView.bounds.size.height-CGHeight(45)-64, CGWidth(300), CGHeight(40)) Name:@"点击开始录音" Type:3];
     [self.recordButton addTarget:self action:@selector(startStopRecording) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.recordButton];
+    [recordView addSubview:self.recordButton];
     //
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"保存到本地" style:UIBarButtonItemStylePlain target:self action:@selector(saveTo)];
+    rightButtonSaveType = [[UIButton alloc]initWithFrame:CGRectMake(0,0,115,40)];
+    [rightButtonSaveType.titleLabel setFont:GLOBAL_FONTSIZE(13)];
+    [rightButtonSaveType setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButtonSaveType setImage:[UIImage imageNamed:@"箭头_下拉"] forState:UIControlStateNormal];
+    [rightButtonSaveType setImageEdgeInsets:UIEdgeInsetsMake(0, 105, 0, 0)];
+    [rightButtonSaveType addTarget:self action:@selector(switchSaveType) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc]initWithCustomView:rightButtonSaveType];
+    self.navigationItem.rightBarButtonItem=rightBarButton;
+    saveType=1;
+    [self switchSaveType];
 }
 
 //播放结束时执行的动作
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag{
     if (flag) {
-        NSLog(@"播放结束");
         [self setPlayingStep:1];
         [self startStopPlaying];
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex==0){
-        [self deleteRecorder];
-    }else if(buttonIndex==1){
-        //存储
-        [self saveRecorder:@"备注111"];
-    }
-}
-
 - (void)saveTo
 {
-    
+    if(saveType==1){
+        NSLog(@"保存到云端");
+    }else{
+        [self saveRecorderToLocal:@"备注信息"];
+    }
 }
 
 //开始停止播放
@@ -184,7 +195,7 @@
             [self.recordButton setTitle:@"点击开始录音" forState:UIControlStateNormal];
             currentRecordLongTime=0;
             [self.lblTimer setText:@"00:00:00"];
-            [self showAlert];
+            [self saveTo];
         }else{
             //保存录音
             [self setRecordingStep:0];
@@ -229,8 +240,19 @@
     }
 }
 
+//切换保存类型
+- (void)switchSaveType
+{
+    saveType=saveType==1?2:1;
+    if(saveType==1){
+        [rightButtonSaveType setTitle:@"保存到云端" forState:UIControlStateNormal];
+    }else{
+        [rightButtonSaveType setTitle:@"保存到本地" forState:UIControlStateNormal];
+    }
+}
+
 //保存录音
-- (void)saveRecorder:(NSString*)remark
+- (void)saveRecorderToLocal:(NSString*)remark
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -243,13 +265,6 @@
 //        float audioDurationSeconds =CMTimeGetSeconds(audioDuration);
         NSLog(@"%@,文件保存成功%@",remark,toMoveFilePath);
     }
-}
-
-- (void)showAlert
-{
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"保存录音" message:@"请输入文件名" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"存储", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [alert show];
 }
 
 - (void)timerFiredPlayer

@@ -36,6 +36,7 @@
 @property (strong,nonatomic)XLLabel *lblTag;
 @property (assign,nonatomic)BOOL isDelete;
 @property (strong,nonatomic)NSObject<CameraViewDelegate> *delegate;
+@property (assign,nonatomic)BOOL isUploadFile;
 - (void)loadHttpImage:(NSString*)url;
 - (void)resetCamera;
 - (void)setStatus:(BOOL)status;

@@ -15,10 +15,10 @@
 @end
 
 @implementation MyInformationViewController{
-    XLCamera *camera;
     UIImageView *ivHead;
     NSArray *nameLists;
     UIImage *currentEditedImage;
+    XLCamera *camera;
     CameraView *cameraView4;
 }
 
@@ -48,8 +48,9 @@
         [cameraView4.currentImageView setImage:[UIImage imageNamed:@"驾照底"]];
         [cameraView4 setDelegate:self];
         [cameraView4 setControler:self];
+        [cameraView4 setType:2];
         [contentView addSubview:cameraView4];
-        [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]driverLicense] RequestCode:500 Object:cameraView4.currentImageView];
+        [cameraView4 loadHttpImage:[User getInstance].driverLicense];
     }
     return self;
 }
@@ -87,7 +88,9 @@
             value=@"未填写";
         }
         [[cell detailTextLabel]setText:value];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        if(row!=3){
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        }
         return cell;
     }
 }
@@ -156,7 +159,7 @@
         [params setObject:[User getInstance].uid forKey:@"uid"];
         [params setObject:@"1" forKey:@"type"];
         self.hRequest=[[HttpRequest alloc]initWithRequestCode:501];
-        [self.hRequest setPostParams:@{@"uploadfile":UIImagePNGRepresentation(cameraView4.currentImage)}];
+        [self.hRequest setPostParams:@{@"uploadfile":UIImagePNGRepresentation(currentEditedImage)}];
         [self.hRequest setView:self.view];
         [self.hRequest setDelegate:self];
         [self.hRequest setIsShowFailedMessage:YES];
@@ -168,21 +171,6 @@
     [cropperViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
-{
-    if(![path isEmpty]){
-        UIImageView *imageView=(UIImageView*)sender;
-        if(imageView){
-            path=[NSString stringWithFormat:@"%@thum",path];
-            UIImage *image=[UIImage imageWithContentsOfFile:path];
-            if(image){
-                [imageView setImage:image];
-                [cameraView4 setCurrentImage:image];
-            }
-        }
-    }
-}
-
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
@@ -192,9 +180,6 @@
         }else if(reqCode==501){
             [[User getInstance]setHeadPic:[[response resultJSON] objectForKey:@"img"]];
             [ivHead setImage:currentEditedImage];
-        }else if(reqCode==502){
-            [[User getInstance]setDriverLicense:[[response resultJSON]objectForKey:@"img"]];
-            [self.hDownload AsynchronousDownloadWithUrl:[[User getInstance]driverLicense] RequestCode:500 Object:cameraView4.currentImageView];
         }
     }
 }
