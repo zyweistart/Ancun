@@ -5,9 +5,8 @@
 //  Created by Start on 11/24/15.
 //  Copyright © 2015 Ancun. All rights reserved.
 //
-#import "HttpDownload.h"
 
-@interface BeinDangerHeader : UITableViewCell<HttpDownloadDelegate>
+@interface BeinDangerHeader : UITableViewCell
 
 @property (strong,nonatomic)UIScrollView *scrollView;
 @property (strong,nonatomic)XLLabel *lblAddress;
@@ -17,7 +16,6 @@
 @property (strong,nonatomic)XLLabel *lblStepOne;
 @property (strong,nonatomic)XLLabel *lblStepTwo;
 @property (strong,nonatomic)XLLabel *lblStepThree;
-@property (strong,nonatomic)HttpDownload *hDownload;
 
 - (void)setCurrentType:(NSInteger)type;
 - (void)addSubImage:(NSString*)imageNamed;

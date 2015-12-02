@@ -32,8 +32,6 @@
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(0, 115, 320, 1)];
         [line setBackgroundColor:BCOLOR(207)];
         [self addSubview:line];
-        
-        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
     }
     return self;
 }
@@ -46,21 +44,6 @@
     [imv loadImageNetUrl:imageNamed];
     [self.scrollView setContentSize:CGSizeMake1(width+80, 90)];
     [self.scrollView addSubview:imv];
-//    [self.hDownload AsynchronousDownloadWithUrl:imageNamed RequestCode:500 Object:imv];
-}
-
-- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
-{
-    if(![path isEmpty]){
-        UIImageView *imageView=(UIImageView*)sender;
-        if(imageView){
-            path=[NSString stringWithFormat:@"%@thum",path];
-            UIImage *image=[UIImage imageWithContentsOfFile:path];
-            if(image){
-                [imageView setImage:image];
-            }
-        }
-    }
 }
 
 @end

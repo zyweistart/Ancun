@@ -44,8 +44,6 @@
         [self.lblStepThree setText:@"保险定损"];
         [self.lblStepThree setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.lblStepThree];
-        
-        self.hDownload=[[HttpDownload alloc]initWithDelegate:self];
     }
     return self;
 }
@@ -76,24 +74,8 @@
     CGFloat width=count*80+count*5;
     XLImageView *imv=[[XLImageView alloc]initWithFrame:CGRectMake1(width, 5, 80, 80)];
     [imv loadImageNetUrl:imageNamed];
-    [imv setBackgroundColor:[UIColor redColor]];
     [self.scrollView setContentSize:CGSizeMake1(width+80, 90)];
     [self.scrollView addSubview:imv];
-//    [self.hDownload AsynchronousDownloadWithUrl:imageNamed RequestCode:500 Object:imv];
-}
-
-- (void)requestFinishedByRequestCode:(NSInteger)reqCode Path:(NSString*)path Object:(id)sender
-{
-    if(![path isEmpty]){
-        UIImageView *imageView=(UIImageView*)sender;
-        if(imageView){
-            path=[NSString stringWithFormat:@"%@thum",path];
-            UIImage *image=[UIImage imageWithContentsOfFile:path];
-            if(image){
-                [imageView setImage:image];
-            }
-        }
-    }
 }
 
 @end

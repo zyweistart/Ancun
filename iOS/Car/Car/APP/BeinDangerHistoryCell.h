@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HttpDownload.h"
 
-@interface BeinDangerHistoryCell : UITableViewCell<HttpDownloadDelegate>
+@interface BeinDangerHistoryCell : UITableViewCell
 
 @property (strong,nonatomic)UIScrollView *scrollView;
 @property (strong,nonatomic)XLLabel *lblTime;
 @property (strong,nonatomic)XLLabel *lblStatus;
 @property (strong,nonatomic)XLLabel *lblAddress;
-@property (strong,nonatomic)HttpDownload *hDownload;
 
 - (void)addSubImage:(NSString*)imageNamed;
 

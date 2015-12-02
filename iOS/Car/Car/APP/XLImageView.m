@@ -7,6 +7,7 @@
 //
 
 #import "XLImageView.h"
+#import "SJAvatarBrowser.h"
 
 @implementation XLImageView
 
@@ -15,6 +16,8 @@
     self=[super initWithFrame:rect];
     if(self){
         [self setBackgroundColor:[UIColor redColor]];
+        [self setUserInteractionEnabled:YES];
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goOpen)]];
     }
     return self;
 }
@@ -116,6 +119,11 @@
             [self setImage:image];
         }
     }
+}
+
+- (void)goOpen
+{
+    [SJAvatarBrowser showImage:self];
 }
 
 @end
