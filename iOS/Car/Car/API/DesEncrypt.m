@@ -27,7 +27,7 @@
     Byte *encryptBytes = [DES encryptDES:srcBytes key:DESKEY useEBCmode:YES];
     NSMutableString *hexString=[[NSMutableString alloc]init];
     for(int i = 0 ;i < strlen((const char *)encryptBytes);i++) {
-        NSString *hex = [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%1x",encryptBytes[i]]];
+        NSString *hex = [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%02x",encryptBytes[i]]];
         [hexString appendString:[hex uppercaseString]];
     }
     free(encryptBytes);
