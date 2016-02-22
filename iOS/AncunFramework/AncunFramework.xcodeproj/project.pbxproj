@@ -72,6 +72,7 @@
 		C9AAFFF91C3227520007183B /* BaseTableViewRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAFFF81C3227520007183B /* BaseTableViewRefresh.m */; };
 		C9AAFFFE1C3249310007183B /* DES.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAFFFB1C3249310007183B /* DES.m */; };
 		C9AAFFFF1C3249310007183B /* DesEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAFFFD1C3249310007183B /* DesEncrypt.m */; };
+		C9B5F13B1C36B70700565AF8 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B5F13A1C36B70700565AF8 /* UserEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +225,8 @@
 		C9AAFFFB1C3249310007183B /* DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DES.m; sourceTree = "<group>"; };
 		C9AAFFFC1C3249310007183B /* DesEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesEncrypt.h; sourceTree = "<group>"; };
 		C9AAFFFD1C3249310007183B /* DesEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesEncrypt.m; sourceTree = "<group>"; };
+		C9B5F1391C36B70700565AF8 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = AncunFramework/UserEntity.h; sourceTree = SOURCE_ROOT; };
+		C9B5F13A1C36B70700565AF8 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = AncunFramework/UserEntity.m; sourceTree = SOURCE_ROOT; };
 		D46FC64878BFD09AC5FC27D8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -670,6 +673,8 @@
 		C9AAFFED1C3227100007183B /* TestController */ = {
 			isa = PBXGroup;
 			children = (
+				C9B5F1391C36B70700565AF8 /* UserEntity.h */,
+				C9B5F13A1C36B70700565AF8 /* UserEntity.m */,
 				C9AAFFEE1C3227100007183B /* Photo.h */,
 				C9AAFFEF1C3227100007183B /* Photo.m */,
 				C9AAFFF01C3227100007183B /* PhotoTableCell.h */,
@@ -917,6 +922,7 @@
 				C9AAFFB61C3225C90007183B /* ybase64.c in Sources */,
 				C9AAFFD31C3225F90007183B /* XHCacheManager.m in Sources */,
 				C9AAFF8C1C3223160007183B /* UIImage+fixOrientation.m in Sources */,
+				C9B5F13B1C36B70700565AF8 /* UserEntity.m in Sources */,
 				C9AAFF541C3221F80007183B /* EAIntroPage.m in Sources */,
 				C9AAFEE81C3220E80007183B /* Response.m in Sources */,
 				C9AAFFF41C3227100007183B /* Photo.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UserEntity.h"
 
 @interface ViewController ()
 
@@ -14,14 +15,20 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (IBAction)onClick:(id)sender {
+    NSDictionary *data=@{
+                         @"userName":@"zywei_624",
+                         @"age":@"13",
+                         @"user":@{
+                             @"userName":@"wzy19890624",
+                             @"age":@"27",
+                             @"testName":@"testdata"
+                         }
+                         };
+    UserEntity *user=[UserEntity buildInstanceClass:[UserEntity class] WithData:data];
+    NSLog(@"%@",user.userName);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 @end
